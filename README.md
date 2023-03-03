@@ -43,7 +43,7 @@
   <p align="center">
     R-Type is a space shooter game, with networking ability <br />
     <br />
-    <a href="https://alwyn974-rtype.gitbook.io/r-type"><strong>Explore the source code docs »</strong></a>
+    <a href="https://alwyn974.github.io/R-Type"><strong>Explore the source code docs »</strong></a>
     <br />
     <a href="https://alwyn974-rtype.gitbook.io/r-type"><strong>Explore the project docs »</strong></a>
     <br />
@@ -71,6 +71,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li><a href="#documentation">Documentation</a></li>
     <li>
       <a href="#usage">Usage</a>
       <ul>
@@ -121,7 +122,15 @@ You can install R-Type using the release package. <br />
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- USAGE EXAMPLES -->
+<!-- Documentation -->
+## Documentation
+
+The documentation of this project can be found at:
+- Source code documentation: [https://alwyn974.github.io/R-Type][github.io-url]
+- Project documentation: [https://alwyn974-rtype.gitbook.io/r-type][gitbook-url]
+
+
+<!-- USAGE -->
 ## Usage
 
 ### Run the server
