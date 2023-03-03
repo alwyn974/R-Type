@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Push to Epitech Github
-        uses: pixta-dev/repository-mirroring-action@v1
+        uses: pixta-dev/repository-mirroring-action@v1.1.1
         with:
           target_repo_url:
             ${{ secrets.EPITECH_URL }}
