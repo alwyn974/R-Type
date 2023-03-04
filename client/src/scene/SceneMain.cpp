@@ -33,18 +33,18 @@ void SceneMain::init()
 
     auto &r = engine::Manager::getRegistry();
 
-    textureManager->addTexture("assets/ship.png", "ship");
-    textureManager->addTexture("assets/enemy.png", "enemy");
-    textureManager->addTexture("assets/enemy2.png", "enemyShooter");
-    textureManager->addTexture("assets/bullet3.png", "bullet");
-    textureManager->addTexture("assets/bulletEnemy.png", "bulletEnemy");
-    textureManager->addTexture("assets/explosion.png", "explosion");
-    textureManager->addTexture("assets/bonusDouble.png", "bonusDoubleBullet");
-    textureManager->addTexture("assets/button.png", "button");
-    textureManager->addTexture("assets/buttonPlay.png", "buttonPlay");
-    textureManager->addTexture("assets/buttonQuit.png", "buttonQuit");
-    textureManager->addTexture("assets/logo2.png", "logo");
-    textureManager->addTexture("assets/background2.png", "background");
+    textureManager->addTexture("assets/rtype/textures/entity/ship.png", "ship");
+    textureManager->addTexture("assets/rtype/textures/entity/enemy.png", "enemy");
+    textureManager->addTexture("assets/rtype/textures/entity/enemy2.png", "enemyShooter");
+    textureManager->addTexture("assets/rtype/textures/entity/bullet3.png", "bullet");
+    textureManager->addTexture("assets/rtype/textures/entity/bulletEnemy.png", "bulletEnemy");
+    textureManager->addTexture("assets/rtype/textures/effects/explosion.png", "explosion");
+    textureManager->addTexture("assets/rtype/textures/effects/bonusDouble.png", "bonusDoubleBullet");
+    textureManager->addTexture("assets/rtype/textures/gui/button/button.png", "button");
+    textureManager->addTexture("assets/rtype/textures/gui/button/buttonPlay.png", "buttonPlay");
+    textureManager->addTexture("assets/rtype/textures/gui/button/buttonQuit.png", "buttonQuit");
+    textureManager->addTexture("assets/rtype/textures/logo/logo2.png", "logo");
+    textureManager->addTexture("assets/rtype/textures/background/background2.png", "background");
 
     uranus::ecs::Entity newEntity2 = r->spawnEntity();
     r->addComponent(newEntity2, uranus::ecs::component::Name {"background"});
