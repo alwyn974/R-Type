@@ -13,11 +13,17 @@ set(CPACK_NSIS_URL_INFO_ABOUT "${PROJECT_HOMEPAGE_URL}") # Link to the project's
 set(CPACK_NSIS_CONTACT "${CPACK_PACKAGE_CONTACT}") # Contact information
 set(CPACK_NSIS_EXECUTABLES_DIRECTORY "bin") # Modify where the executables should be, for the Start Menu, by default=bin
 set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\r-type_server.exe") # Modify the icon of the application in the Start Menu
+
+set(CPACK_NSIS_MUI_FINISHPAGE_RUN "r-type_client") # Launch the application after the installation
+set(CPACK_NSIS_MUI_FINISHPAGE_RUN_NOTCHECKED ON) # Launch checkbox
+set(CPACK_NSIS_MUI_FINISHPAGE_RUN_PARAMETERS "")
+
 #[[if (${${BINARY_NAME}_IS_EXECUTABLE})
     set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${BINARY_NAME}.exe") # Launch the application after the installation
     set(CPACK_NSIS_MUI_FINISHPAGE_RUN_NOTCHECKED ON) # Launch checkbox
     set(CPACK_NSIS_MUI_FINISHPAGE_RUN_PARAMETERS "") # Launch parameters
 endif ()]]
+
 set(CPACK_NSIS_MENU_LINKS
         "https://alwyn974.github.io/R-Type" "R-Type Documentation" # Add a link to the documentation in the Start Menu
 )

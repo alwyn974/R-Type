@@ -32,13 +32,10 @@ set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/assets/rtype/icons/logo.ico") # Loca
 set(CPACK_PACKAGE_CHECKSUM "SHA256") # Create a checksum for the package
 set(CPACK_MONOLITHIC_INSTALL OFF) # Install all components in one package, can be useful to force the installation of all components
 
-if (TARGET_TYPE STREQUAL "EXECUTABLE")
-    set(CPACK_PACKAGE_EXECUTABLES
-            "r-type_server.exe" "R-Type Server"
-            "r-type_client.exe" "R-Type Client"
-    ) # Set the executables name
-    set(${BINARY_NAME}_IS_EXECUTABLE ON)
-endif ()
+set(CPACK_PACKAGE_EXECUTABLES
+        "r-type_server.exe" "R-Type Server"
+        "r-type_client.exe" "R-Type Client"
+) # Set the executables name
 
 # Components
 include(CPackComponent)
