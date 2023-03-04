@@ -25,12 +25,12 @@ target_include_directories(${PROJECT_NAME}
             "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-find_package(Uranus REQUIRED)
+find_package(Saturnity 1.0.1.7 REQUIRED)
 
 # Link all libraries
 target_link_libraries(${PROJECT_NAME}
         PUBLIC
-            Uranus
+            Saturnity
 )
 
 # Enable warnings, will not work on header only libraries
