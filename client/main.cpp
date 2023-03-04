@@ -12,21 +12,22 @@
 
 int main()
 {
-//    engine::system::gameInit();
+    engine::system::gameInit();
 
-//    auto &sceneManager = engine::Manager::getSceneManager();
-//    sceneManager->addScene(std::make_shared<SceneMain>());
-//    sceneManager->addScene(std::make_shared<SceneGame>());
-//    sceneManager->changeScene("Main");
+    auto &sceneManager = engine::Manager::getSceneManager();
+    sceneManager->addScene(std::make_shared<SceneMain>());
+    sceneManager->addScene(std::make_shared<SceneGame>());
+    sceneManager->changeScene("Main");
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-    window.setFramerateLimit(60);
+   /* sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    window.setFramerateLimit(60);*/
 
     sf::Music music;
-    music.openFromFile("assets/rtype/sounds/music.ogg");
+    music.openFromFile("assets/rtype/sounds/music-r-rtype.ogg");
     music.setLoop(true);
+    music.setVolume(100);
     music.play();
-
+/*
     while (window.isOpen()) {
         sf::Event event = {};
         while (window.pollEvent(event)) {
@@ -35,8 +36,8 @@ int main()
         }
         window.clear();
         window.display();
-    }
+    }*/
 
-//    engine::system::gameLoop();
+    engine::system::gameLoop();
     return 0;
 }
