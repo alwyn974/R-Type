@@ -5,8 +5,8 @@
 ** main.cpp
 */
 
-#include "game/scene/SceneGame.hpp"
-#include "game/scene/SceneMain.hpp"
+#include "scene/SceneGame.hpp"
+#include "scene/SceneMain.hpp"
 
 #include <uranus/Uranus.hpp>
 

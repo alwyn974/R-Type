@@ -12,7 +12,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(BINARY_NAME r-type_client)
 
 add_executable(${BINARY_NAME} main.cpp
-
+        src/Player.cpp
+        src/Enemy.cpp
+        src/Bullet.cpp
+        src/scene/SceneMain.cpp
+        src/Explosion.cpp
+        src/EnemyShooter.cpp
+        src/BulletEnenmy.cpp
+        src/bonus/Bonus.cpp
+        src/bonus/DoubleBullet.cpp
+        src/ui/Button.cpp
+        src/scene/SceneGame.cpp
 )
 # Include all headers directories
 target_include_directories(${BINARY_NAME}
