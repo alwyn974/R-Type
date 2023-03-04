@@ -23,9 +23,10 @@ int main()
     window.setFramerateLimit(60);*/
 
     sf::Music music;
-    music.openFromFile("assets/rtype/sounds/music-r-rtype.ogg");
+    spdlog::info("Music open: {}", music.openFromFile("assets/rtype/sounds/music-r-type.ogg"));
+    //"C:\Users\alwyn\CLionProjects\R-Type\out\install\x64-Debug\bin\assets\rtype\sounds\music-r-type.ogg"
     music.setLoop(true);
-    music.setVolume(100);
+    music.setVolume(50);
     music.play();
 /*
     while (window.isOpen()) {
