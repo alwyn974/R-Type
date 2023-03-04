@@ -38,10 +38,12 @@ target_include_directories(${BINARY_NAME}
 )
 
 find_package(Uranus REQUIRED)
+find_package(SFML 2.6 COMPONENTS audio)
 target_link_libraries(${BINARY_NAME}
         PUBLIC
             R-Type-Common
             Uranus
+            sfml-audio
 )
 
 # Enable warnings, will not work on header only libraries

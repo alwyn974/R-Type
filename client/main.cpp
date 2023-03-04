@@ -19,10 +19,23 @@ int main()
 //    sceneManager->addScene(std::make_shared<SceneGame>());
 //    sceneManager->changeScene("Main");
 
+    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    window.setFramerateLimit(60);
+
     sf::Music music;
     music.openFromFile("assets/rtype/sounds/music.ogg");
     music.setLoop(true);
     music.play();
+
+    while (window.isOpen()) {
+        sf::Event event = {};
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        window.clear();
+        window.display();
+    }
 
 //    engine::system::gameLoop();
     return 0;
