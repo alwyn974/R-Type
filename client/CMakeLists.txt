@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 project(
-        Client
+        R-Type-Client
         VERSION 1.0.1.0
         DESCRIPTION "Client Part of the R-Type Project"
         HOMEPAGE_URL "https://github.com/alwyn974/R-Type"
