@@ -1,4 +1,4 @@
-/home/frenetikk/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/frenetikk/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/ninja/linux/ninja -G Ninja -S /home/frenetikk/4-Tek3/Projets/R-TYPE/ecs-frauder -B /home/frenetikk/4-Tek3/Projets/R-TYPE/ecs-frauder/cmake-build-debug
+/home/frenetikk/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/frenetikk/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/ninja/linux/ninja -G Ninja -S /home/frenetikk/4-Tek3/Projets/R-TYPE/R-Type -B /home/frenetikk/4-Tek3/Projets/R-TYPE/R-Type/cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/frenetikk/4-Tek3/Projets/R-TYPE/ecs-frauder/cmake-build-debug
+-- Build files have been written to: /home/frenetikk/4-Tek3/Projets/R-TYPE/R-Type/cmake-build-debug

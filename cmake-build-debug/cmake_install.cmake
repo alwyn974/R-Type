@@ -1,4 +1,4 @@
-# Install script for directory: /home/frenetikk/4-Tek3/Projets/R-TYPE/ecs-frauder
+# Install script for directory: /home/frenetikk/4-Tek3/Projets/R-TYPE/R-Type
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/frenetikk/4-Tek3/Projets/R-TYPE/ecs-frauder/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/frenetikk/4-Tek3/Projets/R-TYPE/R-Type/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

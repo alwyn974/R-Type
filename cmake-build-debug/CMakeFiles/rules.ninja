@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /home/frenetikk/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/linux/bin/cmake --regenerate-during-build -S/home/frenetikk/4-Tek3/Projets/R-TYPE/ecs-frauder -B/home/frenetikk/4-Tek3/Projets/R-TYPE/ecs-frauder/cmake-build-debug
+  command = /home/frenetikk/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/linux/bin/cmake --regenerate-during-build -S/home/frenetikk/4-Tek3/Projets/R-TYPE/R-Type -B/home/frenetikk/4-Tek3/Projets/R-TYPE/R-Type/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 
