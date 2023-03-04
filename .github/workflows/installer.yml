@@ -21,22 +21,22 @@ jobs:
           path: ./build/_deps
           key: ${{ runner.os }}-libraries-${{ hashFiles('**/CMakeLists.txt') }}
 
-      - name: Configure CMake (Shared)
-        shell: bash
-        run: cmake -B ./build -S . -DURANUS_CPACK=ON -DBUILD_SHARED_LIBS=ON
-
-      - name: Build Shared Release
-        shell: bash
-        run: cmake --build ./build --config Release -j`nproc`
-
-      - name: Create Shared Installer
-        shell: bash
-        working-directory: ./build
-        run: cpack -G "DEB;RPM"
+#      - name: Configure CMake (Shared)
+#        shell: bash
+#        run: cmake -B ./build -S . -DRTYPE_CPACK=ON -DBUILD_SHARED_LIBS=ON
+#
+#      - name: Build Shared Release
+#        shell: bash
+#        run: cmake --build ./build --config Release -j`nproc`
+#
+#      - name: Create Shared Installer
+#        shell: bash
+#        working-directory: ./build
+#        run: cpack -G "DEB;RPM"
 
       - name: Configure CMake (Static)
         shell: bash
-        run: cmake -B ./build -S . -DURANUS_CPACK=ON -DBUILD_SHARED_LIBS=OFF
+        run: cmake -B ./build -S . -DRTYPE_CPACK=ON -DBUILD_SHARED_LIBS=OFF
 
       - name: Build Static Release
         shell: bash
@@ -45,15 +45,16 @@ jobs:
       - name: Create Static Installer
         shell: bash
         working-directory: ./build
-        run: cpack -G "DEB;RPM"
+        run: cpack -G "DEB;RPM;TGZ"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: linux_installer
           path: |
-            build/Uranus*.deb
-            build/Uranus*.rpm
+            build/*.deb
+            build/*.rpm
+            build/*.tar.gz
             build/*.sha256
 
   windows_installer:
@@ -71,7 +72,7 @@ jobs:
 
       - name: Configure CMake (Shared)
         shell: bash
-        run: cmake -B ./build -S . -DURANUS_CPACK=ON -DBUILD_SHARED_LIBS=ON
+        run: cmake -B ./build -S . -DRTYPE_CPACK=ON -DBUILD_SHARED_LIBS=ON
 
       - name: Build Shared Release
         shell: pwsh
@@ -82,25 +83,25 @@ jobs:
         working-directory: ./build
         run: cpack -G "NSIS"
 
-      - name: Configure CMake (Static)
-        shell: bash
-        run: cmake -B ./build -S . -DURANUS_CPACK=ON -DBUILD_SHARED_LIBS=OFF
-
-      - name: Build Static Release
-        shell: pwsh
-        run: cmake --build ./build --config Release -j"$env:NUMBER_OF_PROCESSORS"
-
-      - name: Create Static Installer
-        shell: pwsh
-        working-directory: ./build
-        run: cpack -G "NSIS"
+#      - name: Configure CMake (Static)
+#        shell: bash
+#        run: cmake -B ./build -S . -DRTYPE_CPACK=ON -DBUILD_SHARED_LIBS=OFF
+#
+#      - name: Build Static Release
+#        shell: pwsh
+#        run: cmake --build ./build --config Release -j"$env:NUMBER_OF_PROCESSORS"
+#
+#      - name: Create Static Installer
+#        shell: pwsh
+#        working-directory: ./build
+#        run: cpack -G "NSIS"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: windows_installer
           path: |
-            build/Uranus*.exe
+            build/*.exe
             build/*.sha256
 
   create_release:
@@ -122,10 +123,11 @@ jobs:
         with:
           allowUpdates: true
           artifacts: |
-            ${{ steps.download_artifacts.outputs.download-path }}/linux_installer/Uranus*.deb
-            ${{ steps.download_artifacts.outputs.download-path }}/linux_installer/Uranus*.rpm
+            ${{ steps.download_artifacts.outputs.download-path }}/linux_installer/*.deb
+            ${{ steps.download_artifacts.outputs.download-path }}/linux_installer/*.rpm
+            ${{ steps.download_artifacts.outputs.download-path }}/linux_installer/*.tar.gz
             ${{ steps.download_artifacts.outputs.download-path }}/linux_installer/*.sha256
-            ${{ steps.download_artifacts.outputs.download-path }}/windows_installer/Uranus*.exe
+            ${{ steps.download_artifacts.outputs.download-path }}/windows_installer/*.exe
             ${{ steps.download_artifacts.outputs.download-path }}/windows_installer/*.sha256
           bodyFile: body.md
           generateReleaseNotes: true

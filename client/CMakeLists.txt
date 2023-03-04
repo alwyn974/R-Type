@@ -11,7 +11,11 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(BINARY_NAME r-type_client)
 
-add_executable(${BINARY_NAME} main.cpp
+if(WIN32)
+    set(${PROJECT_NAME}_ICON ${CMAKE_SOURCE_DIR}/assets/rtype/nsis/app.rc)
+endif()
+
+add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
         src/Player.cpp
         src/Enemy.cpp
         src/Bullet.cpp
@@ -73,4 +77,15 @@ if (USE_CLANG_TIDY OR USE_CLANG_TIDY_WITH_ERRORS OR USE_CLANG_TIDY_WITH_FIX)
     endif ()
 endif ()
 
+if (RTYPE_INSTALL OR RTYPE_CPACK)
+    # Specify the files to be installed
+    message(STATUS "Installing ${BINARY_NAME}")
+    get_target_property(${BINARY_NAME}_deps ${BINARY_NAME} INTERFACE_LINK_LIBRARIES)
 
+    install(TARGETS ${BINARY_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT runtime)
+    install(DIRECTORY "${CMAKE_SOURCE_DIR}/assets/rtype/" DESTINATION "${CMAKE_INSTALL_BINDIR}/assets/rtype/" COMPONENT runtime)
+endif ()
+
+#if (RTYPE_CPACK)
+#    include(${CMAKE_SOURCE_DIR}/cmake/CPackConfig.cmake)
+#endif ()

@@ -23,3 +23,7 @@ option(BUILD_SHARED_LIBS "Build shared libraries" OFF) # Fix dll issues on Windo
 add_subdirectory(common)
 add_subdirectory(client)
 add_subdirectory(server)
+
+if (RTYPE_CPACK)
+    include(${CMAKE_SOURCE_DIR}/cmake/CPackConfig.cmake)
+endif ()

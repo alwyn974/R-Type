@@ -11,18 +11,22 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(BINARY_NAME "r-type_server")
 
-add_executable(${BINARY_NAME} main.cpp
+if(WIN32)
+    set(${PROJECT_NAME}_ICON ${CMAKE_SOURCE_DIR}/assets/rtype/nsis/app.rc)
+endif()
 
+add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
+        src/GameRoom.cpp
 )
 
 # Include all headers directories
 target_include_directories(${BINARY_NAME}
         PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/src"
+            "${CMAKE_CURRENT_SOURCE_DIR}/src"
         PUBLIC
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>"
-        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
-        )
+            "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>"
+            "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+)
 
 find_package(tomlplusplus 3.3.0 REQUIRED)
 find_package(nlohmann_json 3.11.2 REQUIRED)
@@ -30,7 +34,7 @@ find_package(nlohmann_json 3.11.2 REQUIRED)
 target_link_libraries(${BINARY_NAME}
         PUBLIC
             R-Type-Common
-            tomlplusplus
+            tomlplusplus_tomlplusplus
             nlohmann_json
 )
 
@@ -67,3 +71,15 @@ if (USE_CLANG_TIDY OR USE_CLANG_TIDY_WITH_ERRORS OR USE_CLANG_TIDY_WITH_FIX)
     endif ()
 endif ()
 
+if (RTYPE_INSTALL OR RTYPE_CPACK)
+    # Specify the files to be installed
+    message(STATUS "Installing ${BINARY_NAME}")
+    get_target_property(${BINARY_NAME}_deps ${BINARY_NAME} INTERFACE_LINK_LIBRARIES)
+
+    install(TARGETS ${BINARY_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT runtime)
+    install(DIRECTORY "${CMAKE_SOURCE_DIR}/assets/rtype/config/" DESTINATION "${CMAKE_INSTALL_BINDIR}/assets/rtype/config/" COMPONENT runtime)
+endif ()
+
+#if (RTYPE_CPACK)
+#    include(${CMAKE_SOURCE_DIR}/cmake/CPackConfig.cmake)
+#endif ()
