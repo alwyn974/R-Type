@@ -33,8 +33,8 @@ set(CPACK_PACKAGE_CHECKSUM "SHA256") # Create a checksum for the package
 set(CPACK_MONOLITHIC_INSTALL OFF) # Install all components in one package, can be useful to force the installation of all components
 
 set(CPACK_PACKAGE_EXECUTABLES
-        "r-type_server.exe" "R-Type Server"
-        "r-type_client.exe" "R-Type Client"
+        "r-type_server" "R-Type Server"
+        "r-type_client" "R-Type Client"
 ) # Set the executables name
 
 # Components
