@@ -185,7 +185,7 @@ Distributed under the MIT License. See [LICENSE.txt][license-url] for more infor
 [issues-url]: https://github.com/alwyn974/R-Type/issues
 [license-shield]: https://img.shields.io/github/license/alwyn974/R-Type.svg?style=for-the-badge
 [license-url]: https://github.com/alwyn974/R-Type/blob/master/LICENSE.txt
-[product-screenshot]: assets/rtype/nsis/nsis-header.png
+[product-screenshot]: assets/rtype/icons/logo.ico
 [contributing-url]: CONTRIBUTING.md
 [gitbook-url]: https://alwyn974-rtype.gitbook.io/r-type/
 [github.io-url]: https://alwyn974.github.io/R-Type/
