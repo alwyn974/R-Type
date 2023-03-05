@@ -17,6 +17,9 @@
 #include "packets/tcp/server/S2CPlayerAuthentified.hpp"
 #include "packets/udp/client/C2SPlayerPrepareShoot.hpp"
 #include "packets/udp/client/C2SPlayerShoot.hpp"
+#include "packets/udp/client/C2SClientConnected.hpp"
 #include "packets/udp/server/S2CEntitySpawn.hpp"
+#include "packets/udp/server/S2CSpawnPlayer.hpp"
+#include "packets/udp/server/S2CSpawnBullet.hpp"
 
 #endif // R_TYPE_PACKETS_HPP

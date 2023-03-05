@@ -7,6 +7,7 @@
 
 #include "GameServer.hpp"
 
+
 namespace rtype::server {
 
     GameServer::GameServer(const std::string &host, std::uint16_t tcpPort, std::uint16_t udpPort, int maxPlayers)
@@ -48,11 +49,11 @@ namespace rtype::server {
     {
         this->_tcpServer->asyncRun();
         this->_udpServer->asyncRun();
-//        UUIDv4::UUIDGenerator<std::mt19937_64> uuidGenerator;
-//        this->_tcpServer->broadcast(std::make_shared<rtype::network::packet::S2CPlayerAuthentified>("", uuidGenerator.getUUID()));
+        int id = 0;
 
-        while (true)
-            ; // TODO: game logic
+        while (true) {
+            this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnBullet>(id++, 100, 100));
+        }
     }
 
     void GameServer::stop()
@@ -105,16 +106,24 @@ namespace rtype::server {
         this->_udpServer->onClientDisconnected = [&](ConnectionToClientPtr &client) { this->onUdpClientDisconnected(client); };
     }
 
-    void GameServer::registerTcpPackets() {}
+    void GameServer::registerTcpPackets() {
+        int id = 0;
+        // register server -> client packets
+        this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerAuthentified>(id++);
+        // register client -> server packets
+        this->_tcpPacketRegistry->registerPacket<packet::C2SPlayerHandshake>(id++);
+
+        this->_tcpServer->registerHandler<packet::C2SPlayerHandshake>([&](auto &client, auto &packet){ this->onPlayerHandshake(client, packet); });
+    }
 
     void GameServer::registerUdpPackets()
     {
         int id = 0;
         // register server -> client packets
-        this->_udpPacketRegistry->registerPacket<rtype::network::packet::S2CEntitySpawn>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CEntitySpawn>(id++);
         // register client -> server packets
-        this->_udpPacketRegistry->registerPacket<rtype::network::packet::C2SPrepareShoot>(id++);
-        this->_udpPacketRegistry->registerPacket<rtype::network::packet::C2SPlayerShoot>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SPrepareShoot>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);
     }
 
     void GameServer::onTcpClientConnected(ConnectionToClientPtr &client)
@@ -137,6 +146,17 @@ namespace rtype::server {
         this->_logger->info("Client disconnected id: {}", client->getId());
     }
 
+    //
+    // TCP C2S Packets
+    //
+
+    void GameServer::onPlayerHandshake(ConnectionToClientPtr &client, packet::C2SPlayerHandshake &packet)
+    {
+    }
+
+    //
+    // UDP C2S Packets
+    //
 
 
 } // namespace rtype::server

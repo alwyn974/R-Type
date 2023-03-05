@@ -13,6 +13,8 @@
 #include <saturnity/Saturnity.hpp>
 
 namespace rtype::server {
+    using namespace rtype::network; // NOLINT
+
     class GameServer {
     public:
         explicit GameServer(const std::string &host, std::uint16_t tcpPort, std::uint16_t udpPort, int maxPlayers);
@@ -41,6 +43,7 @@ namespace rtype::server {
 
         int _playerCount;
         int _maxPlayers;
+        std::unordered_map<UUIDv4::UUID, game::Player> _players;
 
         void registerTcpCallbacks();
         void registerUdpCallbacks();
@@ -53,6 +56,19 @@ namespace rtype::server {
 
         void onUdpClientConnected(ConnectionToClientPtr &client);
         void onUdpClientDisconnected(ConnectionToClientPtr &client);
+
+        //
+        // TCP
+        //
+
+        void onPlayerHandshake(ConnectionToClientPtr &client, packet::C2SPlayerHandshake &packet);
+
+        //
+        // UDP
+        //
+
+        void onClientConnected(ConnectionToClientPtr &client, packet::C2SClientConnected &packet);
+
     };
 } // namespace rtype::server
 

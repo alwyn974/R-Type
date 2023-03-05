@@ -11,7 +11,8 @@
 #include <saturnity/Saturnity.hpp>
 
 namespace rtype::network::packet {
-    struct C2SPlayerShoot : public sa::AbstractPacket {
+    class C2SPlayerShoot : public sa::AbstractPacket {
+    public:
         C2SPlayerShoot() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::UDP) {};
 
         void toBytes(sa::ByteBuffer &byteBuffer) override {}

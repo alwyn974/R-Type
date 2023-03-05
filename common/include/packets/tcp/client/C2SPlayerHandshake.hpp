@@ -11,12 +11,13 @@
 #include <saturnity/Saturnity.hpp>
 
 namespace rtype::network::packet {
-    struct C2SPlayerHandshake : public sa::AbstractPacket {
+    class C2SPlayerHandshake : public sa::AbstractPacket {
+    public:
         std::string name;
 
         C2SPlayerHandshake() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::TCP) {};
 
-        explicit C2SPlayerHandshake(const std::string &name) : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::TCP), name(name) {}
+        explicit C2SPlayerHandshake(const std::string &name) : C2SPlayerHandshake() { this->name = name; }
 
         void toBytes(sa::ByteBuffer &byteBuffer) override { byteBuffer.writeString(name); }
 
