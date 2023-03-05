@@ -1,0 +1,6 @@
+<map id="engine::Scene" name="engine::Scene">
+<area shape="rect" id="node1" title=" " alt="" coords="116,5,219,31"/>
+<area shape="rect" id="node2" href="$class_scene_game.html" title=" " alt="" coords="5,79,100,104"/>
+<area shape="rect" id="node3" href="$class_scene_main.html" title=" " alt="" coords="124,79,211,104"/>
+<area shape="rect" id="node4" href="$class_scene_stage1.html" title=" " alt="" coords="235,79,335,104"/>
+</map>

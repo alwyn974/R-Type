@@ -1,0 +1,12 @@
+<map id="rtype::server::GameServer" name="rtype::server::GameServer">
+<area shape="rect" id="node1" title=" " alt="" coords="563,173,733,198"/>
+<area shape="rect" id="node2" title=" " alt="" coords="253,5,385,45"/>
+<area shape="rect" id="node3" title=" " alt="" coords="253,69,385,109"/>
+<area shape="rect" id="node4" title=" " alt="" coords="253,133,385,173"/>
+<area shape="rect" id="node5" title=" " alt="" coords="241,197,397,237"/>
+<area shape="rect" id="node6" title=" " alt="" coords="280,262,359,287"/>
+<area shape="rect" id="node7" title=" " alt="" coords="9,255,133,295"/>
+<area shape="rect" id="node8" title=" " alt="" coords="242,311,397,366"/>
+<area shape="rect" id="node9" href="$class_u_u_i_dv4_1_1_u_u_i_d.html" title=" " alt="" coords="17,322,125,347"/>
+<area shape="rect" id="node10" href="$classrtype_1_1server_1_1game_1_1_player.html" title=" " alt="" coords="5,372,136,412"/>
+</map>
