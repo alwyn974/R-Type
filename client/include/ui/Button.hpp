@@ -19,7 +19,7 @@ namespace ui {
 
         void loop(size_t);
 
-        void handleKeyboard(size_t entity, const engine::Event event);
+        void handleKeyboard(size_t entity, engine::Event event);
 
     private:
         std::function<void()> _callbackPressed;

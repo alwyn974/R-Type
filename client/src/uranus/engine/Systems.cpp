@@ -185,15 +185,8 @@ sf::IntRect get_animation_rect(int frame, int h_frame, int v_frame, sf::Vector2u
 {
     sf::Vector2i frameSize(static_cast<int>(size.x) / h_frame, static_cast<int>(size.y) / v_frame);
 
-    sf::Vector2i start {0, 0};
-    for (int i = 0; i < frame; i++) {
-        start.x += frameSize.x;
-        if (start.x >= size.x) {
-            start.x = 0;
-            start.y += frameSize.y;
-        }
-    }
-    sf::IntRect rect {start.x, start.y, frameSize.x, frameSize.y};
+    sf::IntRect rect {frame % h_frame * frameSize.x, frame % v_frame * frameSize.y, frameSize.x, frameSize.y};
+
     return rect;
 }
 
