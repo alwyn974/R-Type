@@ -13,6 +13,7 @@
 #include "Player.hpp"
 #include "ui/Button.hpp"
 #include "Parallax.hpp"
+#include "Boss1.hpp"
 
 SceneStage1::SceneStage1() : Scene("Stage1") {}
 
@@ -114,6 +115,10 @@ void SceneStage1::init()
 
     auto player = std::make_shared<Player>("player", textureManager->getTextureByName("ship"), "bullet");
     entityManager->addPrefab(player);
+
+    textureManager->addTexture("assets/rtype/textures/entity/dobkeratops.png", "boss");
+    auto boss = std::make_shared<Boss>("boss", uranus::ecs::component::Position{300, 200}, textureManager->getTextureByName("boss"));
+    entityManager->addPrefab(boss);
 
 
     wave(uranus::ecs::component::Position{0, 0});

@@ -128,15 +128,23 @@ bool satCollision(const sf::FloatRect& obj1, const sf::FloatRect& obj2, const ur
 void engine::system::collision() {
     auto &r = engine::Manager::getRegistry();
     auto window = engine::Manager::getWindow();
-    const int gridSize = 150; // size of grid cell
+    const int gridSize = 5; // size of grid cell
     std::unordered_map<int, std::vector<int>> grid; // hash table to store entities by grid cell
 
 // populate the grid hash table with entities
     for (auto [entity, pos, collision] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Collisionable>(*r)) {
-        int const x = pos.x / gridSize;
-        int const y = pos.y / gridSize;
-        int const key = x * 1000 + y; // use x,y coordinates as hash key
-        grid[key].push_back(entity);
+        int startX = std::floor(pos.x / gridSize);
+        int startY = std::floor(pos.y / gridSize);
+        int endX = std::floor((pos.x + collision.width) / gridSize);
+        int endY = std::floor((pos.y + collision.height) / gridSize);
+
+        // Add the entity to each overlapping cell
+        for (int x = startX; x <= endX; x++) {
+            for (int y = startY; y <= endY; y++) {
+                int key = x * 1000 + y; // Use x,y coordinates as hash key
+                grid[key].push_back(entity);
+            }
+        }
     }
 
 // loop over entities in each grid cell and check for collisions
@@ -177,15 +185,8 @@ sf::IntRect get_animation_rect(int frame, int h_frame, int v_frame, sf::Vector2u
 {
     sf::Vector2i frameSize(static_cast<int>(size.x) / h_frame, static_cast<int>(size.y) / v_frame);
 
-    sf::Vector2i start {0, 0};
-    for (int i = 0; i < frame; i++) {
-        start.x += frameSize.x;
-        if (start.x >= size.x) {
-            start.x = 0;
-            start.y += frameSize.y;
-        }
-    }
-    sf::IntRect rect {start.x, start.y, frameSize.x, frameSize.y};
+    sf::IntRect rect {frame % h_frame * frameSize.x, frame % v_frame * frameSize.y, frameSize.x, frameSize.y};
+
     return rect;
 }
 
@@ -219,6 +220,7 @@ void engine::system::playAnimation(size_t entity, const std::string &name)
 
     for (uranus::ecs::component::AnimationData &animationData : animation->animations) {
         if (animationData.name == name) {
+            animationData.clock.restart();
             animationData.isPlaying = true;
             auto &sprite = r->getComponent<uranus::ecs::component::Sprite>(entity);
             sprite->sprite->setTextureRect(
