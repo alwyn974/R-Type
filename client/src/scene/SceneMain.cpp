@@ -6,10 +6,6 @@
 */
 
 #include "scene/SceneMain.hpp"
-#include "bonus/DoubleBullet.hpp"
-#include "Enemy.hpp"
-#include "EnemyShooter.hpp"
-#include "Player.hpp"
 #include "ui/Button.hpp"
 
 SceneMain::SceneMain() : Scene("Main") {}
@@ -46,10 +42,14 @@ void SceneMain::init()
     textureManager->addTexture("assets/rtype/textures/logo/logo2.png", "logo");
     textureManager->addTexture("assets/rtype/textures/background/background2.png", "background");
 
-    uranus::ecs::Entity newEntity2 = r->spawnEntity();
-    r->addComponent(newEntity2, uranus::ecs::component::Name {"background"});
-    r->addComponent(newEntity2, uranus::ecs::component::Position {0, 0});
-    r->addComponent(newEntity2, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(textureManager->getTextureByName("background"))});
+    uranus::ecs::Entity background = r->spawnEntity();
+    r->addComponent(background, uranus::ecs::component::Name {"background"});
+    r->addComponent(background, uranus::ecs::component::Position {0, 0});
+    auto rectangle = std::make_shared<engine::RectangleShape>();
+    rectangle->setSize({1280, 720});
+    const std::shared_ptr<sf::Texture> texture = textureManager->getTextureByName("background");
+    rectangle->setTexture(texture.get());
+    r->addComponent(background, uranus::ecs::component::RectangleShape { rectangle });
 
     auto buttonPlay =
         std::make_shared<ui::Button>("buttonPlay", uranus::ecs::component::Position {300, 300}, textureManager->getTextureByName("buttonPlay"), pressedPlay);

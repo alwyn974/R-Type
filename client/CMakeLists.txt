@@ -18,6 +18,19 @@ if(WIN32)
 endif()
 
 add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
+        src/uranus/ecs/Components.cpp
+        src/uranus/engine/Systems.cpp
+        src/uranus/engine/Texture.cpp
+        src/uranus/engine/Sprite.cpp
+        src/uranus/engine/Manager.cpp
+        src/uranus/engine/SceneManager.cpp
+        src/uranus/engine/Scene.cpp
+        src/uranus/engine/TextureManager.cpp
+        src/uranus/engine/Base.cpp
+        src/uranus/engine/EntityManager.cpp
+        src/uranus/engine/RenderWindow.cpp
+        src/uranus/engine/map/Map.cpp
+
         src/Player.cpp
         src/Enemy.cpp
         src/Bullet.cpp
@@ -39,12 +52,22 @@ target_include_directories(${BINARY_NAME}
             "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-find_package(Uranus REQUIRED)
+#find_package(Uranus REQUIRED)
+#find_package(spdlog 1.11.1 REQUIRED)
+#find_package(Saturnity 1.0.1.7 REQUIRED)
+find_package(SFML 2.6 REQUIRED COMPONENTS graphics window system audio)
+find_package(nlohmann_json 3.11.2 REQUIRED)
+find_package(sol2 3.3.0 REQUIRED)
+find_package(ImGui-SFML 2.5 REQUIRED)
 
 target_link_libraries(${BINARY_NAME}
         PUBLIC
             R-Type-Common
-            Uranus
+            sfml-graphics sfml-audio sfml-system sfml-window
+            nlohmann_json
+            sol2
+            ImGui-SFML
+#            Uranus
 )
 
 # Enable warnings, will not work on header only libraries

@@ -74,7 +74,7 @@ void Player::shoot()
 
     auto &pos = r->getComponent<uranus::ecs::component::Position>(this->_entityId);
 
-    if (!this->_doubleBullet) {
+    if (this->_doubleBullet) {
         auto bullet = std::make_shared<Bullet>(
             "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y + 10}, textureManager->getTextureByName(this->_bulletTextureName));
         entityManager->addPrefab(bullet);

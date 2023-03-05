@@ -20,10 +20,11 @@ ui::Button::Button(const std::string &uniqueName, uranus::ecs::component::Positi
 
     //    std::cout << this->_entityId << std::endl;
 
+    auto sprite = std::make_shared<engine::Sprite>(texture);
+
     r->addComponent(newEntity, uranus::ecs::component::Name {uniqueName});
     r->addComponent(newEntity, uranus::ecs::component::Position {pos.x, pos.y});
-    r->addComponent(newEntity, uranus::ecs::component::Velocity {0, 0});
-    r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture)});
+    r->addComponent(newEntity, uranus::ecs::component::Sprite { sprite });
     r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->handleKeyboard(entity, event); }});
 
     std::array<bool, LAYER_SIZE> layer {true, false, false, false};
@@ -65,13 +66,11 @@ void ui::Button::loop(size_t entity)
     auto &collision = r->getComponent<uranus::ecs::component::Collisionable>(entity);
     auto &pos = r->getComponent<uranus::ecs::component::Position>(entity);
 
-    sf::Vector2f mousePosition {static_cast<float>(sf::Mouse::getPosition(*window).x), static_cast<float>(sf::Mouse::getPosition(*window).y)};
-    sf::FloatRect mouseRect {mousePosition.x, mousePosition.y, 0, 0};
+    auto mousePosition {static_cast<sf::Vector2f>(sf::Mouse::getPosition(*window))};
+//    sf::FloatRect mouseRect {mousePosition.x, mousePosition.y, 0, 0};
+    const sf::FloatRect rect { collision->x + pos->x, collision->y + pos->y, collision->width, collision->height };
 
-    const sf::FloatRect rect {
-        collision->x + pos->x, collision->y + pos->y, collision->width, collision->height};
-
-    if (engine::system::isColliding(mouseRect, rect)) {
+    if (rect.contains(mousePosition)) {
         this->_hover = true;
         engine::system::playAnimation(entity, "hover");
     } else {

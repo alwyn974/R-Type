@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 
-set(LIBRARY_NAME Saturnity)
+set(LIBRARY_NAME ImGui-SFML)
 
 Include(FetchContent)
 if (NOT ${LIBRARY_NAME}_FIND_QUIETLY)
@@ -13,10 +13,13 @@ if(POLICY CMP0135)
 endif()
 
 if (NOT ${LIBRARY_NAME}_FOUND)
+    set(IMGUI_DIR "${PROJECT_SOURCE_DIR}/src/external/imgui/" CACHE PATH "Path to ImGui source directory")
+    set(IMGUI_SFML_FIND_SFML OFF)
+    set(IMGUI_SFML_USE_DEFAULT_CONFIG ON)
     FetchContent_Declare(
             ${LIBRARY_NAME}
-            GIT_REPOSITORY https://github.com/alwyn974/Saturnity.git
-            GIT_TAG main
+            GIT_REPOSITORY https://github.com/alwyn974/imgui-sfml.git
+            GIT_TAG master
             GIT_SHALLOW 1 # Only fetch the head commit
     )
     FetchContent_MakeAvailable(${LIBRARY_NAME})

@@ -39,5 +39,9 @@ s        window.clear();
     }*/
 
     engine::system::gameLoop();
+
+    /*auto &textureManager = engine::Manager::getTextureManager();
+    textureManager.reset();
+*/
     return 0;
 }
