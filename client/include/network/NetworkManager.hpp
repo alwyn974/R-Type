@@ -15,7 +15,7 @@
 namespace rtype::client::network {
     class NetworkManager {
     public:
-        static std::shared_ptr<NetworkManager> getInstance();
+        static std::shared_ptr<NetworkManager> &getInstance();
 
         void init();
 
@@ -31,6 +31,13 @@ namespace rtype::client::network {
         void send(sa::AbstractPacket &packet);
         void send(const std::shared_ptr<sa::AbstractPacket> &packet);
         void send(const std::unique_ptr<sa::AbstractPacket> &packet);
+
+        std::array<char, 128> imGuiHost = {'l', 'o', 'c', 'a', 'l', 'h', 'o', 's', 't'};
+        std::array<char, 5> imGuiTcpPort = {'2', '4', '0', '9'};
+        std::array<char, 5> imGuiUdpPort = {'2', '4', '1', '0'};
+        std::string host;
+        std::uint16_t tcpPort = 2409;
+        std::uint16_t udpPort = 2410;
 
     private:
         NetworkManager() = default;

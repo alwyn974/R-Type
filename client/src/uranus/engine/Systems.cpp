@@ -309,13 +309,17 @@ void engine::system::gameLoop()
     }
 }
 
+#include "network/NetworkManager.hpp"
+
 void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, std::shared_ptr<uranus::ecs::Registry> &registry, sf::Time &time, sf::Clock &clock)
 {
     static bool set = false;
     static int fps = 60;
+    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
     if (!set) {
-        ImGui::SetWindowSize({300, 100});
+        ImGui::SetWindowSize({300, 200});
         ImGui::SetWindowPos({0, 0});
+        ImGui::SetWindowCollapsed(true);
         set = true;
     }
     auto timeDeltaMs = static_cast<float>(static_cast<double>(time.asMicroseconds()) / 1000.0);
@@ -323,6 +327,9 @@ void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, st
     ImGui::TextWrapped("Entities: %d", registry->entitiesAliveCount()); // NOLINT
     ImGui::SliderInt("Max FPS", &fps, 10, 360, "%d"); // NOLINT
     window->setFramerateLimit(fps);
+    ImGui::InputText("Server HOST", networkManager->imGuiHost.data(), 128, ImGuiInputTextFlags_CharsNoBlank);
+    ImGui::InputText("Server TCP PORT", networkManager->imGuiTcpPort.data(), 5, ImGuiInputTextFlags_CharsDecimal);
+    ImGui::InputText("Server UDP PORT", networkManager->imGuiUdpPort.data(), 5, ImGuiInputTextFlags_CharsDecimal);
 
     ImGui::SFML::Render(*window);
 }

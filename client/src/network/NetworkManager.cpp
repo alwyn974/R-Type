@@ -12,7 +12,7 @@ using namespace rtype::network; // NOLINT
 namespace rtype::client::network {
     std::shared_ptr<NetworkManager> NetworkManager::networkManager = nullptr;
 
-    std::shared_ptr<NetworkManager> NetworkManager::getInstance()
+    std::shared_ptr<NetworkManager> &NetworkManager::getInstance()
     {
         if (networkManager == nullptr)
             networkManager = std::shared_ptr<NetworkManager>(new NetworkManager());

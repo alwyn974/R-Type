@@ -7,11 +7,29 @@
 
 #include "scene/SceneMain.hpp"
 #include "ui/Button.hpp"
+#include "network/NetworkManager.hpp"
 
 SceneMain::SceneMain() : Scene("Main") {}
 
 void pressedPlay()
 {
+    auto &networkManager = rtype::client::network::NetworkManager::getInstance();
+    try {
+        networkManager->host = networkManager->imGuiHost.data();
+        networkManager->tcpPort = std::stoi(networkManager->imGuiTcpPort.data());
+        networkManager->udpPort = std::stoi(networkManager->imGuiUdpPort.data());
+        if (networkManager->host.empty())
+            throw std::runtime_error("Invalid host");
+        if (networkManager->tcpPort < 0 || networkManager->tcpPort > 65535)
+            throw std::runtime_error("Invalid TCP port");
+        if (networkManager->udpPort < 0 || networkManager->udpPort > 65535)
+            throw std::runtime_error("Invalid UDP port");
+
+        networkManager->connectTcpClient(networkManager->host, networkManager->tcpPort);
+    } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
+
     auto &sceneManager = engine::Manager::getSceneManager();
     sceneManager->changeScene("Stage1");
 }
@@ -50,15 +68,22 @@ void SceneMain::init()
     rectangle->setTexture(texture.get());
     r->addComponent(background, uranus::ecs::component::RectangleShape {rectangle});
 
+    auto centerPos = [&](const sf::Vector2f &pos, std::shared_ptr<engine::Texture> &texture) {
+        return uranus::ecs::component::Position {(pos.x + (float) WIN_WIDTH - (float) texture->getSize().x / 3) / 2, pos.y + ((float) WIN_HEIGHT - (float) texture->getSize().y) / 2}; // NOLINT
+    };
+
+    auto &buttonPlayTexture = textureManager->getTextureByName("buttonPlay");
     auto buttonPlay =
-        std::make_shared<ui::Button>("buttonPlay", uranus::ecs::component::Position {300, 300}, textureManager->getTextureByName("buttonPlay"), pressedPlay);
+        std::make_shared<ui::Button>("buttonPlay", centerPos({0, 0}, buttonPlayTexture), buttonPlayTexture, pressedPlay);
     entityManager->addPrefab(buttonPlay);
 
+    auto &buttonQuitTexture = textureManager->getTextureByName("buttonQuit");
     auto buttonQuit =
-        std::make_shared<ui::Button>("buttonQuit", uranus::ecs::component::Position {300, 380}, textureManager->getTextureByName("buttonQuit"), pressedQuit);
+        std::make_shared<ui::Button>("buttonQuit", centerPos({0, 75}, buttonQuitTexture), buttonQuitTexture, pressedQuit);
     entityManager->addPrefab(buttonQuit);
 
-    uranus::ecs::Entity newEntity = r->spawnEntity();
-    r->addComponent(newEntity, uranus::ecs::component::Position {220, 50});
-    r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(textureManager->getTextureByName("logo"))});
+    const uranus::ecs::Entity newEntity = r->spawnEntity();
+    auto logoTexture = textureManager->getTextureByName("logo");
+    r->addComponent(newEntity, uranus::ecs::component::Position {((float) WIN_WIDTH - (float) logoTexture->getSize().x) / 2, 20}); // NOLINT
+    r->addComponent(newEntity, uranus::ecs::component::Sprite {  std::make_shared<engine::Sprite>(logoTexture) });
 }
