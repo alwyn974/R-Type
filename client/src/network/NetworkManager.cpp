@@ -133,7 +133,7 @@ namespace rtype::client::network {
 
     void NetworkManager::registerUdpPackets()
     {
-        int id = 0;
+        int id = 1;
         // register server -> client packets
         this->_udpPacketRegistry->registerPacket<packet::S2CEntityMove>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CEntitySpawn>(id++);
@@ -155,7 +155,7 @@ namespace rtype::client::network {
 
     void NetworkManager::registerTcpPackets()
     {
-        int id = 0;
+        int id = 1;
         // register server -> client packets
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerAuthentified>(id++);
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerScore>(id++);
