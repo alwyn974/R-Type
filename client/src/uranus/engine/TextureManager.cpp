@@ -22,3 +22,11 @@ void engine::TextureManager::addTexture(const std::string &path, const std::stri
     auto texture = std::make_shared<engine::Texture>(path, textureName);
     this->_textures.push_back(texture);
 }
+
+const std::vector<std::shared_ptr<engine::Texture>> & engine::TextureManager::getTextures() const{
+ return _textures;
+}
+
+std::vector<std::shared_ptr<engine::Texture>> &engine::TextureManager::getTextures() {
+    return _textures;
+}

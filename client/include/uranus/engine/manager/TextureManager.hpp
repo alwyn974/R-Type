@@ -17,6 +17,10 @@ namespace engine {
 
         std::shared_ptr<engine::Texture> &getTextureByName(const std::string &textureName);
 
+        const std::vector<std::shared_ptr<engine::Texture>> &getTextures() const;
+
+        std::vector<std::shared_ptr<engine::Texture>> &getTextures();
+
     private:
         std::vector<std::shared_ptr<engine::Texture>> _textures;
     };

@@ -12,6 +12,7 @@
 #include "EnemyShooter.hpp"
 #include "Player.hpp"
 #include "ui/Button.hpp"
+#include "Parallax.hpp"
 
 SceneStage1::SceneStage1() : Scene("Stage1") {}
 
@@ -36,8 +37,18 @@ void SceneStage1::init()
     auto &entityManager = engine::Manager::getEntityManager();
     auto &textureManager = engine::Manager::getTextureManager();
 
+    textureManager->addTexture("assets/rtype/textures/background/planets.png", "planets");
+    textureManager->addTexture("assets/rtype/textures/background/stars.png", "stars");
+    std::vector<std::string> names;
+    names.push_back("stars");
+    names.push_back("planets");
+    auto parallax = std::make_shared<Parallax>("parallax", names);
+    entityManager->addPrefab(parallax);
+
+
     auto player = std::make_shared<Player>("player", textureManager->getTextureByName("ship"), "bullet");
     entityManager->addPrefab(player);
+
 
 //    auto bonusDoubleBullet = std::make_shared<bonus::DoubleBullet>("bonusDoubleBullet", uranus::ecs::component::Position {200, 300});
 //    entityManager->addPrefab(bonusDoubleBullet);

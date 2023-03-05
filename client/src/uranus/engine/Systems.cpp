@@ -191,9 +191,6 @@ void engine::system::animation()
     }
 }
 
-#include <imgui-SFML.h>
-#include <imgui.h> //TODO: remove
-
 void engine::system::gameLoop()
 {
     auto &window = engine::Manager::getWindow();
@@ -236,6 +233,9 @@ void engine::system::gameLoop()
         window->display();
     }
     auto &textureManager = engine::Manager::getTextureManager();
+    for (auto &item: textureManager->getTextures()) {
+        item.reset();
+    }
     textureManager.reset();
 }
 

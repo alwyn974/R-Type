@@ -14,7 +14,7 @@ set(BINARY_NAME r-type_client)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 if(WIN32)
-    set(${PROJECT_NAME}_ICON ${CMAKE_SOURCE_DIR}/assets/rtype/nsis/app.rc src/scene/SceneStage1.cpp include/scene/SceneStage1.hpp)
+    set(${PROJECT_NAME}_ICON ${CMAKE_SOURCE_DIR}/assets/rtype/nsis/app.rc)
 endif()
 
 add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
@@ -37,6 +37,8 @@ add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
         src/Explosion.cpp
         src/EnemyShooter.cpp
         src/BulletEnenmy.cpp
+        src/Parallax.cpp
+        src/ParallaxLayer.cpp
         src/bonus/Bonus.cpp
         src/bonus/DoubleBullet.cpp
         src/ui/Button.cpp
