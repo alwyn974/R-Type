@@ -55,11 +55,7 @@ namespace rtype::server {
         this->_logger->info("GameServer started");
         int id = 0;
 
-        UUIDv4::UUIDGenerator<std::mt19937> generator;
-
-        while (true) {
-            this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnBullet>(id++, 100, 100));
-        }
+        while (true);
     }
 
     void GameServer::stop()
@@ -141,6 +137,25 @@ namespace rtype::server {
         this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SSkillEntity>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SSkillPlayer>(id++);
+
+        this->_udpServer->registerHandler<packet::C2SClientConnected>([&](auto &client, auto &packet){
+            this->_udpServer->broadcast(packet, client->getId());
+        });
+        this->_udpServer->registerHandler<packet::C2SClientDisconnected>([&](auto &client, auto &packet){
+            this->_udpServer->broadcast(packet, client->getId());
+        });
+        this->_udpServer->registerHandler<packet::C2SPrepareShoot>([&](auto &client, auto &packet){
+            this->_udpServer->broadcast(packet, client->getId());
+        });
+        this->_udpServer->registerHandler<packet::C2SPlayerShoot>([&](auto &client, auto &packet){
+            this->_udpServer->broadcast(packet, client->getId());
+        });
+        this->_udpServer->registerHandler<packet::C2SSkillEntity>([&](auto &client, auto &packet){
+            this->_udpServer->broadcast(packet, client->getId());
+        });
+        this->_udpServer->registerHandler<packet::C2SSkillPlayer>([&](auto &client, auto &packet){
+            this->_udpServer->broadcast(packet, client->getId());
+        });
     }
 
     void GameServer::onTcpClientConnected(ConnectionToClientPtr &client)
