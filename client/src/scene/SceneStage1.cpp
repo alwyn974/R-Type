@@ -28,8 +28,74 @@ void addEnemyShooter(uranus::ecs::component::Position pos)
 {
     auto &entityManager = engine::Manager::getEntityManager();
     auto &textureManager = engine::Manager::getTextureManager();
-    auto enemy = std::make_shared<Enemy>("enemy", pos, textureManager->getTextureByName("enemyShooter"));
+    auto enemy = std::make_shared<EnemyShooter>("enemy", pos, textureManager->getTextureByName("enemyShooter"));
     entityManager->addPrefab(enemy);
+}
+
+void wave(uranus::ecs::component::Position startOffset)
+{
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 800, startOffset.y + 100});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 800, startOffset.y + 200});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 800, startOffset.y + 300});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 800, startOffset.y + 400});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 800, startOffset.y + 500});
+
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 100});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 200});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 300});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 400});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 500});
+
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 100});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 200});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 300});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 400});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 500});
+
+    addEnemyShooter(uranus::ecs::component::Position{startOffset.x + 1400, startOffset.y + 0});
+    addEnemyShooter(uranus::ecs::component::Position{startOffset.x + 1400, startOffset.y + 300});
+
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 050});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 100});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 150});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 200});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 250});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 300});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 350});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 400});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 450});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 500});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 550});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 600});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 650});
+
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 050});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 100});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 150});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 200});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 250});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 300});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 350});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 400});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 450});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 500});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 550});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 600});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 650});
+
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 050});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 100});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 150});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 200});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 250});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 300});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 350});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 400});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 450});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 500});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 550});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 600});
+    addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 650});
 }
 
 void SceneStage1::init()
@@ -50,27 +116,6 @@ void SceneStage1::init()
     entityManager->addPrefab(player);
 
 
-//    auto bonusDoubleBullet = std::make_shared<bonus::DoubleBullet>("bonusDoubleBullet", uranus::ecs::component::Position {200, 300});
-//    entityManager->addPrefab(bonusDoubleBullet);
-
-    addEnemy(uranus::ecs::component::Position{800, 100});
-    addEnemy(uranus::ecs::component::Position{800, 200});
-    addEnemy(uranus::ecs::component::Position{800, 300});
-    addEnemy(uranus::ecs::component::Position{800, 400});
-
-    addEnemy(uranus::ecs::component::Position{800, 100});
-    addEnemy(uranus::ecs::component::Position{800, 200});
-    addEnemy(uranus::ecs::component::Position{800, 300});
-    addEnemy(uranus::ecs::component::Position{800, 400});
-
-    addEnemy(uranus::ecs::component::Position{900, 100});
-    addEnemy(uranus::ecs::component::Position{900, 200});
-    addEnemy(uranus::ecs::component::Position{900, 300});
-    addEnemy(uranus::ecs::component::Position{900, 400});
-
-    addEnemy(uranus::ecs::component::Position{1000, 100});
-    addEnemy(uranus::ecs::component::Position{1000, 200});
-    addEnemy(uranus::ecs::component::Position{1000, 300});
-    addEnemy(uranus::ecs::component::Position{1000, 400});
-
+    wave(uranus::ecs::component::Position{0, 0});
+//    wave(uranus::ecs::component::Position{2000, 0});
 }

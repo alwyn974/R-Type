@@ -6,32 +6,18 @@
 */
 
 #include "uranus/engine/manager/EntityManager.hpp"
-
-//void engine::EntityManager::addPrefab(const std::shared_ptr<engine::Base> &prefab)
-//{
-//    this->_prefabs.push_back(prefab);
-//}
-//
-//std::shared_ptr<engine::Base> engine::EntityManager::getPrefabByName(const std::string &prefabName)
-//{
-//    for (const std::shared_ptr<engine::Base> &prefab : this->_prefabs) {
-//        if (prefab->getUniqueName() == prefabName) {
-//            return prefab;
-//        }
-//    }
-//}
-//
-//void engine::EntityManager::killAllPrefabs()
-//{
-//    this->_prefabs.clear();
-//}
+#include "uranus/engine/manager/Manager.hpp"
+#include "uranus/ecs/Components.hpp"
 
 void engine::EntityManager::addPrefab(const std::shared_ptr<engine::Base> &prefab)
 {
     std::string name = prefab->getUniqueName();
-    if (this->_prefabs.contains(prefab->getUniqueName()))
+    if (this->_prefabs.contains(prefab->getUniqueName())) {
         name = name + std::to_string(this->_globalId++);
+        prefab->setUniqueName(name);
+    }
         //throw uranus::ex::Exception("Prefab already exist");
+    spdlog::info("prefab: {}", name);
     this->_prefabs[name] = prefab;
 }
 
@@ -40,6 +26,18 @@ std::shared_ptr<engine::Base> engine::EntityManager::getPrefabByName(const std::
     if (!this->_prefabs.contains(prefabName))
         throw uranus::ex::Exception("Prefab not found");
     return this->_prefabs[prefabName];
+}
+
+std::shared_ptr<engine::Base> engine::EntityManager::getPrefabByNetworkId(std::uint32_t networkId)
+{
+    for (const auto &[name, prefab] : this->_prefabs) {
+        auto &r = engine::Manager::getRegistry();
+        auto &id = r->getComponent<uranus::ecs::component::NetworkId>(prefab->getEntityId());
+        if (id && id->uniqueId == networkId)
+            return prefab;
+    }
+
+    throw uranus::ex::Exception("Prefab not found");
 }
 
 bool engine::EntityManager::removePrefab(const std::string &prefabName)
@@ -54,3 +52,4 @@ void engine::EntityManager::killAllPrefabs()
 {
     this->_prefabs.clear();
 }
+

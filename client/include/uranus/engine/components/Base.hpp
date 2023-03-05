@@ -20,6 +20,12 @@ namespace engine {
 
         const std::string &getUniqueName();
 
+        size_t getEntityId();
+
+        void setUniqueName(const std::string &uniqueName);
+
+        void setEntityId(size_t entityId);
+
     protected:
         std::string _uniqueName;
         size_t _entityId;

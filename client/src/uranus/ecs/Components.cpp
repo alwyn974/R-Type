@@ -70,10 +70,10 @@ void deleteRectangleShapeComponent(size_t entity)
     r->removeComponent<uranus::ecs::component::RectangleShape>(entity);
 }
 
-void deleteIdComponent(size_t entity)
+void deleteNetworkIdComponent(size_t entity)
 {
     auto &r = engine::Manager::getRegistry();
-    r->removeComponent<uranus::ecs::component::Id>(entity);
+    r->removeComponent<uranus::ecs::component::NetworkId>(entity);
 }
 
 void deleteDeadComponent(size_t entity) {

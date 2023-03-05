@@ -20,8 +20,8 @@
  */
 namespace uranus::ecs::component {
 
-    struct Id {
-        std::string uniqueId;
+    struct NetworkId {
+        std::uint32_t uniqueId;
     };
 
     struct Name {
@@ -50,6 +50,7 @@ namespace uranus::ecs::component {
 
     struct Sprite {
         std::shared_ptr<engine::Sprite> sprite;
+        bool show = true;
     };
 
     struct RectangleShape {
@@ -116,7 +117,7 @@ void deleteLoopComponent(size_t entity);
 void deleteAnimationComponent(size_t entity);
 void deleteNameComponent(size_t entity);
 void deleteRectangleShapeComponent(size_t entity);
-void deleteIdComponent(size_t entity);
+void deleteNetworkIdComponent(size_t entity);
 void deleteDeadComponent(size_t entity);
 
 #endif // URANUS_COMPONENTS_HPP

@@ -70,13 +70,13 @@ void engine::system::collision()
     auto &r = engine::Manager::getRegistry();
     for (auto [entity1, pos1, collision1] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Collisionable>(*r)) {
         // start debug
-        sf::Vector2f size(collision1.width, collision1.height);
-        sf::RectangleShape rect(size);
-        rect.setFillColor(sf::Color::Transparent);
-        rect.setOutlineColor(sf::Color::White);
-        rect.setOutlineThickness(1);
-        rect.setPosition(pos1.x + collision1.x, pos1.y + collision1.y);
-        window->draw(rect);
+//        sf::Vector2f size(collision1.width, collision1.height);
+//        sf::RectangleShape rect(size);
+//        rect.setFillColor(sf::Color::Transparent);
+//        rect.setOutlineColor(sf::Color::White);
+//        rect.setOutlineThickness(1);
+//        rect.setPosition(pos1.x + collision1.x, pos1.y + collision1.y);
+//        window->draw(rect);
         // end debug
 
         for (auto [entity2, pos2, collision2] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Collisionable>(*r)) {
@@ -204,6 +204,7 @@ void engine::system::gameLoop()
 {
     auto &window = engine::Manager::getWindow();
     auto &r = engine::Manager::getRegistry();
+    auto &sceneManager = engine::Manager::getSceneManager();
     if (!ImGui::SFML::Init(*window)) spdlog::error("Failed to init ImGui-SFML");
     sf::Clock deltaClock;
     bool set = false;
@@ -241,7 +242,10 @@ void engine::system::gameLoop()
 
         window->display();
         engine::system::removeDead();
+
+        sceneManager->switchScene();
     }
+
     auto &textureManager = engine::Manager::getTextureManager();
     for (auto &item: textureManager->getTextures()) {
         item.reset();
@@ -269,6 +273,6 @@ void engine::system::gameInit()
     r->registerComponent<uranus::ecs::component::Animation>(deleteAnimationComponent);
     r->registerComponent<uranus::ecs::component::Name>(deleteNameComponent);
     r->registerComponent<uranus::ecs::component::RectangleShape>(deleteRectangleShapeComponent);
-    r->registerComponent<uranus::ecs::component::Id>(deleteIdComponent);
+    r->registerComponent<uranus::ecs::component::NetworkId>(deleteNetworkIdComponent);
     r->registerComponent<uranus::ecs::component::Dead>(deleteDeadComponent);
 }

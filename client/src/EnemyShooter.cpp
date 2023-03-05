@@ -21,7 +21,7 @@ void EnemyShooter::loop(size_t entity)
 
     vel->y = sin(1 * this->_movementClock.getElapsedTime().asSeconds()) * 3;
 
-    if (this->_shootClock.getElapsedTime().asSeconds() > 0.5) {
+    if (this->_shootClock.getElapsedTime().asSeconds() > 2) {
         auto &textureManager = engine::Manager::getTextureManager();
         auto &entityManager = engine::Manager::getEntityManager();
 

@@ -20,11 +20,12 @@ namespace engine {
 
         void addScene(const std::shared_ptr<engine::Scene> &newScene);
 
-        void changeScene(const std::string &sceneToSwitch);
+        void changeScene(const std::string &sceneToSwitch);//switch scene at the end of gameLoop
 
-        void changeScene(const std::shared_ptr<engine::Scene> &newScene);
+        void switchScene(); //manually switch scene
 
     private:
+        std::string _sceneToSwitch;
         std::shared_ptr<engine::Scene> _actualScene;
         std::vector<std::shared_ptr<engine::Scene>> _scenes;
     };

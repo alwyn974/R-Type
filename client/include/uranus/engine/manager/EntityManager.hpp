@@ -24,6 +24,8 @@ namespace engine {
 
         std::shared_ptr<engine::Base> getPrefabByName(const std::string &prefabName);
 
+        std::shared_ptr<engine::Base> getPrefabByNetworkId(std::uint32_t  networkId);
+
         bool removePrefab(const std::string &prefabName);
 
     private:
