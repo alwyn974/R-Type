@@ -1,7 +1,11 @@
-//TODO add header
+/*
+** EPITECH PROJECT, 2023
+** S2CRemoveEntity.hpp
+** File description:
+** S2CRemoveEntity.hpp
+*/
 
-#ifndef R_TYPE_S2CENTITYSPAWN_HPP
-#define R_TYPE_S2CENTITYSPAWN_HPP
+#pragma once
 
 #include <saturnity/Saturnity.hpp>
 
@@ -28,5 +32,3 @@ namespace rtype::network::packet {
         }
     };
 } // namespace rtype::network::packet
-
-#endif // R_TYPE_S2CENTITYSPAWN_HPP

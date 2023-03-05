@@ -1,9 +1,14 @@
-//TODO add header
+/*
+** EPITECH PROJECT, 2023
+** S2CClientDisconnect.hpp
+** File description:
+** S2CClientDisconnect.hpp
+*/
 
-#ifndef R_TYPE_C2SCLIENTDISCONNECTED_HPP
-#define R_TYPE_C2SCLIENTDISCONNECTED_HPP
+#ifndef R_TYPE_S2CCLIENTDISCONNECTED_HPP
+#define R_TYPE_S2CCLIENTDISCONNECTED_HPP
 
-#include <saturnity/Saturnity.hpp>
+#include "saturnity/Saturnity.hpp"
 #include "external/uuidv4/uuidv4.hpp"
 
 namespace rtype::network::packet {
@@ -30,4 +35,4 @@ namespace rtype::network::packet {
     };
 }
 
-#endif //R_TYPE_C2SCLIENTDISCONNECTED_HPP
+#endif //R_TYPE_S2CCLIENTDISCONNECTED_HPP

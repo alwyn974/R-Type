@@ -116,6 +116,7 @@ namespace rtype::server {
         int id = 0;
         // register server -> client packets
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerAuthentified>(id++);
+        this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerScore>(id++);
         // register client -> server packets
         this->_tcpPacketRegistry->registerPacket<packet::C2SPlayerHandshake>(id++);
 
@@ -160,7 +161,7 @@ namespace rtype::server {
     void GameServer::onPlayerHandshake(ConnectionToClientPtr &client, packet::C2SPlayerHandshake &packet)
     {
         this->_logger->info("Player {} handshake", packet.name);
-        //client->send(std::make_shared<packet::S2CPlayerAuthentified>(packet.playerName));
+        client->send(std::make_shared<packet::S2CPlayerAuthentified>(packet.name, _uuidGenerator.getUUID()));
     }
 
     //

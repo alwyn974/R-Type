@@ -101,9 +101,11 @@ namespace rtype::client::network {
     void NetworkManager::registerUdpCallback()
     {
         this->_udpClient->onClientConnected = [&](ConnectionToServerPtr &server) {
-            spdlog::info("Connected to server!");
+            this->_logger->info("UDP Connected to server");
         };
-        this->_udpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) { spdlog::info("Disconnected from server!"); };
+        this->_udpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) {
+            this->_logger->info("UDP Disconnected from server!");
+        };
         this->_udpClient->onClientDataReceived = [&](ConnectionToServerPtr &server, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
             spdlog::info("Received data from server!");
         };
@@ -119,7 +121,7 @@ namespace rtype::client::network {
             this->send(std::make_shared<packet::C2SPlayerHandshake>(this->imGuiUsername));
         };
         this->_tcpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) {
-            spdlog::info("Disconnected from server!");
+            this->_logger->info("TCP Disconnected from server!");
         };
         this->_tcpClient->onClientDataReceived = [&](ConnectionToServerPtr &server, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
 //            spdlog::info("Received data from server!");
@@ -165,6 +167,14 @@ namespace rtype::client::network {
     {
         this->_tcpClient->registerHandler<packet::S2CPlayerAuthentified>([&](ConnectionToServerPtr &server, packet::S2CPlayerAuthentified &packet) {
             spdlog::info("Received S2CPlayerAuthentified packet {} {}", packet.name, packet.uuid.bytes());
+            try {
+                this->_udpClient->connect(this->imGuiHost, this->udpPort);
+                this->runUdpClient();
+            } catch(std::exception &e) {
+                this->_logger->error("Failed to connect UDP client: {}", e.what());
+                return;
+            }
+            this->_udpClient->send(std::make_shared<packet::C2SClientConnected>(packet.uuid));
         });
     }
 }
