@@ -67,8 +67,10 @@ void Bullet::colliding(const size_t &entity, const size_t &entityCollidingWith)
     auto explosion = std::make_shared<Explosion>("explosion", uranus::ecs::component::Position {pos->x, pos->y}, textureManager->getTextureByName("explosion"));
     entityManager->addPrefab(explosion);
 
-    r->killEntity(entity);
-    r->killEntity(entityCollidingWith);
+    auto ent1 = r->entityFromIndex(entity);
+    auto ent2 = r->entityFromIndex(entityCollidingWith);
+    r->addComponent(ent1, uranus::ecs::component::Dead());
+    r->addComponent(ent2, uranus::ecs::component::Dead());
 }
 
 void Bullet::handleKeyboard(size_t entity, const engine::Event event)

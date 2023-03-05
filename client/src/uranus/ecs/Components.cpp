@@ -75,3 +75,8 @@ void deleteIdComponent(size_t entity)
     auto &r = engine::Manager::getRegistry();
     r->removeComponent<uranus::ecs::component::Id>(entity);
 }
+
+void deleteDeadComponent(size_t entity) {
+    auto &r = engine::Manager::getRegistry();
+    r->removeComponent<uranus::ecs::component::Dead>(entity);
+}

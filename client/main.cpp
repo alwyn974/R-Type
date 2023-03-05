@@ -14,15 +14,15 @@
 
 int main()
 {
-    auto instance = rtype::client::network::NetworkManager::getInstance();
-    instance->init();
-
-    instance->connectTcpClient("localhost", 2409);
-    instance->connectUdpClient("localhost", 2409);
-    instance->runTcpClient();
-    instance->runUdpClient();
-
-    instance->send(std::make_shared<rtype::network::packet::C2SPrepareShoot>());
+//    auto instance = rtype::client::network::NetworkManager::getInstance();
+//    instance->init();
+//
+//    instance->connectTcpClient("localhost", 2409);
+//    instance->connectUdpClient("localhost", 2409);
+//    instance->runTcpClient();
+//    instance->runUdpClient();
+//
+//    instance->send(std::make_shared<rtype::network::packet::C2SPrepareShoot>());
 
     engine::system::gameInit();
 
@@ -53,8 +53,8 @@ int main()
 
     engine::system::gameLoop();
 
-    instance->stopUdpClient();
-    instance->stopTcpClient();
+//    instance->stopUdpClient();
+//    instance->stopTcpClient();
 
     /*auto &textureManager = engine::Manager::getTextureManager();
     textureManager.reset();

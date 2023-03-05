@@ -191,6 +191,15 @@ void engine::system::animation()
     }
 }
 
+void engine::system::removeDead()
+{
+    auto &r = engine::Manager::getRegistry();
+
+    for (auto [idx, dead] : uranus::ecs::View<uranus::ecs::component::Dead>(*r)) {
+        r->killEntity(idx);
+    }
+}
+
 void engine::system::gameLoop()
 {
     auto &window = engine::Manager::getWindow();
@@ -231,6 +240,7 @@ void engine::system::gameLoop()
         ImGui::SFML::Render(*window);
 
         window->display();
+        engine::system::removeDead();
     }
     auto &textureManager = engine::Manager::getTextureManager();
     for (auto &item: textureManager->getTextures()) {
@@ -260,4 +270,5 @@ void engine::system::gameInit()
     r->registerComponent<uranus::ecs::component::Name>(deleteNameComponent);
     r->registerComponent<uranus::ecs::component::RectangleShape>(deleteRectangleShapeComponent);
     r->registerComponent<uranus::ecs::component::Id>(deleteIdComponent);
+    r->registerComponent<uranus::ecs::component::Dead>(deleteDeadComponent);
 }

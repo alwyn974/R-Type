@@ -43,6 +43,7 @@ namespace engine::system {
 
     void gameInit();
     //--------------------------------------------------------------------------
+    void removeDead();
 } // namespace engine::system
 
 #endif // URANUS_SYSTEMS_HPP

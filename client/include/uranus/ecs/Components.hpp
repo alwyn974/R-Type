@@ -99,6 +99,10 @@ namespace uranus::ecs::component {
         std::vector<component::AnimationData> animations;
     };
 
+    struct Dead {
+        bool isDead = true;
+    };
+
 } // namespace uranus::ecs::component
 
 void deletePosition(size_t entity);
@@ -113,5 +117,6 @@ void deleteAnimationComponent(size_t entity);
 void deleteNameComponent(size_t entity);
 void deleteRectangleShapeComponent(size_t entity);
 void deleteIdComponent(size_t entity);
+void deleteDeadComponent(size_t entity);
 
 #endif // URANUS_COMPONENTS_HPP
