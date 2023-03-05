@@ -45,7 +45,7 @@ void SceneMain::init()
     uranus::ecs::Entity background = r->spawnEntity();
     r->addComponent(background, uranus::ecs::component::Position {0, 0});
     auto rectangle = std::make_shared<engine::RectangleShape>();
-    rectangle->setSize({1280, 720});
+    rectangle->setSize({WIN_WIDTH, WIN_HEIGHT});
     const std::shared_ptr<sf::Texture> texture = textureManager->getTextureByName("background");
     rectangle->setTexture(texture.get());
     r->addComponent(background, uranus::ecs::component::RectangleShape {rectangle});

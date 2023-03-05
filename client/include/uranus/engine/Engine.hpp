@@ -8,6 +8,9 @@
 #ifndef URANUS_ENGINE_HPP
 #define URANUS_ENGINE_HPP
 
+#define WIN_WIDTH (1280)
+#define WIN_HEIGHT (720)
+
 #include "manager/EntityManager.hpp"
 #include "manager/Manager.hpp"
 #include "manager/SceneManager.hpp"

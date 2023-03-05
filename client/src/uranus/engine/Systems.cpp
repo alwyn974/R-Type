@@ -207,13 +207,14 @@ void engine::system::gameLoop()
     auto &sceneManager = engine::Manager::getSceneManager();
     if (!ImGui::SFML::Init(*window)) spdlog::error("Failed to init ImGui-SFML");
     sf::Clock deltaClock;
-    bool set = false;
-    int fps = 60;
     while (window->isOpen()) {
         engine::Event event;
         while (window->pollEvent(event)) {
             ImGui::SFML::ProcessEvent(*window, event);
-            if (event.type == engine::Event::Closed) window->close();
+            if (event.type == engine::Event::Closed) {
+                close();
+                return;
+            }
             engine::system::input(event);
         }
         auto time = deltaClock.restart();
@@ -227,30 +228,40 @@ void engine::system::gameLoop()
         engine::system::animation();
         engine::system::draw();
 
-        if (!set) {
-            ImGui::SetWindowSize({300, 100});
-            ImGui::SetWindowPos({0, 0});
-            set = true;
-        }
-        auto timeDeltaMs = static_cast<float>(static_cast<double>(time.asMicroseconds()) / 1000.0);
-        ImGui::TextWrapped("FPS: %.1f (Time delta: %.3f ms)", 1000.F / timeDeltaMs, timeDeltaMs); // NOLINT
-        ImGui::TextWrapped("Entities: %d", r->entitiesAliveCount()); // NOLINT
-        ImGui::SliderInt("Max FPS", &fps, 10, 360, "%d"); // NOLINT
-        window->setFramerateLimit(fps);
-
-        ImGui::SFML::Render(*window);
+        drawImGui(window, r, time, deltaClock);
 
         window->display();
         engine::system::removeDead();
 
         sceneManager->switchScene();
     }
+}
 
-    auto &textureManager = engine::Manager::getTextureManager();
-    for (auto &item: textureManager->getTextures()) {
-        item.reset();
+void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, std::shared_ptr<uranus::ecs::Registry> &registry, sf::Time &time, sf::Clock &clock)
+{
+    static bool set = false;
+    static int fps = 60;
+    if (!set) {
+        ImGui::SetWindowSize({300, 100});
+        ImGui::SetWindowPos({0, 0});
+        set = true;
     }
+    auto timeDeltaMs = static_cast<float>(static_cast<double>(time.asMicroseconds()) / 1000.0);
+    ImGui::TextWrapped("FPS: %.1f (Time delta: %.3f ms)", 1000.F / timeDeltaMs, timeDeltaMs); // NOLINT
+    ImGui::TextWrapped("Entities: %d", registry->entitiesAliveCount()); // NOLINT
+    ImGui::SliderInt("Max FPS", &fps, 10, 360, "%d"); // NOLINT
+    window->setFramerateLimit(fps);
+
+    ImGui::SFML::Render(*window);
+}
+
+void engine::system::close()
+{
+    auto &window = engine::Manager::getWindow();
+    auto &textureManager = engine::Manager::getTextureManager();
+    for (auto &item: textureManager->getTextures()) item.reset();
     textureManager.reset();
+    window->close();
 }
 
 void engine::system::gameInit()

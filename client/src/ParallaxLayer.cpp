@@ -13,13 +13,12 @@ void ParallaxLayer::loop(size_t entity) {
 
 ParallaxLayer::ParallaxLayer(std::string &name, std::shared_ptr<engine::Texture> &texture, float speed) : Base(name) {
     auto &r = engine::Manager::getRegistry();
-    uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
+    const uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
     this->_speed = speed;
     texture->setRepeated(true);
     auto sprite = std::make_shared<engine::Sprite>(texture);
-    sprite->setTextureRect({0, 0, 1280, 720});
-    sf::Vector2f scale = {static_cast<float>(1280.0 / texture->getSize().x),
-                          static_cast<float>(720.0 / texture->getSize().y)};
+    sprite->setTextureRect({0, 0, WIN_WIDTH, WIN_HEIGHT});
+    const sf::Vector2f scale = {(float)(WIN_WIDTH) / (float) texture->getSize().x, ((float) (WIN_HEIGHT) / (float) texture->getSize().y)}; // NOLINT
     sprite->setScale(scale);
     r->addComponent(newEntity, uranus::ecs::component::Position{0, 0});
     r->addComponent(newEntity, uranus::ecs::component::Name{name});

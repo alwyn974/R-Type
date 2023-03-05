@@ -42,6 +42,11 @@ namespace engine::system {
     void gameLoop();
 
     void gameInit();
+
+    void drawImGui(std::shared_ptr<engine::RenderWindow> &window, std::shared_ptr<uranus::ecs::Registry> &registry, sf::Time &time, sf::Clock &clock);
+
+    void close();
+
     //--------------------------------------------------------------------------
     void removeDead();
 } // namespace engine::system

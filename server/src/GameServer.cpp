@@ -69,12 +69,12 @@ namespace rtype::server {
             (void) packetId;
             (void) packetSize;
             (void) buffer;
-            //            this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
+                        this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
         };
         this->_tcpServer->onServerDataSent = [&](ConnectionToClientPtr &client, sa::ByteBuffer &buffer) {
             (void) client;
             (void) buffer;
-            //            this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
+                        this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
         };
         this->_tcpServer->onClientConnect = [&](ConnectionToClientPtr &client) {
             this->_logger->info("Client try to connect {}:{}", client->getIp(), client->getPort());
@@ -91,12 +91,12 @@ namespace rtype::server {
             (void) packetId;
             (void) packetSize;
             (void) buffer;
-            //            this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
+            this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
         };
         this->_udpServer->onServerDataSent = [&](ConnectionToClientPtr &client, sa::ByteBuffer &buffer) {
             (void) client;
             (void) buffer;
-            //            this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
+            this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
         };
         this->_udpServer->onClientConnect = [&](ConnectionToClientPtr &client) {
             this->_logger->info("Client try to connect {}:{}", client->getIp(), client->getPort());
