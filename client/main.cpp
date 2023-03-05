@@ -31,6 +31,7 @@ int main()
     sceneManager->changeScene("Main");
 
     instance->send(std::make_shared<rtype::network::packet::C2SPlayerHandshake>("Alwyn"));
+    instance->send(std::make_shared<rtype::network::packet::C2SPlayerShoot>());
 
     /* sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
      window.setFramerateLimit(60);*/
