@@ -10,13 +10,15 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(BINARY_NAME "r-type_server")
+# Make project-provided Find modules available
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 if(WIN32)
     set(${PROJECT_NAME}_ICON ${CMAKE_SOURCE_DIR}/assets/rtype/nsis/app.rc)
 endif()
 
 add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
-        src/GameRoom.cpp
+        src/GameServer.cpp
 )
 
 # Include all headers directories
@@ -79,7 +81,3 @@ if (RTYPE_INSTALL OR RTYPE_CPACK)
     install(TARGETS ${BINARY_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT runtime)
     install(DIRECTORY "${CMAKE_SOURCE_DIR}/assets/rtype/config/" DESTINATION "${CMAKE_INSTALL_BINDIR}/assets/rtype/config/" COMPONENT runtime)
 endif ()
-
-#if (RTYPE_CPACK)
-#    include(${CMAKE_SOURCE_DIR}/cmake/CPackConfig.cmake)
-#endif ()

@@ -9,6 +9,8 @@ project(
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
+# Make project-provided Find modules available
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 add_library(${PROJECT_NAME}
     src/Player.cpp
@@ -26,11 +28,13 @@ target_include_directories(${PROJECT_NAME}
 )
 
 find_package(Saturnity 1.0.1.7 REQUIRED)
+find_package(argparse 2.9 REQUIRED)
 
 # Link all libraries
 target_link_libraries(${PROJECT_NAME}
         PUBLIC
             Saturnity
+            argparse
 )
 
 # Enable warnings, will not work on header only libraries

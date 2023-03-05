@@ -10,6 +10,8 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(BINARY_NAME r-type_client)
+# Make project-provided Find modules available
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 if(WIN32)
     set(${PROJECT_NAME}_ICON ${CMAKE_SOURCE_DIR}/assets/rtype/nsis/app.rc)
