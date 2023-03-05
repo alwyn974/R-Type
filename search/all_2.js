@@ -6,8 +6,9 @@ var searchData=
   ['base64decompressor_3',['Base64Decompressor',['../classtson_1_1_base64_decompressor.html',1,'tson']]],
   ['begin_4',['begin',['../classuranus_1_1ecs_1_1_sparse_array.html#ab7ed670c36778127e9c829bfce902ac8',1,'uranus::ecs::SparseArray::begin()'],['../classuranus_1_1ecs_1_1_sparse_array.html#a0e599d44497a78bd9be2539dada886ca',1,'uranus::ecs::SparseArray::begin() const'],['../classuranus_1_1ecs_1_1_view.html#ab05c2073e30416a06d2aaaa6254452b7',1,'uranus::ecs::View::begin()']]],
   ['bonus_5',['Bonus',['../classbonus_1_1_bonus.html',1,'bonus']]],
-  ['bullet_6',['Bullet',['../class_bullet.html',1,'']]],
-  ['bulletenemy_7',['BulletEnemy',['../class_bullet_enemy.html',1,'']]],
-  ['button_8',['Button',['../classui_1_1_button.html',1,'ui']]],
-  ['bytestounsignedints_9',['BytesToUnsignedInts',['../classtson_1_1_tools.html#ae00a5840c3731d59c048934e7bb790b2',1,'tson::Tools']]]
+  ['boss_6',['Boss',['../class_boss.html',1,'']]],
+  ['bullet_7',['Bullet',['../class_bullet.html',1,'']]],
+  ['bulletenemy_8',['BulletEnemy',['../class_bullet_enemy.html',1,'']]],
+  ['button_9',['Button',['../classui_1_1_button.html',1,'ui']]],
+  ['bytestounsignedints_10',['BytesToUnsignedInts',['../classtson_1_1_tools.html#ae00a5840c3731d59c048934e7bb790b2',1,'tson::Tools']]]
 ];

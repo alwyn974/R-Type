@@ -21,10 +21,10 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classrtype_1_1network_1_1packet_1_1_s2_c_player_spawn.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="classrtype_1_1network_1_1packet_1_1_s2_c_spawn_bullet.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#bfbfbf" points="110,-30 0,-30 0,0 110,0 110,-30"/>
 <text text-anchor="start" x="8" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">rtype::network::packet</text>
-<text text-anchor="middle" x="55" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">::S2CPlayerSpawn</text>
+<text text-anchor="middle" x="55" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">::S2CSpawnBullet</text>
 </a>
 </g>
 </g>
@@ -37,10 +37,10 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="classrtype_1_1network_1_1packet_1_1_s2_c_spawn_bullet.html" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="classrtype_1_1network_1_1packet_1_1_s2_c_spawn_player.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#bfbfbf" points="238,-30 128,-30 128,0 238,0 238,-30"/>
 <text text-anchor="start" x="136" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">rtype::network::packet</text>
-<text text-anchor="middle" x="183" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">::S2CSpawnBullet</text>
+<text text-anchor="middle" x="183" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">::S2CSpawnPlayer</text>
 </a>
 </g>
 </g>

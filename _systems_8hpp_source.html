@@ -145,17 +145,23 @@ $(document).ready(function(){initNavTree('_systems_8hpp_source.html',''); initRe
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">bool</span> isColliding(<span class="keyword">const</span> sf::FloatRect &amp;obj1, <span class="keyword">const</span> sf::FloatRect &amp;obj2);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> setLayer(<span class="keywordtype">size_t</span> entity, <span class="keyword">const</span> std::array&lt;bool, LAYER_SIZE&gt; &amp;layer);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> setLayer(<span class="keywordtype">size_t</span> entity, <span class="keyword">const</span> std::bitset&lt;uranus::ecs::LAYER_MASK_SIZE&gt; &amp;layer);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> setMask(<span class="keywordtype">size_t</span> entity, <span class="keyword">const</span> std::array&lt;bool, MASK_SIZE&gt; &amp;mask);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> setMask(<span class="keywordtype">size_t</span> entity, <span class="keyword">const</span> std::bitset&lt;uranus::ecs::LAYER_MASK_SIZE&gt; &amp;mask);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> gameLoop();</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> gameInit();</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <span class="comment">// namespace engine::system</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span> drawImGui(std::shared_ptr&lt;engine::RenderWindow&gt; &amp;window, std::shared_ptr&lt;uranus::ecs::Registry&gt; &amp;registry, sf::Time &amp;time, sf::Clock &amp;clock);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif </span><span class="comment">// URANUS_SYSTEMS_HPP</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> close();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> removeDead();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>} <span class="comment">// namespace engine::system</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif </span><span class="comment">// URANUS_SYSTEMS_HPP</span></div>
 <div class="ttc" id="aclassengine_1_1_event_html"><div class="ttname"><a href="classengine_1_1_event.html">engine::Event</a></div><div class="ttdef"><b>Definition:</b> Event.hpp:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

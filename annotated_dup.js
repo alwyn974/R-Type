@@ -48,16 +48,29 @@ var annotated_dup =
       [ "Value", "classjson11_1_1_value.html", null ]
     ] ],
     [ "rtype", null, [
+      [ "client", null, [
+        [ "network", null, [
+          [ "NetworkManager", "classrtype_1_1client_1_1network_1_1_network_manager.html", null ]
+        ] ]
+      ] ],
       [ "network", null, [
         [ "packet", null, [
           [ "C2SClientConnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_connected.html", null ],
+          [ "C2SClientDisconnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnected.html", null ],
           [ "C2SPlayerHandshake", "classrtype_1_1network_1_1packet_1_1_c2_s_player_handshake.html", null ],
           [ "C2SPlayerShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_player_shoot.html", null ],
           [ "C2SPrepareShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_prepare_shoot.html", null ],
+          [ "C2SSkillEntity", "classrtype_1_1network_1_1packet_1_1_c2_s_skill_entity.html", null ],
+          [ "C2SSkillPlayer", "classrtype_1_1network_1_1packet_1_1_c2_s_skill_player.html", null ],
+          [ "S2CEntityMove", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_move.html", null ],
           [ "S2CEntitySpawn", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_spawn.html", null ],
           [ "S2CPlayerAuthentified", "classrtype_1_1network_1_1packet_1_1_s2_c_player_authentified.html", null ],
-          [ "S2CPlayerSpawn", "classrtype_1_1network_1_1packet_1_1_s2_c_player_spawn.html", null ],
-          [ "S2CSpawnBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_bullet.html", null ]
+          [ "S2CPlayerMove", "classrtype_1_1network_1_1packet_1_1_s2_c_player_move.html", null ],
+          [ "S2CPlayerScore", "classrtype_1_1network_1_1packet_1_1_s2_c_player_score.html", null ],
+          [ "S2CRemoveEntity", "classrtype_1_1network_1_1packet_1_1_s2_c_remove_entity.html", null ],
+          [ "S2CRemovePlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_remove_player.html", null ],
+          [ "S2CSpawnBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_bullet.html", null ],
+          [ "S2CSpawnPlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_player.html", null ]
         ] ]
       ] ],
       [ "server", null, [
@@ -114,7 +127,8 @@ var annotated_dup =
       [ "WorldMapData", "classtson_1_1_world_map_data.html", null ]
     ] ],
     [ "ui", null, [
-      [ "Button", "classui_1_1_button.html", null ]
+      [ "Button", "classui_1_1_button.html", null ],
+      [ "InputText", "classui_1_1_input_text.html", null ]
     ] ],
     [ "uranus", null, [
       [ "ecs", "namespaceuranus_1_1ecs.html", [
@@ -122,13 +136,14 @@ var annotated_dup =
           [ "Animation", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation", null ],
           [ "AnimationData", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation_data", null ],
           [ "Collisionable", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_collisionable", null ],
+          [ "Dead", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_dead", null ],
           [ "Drawable", "structuranus_1_1ecs_1_1component_1_1_drawable.html", null ],
           [ "FrameData", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_frame_data", null ],
-          [ "Id", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_id", null ],
           [ "InputKeyboard", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_keyboard", null ],
           [ "InputMouse", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_mouse", null ],
           [ "Loop", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_loop", null ],
           [ "Name", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_name", null ],
+          [ "NetworkId", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_network_id", null ],
           [ "Position", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position", null ],
           [ "RectangleShape", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_rectangle_shape", null ],
           [ "Sprite", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_sprite", null ],
@@ -149,6 +164,7 @@ var annotated_dup =
       [ "UUIDGenerator", "class_u_u_i_dv4_1_1_u_u_i_d_generator.html", null ]
     ] ],
     [ "Args", "struct_args.html", null ],
+    [ "Boss", "class_boss.html", null ],
     [ "Bullet", "class_bullet.html", null ],
     [ "BulletEnemy", "class_bullet_enemy.html", null ],
     [ "Enemy", "class_enemy.html", null ],
@@ -270,6 +286,8 @@ var annotated_dup =
     [ "Layer", "class_layer.html", null ],
     [ "Map", "class_map.html", null ],
     [ "MyDocument", "struct_my_document.html", null ],
+    [ "Parallax", "class_parallax.html", null ],
+    [ "ParallaxLayer", "class_parallax_layer.html", null ],
     [ "Player", "class_player.html", null ],
     [ "SceneGame", "class_scene_game.html", null ],
     [ "SceneMain", "class_scene_main.html", null ],

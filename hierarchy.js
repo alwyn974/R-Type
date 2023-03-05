@@ -11,14 +11,18 @@ var hierarchy =
         [ "BulletEnemy", "class_bullet_enemy.html", null ]
       ] ],
       [ "Enemy", "class_enemy.html", [
+        [ "Boss", "class_boss.html", null ],
         [ "EnemyShooter", "class_enemy_shooter.html", null ]
       ] ],
       [ "Explosion", "class_explosion.html", null ],
+      [ "Parallax", "class_parallax.html", null ],
+      [ "ParallaxLayer", "class_parallax_layer.html", null ],
       [ "Player", "class_player.html", null ],
       [ "bonus::Bonus", "classbonus_1_1_bonus.html", [
         [ "bonus::DoubleBullet", "classbonus_1_1_double_bullet.html", null ]
       ] ],
-      [ "ui::Button", "classui_1_1_button.html", null ]
+      [ "ui::Button", "classui_1_1_button.html", null ],
+      [ "ui::InputText", "classui_1_1_input_text.html", null ]
     ] ],
     [ "engine::EntityManager", "classengine_1_1_entity_manager.html", null ],
     [ "engine::Manager", "classengine_1_1_manager.html", null ],
@@ -236,18 +240,30 @@ var hierarchy =
     [ "json11::Statics", "structjson11_1_1_statics.html", null ],
     [ "Layer", "class_layer.html", null ],
     [ "MyDocument", "struct_my_document.html", null ],
+    [ "rtype::client::network::NetworkManager", "classrtype_1_1client_1_1network_1_1_network_manager.html", null ],
     [ "rtype::server::game::Player", "classrtype_1_1server_1_1game_1_1_player.html", null ],
     [ "rtype::server::GameServer", "classrtype_1_1server_1_1_game_server.html", null ],
     [ "sa::AbstractPacket", null, [
       [ "rtype::network::packet::C2SClientConnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_connected.html", null ],
+      [ "rtype::network::packet::C2SClientDisconnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnected.html", null ],
       [ "rtype::network::packet::C2SPlayerHandshake", "classrtype_1_1network_1_1packet_1_1_c2_s_player_handshake.html", null ],
       [ "rtype::network::packet::C2SPlayerShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_player_shoot.html", null ],
       [ "rtype::network::packet::C2SPrepareShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_prepare_shoot.html", null ],
-      [ "rtype::network::packet::S2CEntitySpawn", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_spawn.html", [
-        [ "rtype::network::packet::S2CPlayerSpawn", "classrtype_1_1network_1_1packet_1_1_s2_c_player_spawn.html", null ],
-        [ "rtype::network::packet::S2CSpawnBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_bullet.html", null ]
+      [ "rtype::network::packet::C2SSkillEntity", "classrtype_1_1network_1_1packet_1_1_c2_s_skill_entity.html", [
+        [ "rtype::network::packet::C2SSkillPlayer", "classrtype_1_1network_1_1packet_1_1_c2_s_skill_player.html", null ]
       ] ],
-      [ "rtype::network::packet::S2CPlayerAuthentified", "classrtype_1_1network_1_1packet_1_1_s2_c_player_authentified.html", null ]
+      [ "rtype::network::packet::S2CEntityMove", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_move.html", [
+        [ "rtype::network::packet::S2CPlayerMove", "classrtype_1_1network_1_1packet_1_1_s2_c_player_move.html", null ]
+      ] ],
+      [ "rtype::network::packet::S2CEntitySpawn", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_spawn.html", [
+        [ "rtype::network::packet::S2CSpawnBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_bullet.html", null ],
+        [ "rtype::network::packet::S2CSpawnPlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_player.html", null ]
+      ] ],
+      [ "rtype::network::packet::S2CPlayerAuthentified", "classrtype_1_1network_1_1packet_1_1_s2_c_player_authentified.html", null ],
+      [ "rtype::network::packet::S2CPlayerScore", "classrtype_1_1network_1_1packet_1_1_s2_c_player_score.html", null ],
+      [ "rtype::network::packet::S2CRemoveEntity", "classrtype_1_1network_1_1packet_1_1_s2_c_remove_entity.html", [
+        [ "rtype::network::packet::S2CRemovePlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_remove_player.html", null ]
+      ] ]
     ] ],
     [ "sf::Clock", null, [
       [ "engine::Clock", "classengine_1_1_clock.html", null ]
@@ -363,13 +379,14 @@ var hierarchy =
     [ "uranus::ecs::component::Animation", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation", null ],
     [ "uranus::ecs::component::AnimationData", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation_data", null ],
     [ "uranus::ecs::component::Collisionable", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_collisionable", null ],
+    [ "uranus::ecs::component::Dead", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_dead", null ],
     [ "uranus::ecs::component::Drawable", "structuranus_1_1ecs_1_1component_1_1_drawable.html", null ],
     [ "uranus::ecs::component::FrameData", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_frame_data", null ],
-    [ "uranus::ecs::component::Id", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_id", null ],
     [ "uranus::ecs::component::InputKeyboard", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_keyboard", null ],
     [ "uranus::ecs::component::InputMouse", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_mouse", null ],
     [ "uranus::ecs::component::Loop", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_loop", null ],
     [ "uranus::ecs::component::Name", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_name", null ],
+    [ "uranus::ecs::component::NetworkId", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_network_id", null ],
     [ "uranus::ecs::component::Position", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position", null ],
     [ "uranus::ecs::component::RectangleShape", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_rectangle_shape", null ],
     [ "uranus::ecs::component::Sprite", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_sprite", null ],
@@ -379,6 +396,7 @@ var hierarchy =
     [ "uranus::ecs::SparseArray< Component >", "classuranus_1_1ecs_1_1_sparse_array.html", null ],
     [ "uranus::ecs::View< Components >", "classuranus_1_1ecs_1_1_view.html", null ],
     [ "uranus::ecs::View< Components >::Iterator", "classuranus_1_1ecs_1_1_view_1_1_iterator.html", null ],
+    [ "UUIDv4::UUIDGenerator< std::mt19937 >", "class_u_u_i_dv4_1_1_u_u_i_d_generator.html", null ],
     [ "UUIDv4::UUID", "class_u_u_i_dv4_1_1_u_u_i_d.html", null ],
     [ "UUIDv4::UUIDGenerator< RNG >", "class_u_u_i_dv4_1_1_u_u_i_d_generator.html", null ],
     [ "tson::Vector2< float >", "classtson_1_1_vector2.html", null ],

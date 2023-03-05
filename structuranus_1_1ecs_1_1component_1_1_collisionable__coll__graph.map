@@ -1,5 +1,4 @@
 <map id="uranus::ecs::component::Collisionable" name="uranus::ecs::component::Collisionable">
-<area shape="rect" id="node1" title=" " alt="" coords="96,108,255,148"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,164,45"/>
-<area shape="rect" id="node3" title=" " alt="" coords="189,5,343,45"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,123,164,163"/>
+<area shape="rect" id="node2" title=" " alt="" coords="19,5,151,45"/>
 </map>

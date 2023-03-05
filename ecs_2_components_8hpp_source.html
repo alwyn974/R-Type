@@ -123,12 +123,12 @@ $(document).ready(function(){initNavTree('ecs_2_components_8hpp_source.html','')
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;uranus/engine/components/Event.hpp&quot;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;uranus/engine/components/Sprite.hpp&quot;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;uranus/engine/manager/Manager.hpp&quot;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;bitset&gt;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs.html">   21</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceuranus_1_1ecs_1_1component.html">uranus::ecs::component</a> {</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   23</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_id">Id</a> {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        std::string uniqueId;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   23</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_network_id">NetworkId</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        std::uint32_t uniqueId;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    };</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   27</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_name">Name</a> {</div>
@@ -157,86 +157,93 @@ $(document).ready(function(){initNavTree('ecs_2_components_8hpp_source.html','')
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   51</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_sprite">Sprite</a> {</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        std::shared_ptr&lt;engine::Sprite&gt; sprite;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   55</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_rectangle_shape">RectangleShape</a> {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        std::shared_ptr&lt;sf::RectangleShape&gt; shape;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    };</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   59</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_collisionable">Collisionable</a> {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordtype">float</span> x;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordtype">float</span> y;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordtype">float</span> width;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordtype">float</span> height;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        std::array&lt;bool, LAYER_SIZE&gt; layer;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        std::array&lt;bool, MASK_SIZE&gt; mask;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span>, <span class="keyword">const</span> <span class="keywordtype">size_t</span>)&gt; callback;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    };</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   69</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_keyboard">InputKeyboard</a> {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span>, <span class="keyword">const</span> <a class="code hl_class" href="classengine_1_1_event.html">engine::Event</a>)&gt; callback;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    };</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   73</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_mouse">InputMouse</a> {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span>, <span class="keyword">const</span> <a class="code hl_class" href="classengine_1_1_event.html">engine::Event</a>)&gt; callback;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    };</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   77</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_loop">Loop</a> {</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span>)&gt; update;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    };</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   81</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_frame_data">FrameData</a> {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordtype">float</span> frameTime;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordtype">int</span> frame;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    };</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   86</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation_data">AnimationData</a> {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        std::string name;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordtype">bool</span> loop;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordtype">float</span> length;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <a class="code hl_class" href="classengine_1_1_clock.html">engine::Clock</a> clock;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordtype">bool</span> isPlaying;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        std::vector&lt;component::FrameData&gt; frames;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    };</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   95</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation">Animation</a> {</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordtype">int</span> hFrame;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordtype">int</span> vFrame;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span> entity, <span class="keyword">const</span> std::string &amp;animationName)&gt; callback;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        std::vector&lt;component::AnimationData&gt; animations;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    };</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>} <span class="comment">// namespace uranus::ecs::component</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keywordtype">void</span> deletePosition(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keywordtype">void</span> deleteVelocity(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keywordtype">void</span> deleteDrawable(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keywordtype">void</span> deleteInputKeyboard(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keywordtype">void</span> deleteInputMouse(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keywordtype">void</span> deleteSpriteComponent(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keywordtype">void</span> deleteCollisionable(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keywordtype">void</span> deleteLoopComponent(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keywordtype">void</span> deleteAnimationComponent(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keywordtype">void</span> deleteNameComponent(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keywordtype">void</span> deleteRectangleShapeComponent(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keywordtype">void</span> deleteIdComponent(<span class="keywordtype">size_t</span> entity);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#endif </span><span class="comment">// URANUS_COMPONENTS_HPP</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordtype">bool</span> show = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    };</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   56</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_rectangle_shape">RectangleShape</a> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        std::shared_ptr&lt;sf::RectangleShape&gt; shape;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    };</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   60</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_collisionable">Collisionable</a> {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordtype">float</span> x;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordtype">float</span> y;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordtype">float</span> width;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordtype">float</span> height;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        std::bitset&lt;LAYER_MASK_SIZE&gt; layer;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        std::bitset&lt;LAYER_MASK_SIZE&gt; mask;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span>, <span class="keyword">const</span> <span class="keywordtype">size_t</span>)&gt; callback;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    };</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   70</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_keyboard">InputKeyboard</a> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span>, <span class="keyword">const</span> <a class="code hl_class" href="classengine_1_1_event.html">engine::Event</a>)&gt; callback;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    };</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   74</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_mouse">InputMouse</a> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span>, <span class="keyword">const</span> <a class="code hl_class" href="classengine_1_1_event.html">engine::Event</a>)&gt; callback;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    };</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   78</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_loop">Loop</a> {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span>)&gt; update;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    };</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   82</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_frame_data">FrameData</a> {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordtype">float</span> frameTime;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordtype">int</span> frame;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    };</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   87</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation_data">AnimationData</a> {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        std::string name;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordtype">bool</span> loop;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordtype">float</span> length;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <a class="code hl_class" href="classengine_1_1_clock.html">engine::Clock</a> clock;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordtype">bool</span> isPlaying;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        std::vector&lt;component::FrameData&gt; frames;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    };</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">   96</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation">Animation</a> {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordtype">int</span> hFrame;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordtype">int</span> vFrame;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">size_t</span> entity, <span class="keyword">const</span> std::string &amp;animationName)&gt; callback;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        std::vector&lt;component::AnimationData&gt; animations;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    };</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="namespaceuranus_1_1ecs_1_1component.html">  103</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_dead">Dead</a> {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordtype">bool</span> isDead = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    };</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>} <span class="comment">// namespace uranus::ecs::component</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keywordtype">void</span> deletePosition(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keywordtype">void</span> deleteVelocity(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keywordtype">void</span> deleteDrawable(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keywordtype">void</span> deleteInputKeyboard(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keywordtype">void</span> deleteInputMouse(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keywordtype">void</span> deleteSpriteComponent(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keywordtype">void</span> deleteCollisionable(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keywordtype">void</span> deleteLoopComponent(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="keywordtype">void</span> deleteAnimationComponent(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keywordtype">void</span> deleteNameComponent(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="keywordtype">void</span> deleteRectangleShapeComponent(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keywordtype">void</span> deleteNetworkIdComponent(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keywordtype">void</span> deleteDeadComponent(<span class="keywordtype">size_t</span> entity);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">#endif </span><span class="comment">// URANUS_COMPONENTS_HPP</span></div>
 <div class="ttc" id="a_core_8hpp_html"><div class="ttname"><a href="_core_8hpp.html">Core.hpp</a></div><div class="ttdoc">This file is used to include some core files of the engine.</div></div>
 <div class="ttc" id="aclassengine_1_1_clock_html"><div class="ttname"><a href="classengine_1_1_clock.html">engine::Clock</a></div><div class="ttdef"><b>Definition:</b> Clock.hpp:14</div></div>
 <div class="ttc" id="aclassengine_1_1_event_html"><div class="ttname"><a href="classengine_1_1_event.html">engine::Event</a></div><div class="ttdef"><b>Definition:</b> Event.hpp:14</div></div>
 <div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html">uranus::ecs::component</a></div><div class="ttdoc">Namespace containing all the base components.</div><div class="ttdef"><b>Definition:</b> Components.hpp:21</div></div>
-<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_animation"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation">uranus::ecs::component::Animation</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:95</div></div>
-<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_animation_data"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation_data">uranus::ecs::component::AnimationData</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:86</div></div>
-<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_collisionable"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_collisionable">uranus::ecs::component::Collisionable</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:59</div></div>
-<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_frame_data"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_frame_data">uranus::ecs::component::FrameData</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:81</div></div>
-<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_id"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_id">uranus::ecs::component::Id</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:23</div></div>
-<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_input_keyboard"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_keyboard">uranus::ecs::component::InputKeyboard</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:69</div></div>
-<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_input_mouse"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_mouse">uranus::ecs::component::InputMouse</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:73</div></div>
-<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_loop"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_loop">uranus::ecs::component::Loop</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:77</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_animation"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation">uranus::ecs::component::Animation</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:96</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_animation_data"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation_data">uranus::ecs::component::AnimationData</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:87</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_collisionable"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_collisionable">uranus::ecs::component::Collisionable</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:60</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_dead"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_dead">uranus::ecs::component::Dead</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:103</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_frame_data"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_frame_data">uranus::ecs::component::FrameData</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:82</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_input_keyboard"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_keyboard">uranus::ecs::component::InputKeyboard</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:70</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_input_mouse"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_mouse">uranus::ecs::component::InputMouse</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:74</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_loop"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_loop">uranus::ecs::component::Loop</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:78</div></div>
 <div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_name"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_name">uranus::ecs::component::Name</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:27</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_network_id"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_network_id">uranus::ecs::component::NetworkId</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:23</div></div>
 <div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_position"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position">uranus::ecs::component::Position</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:31</div></div>
-<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_rectangle_shape"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_rectangle_shape">uranus::ecs::component::RectangleShape</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:55</div></div>
+<div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_rectangle_shape"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_rectangle_shape">uranus::ecs::component::RectangleShape</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:56</div></div>
 <div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_sprite"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_sprite">uranus::ecs::component::Sprite</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:51</div></div>
 <div class="ttc" id="anamespaceuranus_1_1ecs_1_1component_html_structuranus_1_1ecs_1_1component_1_1_velocity"><div class="ttname"><a href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_velocity">uranus::ecs::component::Velocity</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:36</div></div>
 <div class="ttc" id="astructuranus_1_1ecs_1_1component_1_1_drawable_html"><div class="ttname"><a href="structuranus_1_1ecs_1_1component_1_1_drawable.html">uranus::ecs::component::Drawable</a></div><div class="ttdef"><b>Definition:</b> Components.hpp:41</div></div>
