@@ -17,7 +17,7 @@ namespace rtype::network::packet {
         int score;
         bool win;
 
-        explicit S2CPlayerScore(UUIDv4::UUID uuid, int score, bool win) : sa::AbstractPacket(sa::AbstractPacket::UDP)
+        explicit S2CPlayerScore(UUIDv4::UUID &uuid, int score, bool win) : sa::AbstractPacket(sa::AbstractPacket::UDP)
         {
             this->uuid = uuid;
             this->score = score;
@@ -32,14 +32,14 @@ namespace rtype::network::packet {
         {
             byteBuffer.writeString(uuid.bytes());
             byteBuffer.writeInt(score);
-            byteBuffer.writeInt(win);
+            byteBuffer.writeBoolean(win);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
             uuid = UUIDv4::UUID(byteBuffer.readString());
             score = byteBuffer.readInt();
-            win = byteBuffer.readInt();
+            win = byteBuffer.readBoolean();
         }
     };
 }
