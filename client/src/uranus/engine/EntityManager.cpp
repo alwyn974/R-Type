@@ -30,7 +30,7 @@ void engine::EntityManager::addPrefab(const std::shared_ptr<engine::Base> &prefa
 {
     std::string name = prefab->getUniqueName();
     if (this->_prefabs.contains(prefab->getUniqueName()))
-        name = name + std::to_string(GLOBAL_ID++);
+        name = name + std::to_string(this->_globalId++);
         //throw uranus::ex::Exception("Prefab already exist");
     this->_prefabs[name] = prefab;
 }

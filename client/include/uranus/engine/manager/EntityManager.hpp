@@ -14,7 +14,7 @@
 namespace engine {
     class EntityManager {
     public:
-        explicit EntityManager() = default;
+        EntityManager() { this->_globalId = 0; };
 
         ~EntityManager() = default;
 
@@ -27,8 +27,8 @@ namespace engine {
         bool removePrefab(const std::string &prefabName);
 
     private:
-//        std::vector<std::shared_ptr<engine::Base>> _prefabs;
-                std::map<std::string, std::shared_ptr<engine::Base>> _prefabs;
+        std::map<std::string, std::shared_ptr<engine::Base>> _prefabs;
+        int _globalId;
 
     };
 } // namespace engine

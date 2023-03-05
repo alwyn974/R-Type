@@ -276,14 +276,16 @@ namespace uranus::ecs {
 
     inline void Registry::killEntity(const Entity &e)
     {
-        if (std::find(_freeIds.begin(), _freeIds.end(), e) != _freeIds.end()) return; //_freeIds.push_back(e._id);
+        if (std::find(_freeIds.begin(), _freeIds.end(), e) != _freeIds.end()) return;
+        _freeIds.push_back(e._id);
         for (auto &i : _destroyArrays)
             i.second(e._id);
     }
 
     inline void Registry::killEntity(const size_t &e)
     {
-        if (std::find(_freeIds.begin(), _freeIds.end(), e) != _freeIds.end()) return; //_freeIds.push_back(e);
+        if (std::find(_freeIds.begin(), _freeIds.end(), e) != _freeIds.end()) return;
+        _freeIds.push_back(e);
         for (auto &i : _destroyArrays)
             i.second(e);
         spdlog::info("entity delete: {}", e);
