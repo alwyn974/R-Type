@@ -135,11 +135,20 @@ namespace rtype::client::network {
     {
         int id = 0;
         // register server -> client packets
+        this->_udpPacketRegistry->registerPacket<packet::S2CEntityMove>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CEntitySpawn>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CPlayerMove>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CRemoveEntity>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CRemovePlayer>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CSpawnBullet>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CSpawnPlayer>(id++);
         // register client -> server packets
+        this->_udpPacketRegistry->registerPacket<packet::C2SClientConnected>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SClientDisconnected>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPrepareShoot>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SSkillEntity>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SSkillPlayer>(id++);
 
         this->handleUdpPackets();
     }
@@ -149,6 +158,7 @@ namespace rtype::client::network {
         int id = 0;
         // register server -> client packets
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerAuthentified>(id++);
+        this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerScore>(id++);
         // register client -> server packets
         this->_tcpPacketRegistry->registerPacket<packet::C2SPlayerHandshake>(id++);
 
@@ -175,6 +185,9 @@ namespace rtype::client::network {
                 return;
             }
             this->_udpClient->send(std::make_shared<packet::C2SClientConnected>(packet.uuid));
+        });
+        this->_tcpClient->registerHandler<packet::S2CPlayerScore>([&](ConnectionToServerPtr &server, packet::S2CPlayerScore &packet) {
+            spdlog::info("Received S2CPlayerScore packet {} {}", packet.uuid.bytes(), packet.score);
         });
     }
 }

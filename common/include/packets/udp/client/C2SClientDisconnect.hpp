@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2023
-** S2CClientDisconnect.hpp
+** C2SClientDisconnect.hpp
 ** File description:
-** S2CClientDisconnect.hpp
+** C2SClientDisconnect.hpp
 */
 
 #ifndef R_TYPE_S2CCLIENTDISCONNECTED_HPP

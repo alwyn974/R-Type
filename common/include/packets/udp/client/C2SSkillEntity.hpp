@@ -11,16 +11,16 @@
 #include "external/uuidv4/uuidv4.hpp"
 
 namespace rtype::network::packet {
-    class C2SkillEntity : public sa::AbstractPacket {
+    class C2SSkillEntity : public sa::AbstractPacket {
     public:
         int entity_id;
 
-        explicit C2SkillEntity(int entity_id) : sa::AbstractPacket(sa::AbstractPacket::UDP)
+        explicit C2SSkillEntity(int entity_id) : sa::AbstractPacket(sa::AbstractPacket::UDP)
         {
             this->entity_id = entity_id;
         }
 
-        C2SkillEntity() : sa::AbstractPacket(sa::AbstractPacket::UDP)
+        C2SSkillEntity() : sa::AbstractPacket(sa::AbstractPacket::UDP)
         {
         }
 

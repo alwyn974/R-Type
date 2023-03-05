@@ -127,11 +127,20 @@ namespace rtype::server {
     {
         int id = 0;
         // register server -> client packets
+        this->_udpPacketRegistry->registerPacket<packet::S2CEntityMove>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CEntitySpawn>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CPlayerMove>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CRemoveEntity>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CRemovePlayer>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CSpawnBullet>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CSpawnPlayer>(id++);
         // register client -> server packets
+        this->_udpPacketRegistry->registerPacket<packet::C2SClientConnected>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SClientDisconnected>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPrepareShoot>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SSkillEntity>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SSkillPlayer>(id++);
     }
 
     void GameServer::onTcpClientConnected(ConnectionToClientPtr &client)

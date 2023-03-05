@@ -21,7 +21,7 @@
 #include "packets/udp/client/C2SPlayerShoot.hpp"
 #include "packets/udp/client/C2SSkillEntity.hpp"
 #include "packets/udp/client/C2SSkillPlayer.hpp"
-#include "packets/udp/server/S2CClientDisconnect.hpp"
+#include "packets/udp/client/C2SClientDisconnect.hpp"
 #include "packets/udp/server/S2CEntityMove.hpp"
 #include "packets/udp/server/S2CEntitySpawn.hpp"
 #include "packets/udp/server/S2CPlayerMove.hpp"

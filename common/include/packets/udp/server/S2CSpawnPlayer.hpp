@@ -5,17 +5,16 @@
 ** S2CSpawnPlayer.hpp
 */
 
-#ifndef R_TYPE_S2CSPAWNPLAYER_HPP
-#define R_TYPE_S2CSPAWNPLAYER_HPP
+#pragma once
 
 #include <saturnity/Saturnity.hpp>
 #include "S2CEntitySpawn.hpp"
 
 namespace rtype::network::packet {
-    class S2CPlayerSpawn : public S2CEntitySpawn {
+    class S2CSpawnPlayer : public S2CEntitySpawn {
     public:
-        S2CPlayerSpawn() : S2CEntitySpawn() {}
-        S2CPlayerSpawn(std::uint32_t entityId, std::uint16_t x, std::uint16_t y) : S2CEntitySpawn(entityId, x, y) {};
+        S2CSpawnPlayer() : S2CEntitySpawn() {}
+        S2CSpawnPlayer(std::uint32_t entityId, std::uint16_t x, std::uint16_t y) : S2CEntitySpawn(entityId, x, y) {};
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
@@ -28,5 +27,3 @@ namespace rtype::network::packet {
         }
     };
 }
-
-#endif //R_TYPE_S2CSPAWNPLAYER_HPP

@@ -12,24 +12,24 @@
 #include "C2SSkillEntity.hpp"
 
 namespace rtype::network::packet {
-    class KillEntityPacket : public C2SkillEntity {
+    class C2SSkillPlayer : public C2SSkillEntity {
     public:
-        explicit KillEntityPacket(int id, int entity_id) : C2SkillEntity(entity_id)
+        explicit C2SSkillPlayer(int id, int entity_id) : C2SSkillEntity(entity_id)
         {
         }
 
-        KillEntityPacket() : C2SkillEntity()
+        C2SSkillPlayer() : C2SSkillEntity()
         {
         }
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
-            C2SkillEntity::toBytes(byteBuffer);
+            C2SSkillEntity::toBytes(byteBuffer);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
-            C2SkillEntity::fromBytes(byteBuffer);
+            C2SSkillEntity::fromBytes(byteBuffer);
         }
     };
 }
