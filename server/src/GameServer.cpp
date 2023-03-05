@@ -121,6 +121,7 @@ namespace rtype::server {
         int id = 0;
         // register server -> client packets
         this->_udpPacketRegistry->registerPacket<packet::S2CEntitySpawn>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CSpawnBullet>(id++);
         // register client -> server packets
         this->_udpPacketRegistry->registerPacket<packet::C2SPrepareShoot>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);

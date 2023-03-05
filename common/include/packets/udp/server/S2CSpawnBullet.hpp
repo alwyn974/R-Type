@@ -14,6 +14,8 @@
 namespace rtype::network::packet {
     class S2CSpawnBullet : public S2CEntitySpawn {
     public:
+        S2CSpawnBullet() : S2CEntitySpawn() {}
+
         S2CSpawnBullet(std::uint32_t entityId, std::uint16_t x, std::uint16_t y) : S2CEntitySpawn(entityId, x, y) {};
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
