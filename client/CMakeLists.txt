@@ -37,6 +37,7 @@ add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
         src/Explosion.cpp
         src/EnemyShooter.cpp
         src/BulletEnenmy.cpp
+        src/Boss1.cpp
         src/Parallax.cpp
         src/ParallaxLayer.cpp
         src/bonus/Bonus.cpp
