@@ -13,7 +13,7 @@
 #include "uranus/engine/components/Event.hpp"
 #include "uranus/engine/components/Sprite.hpp"
 #include "uranus/engine/manager/Manager.hpp"
-#include <array>
+#include <bitset>
 
 /**
  * @brief Namespace containing all the base components
@@ -62,8 +62,8 @@ namespace uranus::ecs::component {
         float y;
         float width;
         float height;
-        std::array<bool, LAYER_SIZE> layer;
-        std::array<bool, MASK_SIZE> mask;
+        std::bitset<LAYER_MASK_SIZE> layer;
+        std::bitset<LAYER_MASK_SIZE> mask;
         std::function<void(const size_t, const size_t)> callback;
     };
 

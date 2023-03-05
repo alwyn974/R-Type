@@ -27,8 +27,9 @@ ui::Button::Button(const std::string &uniqueName, uranus::ecs::component::Positi
     r->addComponent(newEntity, uranus::ecs::component::Sprite {sprite});
     r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->handleKeyboard(entity, event); }});
 
-    std::array<bool, LAYER_SIZE> layer {true, false, false, false};
-    std::array<bool, MASK_SIZE> mask {false, false, false, false};
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
+    layer.set(uranus::ecs::LayerMask::BUTTON);
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> mask;
     r->addComponent(
         newEntity,
         uranus::ecs::component::Collisionable {

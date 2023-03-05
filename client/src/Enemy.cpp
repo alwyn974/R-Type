@@ -22,8 +22,11 @@ Enemy::Enemy(const std::string &uniqueName, uranus::ecs::component::Position pos
     r->addComponent(newEntity, uranus::ecs::component::Velocity {0, 0});
     r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture)});
 
-    std::array<bool, LAYER_SIZE> layer {true, false, false, false};
-    std::array<bool, MASK_SIZE> mask {false, false, false, false};
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
+    layer.set(uranus::ecs::LayerMask::ENEMY);
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> mask;
+    mask.set(uranus::ecs::LayerMask::PLAYER);
+    mask.set(uranus::ecs::LayerMask::PLAYER_BULLET);
     r->addComponent(
         newEntity,
         uranus::ecs::component::Collisionable {

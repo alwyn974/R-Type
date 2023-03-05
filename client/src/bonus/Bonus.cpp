@@ -19,8 +19,10 @@ bonus::Bonus::Bonus(const std::string &uniqueName, uranus::ecs::component::Posit
     auto &textureManager = engine::Manager::getTextureManager();
     r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(textureManager->getTextureByName(textureName))});
 
-    std::array<bool, LAYER_SIZE> layer {false, false, false, false};
-    std::array<bool, MASK_SIZE> mask {false, true, false, false};
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
+    layer.set(uranus::ecs::LayerMask::BONUS);
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> mask;
+    mask.set(uranus::ecs::LayerMask::PLAYER);
     r->addComponent(
         newEntity,
         uranus::ecs::component::Collisionable {

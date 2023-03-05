@@ -22,8 +22,12 @@ Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &
     r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture)});
     r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->move(entity, event); }});
 
-    std::array<bool, LAYER_SIZE> layer {false, true, false, false};
-    std::array<bool, MASK_SIZE> mask {false, false, false, false};
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
+    layer.set(uranus::ecs::LayerMask::PLAYER);
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> mask;
+    mask.set(uranus::ecs::LayerMask::ENEMY);
+    mask.set(uranus::ecs::LayerMask::ENEMY_BULLET);
+    mask.set(uranus::ecs::LayerMask::BONUS);
     r->addComponent(
         newEntity,
         uranus::ecs::component::Collisionable {

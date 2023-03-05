@@ -10,7 +10,11 @@
 BulletEnemy::BulletEnemy(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture) :
     Bullet(uniqueName, pos, texture)
 {
-    std::array<bool, MASK_SIZE> mask {false, true, false, false};
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
+    layer.set(uranus::ecs::LayerMask::ENEMY_BULLET);
+    std::bitset<uranus::ecs::LAYER_MASK_SIZE> mask;
+    mask.set(uranus::ecs::LayerMask::PLAYER);
+    engine::system::setLayer(this->_entityId, layer);
     engine::system::setMask(this->_entityId, mask);
     this->_canMove = true;
     engine::system::stopAnimation(this->_entityId);

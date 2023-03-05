@@ -50,14 +50,14 @@ bool engine::system::isColliding(const sf::FloatRect &obj1, const sf::FloatRect 
     return obj1.left < obj2.left + obj2.width && obj1.left + obj1.width > obj2.left && obj1.top < obj2.top + obj2.height && obj1.top + obj1.height > obj2.top;
 }
 
-void engine::system::setLayer(size_t entity, const std::array<bool, LAYER_SIZE> &layer)
+void engine::system::setLayer(size_t entity, const std::bitset<uranus::ecs::LAYER_MASK_SIZE> &layer)
 {
     auto &r = engine::Manager::getRegistry();
     auto &collision = r->getComponent<uranus::ecs::component::Collisionable>(entity);
     collision->layer = layer;
 }
 
-void engine::system::setMask(size_t entity, const std::array<bool, MASK_SIZE> &mask)
+void engine::system::setMask(size_t entity, const std::bitset<uranus::ecs::LAYER_MASK_SIZE> &mask)
 {
     auto &r = engine::Manager::getRegistry();
     auto &collision = r->getComponent<uranus::ecs::component::Collisionable>(entity);
@@ -93,6 +93,16 @@ void engine::system::setMask(size_t entity, const std::array<bool, MASK_SIZE> &m
 //        }
 //    }
 //}
+
+bool canCollide(const uranus::ecs::component::Collisionable& obj1, const uranus::ecs::component::Collisionable& obj2) {
+    for (unsigned long i = 0; i < uranus::ecs::LAYER_MASK_SIZE; i++) {
+        if (obj1.mask[i] && obj2.layer[i]) return true;
+    }
+    for (unsigned long i = 0; i < uranus::ecs::LAYER_MASK_SIZE; i++) {
+        if (obj2.mask[i] && obj1.layer[i]) return true;
+    }
+    return false;
+}
 
 bool isColliding(const sf::FloatRect& obj1, const sf::FloatRect& obj2) {
     float dx = std::abs(obj1.left - obj2.left);
@@ -136,18 +146,19 @@ void engine::system::collision() {
                 auto entity1 = entities[i];
                 auto &pos1 = r->getComponent<uranus::ecs::component::Position>(entity1);
                 auto &collision1 = r->getComponent<uranus::ecs::component::Collisionable>(entity1);
+                if (r->getComponent<uranus::ecs::component::Dead>(entity1) != nullptr) return;
                 auto entity2 = entities[j];
                 if (entity1 == entity2) continue;
+                if (r->getComponent<uranus::ecs::component::Dead>(entity2) != nullptr) return;
                 auto &pos2 = r->getComponent<uranus::ecs::component::Position>(entity2);
                 auto &collision2 = r->getComponent<uranus::ecs::component::Collisionable>(entity2);
-                for (unsigned long i = 0; i < collision1->mask.size(); i++) {
-                    if (collision1->mask[i] && collision2->layer[i]) {
-                        const sf::FloatRect obj1 {collision1->x + pos1->x, collision1->y + pos1->y, collision1->width, collision1->height};
-                        const sf::FloatRect obj2 {collision2->x + pos2->x, collision2->y + pos2->y, collision2->width, collision2->height};
-                        if (satCollision(obj1, obj2, *pos1, *pos2)) {
-                            std::cout << "Collision between " << entity1 << " and " << entity2 << std::endl;
-                            collision2->callback(entity1, entity2);
-                        }
+                if (canCollide(*collision1, *collision2)) {
+                    std::cout << "Checking collision between " << entity1 << " and " << entity2 << std::endl;
+                    const sf::FloatRect obj1 {collision1->x + pos1->x, collision1->y + pos1->y, collision1->width, collision1->height};
+                    const sf::FloatRect obj2 {collision2->x + pos2->x, collision2->y + pos2->y, collision2->width, collision2->height};
+                    if (satCollision(obj1, obj2, *pos1, *pos2)) {
+                        std::cout << "Collision between " << entity1 << " and " << entity2 << std::endl;
+                        collision2->callback(entity1, entity2);
                     }
                 }
             }

@@ -35,9 +35,9 @@ namespace engine::system {
 
     bool isColliding(const sf::FloatRect &obj1, const sf::FloatRect &obj2);
 
-    void setLayer(size_t entity, const std::array<bool, LAYER_SIZE> &layer);
+    void setLayer(size_t entity, const std::bitset<uranus::ecs::LAYER_MASK_SIZE> &layer);
 
-    void setMask(size_t entity, const std::array<bool, MASK_SIZE> &mask);
+    void setMask(size_t entity, const std::bitset<uranus::ecs::LAYER_MASK_SIZE> &mask);
 
     void gameLoop();
 

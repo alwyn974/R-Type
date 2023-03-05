@@ -9,13 +9,21 @@
 #define URANUS_DEPENDENCIES_HPP
 
 #include <iostream>
-
-#define LAYER_SIZE 4 // NOLINT
-#define MASK_SIZE  4 // NOLINT
-
 #include "uranus/ecs/Registry.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+
+namespace uranus::ecs {
+    enum LayerMask {
+        PLAYER = 0,
+        PLAYER_BULLET,
+        ENEMY,
+        ENEMY_BULLET,
+        BONUS,
+        BUTTON,
+        LAYER_MASK_SIZE // Always at the end
+    };
+}
 
 #endif // URANUS_DEPENDENCIES_HPP
