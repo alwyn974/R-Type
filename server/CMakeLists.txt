@@ -19,6 +19,7 @@ endif()
 
 add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
         src/GameServer.cpp
+        src/game/Player.cpp
 )
 
 # Include all headers directories

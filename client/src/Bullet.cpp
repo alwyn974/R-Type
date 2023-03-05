@@ -43,7 +43,7 @@ void Bullet::move(size_t entity)
     auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     vel->x = 5;
-    if (r->getComponent<uranus::ecs::component::Position>(entity)->x > 900) { //TODO(frenetikk): change this
+    if (r->getComponent<uranus::ecs::component::Position>(entity)->x > 900) { // TODO(frenetikk): change this
         r->killEntity(entity);
     }
 }
@@ -64,8 +64,7 @@ void Bullet::colliding(const size_t &entity, const size_t &entityCollidingWith)
 
     auto pos = r->getComponent<uranus::ecs::component::Position>(entityCollidingWith);
 
-    auto explosion = std::make_shared<Explosion>(
-        "explosion", uranus::ecs::component::Position {pos->x, pos->y}, textureManager->getTextureByName("explosion"));
+    auto explosion = std::make_shared<Explosion>("explosion", uranus::ecs::component::Position {pos->x, pos->y}, textureManager->getTextureByName("explosion"));
     entityManager->addPrefab(explosion);
 
     r->killEntity(entity);

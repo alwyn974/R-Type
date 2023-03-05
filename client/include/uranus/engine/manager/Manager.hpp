@@ -9,9 +9,9 @@
 #define URANUS_MANAGER_HPP
 
 #include "EntityManager.hpp"
-#include "uranus/engine/components/RenderWindow.hpp"
 #include "SceneManager.hpp"
 #include "TextureManager.hpp"
+#include "uranus/engine/components/RenderWindow.hpp"
 
 namespace engine {
     class Manager {

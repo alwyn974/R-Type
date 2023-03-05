@@ -16,5 +16,4 @@ namespace engine {
 
 } // namespace engine
 
-
-#endif //R_TYPE_TEXT_HPP
+#endif // R_TYPE_TEXT_HPP

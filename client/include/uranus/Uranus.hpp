@@ -16,10 +16,8 @@
 #include "ecs/Components.hpp"
 #include "ecs/Registry.hpp"
 #include "ecs/View.hpp"
-
 #include "engine/Engine.hpp"
 #include "engine/map/Map.hpp"
-
 #include "Exceptions.hpp"
 
 #endif // URANUS_URANUS_HPP

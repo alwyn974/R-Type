@@ -9,12 +9,14 @@
 
 namespace rtype::server {
 
-    GameServer::GameServer(const std::string &host, std::uint16_t tcpPort, std::uint16_t udpPort)
+    GameServer::GameServer(const std::string &host, std::uint16_t tcpPort, std::uint16_t udpPort, int maxPlayers)
     {
         this->_logger = spdlog::stdout_color_mt("GameServer");
         this->_host = host;
         this->_tcpPort = tcpPort;
         this->_udpPort = udpPort;
+        this->_maxPlayers = maxPlayers;
+        this->_playerCount = 0;
     }
 
     void GameServer::init()
@@ -40,14 +42,17 @@ namespace rtype::server {
 
         this->registerTcpPackets();
         this->registerUdpPackets();
-
-        while (true);
     }
 
     void GameServer::start()
     {
         this->_tcpServer->asyncRun();
         this->_udpServer->asyncRun();
+//        UUIDv4::UUIDGenerator<std::mt19937_64> uuidGenerator;
+//        this->_tcpServer->broadcast(std::make_shared<rtype::network::packet::S2CPlayerAuthentified>("", uuidGenerator.getUUID()));
+
+        while (true)
+            ; // TODO: game logic
     }
 
     void GameServer::stop()
@@ -59,81 +64,79 @@ namespace rtype::server {
     void GameServer::registerTcpCallbacks()
     {
         this->_tcpServer->onServerDataReceived = [&](ConnectionToClientPtr &client, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
-//            this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
+            (void) client;
+            (void) packetId;
+            (void) packetSize;
+            (void) buffer;
+            //            this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
         };
         this->_tcpServer->onServerDataSent = [&](ConnectionToClientPtr &client, sa::ByteBuffer &buffer) {
-//            this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
+            (void) client;
+            (void) buffer;
+            //            this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
         };
         this->_tcpServer->onClientConnect = [&](ConnectionToClientPtr &client) {
-            this->_logger->info("Client try to connect");
-            return true; //TODO: implement limits
+            this->_logger->info("Client try to connect {}:{}", client->getIp(), client->getPort());
+            return this->_playerCount + 1 > this->_maxPlayers;
         };
-        this->_tcpServer->onClientConnected = [&](ConnectionToClientPtr &client) {
-            this->_logger->info("Client connected id: {}", client->getId());
-        };
-        this->_tcpServer->onClientDisconnected = [&](ConnectionToClientPtr &client) {
-            this->_logger->info("Client disconnected id: {}", client->getId());
-        };
+        this->_tcpServer->onClientConnected = [&](ConnectionToClientPtr &client) { this->onTcpClientConnected(client); };
+        this->_tcpServer->onClientDisconnected = [&](ConnectionToClientPtr &client) { this->onTcpClientDisconnected(client); };
     }
 
     void GameServer::registerUdpCallbacks()
     {
         this->_udpServer->onServerDataReceived = [&](ConnectionToClientPtr &client, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
-//            this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
+            (void) client;
+            (void) packetId;
+            (void) packetSize;
+            (void) buffer;
+            //            this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
         };
         this->_udpServer->onServerDataSent = [&](ConnectionToClientPtr &client, sa::ByteBuffer &buffer) {
-//            this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
+            (void) client;
+            (void) buffer;
+            //            this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
         };
         this->_udpServer->onClientConnect = [&](ConnectionToClientPtr &client) {
-            this->_logger->info("Client try to connect");
-            return true; //TODO: implement limits
+            this->_logger->info("Client try to connect {}:{}", client->getIp(), client->getPort());
+            return this->_playerCount + 1 > this->_maxPlayers;
         };
-        this->_udpServer->onClientConnected = [&](ConnectionToClientPtr &client) {
-            this->_logger->info("Client connected id: {}", client->getId());
-        };
-        this->_udpServer->onClientDisconnected = [&](ConnectionToClientPtr &client) {
-            this->_logger->info("Client disconnected id: {}", client->getId());
-        };
+        this->_udpServer->onClientConnected = [&](ConnectionToClientPtr &client) { this->onUdpClientConnected(client); };
+        this->_udpServer->onClientDisconnected = [&](ConnectionToClientPtr &client) { this->onUdpClientDisconnected(client); };
     }
+
+    void GameServer::registerTcpPackets() {}
 
     void GameServer::registerUdpPackets()
     {
-
+        int id = 0;
+        // register server -> client packets
+        this->_udpPacketRegistry->registerPacket<rtype::network::packet::S2CEntitySpawn>(id++);
+        // register client -> server packets
+        this->_udpPacketRegistry->registerPacket<rtype::network::packet::C2SPrepareShoot>(id++);
+        this->_udpPacketRegistry->registerPacket<rtype::network::packet::C2SPlayerShoot>(id++);
     }
 
-    void GameServer::registerTcpPackets()
+    void GameServer::onTcpClientConnected(ConnectionToClientPtr &client)
     {
-
+        this->_logger->info("Client connected id: {}", client->getId());
     }
 
-    const std::shared_ptr<sa::TCPServer> &GameServer::getTcpServer() const
+    void GameServer::onTcpClientDisconnected(ConnectionToClientPtr &client)
     {
-        return _tcpServer;
+        this->_logger->info("Client disconnected id: {}", client->getId());
     }
 
-    const std::shared_ptr<sa::UDPServer> &GameServer::getUdpServer() const
+    void GameServer::onUdpClientConnected(ConnectionToClientPtr &client)
     {
-        return _udpServer;
+        this->_logger->info("Client connected id: {}", client->getId());
     }
 
-    const std::shared_ptr<spdlog::logger> &GameServer::getLogger() const
+    void GameServer::onUdpClientDisconnected(ConnectionToClientPtr &client)
     {
-        return _logger;
+        this->_logger->info("Client disconnected id: {}", client->getId());
     }
 
-    void GameServer::setTcpServer(const std::shared_ptr<sa::TCPServer> &tcpServer)
-    {
-        _tcpServer = tcpServer;
-    }
 
-    void GameServer::setUdpServer(const std::shared_ptr<sa::UDPServer> &udpServer)
-    {
-        _udpServer = udpServer;
-    }
 
-    void GameServer::setLogger(const std::shared_ptr<spdlog::logger> &logger)
-    {
-        _logger = logger;
-    }
-}
-
+} // namespace rtype::server

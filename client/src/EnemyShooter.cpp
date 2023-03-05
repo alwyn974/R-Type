@@ -26,8 +26,8 @@ void EnemyShooter::loop(size_t entity)
         auto &entityManager = engine::Manager::getEntityManager();
 
         auto &pos = r->getComponent<uranus::ecs::component::Position>(entity);
-        auto bullet = std::make_shared<BulletEnemy>(
-            "bullet", uranus::ecs::component::Position {pos->x - 30, pos->y}, textureManager->getTextureByName("bulletEnemy"));
+        auto bullet =
+            std::make_shared<BulletEnemy>("bullet", uranus::ecs::component::Position {pos->x - 30, pos->y}, textureManager->getTextureByName("bulletEnemy"));
         entityManager->addPrefab(bullet);
 
         this->_shootClock.restart();

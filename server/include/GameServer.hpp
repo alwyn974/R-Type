@@ -8,25 +8,26 @@
 #ifndef R_TYPE_GAMESERVER_HPP
 #define R_TYPE_GAMESERVER_HPP
 
+#include "game/Game.hpp"
+#include <Packets.hpp>
 #include <saturnity/Saturnity.hpp>
-#include "Packets.hpp"
 
 namespace rtype::server {
     class GameServer {
     public:
-        GameServer(const std::string &host, std::uint16_t tcpPort, std::uint16_t udpPort);
+        explicit GameServer(const std::string &host, std::uint16_t tcpPort, std::uint16_t udpPort, int maxPlayers);
 
         void init();
         void start();
         void stop();
 
-        const std::shared_ptr<spdlog::logger> &getLogger() const;
-        const std::shared_ptr<sa::TCPServer> &getTcpServer() const;
-        const std::shared_ptr<sa::UDPServer> &getUdpServer() const;
+        const std::shared_ptr<sa::TCPServer> &getTcpServer() const { return _tcpServer; }
+        const std::shared_ptr<sa::UDPServer> &getUdpServer() const { return _udpServer; }
+        const std::shared_ptr<spdlog::logger> &getLogger() const { return _logger; }
 
-        void setTcpServer(const std::shared_ptr<sa::TCPServer> &tcpServer);
-        void setUdpServer(const std::shared_ptr<sa::UDPServer> &udpServer);
-        void setLogger(const std::shared_ptr<spdlog::logger> &logger);
+        void setTcpServer(const std::shared_ptr<sa::TCPServer> &tcpServer) { _tcpServer = tcpServer; }
+        void setUdpServer(const std::shared_ptr<sa::UDPServer> &udpServer) { _udpServer = udpServer; }
+        void setLogger(const std::shared_ptr<spdlog::logger> &logger) { _logger = logger; }
 
     private:
         std::shared_ptr<sa::PacketRegistry> _udpPacketRegistry;
@@ -38,12 +39,21 @@ namespace rtype::server {
         std::uint16_t _tcpPort;
         std::uint16_t _udpPort;
 
+        int _playerCount;
+        int _maxPlayers;
+
         void registerTcpCallbacks();
         void registerUdpCallbacks();
 
-        void registerUdpPackets();
         void registerTcpPackets();
-    };
-}
+        void registerUdpPackets();
 
-#endif //R_TYPE_GAMESERVER_HPP
+        void onTcpClientConnected(ConnectionToClientPtr &client);
+        void onTcpClientDisconnected(ConnectionToClientPtr &client);
+
+        void onUdpClientConnected(ConnectionToClientPtr &client);
+        void onUdpClientDisconnected(ConnectionToClientPtr &client);
+    };
+} // namespace rtype::server
+
+#endif // R_TYPE_GAMESERVER_HPP

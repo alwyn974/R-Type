@@ -18,16 +18,10 @@ namespace rtype::network::packet {
 
         explicit C2SPlayerHandshake(const std::string &name) : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::TCP), name(name) {}
 
-        void toBytes(sa::ByteBuffer &byteBuffer) override
-        {
-            byteBuffer.writeString(name);
-        }
+        void toBytes(sa::ByteBuffer &byteBuffer) override { byteBuffer.writeString(name); }
 
-        void fromBytes(sa::ByteBuffer &byteBuffer) override
-        {
-            name = byteBuffer.readString();
-        }
+        void fromBytes(sa::ByteBuffer &byteBuffer) override { name = byteBuffer.readString(); }
     };
-}
+} // namespace rtype::network::packet
 
 #endif // R_TYPE_C2SPLAYERHANDSHAKE_HPP

@@ -13,13 +13,13 @@
  * @file Core.hpp
  */
 
+#include <imgui-SFML.h>
+#include <imgui.h>
 #include <spdlog/spdlog.h>
 #include <array>
 #include <exception>
 #include <memory>
 #include <string>
-#include <imgui-SFML.h>
-#include <imgui.h>
 
 /**
  * @brief The uranus exception namespace.

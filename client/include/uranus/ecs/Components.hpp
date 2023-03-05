@@ -11,8 +11,8 @@
 #include "uranus/Core.hpp"
 #include "uranus/engine/components/Clock.hpp"
 #include "uranus/engine/components/Event.hpp"
-#include "uranus/engine/manager/Manager.hpp"
 #include "uranus/engine/components/Sprite.hpp"
+#include "uranus/engine/manager/Manager.hpp"
 #include <array>
 
 /**

@@ -8,8 +8,8 @@
 #ifndef URANUS_BASE_HPP
 #define URANUS_BASE_HPP
 
-#include "uranus/engine/Dependencies.hpp"
 #include "uranus/ecs/Entity.hpp"
+#include "uranus/engine/Dependencies.hpp"
 
 namespace engine {
     class Base {

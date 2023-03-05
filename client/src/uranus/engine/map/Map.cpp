@@ -7,8 +7,9 @@
 
 #include "uranus/engine/map/Map.hpp"
 
-Map::Map(const std::string &path, std::shared_ptr<engine::TextureManager> &textureMng) {
-    tson::Tileson nlohman{std::make_unique<tson::NlohmannJson>()};
+Map::Map(const std::string &path, std::shared_ptr<engine::TextureManager> &textureMng)
+{
+    tson::Tileson nlohman {std::make_unique<tson::NlohmannJson>()};
 
     this->_map = nlohman.parse(path);
     if (this->_map->getStatus() == tson::ParseStatus::OK) {
@@ -18,10 +19,11 @@ Map::Map(const std::string &path, std::shared_ptr<engine::TextureManager> &textu
         std::cerr << "Error while parsing the map: " << this->_map->getStatusMessage() << std::endl;
 }
 
-void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
     states.transform *= getTransform();
-    for (const Layer &layer: this->_layers) {
-        for (const Tile &tile: layer.getTiles()) {
+    for (const Layer &layer : this->_layers) {
+        for (const Tile &tile : layer.getTiles()) {
             auto texture = this->_textures.find(tile.getName());
             if (texture != this->_textures.end()) {
                 states.texture = texture->second.get();
@@ -31,8 +33,9 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     }
 }
 
-void Map::loadMap() {
-    for (auto &layer: this->_map->getLayers()) {
+void Map::loadMap()
+{
+    for (auto &layer : this->_map->getLayers()) {
         if (layer.getType() == tson::LayerType::TileLayer) {
             this->_layers.emplace_back(layer.getName());
             this->loadTiles(&layer);
@@ -40,7 +43,8 @@ void Map::loadMap() {
     }
 }
 
-void Map::loadTiles(tson::Layer *layer) {
+void Map::loadTiles(tson::Layer *layer)
+{
     for (int y = 0; y < layer->getSize().y; y++) {
         for (int x = 0; x < layer->getSize().x; x++) {
             tson::Tile *tile = layer->getTileData(x, y);
@@ -71,32 +75,36 @@ void Map::loadTiles(tson::Layer *layer) {
     }
 }
 
-void Map::loadTexture(std::shared_ptr<engine::TextureManager> &textureMng) {
-    for (auto &tileset: this->_map->getTilesets()) {
+void Map::loadTexture(std::shared_ptr<engine::TextureManager> &textureMng)
+{
+    for (auto &tileset : this->_map->getTilesets()) {
         textureMng->addTexture(tileset.getImagePath().string(), tileset.getName());
         this->_textures.emplace(tileset.getName(), textureMng->getTextureByName(tileset.getName()));
     }
 }
 
-tson::Tileset *Map::getTilesetByTileId(uint32_t id) {
-    for (auto &tileset: this->_map->getTilesets()) {
-        if (static_cast<int>(id) >= tileset.getFirstgid() && static_cast<int>(id) < tileset.getFirstgid() + tileset.getTileCount())
-            return &tileset;
+tson::Tileset *Map::getTilesetByTileId(uint32_t id)
+{
+    for (auto &tileset : this->_map->getTilesets()) {
+        if (static_cast<int>(id) >= tileset.getFirstgid() && static_cast<int>(id) < tileset.getFirstgid() + tileset.getTileCount()) return &tileset;
     }
     return nullptr;
 }
 
-sf::Vector2i Map::getTilePosition(uint32_t tileId, tson::Tileset *tileset) {
+sf::Vector2i Map::getTilePosition(uint32_t tileId, tson::Tileset *tileset)
+{
     const int x = static_cast<int>(tileId - tileset->getFirstgid()) % tileset->getColumns();
     const int y = static_cast<int>(tileId - tileset->getFirstgid()) / tileset->getColumns();
     return {x, y};
 }
 
-Layer::Layer(const std::string &name) {
+Layer::Layer(const std::string &name)
+{
     this->_name = name;
 }
 
-Tile::Tile(const std::string &name, sf::VertexArray &quad) {
+Tile::Tile(const std::string &name, sf::VertexArray &quad)
+{
     this->_name = name;
     this->_quad = quad;
 }

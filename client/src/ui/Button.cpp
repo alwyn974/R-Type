@@ -24,7 +24,7 @@ ui::Button::Button(const std::string &uniqueName, uranus::ecs::component::Positi
 
     r->addComponent(newEntity, uranus::ecs::component::Name {uniqueName});
     r->addComponent(newEntity, uranus::ecs::component::Position {pos.x, pos.y});
-    r->addComponent(newEntity, uranus::ecs::component::Sprite { sprite });
+    r->addComponent(newEntity, uranus::ecs::component::Sprite {sprite});
     r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->handleKeyboard(entity, event); }});
 
     std::array<bool, LAYER_SIZE> layer {true, false, false, false};
@@ -67,8 +67,8 @@ void ui::Button::loop(size_t entity)
     auto &pos = r->getComponent<uranus::ecs::component::Position>(entity);
 
     auto mousePosition {static_cast<sf::Vector2f>(sf::Mouse::getPosition(*window))};
-//    sf::FloatRect mouseRect {mousePosition.x, mousePosition.y, 0, 0};
-    const sf::FloatRect rect { collision->x + pos->x, collision->y + pos->y, collision->width, collision->height };
+    //    sf::FloatRect mouseRect {mousePosition.x, mousePosition.y, 0, 0};
+    const sf::FloatRect rect {collision->x + pos->x, collision->y + pos->y, collision->width, collision->height};
 
     if (rect.contains(mousePosition)) {
         this->_hover = true;

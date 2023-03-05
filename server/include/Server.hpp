@@ -14,7 +14,7 @@ struct Args {
     std::string host;
     std::uint16_t tcpPort;
     std::uint16_t udpPort;
-    bool help;
+    int maxPlayers;
 };
 
-#endif //R_TYPE_SERVER_HPP
+#endif // R_TYPE_SERVER_HPP

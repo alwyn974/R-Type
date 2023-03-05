@@ -5,8 +5,8 @@
 ** main.cpp
 */
 
-#include <iostream>
 #include "packets/tcp/client/C2SPlayerHandshake.hpp"
+#include <iostream>
 
 int main(int ac, char **av)
 {

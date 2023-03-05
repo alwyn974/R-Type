@@ -10,7 +10,7 @@
 
 int startServer(const Args &args)
 {
-    rtype::server::GameServer server(args.host, args.tcpPort, args.udpPort);
+    rtype::server::GameServer server(args.host, args.tcpPort, args.udpPort, args.maxPlayers);
 
     try {
         server.init();
@@ -42,10 +42,7 @@ int main(int ac, char **av)
     argparse::ArgumentParser program("R-Type Server");
     program.add_description("The R-Type Server");
 
-    program.add_argument("-H", "--host")
-        .help("The host to bind the server to")
-        .default_value(std::string("0.0.0.0"))
-        .metavar("IP");
+    program.add_argument("-H", "--host").help("The host to bind the server to").default_value(std::string("0.0.0.0")).metavar("IP");
     program.add_argument("-t", "--tcp-port")
         .help("The TCP port to bind the server to. Must be in [0-65535]")
         .default_value(2409)
@@ -55,6 +52,11 @@ int main(int ac, char **av)
         .help("The UDP port to bind the server to. Must be in [0-65535]")
         .default_value(2409)
         .metavar("PORT")
+        .scan<'d', int>();
+    program.add_argument("-m", "--max-players")
+        .help("The maximum number of players allowed on the server")
+        .default_value(4)
+        .metavar("MAX_PLAYERS")
         .scan<'d', int>();
 
     try {
@@ -70,6 +72,7 @@ int main(int ac, char **av)
     std::string host = program.get<std::string>("--host");
     int tcpPort = program.get<int>("--tcp-port");
     int udpPort = program.get<int>("--udp-port");
+    int maxPlayers = program.get<int>("--max-players");
 
     if (host.empty()) {
         logger->error("Invalid host ip: {}", host);
@@ -86,5 +89,11 @@ int main(int ac, char **av)
         return 1;
     }
 
-    return startServer({host, static_cast<std::uint16_t>(tcpPort), static_cast<std::uint16_t>(udpPort)});
+    if (maxPlayers < 0) {
+        logger->error("Invalid max players: {}, must be greater than 0", maxPlayers);
+        maxPlayers = 4;
+        logger->warn("Max players set to 4");
+    }
+
+    return startServer({host, static_cast<std::uint16_t>(tcpPort), static_cast<std::uint16_t>(udpPort), maxPlayers});
 }

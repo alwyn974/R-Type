@@ -19,4 +19,4 @@
 #include "components/Sprite.hpp"
 #include "components/Texture.hpp"
 
-#endif //R_TYPE_COMPONENTS_HPP
+#endif // R_TYPE_COMPONENTS_HPP

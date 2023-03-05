@@ -27,12 +27,12 @@ void engine::system::draw()
         drawable.shape->setPosition(pos.x, pos.y);
         drawable.shape->setFillColor(drawable.color);
         window->draw(*drawable.shape);
-//        spdlog::info("Drawing drawable ({}) at ({}, {})", idx, pos.x, pos.y);
+        //        spdlog::info("Drawing drawable ({}) at ({}, {})", idx, pos.x, pos.y);
     }
     for (auto [idx, pos, sprite] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Sprite>(*r)) {
         sprite.sprite->setPosition(pos.x, pos.y);
         window->draw(*sprite.sprite);
-//        spdlog::info("Drawing sprite ({}) at ({}, {})", idx, pos.x, pos.y);
+        //        spdlog::info("Drawing sprite ({}) at ({}, {})", idx, pos.x, pos.y);
     }
 }
 
@@ -149,8 +149,8 @@ void engine::system::playAnimation(size_t entity, const std::string &name)
         if (animationData.name == name) {
             animationData.isPlaying = true;
             auto &sprite = r->getComponent<uranus::ecs::component::Sprite>(entity);
-            sprite->sprite->setTextureRect(get_animation_rect(
-                animationData.frames.data()->frame, animation->hFrame, animation->vFrame, sprite->sprite->getTexture()->getSize()));
+            sprite->sprite->setTextureRect(
+                get_animation_rect(animationData.frames.data()->frame, animation->hFrame, animation->vFrame, sprite->sprite->getTexture()->getSize()));
         } else
             animationData.isPlaying = false;
     }

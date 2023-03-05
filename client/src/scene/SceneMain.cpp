@@ -49,7 +49,7 @@ void SceneMain::init()
     rectangle->setSize({1280, 720});
     const std::shared_ptr<sf::Texture> texture = textureManager->getTextureByName("background");
     rectangle->setTexture(texture.get());
-    r->addComponent(background, uranus::ecs::component::RectangleShape { rectangle });
+    r->addComponent(background, uranus::ecs::component::RectangleShape {rectangle});
 
     auto buttonPlay =
         std::make_shared<ui::Button>("buttonPlay", uranus::ecs::component::Position {300, 300}, textureManager->getTextureByName("buttonPlay"), pressedPlay);
