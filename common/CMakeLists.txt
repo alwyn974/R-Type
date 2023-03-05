@@ -13,12 +13,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 add_library(${PROJECT_NAME}
-        include/packets/tcp/client/C2SPlayerHandshake.hpp
-        include/packets/udp/client/C2SPlayerPrepareShoot.hpp
         include/Packets.hpp
 )
-add_executable(${PROJECT_NAME}-test main.cpp)
-target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 
 # Include all headers directories
 target_include_directories(${PROJECT_NAME}

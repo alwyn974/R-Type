@@ -43,7 +43,8 @@ add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
         src/scene/SceneGame.cpp
         src/scene/SceneStage1.cpp
         src/scene/SceneMain.cpp
-        )
+        src/network/NetworkManager.cpp
+)
 # Include all headers directories
 target_include_directories(${BINARY_NAME}
         PRIVATE
