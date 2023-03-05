@@ -69,7 +69,7 @@ void ui::Button::loop(size_t entity)
     sf::FloatRect mouseRect {mousePosition.x, mousePosition.y, 0, 0};
 
     const sf::FloatRect rect {
-        collision->value().x + pos->value().x, collision->value().y + pos->value().y, collision->value().width, collision->value().height};
+        collision->x + pos->x, collision->y + pos->y, collision->width, collision->height};
 
     if (engine::system::isColliding(mouseRect, rect)) {
         this->_hover = true;

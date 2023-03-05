@@ -16,18 +16,21 @@ int startServer(const Args &args)
         server.init();
     } catch (const std::exception &e) {
         spdlog::error("Error when trying to init the game server: {}", e.what());
+        return 1;
     }
 
     try {
         server.start();
     } catch (const std::exception &e) {
         spdlog::error("Error when trying to start the game server: {}", e.what());
+        return 1;
     }
 
     try {
         server.stop();
     } catch (const std::exception &e) {
         spdlog::error("Error when trying to stop the game server: {}", e.what());
+        return 1;
     }
 
     return 0;
@@ -41,7 +44,7 @@ int main(int ac, char **av)
 
     program.add_argument("-H", "--host")
         .help("The host to bind the server to")
-        .default_value("localhost")
+        .default_value(std::string("0.0.0.0"))
         .metavar("IP");
     program.add_argument("-t", "--tcp-port")
         .help("The TCP port to bind the server to. Must be in [0-65535]")

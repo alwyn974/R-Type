@@ -20,8 +20,8 @@ void BulletEnemy::move(size_t entity)
 {
     auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
-    vel->value().x = -5;
-    if (r->getComponent<uranus::ecs::component::Position>(entity)->value().x < -100) {
+    vel->x = -5;
+    if (r->getComponent<uranus::ecs::component::Position>(entity)->x < -100) {
         r->killEntity(entity);
     }
 }

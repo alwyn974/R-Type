@@ -49,7 +49,7 @@ void Enemy::loop(size_t entity)
 {
     auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
-    vel->value().x = -0.5;
+    vel->x = -0.5;
 }
 
 void Enemy::colliding(const size_t &entity, const size_t &entityCollidingWith) {}

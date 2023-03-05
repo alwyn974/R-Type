@@ -29,13 +29,20 @@ namespace rtype::server {
         void setLogger(const std::shared_ptr<spdlog::logger> &logger);
 
     private:
-        std::shared_ptr<sa::PacketRegistry> _packetRegistry;
+        std::shared_ptr<sa::PacketRegistry> _udpPacketRegistry;
+        std::shared_ptr<sa::PacketRegistry> _tcpPacketRegistry;
         std::shared_ptr<sa::TCPServer> _tcpServer;
         std::shared_ptr<sa::UDPServer> _udpServer;
         std::shared_ptr<spdlog::logger> _logger;
         std::string _host;
         std::uint16_t _tcpPort;
         std::uint16_t _udpPort;
+
+        void registerTcpCallbacks();
+        void registerUdpCallbacks();
+
+        void registerUdpPackets();
+        void registerTcpPackets();
     };
 }
 

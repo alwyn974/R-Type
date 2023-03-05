@@ -38,18 +38,18 @@ void Player::move(size_t entity, const engine::Event event)
     const int speed = 2;
     if (vel) {
         if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::Q)) {
-            vel->value().x = -speed;
+            vel->x = -speed;
         } else if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::D)) {
-            vel->value().x = speed;
+            vel->x = speed;
         } else {
-            vel->value().x = 0;
+            vel->x = 0;
         }
         if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::Z)) {
-            vel->value().y = -speed;
+            vel->y = -speed;
         } else if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::S)) {
-            vel->value().y = speed;
+            vel->y = speed;
         } else {
-            vel->value().y = 0;
+            vel->y = 0;
         }
     }
     if (pos) {
@@ -74,16 +74,16 @@ void Player::shoot()
 
     auto &pos = r->getComponent<uranus::ecs::component::Position>(this->_entityId);
 
-    if (this->_doubleBullet) {
+    if (!this->_doubleBullet) {
         auto bullet = std::make_shared<Bullet>(
-            "bullet", uranus::ecs::component::Position {pos->value().x + 30, pos->value().y + 10}, textureManager->getTextureByName(this->_bulletTextureName));
+            "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y + 10}, textureManager->getTextureByName(this->_bulletTextureName));
         entityManager->addPrefab(bullet);
         auto bullet2 = std::make_shared<Bullet>(
-            "bullet", uranus::ecs::component::Position {pos->value().x + 30, pos->value().y - 10}, textureManager->getTextureByName(this->_bulletTextureName));
+            "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y - 10}, textureManager->getTextureByName(this->_bulletTextureName));
         entityManager->addPrefab(bullet2);
     } else {
         auto bullet = std::make_shared<Bullet>(
-            "bullet", uranus::ecs::component::Position {pos->value().x + 30, pos->value().y}, textureManager->getTextureByName(this->_bulletTextureName));
+            "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y}, textureManager->getTextureByName(this->_bulletTextureName));
         entityManager->addPrefab(bullet);
     }
 }
