@@ -116,6 +116,8 @@ namespace rtype::server {
         // register client -> server packets
         this->_tcpPacketRegistry->registerPacket<packet::C2SPlayerHandshake>(id++);
 
+        this->_tcpServer->registerHandler<packet::S2CPlayerAuthentified>([&](auto &client, auto &packet){ return; });
+        this->_tcpServer->registerHandler<packet::S2CPlayerScore>([&](auto &client, auto &packet){ return; });
         this->_tcpServer->registerHandler<packet::C2SPlayerHandshake>([&](auto &client, auto &packet){ this->onPlayerHandshake(client, packet); });
     }
 
@@ -137,6 +139,18 @@ namespace rtype::server {
         this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SSkillEntity>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SSkillPlayer>(id++);
+
+        this->_udpServer->registerHandler<packet::S2CEntityMove>([&](auto &client, auto &packet){
+            this->_udpServer->broadcast(packet, client->getId());
+        });
+        this->_udpServer->registerHandler<packet::S2CEntitySpawn>([&](auto &client, auto &packet){ return; });
+        this->_udpServer->registerHandler<packet::S2CPlayerMove>([&](auto &client, auto &packet){
+            this->_udpServer->broadcast(packet, client->getId());
+        });
+        this->_udpServer->registerHandler<packet::S2CRemoveEntity>([&](auto &client, auto &packet){ return; });
+        this->_udpServer->registerHandler<packet::S2CRemovePlayer>([&](auto &client, auto &packet){ return; });
+        this->_udpServer->registerHandler<packet::S2CSpawnBullet>([&](auto &client, auto &packet){ return; });
+        this->_udpServer->registerHandler<packet::S2CSpawnPlayer>([&](auto &client, auto &packet){ return; });
 
         this->_udpServer->registerHandler<packet::C2SClientConnected>([&](auto &client, auto &packet){
             this->_udpServer->broadcast(packet, client->getId());

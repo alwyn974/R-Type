@@ -16,6 +16,10 @@ namespace rtype::network::packet {
         int x = 0, y = 0;
 
         C2SPlayerShoot() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::UDP) {};
+        C2SPlayerShoot(int x, int y) : C2SPlayerShoot() {
+            this->x = x;
+            this->y = y;
+        }
 
         void toBytes(sa::ByteBuffer &byteBuffer) override {
             byteBuffer.writeInt(x);

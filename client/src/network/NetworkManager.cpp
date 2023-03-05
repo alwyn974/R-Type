@@ -167,26 +167,23 @@ namespace rtype::client::network {
 
     void NetworkManager::handleUdpPackets()
     {
-        this->_udpClient->registerHandler<packet::S2CSpawnPlayer>([&](ConnectionToServerPtr &server, packet::S2CSpawnPlayer &packet) {
-            spdlog::info("Received S2CSpawnPlayer packet");
+        this->_udpClient->registerHandler<packet::C2SClientConnected>([&](ConnectionToServerPtr &server, packet::C2SClientConnected &packet) {
+            //TODO: a player
+        });
+        this->_udpClient->registerHandler<packet::C2SPlayerShoot>([&](ConnectionToServerPtr &server, packet::C2SPlayerShoot &packet) {
+           //TODO: spawn bullet
+        });
+        this->_udpClient->registerHandler<packet::C2SSkillEntity>([&](ConnectionToServerPtr &server, packet::C2SSkillEntity &packet) {
+            //TODO: kill entity
+        });
+        this->_udpClient->registerHandler<packet::C2SSkillPlayer>([&](ConnectionToServerPtr &server, packet::C2SSkillPlayer &packet) {
+            //TODO: kill player
         });
         this->_udpClient->registerHandler<packet::S2CEntityMove>([&](ConnectionToServerPtr &server, packet::S2CEntityMove &packet) {
-            spdlog::info("Received S2CEntityMove packet");
-        });
-        this->_udpClient->registerHandler<packet::S2CEntitySpawn>([&](ConnectionToServerPtr &server, packet::S2CEntitySpawn &packet) {
-            spdlog::info("Received S2CEntitySpawn packet");
+           //TODO: move entity
         });
         this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
-            spdlog::info("Received S2CPlayerMove packet");
-        });
-        this->_udpClient->registerHandler<packet::S2CRemovePlayer>([&](ConnectionToServerPtr &server, packet::S2CRemovePlayer &packet) {
-            spdlog::info("Received S2CRemovePlayer packet");
-        });
-        this->_udpClient->registerHandler<packet::S2CSpawnBullet>([&](ConnectionToServerPtr &server, packet::S2CSpawnBullet &packet) {
-            spdlog::info("Received S2CSpawnBullet packet");
-        });
-        this->_udpClient->registerHandler<packet::S2CRemoveEntity>([&](ConnectionToServerPtr &server, packet::S2CRemoveEntity &packet) {
-            spdlog::info("Received S2CRemoveEntity packet");
+            //TODO: move player
         });
     }
 

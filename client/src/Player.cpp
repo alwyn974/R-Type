@@ -76,7 +76,9 @@ void Player::shoot()
     auto &r = engine::Manager::getRegistry();
     auto &textureManager = engine::Manager::getTextureManager();
     auto &entityManager = engine::Manager::getEntityManager();
+
     auto &pos = r->getComponent<uranus::ecs::component::Position>(this->_entityId);
+    auto &networkManager = rtype::client::network::NetworkManager::getInstance();
 
     if (this->_doubleBullet) {
         auto bullet = std::make_shared<Bullet>(
@@ -89,6 +91,6 @@ void Player::shoot()
         auto bullet = std::make_shared<Bullet>(
             "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y}, textureManager->getTextureByName(this->_bulletTextureName));
         entityManager->addPrefab(bullet);
-
+        networkManager->send(std::make_shared<rtype::network::packet::C2SPlayerShoot>(pos->x, pos->y));
     }
 }
