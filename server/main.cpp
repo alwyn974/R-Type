@@ -50,7 +50,7 @@ int main(int ac, char **av)
         .scan<'d', int>();
     program.add_argument("-u", "--udp-port")
         .help("The UDP port to bind the server to. Must be in [0-65535]")
-        .default_value(2409)
+        .default_value(2410)
         .metavar("PORT")
         .scan<'d', int>();
     program.add_argument("-m", "--max-players")

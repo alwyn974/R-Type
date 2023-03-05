@@ -43,6 +43,9 @@ namespace rtype::client::network {
         std::shared_ptr<sa::TCPClient> _tcpClient;
         std::shared_ptr<sa::UDPClient> _udpClient;
 
+        void registerUdpCallback();
+        void registerTcpCallback();
+
         void registerUdpPackets();
         void registerTcpPackets();
 

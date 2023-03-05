@@ -22,6 +22,7 @@ namespace rtype::server {
 
     void GameServer::init()
     {
+        this->_logger->info("Initializing GameServer...");
         this->_tcpPacketRegistry = std::make_shared<sa::PacketRegistry>();
         this->_udpPacketRegistry = std::make_shared<sa::PacketRegistry>();
         this->_tcpServer = sa::TCPServer::create(this->_tcpPacketRegistry, this->_host, this->_tcpPort);
@@ -49,10 +50,14 @@ namespace rtype::server {
     {
         this->_tcpServer->asyncRun();
         this->_udpServer->asyncRun();
+        this->_logger->info("GameServer started");
         int id = 0;
 
+        UUIDv4::UUIDGenerator<std::mt19937> generator;
+
         while (true) {
-            this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnBullet>(id++, 100, 100));
+            this->_udpServer->broadcast(std::make_shared<packet::S2CPlayerAuthentified>("wtf", generator.getUUID()));
+            this->_tcpServer->broadcast(std::make_shared<packet::S2CSpawnBullet>(id++, 100, 100));
         }
     }
 
@@ -69,12 +74,12 @@ namespace rtype::server {
             (void) packetId;
             (void) packetSize;
             (void) buffer;
-                        this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
+            this->_logger->info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
         };
         this->_tcpServer->onServerDataSent = [&](ConnectionToClientPtr &client, sa::ByteBuffer &buffer) {
             (void) client;
             (void) buffer;
-                        this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
+            this->_logger->info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
         };
         this->_tcpServer->onClientConnect = [&](ConnectionToClientPtr &client) {
             this->_logger->info("Client try to connect {}:{}", client->getIp(), client->getPort());
@@ -153,6 +158,8 @@ namespace rtype::server {
 
     void GameServer::onPlayerHandshake(ConnectionToClientPtr &client, packet::C2SPlayerHandshake &packet)
     {
+        this->_logger->info("Player {} handshake", packet.name);
+        //client->send(std::make_shared<packet::S2CPlayerAuthentified>(packet.playerName));
     }
 
     //

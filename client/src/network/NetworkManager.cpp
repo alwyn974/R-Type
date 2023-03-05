@@ -41,6 +41,9 @@ namespace rtype::client::network {
             throw std::runtime_error("Failed to init UDP client: " + std::string(e.what()));
         }
 
+        this->registerTcpCallback();
+        this->registerUdpCallback();
+
         this->registerTcpPackets();
         this->registerUdpPackets();
     }
@@ -93,6 +96,26 @@ namespace rtype::client::network {
     void NetworkManager::send(const std::unique_ptr<sa::AbstractPacket> &packet)
     {
         this->send(*packet);
+    }
+
+    void NetworkManager::registerUdpCallback()
+    {
+        this->_udpClient->onClientConnected = [&](ConnectionToServerPtr &server) { spdlog::info("Connected to server!"); };
+        this->_udpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) { spdlog::info("Disconnected from server!"); };
+        this->_udpClient->onClientDataReceived = [&](ConnectionToServerPtr &server, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
+            spdlog::info("Received data from server!");
+        };
+        this->_udpClient->onClientDataSent = [&](ConnectionToServerPtr &server, sa::ByteBuffer &buffer) { spdlog::info("Data sent to server! Bytes: {}", buffer.size()); };
+    }
+
+    void NetworkManager::registerTcpCallback()
+    {
+        this->_tcpClient->onClientConnected = [&](ConnectionToServerPtr &server) { spdlog::info("Connected to server!"); };
+        this->_tcpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) { spdlog::info("Disconnected from server!"); };
+        this->_tcpClient->onClientDataReceived = [&](ConnectionToServerPtr &server, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
+            spdlog::info("Received data from server!");
+        };
+        this->_tcpClient->onClientDataSent = [&](ConnectionToServerPtr &server, sa::ByteBuffer &buffer) { spdlog::info("Data sent to server! Bytes: {}", buffer.size()); };
     }
 
     void NetworkManager::registerUdpPackets()

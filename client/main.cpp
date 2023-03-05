@@ -14,15 +14,13 @@
 
 int main()
 {
-//    auto instance = rtype::client::network::NetworkManager::getInstance();
-//    instance->init();
-//
-//    instance->connectTcpClient("localhost", 2409);
-//    instance->connectUdpClient("localhost", 2409);
-//    instance->runTcpClient();
-//    instance->runUdpClient();
-//
-//    instance->send(std::make_shared<rtype::network::packet::C2SPrepareShoot>());
+    auto instance = rtype::client::network::NetworkManager::getInstance();
+    instance->init();
+
+    instance->connectTcpClient("localhost", 2409);
+    instance->connectUdpClient("localhost", 2410);
+    instance->runTcpClient();
+    instance->runUdpClient();
 
     engine::system::gameInit();
 
@@ -31,6 +29,8 @@ int main()
     sceneManager->addScene(std::make_shared<SceneGame>());
     sceneManager->addScene(std::make_shared<SceneStage1>());
     sceneManager->changeScene("Main");
+
+    instance->send(std::make_shared<rtype::network::packet::C2SPlayerHandshake>("Alwyn"));
 
     /* sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
      window.setFramerateLimit(60);*/
@@ -53,8 +53,8 @@ int main()
 
     engine::system::gameLoop();
 
-//    instance->stopUdpClient();
-//    instance->stopTcpClient();
+    instance->stopUdpClient();
+    instance->stopTcpClient();
 
     /*auto &textureManager = engine::Manager::getTextureManager();
     textureManager.reset();
