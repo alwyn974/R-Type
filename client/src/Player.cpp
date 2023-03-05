@@ -88,9 +88,10 @@ void Player::shoot()
             "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y - 10}, textureManager->getTextureByName(this->_bulletTextureName));
         entityManager->addPrefab(bullet2);
     } else {
+        const sf::Vector2f position { pos->x, pos->y };
         auto bullet = std::make_shared<Bullet>(
-            "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y}, textureManager->getTextureByName(this->_bulletTextureName));
+            "bullet", uranus::ecs::component::Position {position.x + 30, position.y}, textureManager->getTextureByName(this->_bulletTextureName));
+        networkManager->send(std::make_shared<rtype::network::packet::C2SPlayerShoot>(position.x, position.y));
         entityManager->addPrefab(bullet);
-        networkManager->send(std::make_shared<rtype::network::packet::C2SPlayerShoot>(pos->x, pos->y));
     }
 }

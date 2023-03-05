@@ -12,7 +12,7 @@ engine::Base::Base(const std::string &uniqueName)
 {
     auto &r = engine::Manager::getRegistry();
     this->_entityId = r->spawnEntity();
-    spdlog::info("created entity: {}", this->_entityId);
+//    spdlog::info("created entity: {}", this->_entityId);
     this->_uniqueName = uniqueName;
 }
 

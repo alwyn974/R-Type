@@ -6,6 +6,7 @@
 */
 
 #include "network/NetworkManager.hpp"
+#include "Bullet.hpp"
 
 using namespace rtype::network; // NOLINT
 
@@ -167,11 +168,17 @@ namespace rtype::client::network {
 
     void NetworkManager::handleUdpPackets()
     {
+        static auto &textureManager = engine::Manager::getTextureManager();
+        static auto &entityManager = engine::Manager::getEntityManager();
+
         this->_udpClient->registerHandler<packet::C2SClientConnected>([&](ConnectionToServerPtr &server, packet::C2SClientConnected &packet) {
             //TODO: a player
         });
         this->_udpClient->registerHandler<packet::C2SPlayerShoot>([&](ConnectionToServerPtr &server, packet::C2SPlayerShoot &packet) {
-           //TODO: spawn bullet
+            //TODO: spawn bullet
+            const sf::Vector2f pos = { static_cast<float>(packet.x), static_cast<float>(packet.y) };
+            auto bullet = std::make_shared<Bullet>("bullet", uranus::ecs::component::Position { pos.x, pos.y }, textureManager->getTextureByName("bullet"));
+            entityManager->addPrefab(bullet);
         });
         this->_udpClient->registerHandler<packet::C2SSkillEntity>([&](ConnectionToServerPtr &server, packet::C2SSkillEntity &packet) {
             //TODO: kill entity

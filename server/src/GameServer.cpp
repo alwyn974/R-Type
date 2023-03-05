@@ -53,7 +53,6 @@ namespace rtype::server {
         this->_tcpServer->asyncRun();
         this->_udpServer->asyncRun();
         this->_logger->info("GameServer started");
-        int id = 0;
 
         while (true);
     }
@@ -67,19 +66,13 @@ namespace rtype::server {
     void GameServer::registerTcpCallbacks()
     {
         this->_tcpServer->onServerDataReceived = [&](ConnectionToClientPtr &client, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
-            (void) client;
-            (void) packetId;
-            (void) packetSize;
-            (void) buffer;
-            spdlog::info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
+            this->_logger->info("TCP Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
         };
         this->_tcpServer->onServerDataSent = [&](ConnectionToClientPtr &client, sa::ByteBuffer &buffer) {
-            (void) client;
-            (void) buffer;
-            spdlog::info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
+            this->_logger->info("TCP Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
         };
         this->_tcpServer->onClientConnect = [&](ConnectionToClientPtr &client) {
-            spdlog::info("Client try to connect {}:{}", client->getIp(), client->getPort());
+            this->_logger->info("TCP Client try to connect {}:{}", client->getIp(), client->getPort());
             return this->_playerCount + 1 <= this->_maxPlayers;
         };
         this->_tcpServer->onClientConnected = [&](ConnectionToClientPtr &client) { this->onTcpClientConnected(client); };
@@ -89,19 +82,13 @@ namespace rtype::server {
     void GameServer::registerUdpCallbacks()
     {
         this->_udpServer->onServerDataReceived = [&](ConnectionToClientPtr &client, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
-            (void) client;
-            (void) packetId;
-            (void) packetSize;
-            (void) buffer;
-            spdlog::info("Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
+            this->_logger->info("UDP Received packet from client ({}): {} ({} bytes)", client->getId(), packetId, packetSize);
         };
         this->_udpServer->onServerDataSent = [&](ConnectionToClientPtr &client, sa::ByteBuffer &buffer) {
-            (void) client;
-            (void) buffer;
-            spdlog::info("Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
+            this->_logger->info("UDP Sent packet to client ({}): ({} bytes)", client->getId(), buffer.size());
         };
         this->_udpServer->onClientConnect = [&](ConnectionToClientPtr &client) {
-            spdlog::info("Client try to connect {}:{}", client->getIp(), client->getPort());
+            this->_logger->info("UDP Client try to connect {}:{}", client->getIp(), client->getPort());
             return this->_playerCount + 1 <= this->_maxPlayers;
         };
         this->_udpServer->onClientConnected = [&](ConnectionToClientPtr &client) { this->onUdpClientConnected(client); };
