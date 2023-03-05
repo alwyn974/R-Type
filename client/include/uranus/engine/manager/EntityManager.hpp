@@ -9,6 +9,7 @@
 #define URANUS_ENTITYMANAGER_HPP
 
 #include "uranus/engine/components/Base.hpp"
+#include <map>
 
 namespace engine {
     class EntityManager {
@@ -23,8 +24,12 @@ namespace engine {
 
         std::shared_ptr<engine::Base> getPrefabByName(const std::string &prefabName);
 
+        bool removePrefab(const std::string &prefabName);
+
     private:
-        std::vector<std::shared_ptr<engine::Base>> _prefabs;
+//        std::vector<std::shared_ptr<engine::Base>> _prefabs;
+                std::map<std::string, std::shared_ptr<engine::Base>> _prefabs;
+
     };
 } // namespace engine
 

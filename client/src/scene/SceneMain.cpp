@@ -13,7 +13,7 @@ SceneMain::SceneMain() : Scene("Main") {}
 void pressedPlay()
 {
     auto &sceneManager = engine::Manager::getSceneManager();
-    sceneManager->changeScene("Game");
+    sceneManager->changeScene("Stage1");
 }
 
 void pressedQuit()
@@ -43,7 +43,6 @@ void SceneMain::init()
     textureManager->addTexture("assets/rtype/textures/background/background2.png", "background");
 
     uranus::ecs::Entity background = r->spawnEntity();
-    r->addComponent(background, uranus::ecs::component::Name {"background"});
     r->addComponent(background, uranus::ecs::component::Position {0, 0});
     auto rectangle = std::make_shared<engine::RectangleShape>();
     rectangle->setSize({1280, 720});
@@ -60,7 +59,6 @@ void SceneMain::init()
     entityManager->addPrefab(buttonQuit);
 
     uranus::ecs::Entity newEntity = r->spawnEntity();
-    r->addComponent(newEntity, uranus::ecs::component::Name {"logo"});
     r->addComponent(newEntity, uranus::ecs::component::Position {220, 50});
     r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(textureManager->getTextureByName("logo"))});
 }

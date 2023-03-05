@@ -20,6 +20,10 @@
  */
 namespace uranus::ecs::component {
 
+    struct Id {
+        std::string uniqueId;
+    };
+
     struct Name {
         std::string uniqueName;
     };
@@ -108,5 +112,6 @@ void deleteLoopComponent(size_t entity);
 void deleteAnimationComponent(size_t entity);
 void deleteNameComponent(size_t entity);
 void deleteRectangleShapeComponent(size_t entity);
+void deleteIdComponent(size_t entity);
 
 #endif // URANUS_COMPONENTS_HPP

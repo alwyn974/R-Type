@@ -259,4 +259,5 @@ void engine::system::gameInit()
     r->registerComponent<uranus::ecs::component::Animation>(deleteAnimationComponent);
     r->registerComponent<uranus::ecs::component::Name>(deleteNameComponent);
     r->registerComponent<uranus::ecs::component::RectangleShape>(deleteRectangleShapeComponent);
+    r->registerComponent<uranus::ecs::component::Id>(deleteIdComponent);
 }

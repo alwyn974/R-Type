@@ -69,3 +69,9 @@ void deleteRectangleShapeComponent(size_t entity)
     auto &r = engine::Manager::getRegistry();
     r->removeComponent<uranus::ecs::component::RectangleShape>(entity);
 }
+
+void deleteIdComponent(size_t entity)
+{
+    auto &r = engine::Manager::getRegistry();
+    r->removeComponent<uranus::ecs::component::Id>(entity);
+}

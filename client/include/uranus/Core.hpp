@@ -20,6 +20,7 @@
 #include <exception>
 #include <memory>
 #include <string>
+#include "Global.hpp"
 
 /**
  * @brief The uranus exception namespace.
