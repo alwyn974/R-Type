@@ -161,11 +161,11 @@ void engine::system::collision() {
                 auto &pos2 = r->getComponent<uranus::ecs::component::Position>(entity2);
                 auto &collision2 = r->getComponent<uranus::ecs::component::Collisionable>(entity2);
                 if (canCollide(*collision1, *collision2)) {
-                    std::cout << "Checking collision between " << entity1 << " and " << entity2 << std::endl;
+//                    std::cout << "Checking collision between " << entity1 << " and " << entity2 << std::endl;
                     const sf::FloatRect obj1 {collision1->x + pos1->x, collision1->y + pos1->y, collision1->width, collision1->height};
                     const sf::FloatRect obj2 {collision2->x + pos2->x, collision2->y + pos2->y, collision2->width, collision2->height};
                     if (satCollision(obj1, obj2, *pos1, *pos2)) {
-                        std::cout << "Collision between " << entity1 << " and " << entity2 << std::endl;
+//                        std::cout << "Collision between " << entity1 << " and " << entity2 << std::endl;
                         collision2->callback(entity1, entity2);
                     }
                 }
@@ -185,7 +185,8 @@ sf::IntRect get_animation_rect(int frame, int h_frame, int v_frame, sf::Vector2u
 {
     sf::Vector2i frameSize(static_cast<int>(size.x) / h_frame, static_cast<int>(size.y) / v_frame);
 
-    sf::IntRect rect {frame % h_frame * frameSize.x, frame % v_frame * frameSize.y, frameSize.x, frameSize.y};
+    sf::IntRect rect {frame % h_frame * frameSize.x,
+                      frame % v_frame * frameSize.y, frameSize.x, frameSize.y};
 
     return rect;
 }

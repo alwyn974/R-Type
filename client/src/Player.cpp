@@ -7,6 +7,7 @@
 
 #include "Player.hpp"
 #include "Bullet.hpp"
+#include "network/NetworkManager.hpp"
 
 Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName) : Base(uniqueName)
 {
@@ -75,7 +76,6 @@ void Player::shoot()
     auto &r = engine::Manager::getRegistry();
     auto &textureManager = engine::Manager::getTextureManager();
     auto &entityManager = engine::Manager::getEntityManager();
-
     auto &pos = r->getComponent<uranus::ecs::component::Position>(this->_entityId);
 
     if (this->_doubleBullet) {
@@ -89,5 +89,6 @@ void Player::shoot()
         auto bullet = std::make_shared<Bullet>(
             "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y}, textureManager->getTextureByName(this->_bulletTextureName));
         entityManager->addPrefab(bullet);
+
     }
 }

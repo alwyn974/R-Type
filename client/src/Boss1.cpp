@@ -34,19 +34,19 @@ Boss::Boss(const std::string &uniqueName, uranus::ecs::component::Position pos,
                 this->animationCallback(entity, animationName);
             }});
 
-    engine::system::addNewAnimation(newEntity, "first", false, 0.4);
+    engine::system::addNewAnimation(newEntity, "first", true, 0.4);
     engine::system::insertAnimationFrame(newEntity, "first", 0.0, 0);
     engine::system::insertAnimationFrame(newEntity, "first", 0.1, 1);
     engine::system::insertAnimationFrame(newEntity, "first", 0.2, 2);
     engine::system::insertAnimationFrame(newEntity, "first", 0.3, 3);
 
-    engine::system::addNewAnimation(newEntity, "second", false, 0.4);
+    engine::system::addNewAnimation(newEntity, "second", true, 0.4);
     engine::system::insertAnimationFrame(newEntity, "second", 0.0, 4);
     engine::system::insertAnimationFrame(newEntity, "second", 0.1, 5);
     engine::system::insertAnimationFrame(newEntity, "second", 0.2, 6);
     engine::system::insertAnimationFrame(newEntity, "second", 0.3, 7);
 
-    engine::system::playAnimation(newEntity, "second");
+    engine::system::playAnimation(newEntity, "first");
 }
 
 void Boss::loop(size_t entity) {
@@ -58,11 +58,11 @@ void Boss::loop(size_t entity) {
 void Boss::colliding(const size_t &entity, const size_t &entityCollidingWith) {}
 
 void Boss::animationCallback(size_t entity, const std::string &animationName) {
-    if (animationName == "first") {
-        spdlog::info("Playing first");
-        engine::system::playAnimation(entity, "second");
-    } else {
-        spdlog::info("Playing second");
-        engine::system::playAnimation(entity, "first");
-    }
+//    if (animationName == "first") {
+//        spdlog::info("Playing first");
+//        engine::system::playAnimation(entity, "second");
+//    } else {
+//        spdlog::info("Playing second");
+//        engine::system::playAnimation(entity, "first");
+//    }
 }

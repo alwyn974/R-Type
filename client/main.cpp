@@ -9,7 +9,6 @@
 #include "scene/SceneMain.hpp"
 #include "scene/SceneStage1.hpp"
 #include "network/NetworkManager.hpp"
-
 #include <uranus/Uranus.hpp>
 
 int main()

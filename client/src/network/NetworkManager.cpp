@@ -167,9 +167,26 @@ namespace rtype::client::network {
 
     void NetworkManager::handleUdpPackets()
     {
+        this->_udpClient->registerHandler<packet::S2CSpawnPlayer>([&](ConnectionToServerPtr &server, packet::S2CSpawnPlayer &packet) {
+            spdlog::info("Received S2CSpawnPlayer packet");
+        });
+        this->_udpClient->registerHandler<packet::S2CEntityMove>([&](ConnectionToServerPtr &server, packet::S2CEntityMove &packet) {
+            spdlog::info("Received S2CEntityMove packet");
+        });
+        this->_udpClient->registerHandler<packet::S2CEntitySpawn>([&](ConnectionToServerPtr &server, packet::S2CEntitySpawn &packet) {
+            spdlog::info("Received S2CEntitySpawn packet");
+        });
+        this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
+            spdlog::info("Received S2CPlayerMove packet");
+        });
+        this->_udpClient->registerHandler<packet::S2CRemovePlayer>([&](ConnectionToServerPtr &server, packet::S2CRemovePlayer &packet) {
+            spdlog::info("Received S2CRemovePlayer packet");
+        });
         this->_udpClient->registerHandler<packet::S2CSpawnBullet>([&](ConnectionToServerPtr &server, packet::S2CSpawnBullet &packet) {
             spdlog::info("Received S2CSpawnBullet packet");
-            // spawn entity
+        });
+        this->_udpClient->registerHandler<packet::S2CRemoveEntity>([&](ConnectionToServerPtr &server, packet::S2CRemoveEntity &packet) {
+            spdlog::info("Received S2CRemoveEntity packet");
         });
     }
 
