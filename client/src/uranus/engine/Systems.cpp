@@ -317,7 +317,7 @@ void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, st
     static int fps = 60;
     static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
     if (!set) {
-        ImGui::SetWindowSize({300, 200});
+        ImGui::SetWindowSize({350, 300});
         ImGui::SetWindowPos({0, 0});
         ImGui::SetWindowCollapsed(true);
         set = true;
@@ -327,9 +327,10 @@ void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, st
     ImGui::TextWrapped("Entities: %d", registry->entitiesAliveCount()); // NOLINT
     ImGui::SliderInt("Max FPS", &fps, 10, 360, "%d"); // NOLINT
     window->setFramerateLimit(fps);
-    ImGui::InputText("Server HOST", networkManager->imGuiHost.data(), 128, ImGuiInputTextFlags_CharsNoBlank);
-    ImGui::InputText("Server TCP PORT", networkManager->imGuiTcpPort.data(), 5, ImGuiInputTextFlags_CharsDecimal);
-    ImGui::InputText("Server UDP PORT", networkManager->imGuiUdpPort.data(), 5, ImGuiInputTextFlags_CharsDecimal);
+    ImGui::InputText("Server HOST", networkManager->imGuiHost.data(), networkManager->imGuiHost.capacity(), ImGuiInputTextFlags_CharsNoBlank);
+    ImGui::InputText("Server TCP PORT", networkManager->imGuiTcpPort.data(), networkManager->imGuiTcpPort.capacity(), ImGuiInputTextFlags_CharsDecimal);
+    ImGui::InputText("Server UDP PORT", networkManager->imGuiUdpPort.data(), networkManager->imGuiUdpPort.capacity(), ImGuiInputTextFlags_CharsDecimal);
+    ImGui::InputText("Username", networkManager->imGuiUsername.data(), networkManager->imGuiUsername.capacity(), ImGuiInputTextFlags_CharsNoBlank);
 
     ImGui::SFML::Render(*window);
 }

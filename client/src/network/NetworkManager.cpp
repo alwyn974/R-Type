@@ -100,22 +100,33 @@ namespace rtype::client::network {
 
     void NetworkManager::registerUdpCallback()
     {
-        this->_udpClient->onClientConnected = [&](ConnectionToServerPtr &server) { spdlog::info("Connected to server!"); };
+        this->_udpClient->onClientConnected = [&](ConnectionToServerPtr &server) {
+            spdlog::info("Connected to server!");
+        };
         this->_udpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) { spdlog::info("Disconnected from server!"); };
         this->_udpClient->onClientDataReceived = [&](ConnectionToServerPtr &server, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
             spdlog::info("Received data from server!");
         };
-        this->_udpClient->onClientDataSent = [&](ConnectionToServerPtr &server, sa::ByteBuffer &buffer) { spdlog::info("Data sent to server! Bytes: {}", buffer.size()); };
+        this->_udpClient->onClientDataSent = [&](ConnectionToServerPtr &server, sa::ByteBuffer &buffer) {
+//            spdlog::info("Data sent to server! Bytes: {}", buffer.size());
+        };
     }
 
     void NetworkManager::registerTcpCallback()
     {
-        this->_tcpClient->onClientConnected = [&](ConnectionToServerPtr &server) { spdlog::info("Connected to server!"); };
-        this->_tcpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) { spdlog::info("Disconnected from server!"); };
-        this->_tcpClient->onClientDataReceived = [&](ConnectionToServerPtr &server, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
-            spdlog::info("Received data from server!");
+        this->_tcpClient->onClientConnected = [&](ConnectionToServerPtr &server) {
+            this->_logger->info("TCP Connected to server, sending handshake");
+            this->send(std::make_shared<packet::C2SPlayerHandshake>(this->imGuiUsername));
         };
-        this->_tcpClient->onClientDataSent = [&](ConnectionToServerPtr &server, sa::ByteBuffer &buffer) { spdlog::info("Data sent to server! Bytes: {}", buffer.size()); };
+        this->_tcpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) {
+            spdlog::info("Disconnected from server!");
+        };
+        this->_tcpClient->onClientDataReceived = [&](ConnectionToServerPtr &server, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
+//            spdlog::info("Received data from server!");
+        };
+        this->_tcpClient->onClientDataSent = [&](ConnectionToServerPtr &server, sa::ByteBuffer &buffer) {
+//            spdlog::info("Data sent to server! Bytes: {}", buffer.size());
+        };
     }
 
     void NetworkManager::registerUdpPackets()
@@ -152,6 +163,8 @@ namespace rtype::client::network {
 
     void NetworkManager::handleTcpPackets()
     {
-
+        this->_tcpClient->registerHandler<packet::S2CPlayerAuthentified>([&](ConnectionToServerPtr &server, packet::S2CPlayerAuthentified &packet) {
+            spdlog::info("Received S2CPlayerAuthentified packet {} {}", packet.name, packet.uuid.bytes());
+        });
     }
 }

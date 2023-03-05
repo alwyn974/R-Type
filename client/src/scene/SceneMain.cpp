@@ -15,17 +15,17 @@ void pressedPlay()
 {
     auto &networkManager = rtype::client::network::NetworkManager::getInstance();
     try {
-        networkManager->host = networkManager->imGuiHost.data();
-        networkManager->tcpPort = std::stoi(networkManager->imGuiTcpPort.data());
-        networkManager->udpPort = std::stoi(networkManager->imGuiUdpPort.data());
-        if (networkManager->host.empty())
+        networkManager->tcpPort = std::stoi(networkManager->imGuiTcpPort);
+        networkManager->udpPort = std::stoi(networkManager->imGuiUdpPort);
+        if (networkManager->imGuiHost.empty())
             throw std::runtime_error("Invalid host");
         if (networkManager->tcpPort < 0 || networkManager->tcpPort > 65535)
             throw std::runtime_error("Invalid TCP port");
         if (networkManager->udpPort < 0 || networkManager->udpPort > 65535)
             throw std::runtime_error("Invalid UDP port");
 
-        networkManager->connectTcpClient(networkManager->host, networkManager->tcpPort);
+        networkManager->connectTcpClient(networkManager->imGuiHost, networkManager->tcpPort);
+        networkManager->runTcpClient();
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
@@ -60,7 +60,7 @@ void SceneMain::init()
     textureManager->addTexture("assets/rtype/textures/logo/logo2.png", "logo");
     textureManager->addTexture("assets/rtype/textures/background/background2.png", "background");
 
-    uranus::ecs::Entity background = r->spawnEntity();
+    const uranus::ecs::Entity background = r->spawnEntity();
     r->addComponent(background, uranus::ecs::component::Position {0, 0});
     auto rectangle = std::make_shared<engine::RectangleShape>();
     rectangle->setSize({WIN_WIDTH, WIN_HEIGHT});
