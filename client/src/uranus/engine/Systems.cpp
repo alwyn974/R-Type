@@ -64,30 +64,91 @@ void engine::system::setMask(size_t entity, const std::array<bool, MASK_SIZE> &m
     collision->mask = mask;
 }
 
-void engine::system::collision()
-{
-    auto &window = engine::Manager::getWindow();
-    auto &r = engine::Manager::getRegistry();
-    for (auto [entity1, pos1, collision1] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Collisionable>(*r)) {
-        // start debug
-//        sf::Vector2f size(collision1.width, collision1.height);
+//void engine::system::collision()
+//{
+//    auto &window = engine::Manager::getWindow();
+//    auto &r = engine::Manager::getRegistry();
+//    for (auto [entity1, pos1, collision1] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Collisionable>(*r)) {
+//        // start debug
+//        sf::Vector2f size(collision1->width, collision1->height);
 //        sf::RectangleShape rect(size);
 //        rect.setFillColor(sf::Color::Transparent);
 //        rect.setOutlineColor(sf::Color::White);
 //        rect.setOutlineThickness(1);
-//        rect.setPosition(pos1.x + collision1.x, pos1.y + collision1.y);
+//        rect.setPosition(pos1->x + collision1->x, pos1->y + collision1->y);
 //        window->draw(rect);
-        // end debug
+//        // end debug
+//
+//        for (auto [entity2, pos2, collision2] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Collisionable>(*r)) {
+//            if (entity1 == entity2) continue;
+//
+//            for (unsigned long i = 0; i < collision1->mask.size(); i++) {
+//                if (collision1->mask[i] && collision2->layer[i]) {
+//                    const sf::FloatRect obj1 {collision1->x + pos1->x, collision1->y + pos1->y, collision1->width, collision1->height};
+//                    const sf::FloatRect obj2 {collision2->x + pos2->x, collision2->y + pos2->y, collision2->width, collision2->height};
+//                    if (isColliding(obj1, obj2)) collision1->callback(entity1, entity2);
+//                    break;
+//                }
+//            }
+//        }
+//    }
+//}
 
-        for (auto [entity2, pos2, collision2] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Collisionable>(*r)) {
-            if (entity1 == entity2) continue;
+bool isColliding(const sf::FloatRect& obj1, const sf::FloatRect& obj2) {
+    float dx = std::abs(obj1.left - obj2.left);
+    float dy = std::abs(obj1.top - obj2.top);
+    float w = (obj1.width + obj2.width) / 2.0f;
+    float h = (obj1.height + obj2.height) / 2.0f;
+    return dx < w && dy < h;
+}
 
-            for (unsigned long i = 0; i < collision1.mask.size(); i++) {
-                if (collision1.mask[i] && collision2.layer[i]) {
-                    const sf::FloatRect obj1 {collision1.x + pos1.x, collision1.y + pos1.y, collision1.width, collision1.height};
-                    const sf::FloatRect obj2 {collision2.x + pos2.x, collision2.y + pos2.y, collision2.width, collision2.height};
-                    if (isColliding(obj1, obj2)) collision1.callback(entity1, entity2);
-                    break;
+bool satCollision(const sf::FloatRect& obj1, const sf::FloatRect& obj2, const uranus::ecs::component::Position& pos1, const uranus::ecs::component::Position& pos2) {
+    // Check x-axis overlap
+    bool const x_overlap = isColliding(obj1, obj2);
+
+    // Check y-axis overlap
+    sf::FloatRect const rotated1 {pos1.x + obj1.top, pos1.y - obj1.left, obj1.height, obj1.width};
+    sf::FloatRect const rotated2 {pos2.x + obj2.top, pos2.y - obj2.left, obj2.height, obj2.width};
+    bool const y_overlap = isColliding(rotated1, rotated2);
+
+    return x_overlap && y_overlap;
+}
+
+
+void engine::system::collision() {
+    auto &r = engine::Manager::getRegistry();
+    auto window = engine::Manager::getWindow();
+    const int gridSize = 150; // size of grid cell
+    std::unordered_map<int, std::vector<int>> grid; // hash table to store entities by grid cell
+
+// populate the grid hash table with entities
+    for (auto [entity, pos, collision] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Collisionable>(*r)) {
+        int const x = pos.x / gridSize;
+        int const y = pos.y / gridSize;
+        int const key = x * 1000 + y; // use x,y coordinates as hash key
+        grid[key].push_back(entity);
+    }
+
+// loop over entities in each grid cell and check for collisions
+    for (auto& [key, entities] : grid) {
+        for (int i = 0; i < entities.size(); i++) {
+            for (int j = i + 1; j < entities.size(); j++) {
+                auto entity1 = entities[i];
+                auto &pos1 = r->getComponent<uranus::ecs::component::Position>(entity1);
+                auto &collision1 = r->getComponent<uranus::ecs::component::Collisionable>(entity1);
+                auto entity2 = entities[j];
+                if (entity1 == entity2) continue;
+                auto &pos2 = r->getComponent<uranus::ecs::component::Position>(entity2);
+                auto &collision2 = r->getComponent<uranus::ecs::component::Collisionable>(entity2);
+                for (unsigned long i = 0; i < collision1->mask.size(); i++) {
+                    if (collision1->mask[i] && collision2->layer[i]) {
+                        const sf::FloatRect obj1 {collision1->x + pos1->x, collision1->y + pos1->y, collision1->width, collision1->height};
+                        const sf::FloatRect obj2 {collision2->x + pos2->x, collision2->y + pos2->y, collision2->width, collision2->height};
+                        if (satCollision(obj1, obj2, *pos1, *pos2)) {
+                            std::cout << "Collision between " << entity1 << " and " << entity2 << std::endl;
+                            collision2->callback(entity1, entity2);
+                        }
+                    }
                 }
             }
         }

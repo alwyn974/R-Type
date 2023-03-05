@@ -43,9 +43,9 @@ void Bullet::move(size_t entity)
     auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     vel->x = 5;
-    if (r->getComponent<uranus::ecs::component::Position>(entity)->x > 900) { // TODO(frenetikk): change this
-        r->killEntity(entity);
-    }
+//    if (r->getComponent<uranus::ecs::component::Position>(entity)->x > 900) { // TODO(frenetikk): change this
+//        r->killEntity(entity);
+//    }
 }
 
 void Bullet::loop(const size_t entity)

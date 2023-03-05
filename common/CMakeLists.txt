@@ -12,9 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 # Make project-provided Find modules available
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
-add_library(${PROJECT_NAME}
-        include/Packets.hpp
-)
+add_library(${PROJECT_NAME} src/Dummy.cpp)
 
 # Include all headers directories
 target_include_directories(${PROJECT_NAME}
