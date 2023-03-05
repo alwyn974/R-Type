@@ -13,7 +13,7 @@ if(POLICY CMP0135)
 endif()
 
 if (NOT ${LIBRARY_NAME}_FOUND)
-    set(IMGUI_DIR "${PROJECT_SOURCE_DIR}/src/uranus/external/imgui/" CACHE PATH "Path to ImGui source directory")
+    set(IMGUI_DIR "${CMAKE_SOURCE_DIR}/client/src/uranus/external/imgui/" CACHE PATH "Path to ImGui source directory")
     set(IMGUI_SFML_FIND_SFML OFF)
     set(IMGUI_SFML_USE_DEFAULT_CONFIG ON)
     FetchContent_Declare(
