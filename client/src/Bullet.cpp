@@ -8,12 +8,15 @@
 #include "Bullet.hpp"
 #include "Explosion.hpp"
 
-Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture) : Base(uniqueName)
+Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture, std::uint32_t networkId) : Base(uniqueName)
 {
     this->_canMove = false;
 
     auto &r = engine::Manager::getRegistry();
     uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
+
+    if (networkId > 0)
+        r->addComponent(newEntity, uranus::ecs::component::NetworkId {networkId});
 
     r->addComponent(newEntity, uranus::ecs::component::Name {uniqueName});
     r->addComponent(newEntity, uranus::ecs::component::Position {pos.x, pos.y});

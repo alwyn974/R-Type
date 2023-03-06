@@ -12,7 +12,7 @@
 
 class Player : public engine::Base {
 public:
-    explicit Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName);
+    explicit Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName, std::uint32_t networkId = 0);
 
     void move(size_t entity, const engine::Event event);
 

@@ -8,7 +8,7 @@
 #include "Player.hpp"
 #include "Bullet.hpp"
 
-Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName) : Base(uniqueName)
+Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName, std::uint32_t networkId) : Base(uniqueName)
 {
     this->_bulletTextureName = bulletTextureName;
     this->_doubleBullet = false;
@@ -16,6 +16,8 @@ Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &
     auto &r = engine::Manager::getRegistry();
     uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
 
+    if (networkId > 0)
+        r->addComponent(newEntity, uranus::ecs::component::NetworkId {networkId});
     r->addComponent(newEntity, uranus::ecs::component::Name {uniqueName});
     r->addComponent(newEntity, uranus::ecs::component::Position {0, 0});
     r->addComponent(newEntity, uranus::ecs::component::Velocity {0, 0});
