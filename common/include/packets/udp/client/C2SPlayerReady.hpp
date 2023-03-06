@@ -13,11 +13,17 @@
 namespace rtype::network::packet {
     class C2SPlayerReady : public sa::AbstractPacket {
     public:
-        C2SPlayerReady() : sa::AbstractPacket(sa::AbstractPacket::UDP) {}
+        bool ready = true;
 
-        void toBytes(sa::ByteBuffer &byteBuffer) override {}
+        C2SPlayerReady() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::UDP) {}
 
-        void fromBytes(sa::ByteBuffer &byteBuffer) override {}
+        void toBytes(sa::ByteBuffer &byteBuffer) override {
+            byteBuffer.writeBoolean(ready);
+        }
+
+        void fromBytes(sa::ByteBuffer &byteBuffer) override {
+            ready = byteBuffer.readBoolean();
+        }
     };
 }
 #endif //R_TYPE_C2SPLAYERREADY_HPP

@@ -113,7 +113,7 @@ namespace rtype::client::network {
 //            this->_logger->info("UDP Received data from server!");
         };
         this->_udpClient->onClientDataSent = [&](ConnectionToServerPtr &server, sa::ByteBuffer &buffer) {
-//            spdlog::info("Data sent to server! Bytes: {}", buffer.size());
+            spdlog::info("Data sent to server! Bytes: {} - {}", buffer.size(), buffer.readUShort());
         };
     }
 
@@ -154,16 +154,16 @@ namespace rtype::client::network {
         });
         this->_udpClient->registerHandler<packet::S2CGameStarted>([&](ConnectionToServerPtr &server, packet::S2CGameStarted &packet) {
             this->_logger->info("Received S2CGameStarted packet");
-            try {
+//            try {
 //                auto base = entityManager->getPrefabByNetworkId(packet.entityId);
 //                //                auto &vel = r->getComponent<uranus::ecs::component::Position>(base->getEntityId());
 //                auto &vel = r->getComponent<uranus::ecs::component::Velocity>(base->getEntityId());
 //                vel->x = packet.velX;
 //                vel->y  = packet.velY;
-            } catch (const std::exception &) {
-                this->_logger->error("Received S2CPlayerMove packet for unknown entity");
-                return;
-            }
+//            } catch (const std::exception &) {
+//                this->_logger->error("Received S2CPlayerMove packet for unknown entity");
+//                return;
+//            }
         });
         this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
             this->_logger->info("Received S2CPlayerMove packet {}", packet.entityId);
