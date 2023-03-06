@@ -80,9 +80,6 @@ var annotated_dup =
         [ "GameServer", "classrtype_1_1server_1_1_game_server.html", null ]
       ] ]
     ] ],
-    [ "std", "namespacestd.html", [
-      [ "hash< UUIDv4::UUID >", "structstd_1_1hash_3_01_u_u_i_dv4_1_1_u_u_i_d_01_4.html", null ]
-    ] ],
     [ "tson", null, [
       [ "Animation", "classtson_1_1_animation.html", "classtson_1_1_animation" ],
       [ "Base64Decompressor", "classtson_1_1_base64_decompressor.html", "classtson_1_1_base64_decompressor" ],
@@ -158,10 +155,6 @@ var annotated_dup =
         [ "Exception", "classuranus_1_1ex_1_1_exception.html", "classuranus_1_1ex_1_1_exception" ],
         [ "InvalidEntityIndex", "classuranus_1_1ex_1_1_invalid_entity_index.html", "classuranus_1_1ex_1_1_invalid_entity_index" ]
       ] ]
-    ] ],
-    [ "UUIDv4", null, [
-      [ "UUID", "class_u_u_i_dv4_1_1_u_u_i_d.html", null ],
-      [ "UUIDGenerator", "class_u_u_i_dv4_1_1_u_u_i_d_generator.html", null ]
     ] ],
     [ "Args", "struct_args.html", null ],
     [ "Boss", "class_boss.html", null ],

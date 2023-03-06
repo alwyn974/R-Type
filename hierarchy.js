@@ -326,7 +326,6 @@ var hierarchy =
         [ "uranus::ex::InvalidEntityIndex", "classuranus_1_1ex_1_1_invalid_entity_index.html", null ]
       ] ]
     ] ],
-    [ "std::hash< UUIDv4::UUID >", "structstd_1_1hash_3_01_u_u_i_dv4_1_1_u_u_i_d_01_4.html", null ],
     [ "std::ios_base", null, [
       [ "std::basic_ios< Char >", null, [
         [ "std::basic_istream< Char >", null, [
@@ -396,9 +395,6 @@ var hierarchy =
     [ "uranus::ecs::SparseArray< Component >", "classuranus_1_1ecs_1_1_sparse_array.html", null ],
     [ "uranus::ecs::View< Components >", "classuranus_1_1ecs_1_1_view.html", null ],
     [ "uranus::ecs::View< Components >::Iterator", "classuranus_1_1ecs_1_1_view_1_1_iterator.html", null ],
-    [ "UUIDv4::UUIDGenerator< std::mt19937 >", "class_u_u_i_dv4_1_1_u_u_i_d_generator.html", null ],
-    [ "UUIDv4::UUID", "class_u_u_i_dv4_1_1_u_u_i_d.html", null ],
-    [ "UUIDv4::UUIDGenerator< RNG >", "class_u_u_i_dv4_1_1_u_u_i_d_generator.html", null ],
     [ "tson::Vector2< float >", "classtson_1_1_vector2.html", null ],
     [ "tson::Vector2< int >", "classtson_1_1_vector2.html", null ]
 ];

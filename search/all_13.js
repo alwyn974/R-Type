@@ -22,7 +22,7 @@ var searchData=
   ['shape_19',['Shape',['../classengine_1_1_shape.html',1,'engine']]],
   ['size_20',['size',['../classuranus_1_1ecs_1_1_sparse_array.html#a04bec38c5c8c1504f4efbbe1b617b4aa',1,'uranus::ecs::SparseArray::size()'],['../classtson_1_1_i_json.html#ac98b2ad71ae5b9607b48c7f0e428bf1d',1,'tson::IJson::size()'],['../classtson_1_1_json11.html#ae37af4aeffc96b60e336fd2f9b55dbd1',1,'tson::Json11::size()']]],
   ['skipinvalidentities_21',['skipInvalidEntities',['../classuranus_1_1ecs_1_1_view_1_1_iterator.html#a5aef57bdefd4f15acbb6a5c8e3716199',1,'uranus::ecs::View::Iterator']]],
-  ['sparsearray_22',['SparseArray',['../classuranus_1_1ecs_1_1_sparse_array.html#a72ab923d38ac2e204503cc19cfcacf5e',1,'uranus::ecs::SparseArray::SparseArray(SparseArray &amp;&amp;) noexcept=default'],['../classuranus_1_1ecs_1_1_sparse_array.html#a3500452da9ca76d7c4e0bfc3c95edd34',1,'uranus::ecs::SparseArray::SparseArray(const SparseArray &amp;)=default'],['../classuranus_1_1ecs_1_1_sparse_array.html#a6291b5d01720a0baafb722762af1e8bb',1,'uranus::ecs::SparseArray::SparseArray()=default'],['../classuranus_1_1ecs_1_1_sparse_array.html',1,'uranus::ecs::SparseArray&lt; Component &gt;']]],
+  ['sparsearray_22',['SparseArray',['../classuranus_1_1ecs_1_1_sparse_array.html#a6291b5d01720a0baafb722762af1e8bb',1,'uranus::ecs::SparseArray::SparseArray()=default'],['../classuranus_1_1ecs_1_1_sparse_array.html#a3500452da9ca76d7c4e0bfc3c95edd34',1,'uranus::ecs::SparseArray::SparseArray(const SparseArray &amp;)=default'],['../classuranus_1_1ecs_1_1_sparse_array.html#a72ab923d38ac2e204503cc19cfcacf5e',1,'uranus::ecs::SparseArray::SparseArray(SparseArray &amp;&amp;) noexcept=default'],['../classuranus_1_1ecs_1_1_sparse_array.html',1,'uranus::ecs::SparseArray&lt; Component &gt;']]],
   ['spawnentity_23',['spawnEntity',['../classuranus_1_1ecs_1_1_registry.html#a286b9887c18f916975a74222116b400a',1,'uranus::ecs::Registry']]],
   ['sprite_24',['Sprite',['../classengine_1_1_sprite.html',1,'engine::Sprite'],['../namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_sprite',1,'uranus::ecs::component::Sprite']]],
   ['statics_25',['Statics',['../structjson11_1_1_statics.html',1,'json11']]],
@@ -43,6 +43,5 @@ var searchData=
   ['stbtt_5fvertex_40',['stbtt_vertex',['../structstbtt__vertex.html',1,'']]],
   ['stbundorecord_41',['StbUndoRecord',['../struct_stb_undo_record.html',1,'']]],
   ['stbundostate_42',['StbUndoState',['../struct_stb_undo_state.html',1,'']]],
-  ['std_43',['std',['../namespacestd.html',1,'']]],
-  ['stringtoalignment_44',['StringToAlignment',['../classtson_1_1_tileset.html#a1722647f6375d4be676563b6daef0068',1,'tson::Tileset']]]
+  ['stringtoalignment_43',['StringToAlignment',['../classtson_1_1_tileset.html#a1722647f6375d4be676563b6daef0068',1,'tson::Tileset']]]
 ];

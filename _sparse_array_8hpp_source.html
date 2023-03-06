@@ -147,9 +147,9 @@ $(document).ready(function(){initNavTree('_sparse_array_8hpp_source.html',''); i
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <a class="code hl_class" href="classuranus_1_1ecs_1_1_sparse_array.html">SparseArray</a> &amp;operator=(<a class="code hl_class" href="classuranus_1_1ecs_1_1_sparse_array.html">SparseArray</a> &amp;&amp;) noexcept;</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        ReferenceType operator[](<a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">size_t</span> idx);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        ReferenceType operator[](std::<span class="keywordtype">size_t</span> idx);</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        ConstReferenceType operator[](<a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">size_t</span> idx) const;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        ConstReferenceType operator[](std::<span class="keywordtype">size_t</span> idx) const;</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        Iterator <a class="code hl_function" href="classuranus_1_1ecs_1_1_sparse_array.html#ab7ed670c36778127e9c829bfce902ac8">begin</a>();</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
@@ -174,7 +174,7 @@ $(document).ready(function(){initNavTree('_sparse_array_8hpp_source.html',''); i
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classuranus_1_1ecs_1_1_sparse_array.html#a0224273ac1574cac8b925ed8094e0d99">erase</a>(SizeType pos);</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <a class="code hl_namespace" href="namespacestd.html">std</a>::optional&lt;SizeType&gt; <a class="code hl_function" href="classuranus_1_1ecs_1_1_sparse_array.html#a5bcd46406da09751e645142086245c5a">getIndex</a>(const ValueType &amp;) const;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        std::optional&lt;SizeType&gt; <a class="code hl_function" href="classuranus_1_1ecs_1_1_sparse_array.html#a5bcd46406da09751e645142086245c5a">getIndex</a>(const ValueType &amp;) const;</div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        Container &amp;<a class="code hl_function" href="classuranus_1_1ecs_1_1_sparse_array.html#a0255f060a77b85cf30e3a7b1877c2a38">getData</a>() const;</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
@@ -321,7 +321,6 @@ $(document).ready(function(){initNavTree('_sparse_array_8hpp_source.html',''); i
 <div class="ttc" id="aclassuranus_1_1ecs_1_1_sparse_array_html_acfc3431d5a86c33600f33b50f53b48c1"><div class="ttname"><a href="classuranus_1_1ecs_1_1_sparse_array.html#acfc3431d5a86c33600f33b50f53b48c1">uranus::ecs::SparseArray::operator=</a></div><div class="ttdeci">SparseArray &amp; operator=(const SparseArray &amp;)</div><div class="ttdoc">Copy assignment operator.</div><div class="ttdef"><b>Definition:</b> SparseArray.hpp:194</div></div>
 <div class="ttc" id="aclassuranus_1_1ecs_1_1_sparse_array_html_ad4ebcf2aeed5f0e7725383e8ff52ac84"><div class="ttname"><a href="classuranus_1_1ecs_1_1_sparse_array.html#ad4ebcf2aeed5f0e7725383e8ff52ac84">uranus::ecs::SparseArray::cend</a></div><div class="ttdeci">ConstIterator cend() const</div><div class="ttdoc">Return the const_iterator pointing to the end of the SparseArray.</div><div class="ttdef"><b>Definition:</b> SparseArray.hpp:252</div></div>
 <div class="ttc" id="aclassuranus_1_1ecs_1_1_sparse_array_html_ae8880d69b232b2a08157d4bf33eeac28"><div class="ttname"><a href="classuranus_1_1ecs_1_1_sparse_array.html#ae8880d69b232b2a08157d4bf33eeac28">uranus::ecs::SparseArray::operator[]</a></div><div class="ttdeci">ReferenceType operator[](std::size_t idx)</div><div class="ttdoc">Access the component at the given index, if it exists, otherwise resize the SparseArray.</div><div class="ttdef"><b>Definition:</b> SparseArray.hpp:208</div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace.</div></div>
 <div class="ttc" id="anamespaceuranus_1_1ecs_html"><div class="ttname"><a href="namespaceuranus_1_1ecs.html">uranus::ecs</a></div><div class="ttdoc">Namespace containing all the ECS related classes.</div><div class="ttdef"><b>Definition:</b> Components.hpp:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

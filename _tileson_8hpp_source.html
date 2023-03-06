@@ -3388,7 +3388,7 @@ $(document).ready(function(){initNavTree('_tileson_8hpp_source.html',''); initRe
 <div class="line"><a id="l03528" name="l03528"></a><span class="lineno"> 3528</span>    <span class="keywordflow">return</span> (m_properties.count(name) &gt; 0) ? m_properties[name].getValue&lt;T&gt;() : defaultT;</div>
 <div class="line"><a id="l03529" name="l03529"></a><span class="lineno"> 3529</span>}</div>
 <div class="line"><a id="l03530" name="l03530"></a><span class="lineno"> 3530</span> </div>
-<div class="line"><a id="l03531" name="l03531"></a><span class="lineno"> 3531</span>tson::PropertyCollection::PropertyCollection(std::string <span class="keywordtype">id</span>) : m_id {<a class="code hl_namespace" href="namespacestd.html">std</a>::move(id)} {}</div>
+<div class="line"><a id="l03531" name="l03531"></a><span class="lineno"> 3531</span>tson::PropertyCollection::PropertyCollection(std::string <span class="keywordtype">id</span>) : m_id {std::move(id)} {}</div>
 <div class="line"><a id="l03532" name="l03532"></a><span class="lineno"> 3532</span> </div>
 <div class="line"><a id="l03533" name="l03533"></a><span class="lineno"> 3533</span><a class="code hl_class" href="classtson_1_1_property.html">tson::Property</a> *tson::PropertyCollection::add(<span class="keyword">const</span> <a class="code hl_class" href="classtson_1_1_property.html">tson::Property</a> &amp;property)</div>
 <div class="line"><a id="l03534" name="l03534"></a><span class="lineno"> 3534</span>{</div>
@@ -5377,7 +5377,7 @@ $(document).ready(function(){initNavTree('_tileson_8hpp_source.html',''); initRe
 <div class="line"><a id="l06155" name="l06155"></a><span class="lineno"> 6155</span>    }</div>
 <div class="line"><a id="l06156" name="l06156"></a><span class="lineno"> 6156</span>} <span class="comment">// namespace tson</span></div>
 <div class="line"><a id="l06157" name="l06157"></a><span class="lineno"> 6157</span> </div>
-<div class="line"><a id="l06158" name="l06158"></a><span class="lineno"> 6158</span>tson::Terrain::Terrain(std::string name, <span class="keywordtype">int</span> tile) : m_name {<a class="code hl_namespace" href="namespacestd.html">std</a>::move(name)}, m_tile {tile} {}</div>
+<div class="line"><a id="l06158" name="l06158"></a><span class="lineno"> 6158</span>tson::Terrain::Terrain(std::string name, <span class="keywordtype">int</span> tile) : m_name {std::move(name)}, m_tile {tile} {}</div>
 <div class="line"><a id="l06159" name="l06159"></a><span class="lineno"> 6159</span> </div>
 <div class="line"><a id="l06160" name="l06160"></a><span class="lineno"> 6160</span>tson::Terrain::Terrain(IJson &amp;json)</div>
 <div class="line"><a id="l06161" name="l06161"></a><span class="lineno"> 6161</span>{</div>
@@ -6044,7 +6044,7 @@ $(document).ready(function(){initNavTree('_tileson_8hpp_source.html',''); initRe
 <div class="line"><a id="l07009" name="l07009"></a><span class="lineno"> 7009</span>    }</div>
 <div class="line"><a id="l07010" name="l07010"></a><span class="lineno"> 7010</span>} <span class="comment">// namespace tson</span></div>
 <div class="line"><a id="l07011" name="l07011"></a><span class="lineno"> 7011</span> </div>
-<div class="line"><a id="l07017" name="l07017"></a><span class="lineno"><a class="line" href="classtson_1_1_map.html#a6a9ffabf68beaaedb0f5e1ce93e702be"> 7017</a></span>tson::Map::Map(tson::ParseStatus status, std::string description) : m_status {status}, m_statusMessage {<a class="code hl_namespace" href="namespacestd.html">std</a>::move(description)} {}</div>
+<div class="line"><a id="l07017" name="l07017"></a><span class="lineno"><a class="line" href="classtson_1_1_map.html#a6a9ffabf68beaaedb0f5e1ce93e702be"> 7017</a></span>tson::Map::Map(tson::ParseStatus status, std::string description) : m_status {status}, m_statusMessage {std::move(description)} {}</div>
 <div class="line"><a id="l07018" name="l07018"></a><span class="lineno"> 7018</span> </div>
 <div class="line"><a id="l07024" name="l07024"></a><span class="lineno"><a class="line" href="classtson_1_1_map.html#af11bcbeaa4d38e58a138174e62bb8330"> 7024</a></span>tson::Map::Map(<a class="code hl_class" href="classtson_1_1_i_json.html">IJson</a> &amp;json, <a class="code hl_class" href="classtson_1_1_decompressor_container.html">tson::DecompressorContainer</a> *decompressors, <a class="code hl_class" href="classtson_1_1_project.html">tson::Project</a> *project)</div>
 <div class="line"><a id="l07025" name="l07025"></a><span class="lineno"> 7025</span>{</div>
@@ -6799,7 +6799,7 @@ $(document).ready(function(){initNavTree('_tileson_8hpp_source.html',''); initRe
 <div class="line"><a id="l07929" name="l07929"></a><span class="lineno"> 7929</span>        std::string m_type;</div>
 <div class="line"><a id="l07930" name="l07930"></a><span class="lineno"> 7930</span>    };</div>
 <div class="line"><a id="l07931" name="l07931"></a><span class="lineno"> 7931</span> </div>
-<div class="line"><a id="l07932" name="l07932"></a><span class="lineno"> 7932</span>    World::World(<span class="keyword">const</span> fs::path &amp;path, std::unique_ptr&lt;tson::IJson&gt; jsonParser) : m_json {<a class="code hl_namespace" href="namespacestd.html">std</a>::move(jsonParser)}</div>
+<div class="line"><a id="l07932" name="l07932"></a><span class="lineno"> 7932</span>    World::World(<span class="keyword">const</span> fs::path &amp;path, std::unique_ptr&lt;tson::IJson&gt; jsonParser) : m_json {std::move(jsonParser)}</div>
 <div class="line"><a id="l07933" name="l07933"></a><span class="lineno"> 7933</span>    {</div>
 <div class="line"><a id="l07934" name="l07934"></a><span class="lineno"> 7934</span>        parse(path);</div>
 <div class="line"><a id="l07935" name="l07935"></a><span class="lineno"> 7935</span>    }</div>
@@ -7120,7 +7120,7 @@ $(document).ready(function(){initNavTree('_tileson_8hpp_source.html',''); initRe
 <div class="line"><a id="l08275" name="l08275"></a><span class="lineno"> 8275</span>        std::unique_ptr&lt;IJson&gt; m_json = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l08276" name="l08276"></a><span class="lineno"> 8276</span>    };</div>
 <div class="line"><a id="l08277" name="l08277"></a><span class="lineno"> 8277</span> </div>
-<div class="line"><a id="l08278" name="l08278"></a><span class="lineno"> 8278</span>    Project::Project(<span class="keyword">const</span> fs::path &amp;path, std::unique_ptr&lt;tson::IJson&gt; jsonParser) : m_json {<a class="code hl_namespace" href="namespacestd.html">std</a>::move(jsonParser)}</div>
+<div class="line"><a id="l08278" name="l08278"></a><span class="lineno"> 8278</span>    Project::Project(<span class="keyword">const</span> fs::path &amp;path, std::unique_ptr&lt;tson::IJson&gt; jsonParser) : m_json {std::move(jsonParser)}</div>
 <div class="line"><a id="l08279" name="l08279"></a><span class="lineno"> 8279</span>    {</div>
 <div class="line"><a id="l08280" name="l08280"></a><span class="lineno"> 8280</span>        <a class="code hl_function" href="classtson_1_1_project.html#a9f1fb27c29c5ea55308fc5c05db89aab">parse</a>(path);</div>
 <div class="line"><a id="l08281" name="l08281"></a><span class="lineno"> 8281</span>    }</div>
@@ -7233,12 +7233,12 @@ $(document).ready(function(){initNavTree('_tileson_8hpp_source.html',''); initRe
 <div class="line"><a id="l08393" name="l08393"></a><span class="lineno"> 8393</span>    };</div>
 <div class="line"><a id="l08394" name="l08394"></a><span class="lineno"> 8394</span>} <span class="comment">// namespace tson</span></div>
 <div class="line"><a id="l08395" name="l08395"></a><span class="lineno"> 8395</span> </div>
-<div class="line"><a id="l08401" name="l08401"></a><span class="lineno"><a class="line" href="classtson_1_1_tileson.html#a29ca1152ffc71afdb0e498e84f6be67c"> 8401</a></span><a class="code hl_function" href="classtson_1_1_tileson.html#a29ca1152ffc71afdb0e498e84f6be67c">tson::Tileson::Tileson</a>(std::unique_ptr&lt;tson::IJson&gt; jsonParser, <span class="keywordtype">bool</span> includeBase64Decoder) : m_json {<a class="code hl_namespace" href="namespacestd.html">std</a>::move(jsonParser)}</div>
+<div class="line"><a id="l08401" name="l08401"></a><span class="lineno"><a class="line" href="classtson_1_1_tileson.html#a29ca1152ffc71afdb0e498e84f6be67c"> 8401</a></span><a class="code hl_function" href="classtson_1_1_tileson.html#a29ca1152ffc71afdb0e498e84f6be67c">tson::Tileson::Tileson</a>(std::unique_ptr&lt;tson::IJson&gt; jsonParser, <span class="keywordtype">bool</span> includeBase64Decoder) : m_json {std::move(jsonParser)}</div>
 <div class="line"><a id="l08402" name="l08402"></a><span class="lineno"> 8402</span>{</div>
 <div class="line"><a id="l08403" name="l08403"></a><span class="lineno"> 8403</span>    <span class="keywordflow">if</span> (includeBase64Decoder) m_decompressors.add&lt;<a class="code hl_class" href="classtson_1_1_base64_decompressor.html">Base64Decompressor</a>&gt;();</div>
 <div class="line"><a id="l08404" name="l08404"></a><span class="lineno"> 8404</span>}</div>
 <div class="line"><a id="l08405" name="l08405"></a><span class="lineno"> 8405</span> </div>
-<div class="line"><a id="l08406" name="l08406"></a><span class="lineno"> 8406</span><a class="code hl_function" href="classtson_1_1_tileson.html#a29ca1152ffc71afdb0e498e84f6be67c">tson::Tileson::Tileson</a>(<a class="code hl_class" href="classtson_1_1_project.html">tson::Project</a> *project, std::unique_ptr&lt;tson::IJson&gt; jsonParser, <span class="keywordtype">bool</span> includeBase64Decoder) : m_json {<a class="code hl_namespace" href="namespacestd.html">std</a>::move(jsonParser)}</div>
+<div class="line"><a id="l08406" name="l08406"></a><span class="lineno"> 8406</span><a class="code hl_function" href="classtson_1_1_tileson.html#a29ca1152ffc71afdb0e498e84f6be67c">tson::Tileson::Tileson</a>(<a class="code hl_class" href="classtson_1_1_project.html">tson::Project</a> *project, std::unique_ptr&lt;tson::IJson&gt; jsonParser, <span class="keywordtype">bool</span> includeBase64Decoder) : m_json {std::move(jsonParser)}</div>
 <div class="line"><a id="l08407" name="l08407"></a><span class="lineno"> 8407</span>{</div>
 <div class="line"><a id="l08408" name="l08408"></a><span class="lineno"> 8408</span>    m_project = project;</div>
 <div class="line"><a id="l08409" name="l08409"></a><span class="lineno"> 8409</span>    <span class="keywordflow">if</span> (includeBase64Decoder) m_decompressors.add&lt;<a class="code hl_class" href="classtson_1_1_base64_decompressor.html">Base64Decompressor</a>&gt;();</div>
@@ -8097,7 +8097,6 @@ $(document).ready(function(){initNavTree('_tileson_8hpp_source.html',''); initRe
 <div class="ttc" id="aclasstson_1_1_world_html_ab640b7f04f0c3f8f3b38cf3cdec174ca"><div class="ttname"><a href="classtson_1_1_world.html#ab640b7f04f0c3f8f3b38cf3cdec174ca">tson::World::getMaps</a></div><div class="ttdeci">const std::vector&lt; std::unique_ptr&lt; tson::Map &gt; &gt; &amp; getMaps() const</div><div class="ttdef"><b>Definition:</b> Tileson.hpp:8013</div></div>
 <div class="ttc" id="aclasstson_1_1_world_html_af033e67675297e37a8804240e52f126a"><div class="ttname"><a href="classtson_1_1_world.html#af033e67675297e37a8804240e52f126a">tson::World::contains</a></div><div class="ttdeci">bool contains(std::string_view filename)</div><div class="ttdef"><b>Definition:</b> Tileson.hpp:7990</div></div>
 <div class="ttc" id="aclasstson_1_1_world_map_data_html"><div class="ttname"><a href="classtson_1_1_world_map_data.html">tson::WorldMapData</a></div><div class="ttdef"><b>Definition:</b> Tileson.hpp:7851</div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace.</div></div>
 <div class="ttc" id="astruct_args_html"><div class="ttname"><a href="struct_args.html">Args</a></div><div class="ttdef"><b>Definition:</b> Server.hpp:13</div></div>
 <div class="ttc" id="astructjson11_1_1_null_struct_html"><div class="ttname"><a href="structjson11_1_1_null_struct.html">json11::NullStruct</a></div><div class="ttdef"><b>Definition:</b> Tileson.hpp:278</div></div>
 <div class="ttc" id="astructjson11_1_1_statics_html"><div class="ttname"><a href="structjson11_1_1_statics.html">json11::Statics</a></div><div class="ttdef"><b>Definition:</b> Tileson.hpp:480</div></div>
