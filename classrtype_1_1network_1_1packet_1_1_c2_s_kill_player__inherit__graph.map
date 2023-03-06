@@ -1,0 +1,5 @@
+<map id="rtype::network::packet::C2SKillPlayer" name="rtype::network::packet::C2SKillPlayer">
+<area shape="rect" id="node1" title=" " alt="" coords="5,167,152,207"/>
+<area shape="rect" id="node2" href="$classrtype_1_1network_1_1packet_1_1_c2_s_kill_entity.html" title=" " alt="" coords="5,79,152,119"/>
+<area shape="rect" id="node3" title=" " alt="" coords="13,5,145,31"/>
+</map>

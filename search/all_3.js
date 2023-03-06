@@ -1,12 +1,12 @@
 var searchData=
 [
   ['c2sclientconnected_0',['C2SClientConnected',['../classrtype_1_1network_1_1packet_1_1_c2_s_client_connected.html',1,'rtype::network::packet']]],
-  ['c2sclientdisconnected_1',['C2SClientDisconnected',['../classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnected.html',1,'rtype::network::packet']]],
-  ['c2splayerhandshake_2',['C2SPlayerHandshake',['../classrtype_1_1network_1_1packet_1_1_c2_s_player_handshake.html',1,'rtype::network::packet']]],
-  ['c2splayershoot_3',['C2SPlayerShoot',['../classrtype_1_1network_1_1packet_1_1_c2_s_player_shoot.html',1,'rtype::network::packet']]],
-  ['c2sprepareshoot_4',['C2SPrepareShoot',['../classrtype_1_1network_1_1packet_1_1_c2_s_prepare_shoot.html',1,'rtype::network::packet']]],
-  ['c2sskillentity_5',['C2SSkillEntity',['../classrtype_1_1network_1_1packet_1_1_c2_s_skill_entity.html',1,'rtype::network::packet']]],
-  ['c2sskillplayer_6',['C2SSkillPlayer',['../classrtype_1_1network_1_1packet_1_1_c2_s_skill_player.html',1,'rtype::network::packet']]],
+  ['c2sclientdisconnecting_1',['C2SClientDisconnecting',['../classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnecting.html',1,'rtype::network::packet']]],
+  ['c2skillentity_2',['C2SKillEntity',['../classrtype_1_1network_1_1packet_1_1_c2_s_kill_entity.html',1,'rtype::network::packet']]],
+  ['c2skillplayer_3',['C2SKillPlayer',['../classrtype_1_1network_1_1packet_1_1_c2_s_kill_player.html',1,'rtype::network::packet']]],
+  ['c2splayerhandshake_4',['C2SPlayerHandshake',['../classrtype_1_1network_1_1packet_1_1_c2_s_player_handshake.html',1,'rtype::network::packet']]],
+  ['c2splayershoot_5',['C2SPlayerShoot',['../classrtype_1_1network_1_1packet_1_1_c2_s_player_shoot.html',1,'rtype::network::packet']]],
+  ['c2sprepareshoot_6',['C2SPrepareShoot',['../classrtype_1_1network_1_1packet_1_1_c2_s_prepare_shoot.html',1,'rtype::network::packet']]],
   ['cbegin_7',['cbegin',['../classuranus_1_1ecs_1_1_sparse_array.html#a66bff01e40aedf716f3a68504f604f3a',1,'uranus::ecs::SparseArray']]],
   ['cend_8',['cend',['../classuranus_1_1ecs_1_1_sparse_array.html#ad4ebcf2aeed5f0e7725383e8ff52ac84',1,'uranus::ecs::SparseArray']]],
   ['chunk_9',['Chunk',['../classtson_1_1_chunk.html#a4f5df72a4edc37a6a9da3ed26728c453',1,'tson::Chunk::Chunk()'],['../classtson_1_1_chunk.html',1,'tson::Chunk']]],

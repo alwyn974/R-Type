@@ -115,7 +115,7 @@ $(document).ready(function(){initNavTree('classrtype_1_1server_1_1_game_server.h
 <div class="dynheader">
 Collaboration diagram for rtype::server::GameServer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classrtype_1_1server_1_1_game_server__coll__graph.svg" width="754" height="482"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classrtype_1_1server_1_1_game_server__coll__graph.svg" width="970" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -157,6 +157,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a317e2d0e646065a9b1ed081f63d28118"><td class="memItemLeft" align="right" valign="top"><a id="a317e2d0e646065a9b1ed081f63d28118" name="a317e2d0e646065a9b1ed081f63d28118"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onClientConnected</b> (ConnectionToClientPtr &amp;client, <a class="el" href="classrtype_1_1network_1_1packet_1_1_c2_s_client_connected.html">packet::C2SClientConnected</a> &amp;packet)</td></tr>
 <tr class="separator:a317e2d0e646065a9b1ed081f63d28118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9b26d220dbf407a7c6f674452e87a2e"><td class="memItemLeft" align="right" valign="top"><a id="ad9b26d220dbf407a7c6f674452e87a2e" name="ad9b26d220dbf407a7c6f674452e87a2e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onClientDisconnecting</b> (ConnectionToClientPtr &amp;client, <a class="el" href="classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnecting.html">packet::C2SClientDisconnecting</a> &amp;packet)</td></tr>
+<tr class="separator:ad9b26d220dbf407a7c6f674452e87a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7571fdf7b950642e45de1e6edf6016c2"><td class="memItemLeft" align="right" valign="top"><a id="a7571fdf7b950642e45de1e6edf6016c2" name="a7571fdf7b950642e45de1e6edf6016c2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onPlayerHandshake</b> (ConnectionToClientPtr &amp;client, <a class="el" href="classrtype_1_1network_1_1packet_1_1_c2_s_player_handshake.html">packet::C2SPlayerHandshake</a> &amp;packet)</td></tr>
 <tr class="separator:a7571fdf7b950642e45de1e6edf6016c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,9 +202,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>_maxPlayers</b></td></
 <tr class="memitem:acbb37b8938bb6c77dc50b17f09564aee"><td class="memItemLeft" align="right" valign="top"><a id="acbb37b8938bb6c77dc50b17f09564aee" name="acbb37b8938bb6c77dc50b17f09564aee"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>_playerCount</b></td></tr>
 <tr class="separator:acbb37b8938bb6c77dc50b17f09564aee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee6fcf60a750bafa5007cce9580112d3"><td class="memItemLeft" align="right" valign="top"><a id="aee6fcf60a750bafa5007cce9580112d3" name="aee6fcf60a750bafa5007cce9580112d3"></a>
-std::unordered_map&lt; <a class="el" href="class_u_u_i_dv4_1_1_u_u_i_d.html">UUIDv4::UUID</a>, <a class="el" href="classrtype_1_1server_1_1game_1_1_player.html">game::Player</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_players</b></td></tr>
-<tr class="separator:aee6fcf60a750bafa5007cce9580112d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fa1b1dbd080ec1de83030d72f592303"><td class="memItemLeft" align="right" valign="top"><a id="a6fa1b1dbd080ec1de83030d72f592303" name="a6fa1b1dbd080ec1de83030d72f592303"></a>
+std::unordered_map&lt; <a class="el" href="class_u_u_i_dv4_1_1_u_u_i_d.html">UUIDv4::UUID</a>, std::shared_ptr&lt; <a class="el" href="classrtype_1_1server_1_1game_1_1_player.html">game::Player</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_players</b></td></tr>
+<tr class="separator:a6fa1b1dbd080ec1de83030d72f592303"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49c50b6c746dca05bde62d78a021ad1c"><td class="memItemLeft" align="right" valign="top"><a id="a49c50b6c746dca05bde62d78a021ad1c" name="a49c50b6c746dca05bde62d78a021ad1c"></a>
 std::shared_ptr&lt; sa::PacketRegistry &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_tcpPacketRegistry</b></td></tr>
 <tr class="separator:a49c50b6c746dca05bde62d78a021ad1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,6 +226,9 @@ std::shared_ptr&lt; sa::UDPServer &gt;&#160;</td><td class="memItemRight" valign
 <tr class="memitem:af00fb5542e9ad8837cab561388e31aca"><td class="memItemLeft" align="right" valign="top"><a id="af00fb5542e9ad8837cab561388e31aca" name="af00fb5542e9ad8837cab561388e31aca"></a>
 <a class="el" href="class_u_u_i_dv4_1_1_u_u_i_d_generator.html">UUIDv4::UUIDGenerator</a>&lt; std::mt19937 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_uuidGenerator</b></td></tr>
 <tr class="separator:af00fb5542e9ad8837cab561388e31aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2783753d5808647d2e3e12bb01705b2"><td class="memItemLeft" align="right" valign="top"><a id="ad2783753d5808647d2e3e12bb01705b2" name="ad2783753d5808647d2e3e12bb01705b2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>globalId</b></td></tr>
+<tr class="separator:ad2783753d5808647d2e3e12bb01705b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/github/workspace/server/include/<a class="el" href="_game_server_8hpp_source.html">GameServer.hpp</a></li>

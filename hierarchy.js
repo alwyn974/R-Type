@@ -245,13 +245,13 @@ var hierarchy =
     [ "rtype::server::GameServer", "classrtype_1_1server_1_1_game_server.html", null ],
     [ "sa::AbstractPacket", null, [
       [ "rtype::network::packet::C2SClientConnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_connected.html", null ],
-      [ "rtype::network::packet::C2SClientDisconnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnected.html", null ],
+      [ "rtype::network::packet::C2SClientDisconnecting", "classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnecting.html", null ],
+      [ "rtype::network::packet::C2SKillEntity", "classrtype_1_1network_1_1packet_1_1_c2_s_kill_entity.html", [
+        [ "rtype::network::packet::C2SKillPlayer", "classrtype_1_1network_1_1packet_1_1_c2_s_kill_player.html", null ]
+      ] ],
       [ "rtype::network::packet::C2SPlayerHandshake", "classrtype_1_1network_1_1packet_1_1_c2_s_player_handshake.html", null ],
       [ "rtype::network::packet::C2SPlayerShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_player_shoot.html", null ],
       [ "rtype::network::packet::C2SPrepareShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_prepare_shoot.html", null ],
-      [ "rtype::network::packet::C2SSkillEntity", "classrtype_1_1network_1_1packet_1_1_c2_s_skill_entity.html", [
-        [ "rtype::network::packet::C2SSkillPlayer", "classrtype_1_1network_1_1packet_1_1_c2_s_skill_player.html", null ]
-      ] ],
       [ "rtype::network::packet::S2CEntityMove", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_move.html", [
         [ "rtype::network::packet::S2CPlayerMove", "classrtype_1_1network_1_1packet_1_1_s2_c_player_move.html", null ]
       ] ],

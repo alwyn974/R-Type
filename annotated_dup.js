@@ -56,12 +56,12 @@ var annotated_dup =
       [ "network", null, [
         [ "packet", null, [
           [ "C2SClientConnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_connected.html", null ],
-          [ "C2SClientDisconnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnected.html", null ],
+          [ "C2SClientDisconnecting", "classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnecting.html", null ],
+          [ "C2SKillEntity", "classrtype_1_1network_1_1packet_1_1_c2_s_kill_entity.html", null ],
+          [ "C2SKillPlayer", "classrtype_1_1network_1_1packet_1_1_c2_s_kill_player.html", null ],
           [ "C2SPlayerHandshake", "classrtype_1_1network_1_1packet_1_1_c2_s_player_handshake.html", null ],
           [ "C2SPlayerShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_player_shoot.html", null ],
           [ "C2SPrepareShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_prepare_shoot.html", null ],
-          [ "C2SSkillEntity", "classrtype_1_1network_1_1packet_1_1_c2_s_skill_entity.html", null ],
-          [ "C2SSkillPlayer", "classrtype_1_1network_1_1packet_1_1_c2_s_skill_player.html", null ],
           [ "S2CEntityMove", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_move.html", null ],
           [ "S2CEntitySpawn", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_spawn.html", null ],
           [ "S2CPlayerAuthentified", "classrtype_1_1network_1_1packet_1_1_s2_c_player_authentified.html", null ],

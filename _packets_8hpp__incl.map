@@ -1,22 +1,22 @@
 <map id="/github/workspace/common/include/Packets.hpp" name="/github/workspace/common/include/Packets.hpp">
-<area shape="rect" id="node1" title="All packets used in the project." alt="" coords="884,5,1067,45"/>
-<area shape="rect" id="node2" href="$_c2_s_player_handshake_8hpp_source.html" title=" " alt="" coords="1964,93,2141,133"/>
-<area shape="rect" id="node4" href="$_s2_c_player_authentified_8hpp_source.html" title=" " alt="" coords="1089,181,1267,221"/>
+<area shape="rect" id="node1" title="All packets used in the project." alt="" coords="899,5,1081,45"/>
+<area shape="rect" id="node2" href="$_c2_s_player_handshake_8hpp_source.html" title=" " alt="" coords="1979,93,2156,133"/>
+<area shape="rect" id="node4" href="$_s2_c_player_authentified_8hpp_source.html" title=" " alt="" coords="1103,181,1282,221"/>
 <area shape="rect" id="node17" href="$_s2_c_player_score_8hpp_source.html" title=" " alt="" coords="5,181,151,221"/>
-<area shape="rect" id="node18" href="$_c2_s_client_connected_8hpp_source.html" title=" " alt="" coords="433,181,603,221"/>
-<area shape="rect" id="node19" href="$_c2_s_player_prepare_shoot_8hpp_source.html" title=" " alt="" coords="947,93,1137,133"/>
-<area shape="rect" id="node20" href="$_c2_s_player_shoot_8hpp_source.html" title=" " alt="" coords="1161,93,1307,133"/>
-<area shape="rect" id="node21" href="$_c2_s_skill_entity_8hpp_source.html" title=" " alt="" coords="175,181,307,221"/>
-<area shape="rect" id="node22" href="$_c2_s_skill_player_8hpp_source.html" title=" " alt="" coords="315,93,451,133"/>
-<area shape="rect" id="node23" href="$_c2_s_client_disconnect_8hpp_source.html" title=" " alt="" coords="627,181,801,221"/>
-<area shape="rect" id="node24" href="$_s2_c_entity_move_8hpp_source.html" title=" " alt="" coords="926,181,1065,221"/>
-<area shape="rect" id="node25" href="$_s2_c_entity_spawn_8hpp_source.html" title=" " alt="" coords="1443,181,1590,221"/>
-<area shape="rect" id="node26" href="$_s2_c_player_move_8hpp_source.html" title=" " alt="" coords="677,93,820,133"/>
-<area shape="rect" id="node27" href="$_s2_c_remove_entity_8hpp_source.html" title=" " alt="" coords="1666,181,1821,221"/>
-<area shape="rect" id="node28" href="$_s2_c_remove_player_8hpp_source.html" title=" " alt="" coords="1781,93,1940,133"/>
-<area shape="rect" id="node29" href="$_s2_c_spawn_player_8hpp_source.html" title=" " alt="" coords="1555,93,1705,133"/>
-<area shape="rect" id="node30" href="$_s2_c_spawn_bullet_8hpp_source.html" title=" " alt="" coords="1331,93,1479,133"/>
-<area shape="rect" id="node3" title=" " alt="" coords="1165,269,1316,295"/>
+<area shape="rect" id="node18" href="$_c2_s_client_connected_8hpp_source.html" title=" " alt="" coords="429,181,599,221"/>
+<area shape="rect" id="node19" href="$_c2_s_player_prepare_shoot_8hpp_source.html" title=" " alt="" coords="961,93,1152,133"/>
+<area shape="rect" id="node20" href="$_c2_s_player_shoot_8hpp_source.html" title=" " alt="" coords="1176,93,1321,133"/>
+<area shape="rect" id="node21" href="$_c2_s_kill_entity_8hpp_source.html" title=" " alt="" coords="175,181,303,221"/>
+<area shape="rect" id="node22" href="$_c2_s_kill_player_8hpp_source.html" title=" " alt="" coords="315,93,444,133"/>
+<area shape="rect" id="node23" href="$_c2_s_client_disconnecting_8hpp_source.html" title=" " alt="" coords="624,181,815,221"/>
+<area shape="rect" id="node24" href="$_s2_c_entity_move_8hpp_source.html" title=" " alt="" coords="941,181,1079,221"/>
+<area shape="rect" id="node25" href="$_s2_c_entity_spawn_8hpp_source.html" title=" " alt="" coords="1458,181,1605,221"/>
+<area shape="rect" id="node26" href="$_s2_c_player_move_8hpp_source.html" title=" " alt="" coords="692,93,835,133"/>
+<area shape="rect" id="node27" href="$_s2_c_remove_entity_8hpp_source.html" title=" " alt="" coords="1681,181,1835,221"/>
+<area shape="rect" id="node28" href="$_s2_c_remove_player_8hpp_source.html" title=" " alt="" coords="1796,93,1955,133"/>
+<area shape="rect" id="node29" href="$_s2_c_spawn_player_8hpp_source.html" title=" " alt="" coords="1569,93,1720,133"/>
+<area shape="rect" id="node30" href="$_s2_c_spawn_bullet_8hpp_source.html" title=" " alt="" coords="1345,93,1493,133"/>
+<area shape="rect" id="node3" title=" " alt="" coords="1180,269,1331,295"/>
 <area shape="rect" id="node5" href="$uuidv4_8hpp_source.html" title=" " alt="" coords="529,269,704,295"/>
 <area shape="rect" id="node6" title=" " alt="" coords="151,343,216,368"/>
 <area shape="rect" id="node7" title=" " alt="" coords="240,343,295,368"/>
