@@ -231,7 +231,7 @@ namespace rtype::client::network {
     void NetworkManager::handleTcpPackets()
     {
         this->_tcpClient->registerHandler<packet::S2CPlayerAuthentified>([&](ConnectionToServerPtr &server, packet::S2CPlayerAuthentified &packet) {
-            spdlog::info("Received S2CPlayerAuthentified packet {} {}", packet.name, packet.uuid.bytes());
+            spdlog::info("Received S2CPlayerAuthentified packet {} {}", packet.name, packet.uid);
             try {
                 this->_udpClient->connect(this->imGuiHost, this->udpPort);
                 this->runUdpClient();
@@ -239,10 +239,10 @@ namespace rtype::client::network {
                 this->_logger->error("Failed to connect UDP client: {}", e.what());
                 return;
             }
-            this->_udpClient->send(std::make_shared<packet::C2SClientConnected>(packet.uuid));
+            this->_udpClient->send(std::make_shared<packet::C2SClientConnected>(packet.uid));
         });
         this->_tcpClient->registerHandler<packet::S2CPlayerScore>([&](ConnectionToServerPtr &server, packet::S2CPlayerScore &packet) {
-            spdlog::info("Received S2CPlayerScore packet {} {}", packet.uuid.bytes(), packet.score);
+            spdlog::info("Received S2CPlayerScore packet {} {}", packet.uid, packet.score);
         });
     }
 }

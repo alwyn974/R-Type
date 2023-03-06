@@ -9,7 +9,6 @@
 #define R_TYPE_S2CCLIENTDISCONNECTED_HPP
 
 #include <saturnity/Saturnity.hpp>
-#include "external/uuidv4/uuidv4.hpp"
 
 namespace rtype::network::packet {
     class C2SClientDisconnecting : public sa::AbstractPacket {

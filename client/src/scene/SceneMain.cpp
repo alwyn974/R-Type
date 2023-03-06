@@ -15,19 +15,21 @@ void pressedPlay()
 {
     auto &networkManager = rtype::client::network::NetworkManager::getInstance();
     try {
-        networkManager->tcpPort = std::stoi(networkManager->imGuiTcpPort);
-        networkManager->udpPort = std::stoi(networkManager->imGuiUdpPort);
-        networkManager->imGuiUsername = networkManager->imGuiUsername.data();
+        const int tcpPort = std::stoi(networkManager->imGuiTcpPort);
+        const int udpPort = std::stoi(networkManager->imGuiUdpPort);
+        networkManager->imGuiUsername = networkManager->imGuiUsername.data(); // NOLINT
         networkManager->imGuiUsername.reserve(128);
         if (networkManager->imGuiHost.empty())
             throw std::runtime_error("Invalid host");
-        if (networkManager->tcpPort < 0 || networkManager->tcpPort > 65535)
+        if (tcpPort < 0 || tcpPort > 65535)
             throw std::runtime_error("Invalid TCP port");
-        if (networkManager->udpPort < 0 || networkManager->udpPort > 65535)
+        if (udpPort < 0 || udpPort > 65535)
             throw std::runtime_error("Invalid UDP port");
         if (networkManager->imGuiUsername.empty())
             throw std::runtime_error("Username is empty");
 
+        networkManager->tcpPort = tcpPort;
+        networkManager->udpPort = udpPort;
         networkManager->connectTcpClient(networkManager->imGuiHost, networkManager->tcpPort);
         networkManager->runTcpClient();
     } catch (std::exception &e) {

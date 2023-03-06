@@ -7,7 +7,6 @@
 
 #include "GameServer.hpp"
 
-
 namespace rtype::server {
 
     GameServer::GameServer(const std::string &host, std::uint16_t tcpPort, std::uint16_t udpPort, int maxPlayers)
@@ -180,10 +179,10 @@ namespace rtype::server {
     void GameServer::onPlayerHandshake(ConnectionToClientPtr &client, packet::C2SPlayerHandshake &packet)
     {
         this->_logger->info("Player {} handshake", packet.name);
-        const UUIDv4::UUID uuid = _uuidGenerator.getUUID();
         auto player = std::make_shared<game::Player>(client->getId(), -1);
-        this->_players[uuid] = player;
-        client->send(std::make_shared<packet::S2CPlayerAuthentified>(packet.name, uuid));
+        std::uint32_t uid = ++this->playerUID;
+        this->_players[uid] = player;
+        client->send(std::make_shared<packet::S2CPlayerAuthentified>(packet.name, uid));
     }
 
     void GameServer::onClientDisconnecting(ConnectionToClientPtr &client, packet::C2SClientDisconnecting &packet)
@@ -205,10 +204,10 @@ namespace rtype::server {
 
     void GameServer::onClientConnected(ConnectionToClientPtr &client, packet::C2SClientConnected &packet)
     {
-        this->_logger->info("Client {} connected with UDP at {}", packet.uuid.str(), client->getId());
-        if (!this->_players.contains(packet.uuid))
-            return this->_logger->warn("Client {} is not registered", packet.uuid.str());
-        this->_players[packet.uuid]->setUdpId(client->getId());
-        this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnPlayer>(packet.uuid.hash(), 20, 20));
+        this->_logger->info("Client {} connected with UDP at {}", packet.uid, client->getId());
+        if (!this->_players.contains(packet.uid))
+            return this->_logger->warn("Client {} is not registered", packet.uid);
+        this->_players[packet.uid]->setUdpId(client->getId());
+        this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnPlayer>(packet.uid, 20, 20));
     }
 } // namespace rtype::server

@@ -9,32 +9,31 @@
 #define R_TYPE_S2CPLAYERAUTHENTIFIED_HPP
 
 #include <saturnity/Saturnity.hpp>
-#include "external/uuidv4/uuidv4.hpp"
 
 namespace rtype::network::packet {
     class S2CPlayerAuthentified : public sa::AbstractPacket {
     public:
         std::string name;
-        UUIDv4::UUID uuid;
+        std::uint32_t uid;
 
         S2CPlayerAuthentified() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::TCP) {};
 
-        explicit S2CPlayerAuthentified(const std::string &name, const UUIDv4::UUID &uuid) : S2CPlayerAuthentified()
+        explicit S2CPlayerAuthentified(const std::string &name, std::uint32_t uid) : S2CPlayerAuthentified()
         {
             this->name = name;
-            this->uuid = uuid;
+            this->uid = uid;
         };
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
             byteBuffer.writeString(name);
-            byteBuffer.writeString(uuid.bytes());
+            byteBuffer.writeUInt(uid);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
             name = byteBuffer.readString();
-            uuid = UUIDv4::UUID(byteBuffer.readString());
+            uid = byteBuffer.readUInt();
         }
     };
 }

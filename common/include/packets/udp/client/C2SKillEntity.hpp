@@ -8,7 +8,6 @@
 #pragma once
 
 #include <saturnity/Saturnity.hpp>
-#include "external/uuidv4/uuidv4.hpp"
 
 namespace rtype::network::packet {
     class C2SKillEntity : public sa::AbstractPacket {

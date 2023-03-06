@@ -42,11 +42,11 @@ namespace rtype::server {
         std::uint16_t _udpPort;
 
         int globalId;
-        UUIDv4::UUIDGenerator<std::mt19937> _uuidGenerator;
+        std::uint32_t playerUID;
 
         int _playerCount;
         int _maxPlayers;
-        std::unordered_map<UUIDv4::UUID, std::shared_ptr<game::Player>> _players;
+        std::unordered_map<std::uint32_t, std::shared_ptr<game::Player>> _players;
 
         void registerTcpCallbacks();
         void registerUdpCallbacks();
