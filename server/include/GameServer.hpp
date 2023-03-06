@@ -41,8 +41,7 @@ namespace rtype::server {
         std::uint16_t _tcpPort;
         std::uint16_t _udpPort;
 
-        int globalId;
-        std::uint32_t playerUID;
+        std::uint32_t globalId;
 
         int _playerCount;
         int _maxPlayers;

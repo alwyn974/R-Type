@@ -136,7 +136,7 @@ namespace rtype::client::network {
 
     void NetworkManager::registerUdpPackets()
     {
-        int id = 1;
+        static std::uint16_t id = 1;
         // register server -> client packets
         this->_udpPacketRegistry->registerPacket<packet::S2CEntityMove>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CEntitySpawn>(id++);
@@ -146,7 +146,7 @@ namespace rtype::client::network {
         this->_udpPacketRegistry->registerPacket<packet::S2CSpawnBullet>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CSpawnPlayer>(id++);
         // register client -> server packets
-        this->_udpPacketRegistry->registerPacket<packet::C2SClientDisconnecting>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SClientConnected>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPrepareShoot>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SKillEntity>(id++);
@@ -157,13 +157,13 @@ namespace rtype::client::network {
 
     void NetworkManager::registerTcpPackets()
     {
-        int id = 1;
+        static std::uint16_t id = 1;
         // register server -> client packets
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerAuthentified>(id++);
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerScore>(id++);
         // register client -> server packets
+        this->_tcpPacketRegistry->registerPacket<packet::C2SClientDisconnecting>(id++);
         this->_tcpPacketRegistry->registerPacket<packet::C2SPlayerHandshake>(id++);
-        this->_tcpPacketRegistry->registerPacket<packet::C2SClientConnected>(id++);
 
         this->handleTcpPackets();
     }

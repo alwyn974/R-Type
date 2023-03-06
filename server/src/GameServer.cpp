@@ -17,6 +17,7 @@ namespace rtype::server {
         this->_udpPort = udpPort;
         this->_maxPlayers = maxPlayers;
         this->_playerCount = 0;
+        this->globalId = 0;
     }
 
     void GameServer::init()
@@ -95,7 +96,7 @@ namespace rtype::server {
     }
 
     void GameServer::registerTcpPackets() {
-        int id = 1;
+        static std::uint16_t id = 1;
         // register server -> client packets
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerAuthentified>(id++);
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerScore>(id++);
@@ -109,7 +110,7 @@ namespace rtype::server {
 
     void GameServer::registerUdpPackets()
     {
-        int id = 1;
+        static std::uint16_t id = 1;
         // register server -> client packets
         this->_udpPacketRegistry->registerPacket<packet::S2CEntityMove>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CEntitySpawn>(id++);
@@ -180,7 +181,7 @@ namespace rtype::server {
     {
         this->_logger->info("Player {} handshake", packet.name);
         auto player = std::make_shared<game::Player>(client->getId(), -1);
-        std::uint32_t uid = ++this->playerUID;
+        const std::uint32_t uid = ++this->globalId;
         this->_players[uid] = player;
         client->send(std::make_shared<packet::S2CPlayerAuthentified>(packet.name, uid));
     }
@@ -189,9 +190,9 @@ namespace rtype::server {
     {
         (void) packet;
         this->_logger->info("Client {} disconnecting", client->getId());
-        for (const auto &[uuid, player]: this->_players) {
+        for (const auto &[uid, player]: this->_players) {
             if (player->getTcpId() == client->getId()) {
-                this->_players.erase(uuid);
+                this->_players.erase(uid);
                 break;
             }
         }
