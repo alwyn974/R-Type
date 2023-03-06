@@ -12,6 +12,7 @@ namespace rtype::network::packet {
     {
         std::uint16_t udpId = 1;
         // register server -> client packets
+        udpRegistry->registerPacket<packet::S2CClientConnected>(udpId++);
         udpRegistry->registerPacket<packet::S2CEntityMove>(udpId++);
         udpRegistry->registerPacket<packet::S2CEntitySpawn>(udpId++);
         udpRegistry->registerPacket<packet::S2CGameStarted>(udpId++);
@@ -22,12 +23,12 @@ namespace rtype::network::packet {
         udpRegistry->registerPacket<packet::S2CSpawnPlayer>(udpId++);
         udpRegistry->registerPacket<packet::S2CSyncPlayer>(udpId++);
         // register client -> server packets
-        udpRegistry->registerPacket<packet::S2CClientConnected>(udpId++);
         udpRegistry->registerPacket<packet::C2SClientConnect>(udpId++);
         udpRegistry->registerPacket<packet::C2SClientMove>(udpId++);
         udpRegistry->registerPacket<packet::C2SKillEntity>(udpId++);
         udpRegistry->registerPacket<packet::C2SKillPlayer>(udpId++);
         udpRegistry->registerPacket<packet::C2SPrepareShoot>(udpId++);
+        udpRegistry->registerPacket<packet::C2SPlayerReady>(udpId++);
         udpRegistry->registerPacket<packet::C2SPlayerShoot>(udpId++);
         udpRegistry->registerPacket<packet::C2SSceneLoaded>(udpId++);
 

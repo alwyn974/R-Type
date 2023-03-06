@@ -133,6 +133,20 @@ namespace rtype::server {
         });
         this->_udpServer->registerHandler<packet::C2SPrepareShoot>([&](auto &client, auto &packet){
         });
+        this->_udpServer->registerHandler<packet::C2SPlayerReady>([&](auto &client, packet::C2SPlayerReady &packet) {
+            for (const auto &[uid, player]: this->_players) {
+                if (player->getUdpId() == client->getId()) {
+                    player->setReady(true);
+                    this->_logger->info("Player {} is ready. ({})", player->getName(), uid);
+                    break;
+                }
+            }
+            if (std::all_of(_players.begin(), _players.end(), [&](const auto &player) {
+                return player.second->isReady();
+            })) {
+                this->_udpServer->broadcast(std::make_shared<packet::S2CGameStarted>());
+            }
+        });
         this->_udpServer->registerHandler<packet::C2SPlayerShoot>([&](auto &client, auto &packet){
         });
         this->_udpServer->registerHandler<packet::C2SKillEntity>([&](auto &client, auto &packet){
@@ -148,11 +162,6 @@ namespace rtype::server {
                     player->setSceneLoaded(true);
             }
         });
-        //if (std::all_of(players.begin(), players.end(), [&](const auto &player) {
-        //                return player.second->isSceneLoaded();
-        //            })) {
-        //                this->_udpServer->broadcast(std::make_shared<packet::S2CGameStarted>());
-        //            }
     }
 
     void GameServer::onTcpClientConnected(ConnectionToClientPtr &client)

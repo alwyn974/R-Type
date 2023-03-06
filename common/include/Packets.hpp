@@ -19,6 +19,7 @@
 #include "packets/udp/client/C2SClientConnect.hpp"
 #include "packets/udp/client/C2SClientMove.hpp"
 #include "packets/udp/client/C2SPlayerPrepareShoot.hpp"
+#include "packets/udp/client/C2SPlayerReady.hpp"
 #include "packets/udp/client/C2SPlayerShoot.hpp"
 #include "packets/udp/client/C2SKillEntity.hpp"
 #include "packets/udp/client/C2SKillPlayer.hpp"

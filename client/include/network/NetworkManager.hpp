@@ -33,15 +33,25 @@ namespace rtype::client::network {
         void send(const std::shared_ptr<sa::AbstractPacket> &packet);
         void send(const std::unique_ptr<sa::AbstractPacket> &packet);
 
+        const std::shared_ptr<sa::TCPClient> &getTcpClient() const
+        {
+            return _tcpClient;
+        }
+
+        const std::shared_ptr<sa::UDPClient> &getUdpClient() const
+        {
+            return _udpClient;
+        }
+
         std::string imGuiHost = "127.0.0.1";
         std::string imGuiTcpPort = "2409";
         std::string imGuiUdpPort = "2410";
         std::string imGuiUsername; // NOLINT
+        bool imGuiReady;
         std::uint16_t tcpPort = 2409;
         std::uint16_t udpPort = 2410;
 
         std::uint32_t uid = 0;
-
     private:
         Random _random;
 
@@ -52,6 +62,7 @@ namespace rtype::client::network {
             this->imGuiTcpPort.reserve(128);
             this->imGuiUdpPort.reserve(128);
             this->imGuiUsername.reserve(128);
+            this->imGuiReady = false;
         }
 
         static std::shared_ptr<NetworkManager> networkManager;

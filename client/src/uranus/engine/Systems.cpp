@@ -333,7 +333,14 @@ void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, st
     ImGui::InputText("Server TCP PORT", networkManager->imGuiTcpPort.data(), networkManager->imGuiTcpPort.capacity(), ImGuiInputTextFlags_CharsDecimal);
     ImGui::InputText("Server UDP PORT", networkManager->imGuiUdpPort.data(), networkManager->imGuiUdpPort.capacity(), ImGuiInputTextFlags_CharsDecimal);
     ImGui::InputText("Username", networkManager->imGuiUsername.data(), networkManager->imGuiUsername.capacity(), ImGuiInputTextFlags_CharsNoBlank);
-
+    static bool sent = false;
+    ImGui::BeginDisabled(!networkManager->getUdpClient()->isConnected() || sent);
+    ImGui::Checkbox("Ready", &networkManager->imGuiReady);
+    if (networkManager->imGuiReady && !sent) {
+        networkManager->send(std::make_shared<rtype::network::packet::C2SPlayerReady>());
+        sent = true;
+    }
+    ImGui::EndDisabled();
     ImGui::SFML::Render(*window);
 }
 
