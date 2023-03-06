@@ -35,3 +35,8 @@ void engine::SceneManager::switchScene()
         }
     }
 }
+
+const std::shared_ptr<engine::Scene> &engine::SceneManager::getActualScene() const
+{
+    return _actualScene;
+}

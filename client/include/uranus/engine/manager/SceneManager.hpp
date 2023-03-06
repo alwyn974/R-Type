@@ -24,6 +24,8 @@ namespace engine {
 
         void switchScene(); //manually switch scene
 
+        const std::shared_ptr<engine::Scene> &getActualScene() const;
+
     private:
         std::string _sceneToSwitch;
         std::shared_ptr<engine::Scene> _actualScene;
