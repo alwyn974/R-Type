@@ -177,7 +177,7 @@ namespace rtype::client::network {
             //TODO: spawn bullet
         });
         this->_udpClient->registerHandler<packet::S2CSpawnPlayer>([&](ConnectionToServerPtr &server, packet::S2CSpawnPlayer &packet) {
-            this->_logger->info("Received S2CSpawnPlayer packet");
+            this->_logger->info("Received S2CSpawnPlayer packet - name: {} id: {} x: {} y: {}", packet.name, packet.entityId, packet.x, packet.y);
             const sf::Vector2f pos = {static_cast<float>(packet.x), static_cast<float>(packet.y)};
             auto player = std::make_shared<Player>(packet.name, textureManager->getTextureByName("ship"), "bullet", packet.entityId, pos);
             entityManager->addPrefab(player);

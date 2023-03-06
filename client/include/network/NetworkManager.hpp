@@ -10,6 +10,7 @@
 
 #include "uranus/engine/Engine.hpp"
 #include "Packets.hpp"
+#include "Random.hpp"
 #include <saturnity/Saturnity.hpp>
 
 namespace rtype::client::network {
@@ -35,15 +36,18 @@ namespace rtype::client::network {
         std::string imGuiHost = "127.0.0.1";
         std::string imGuiTcpPort = "2409";
         std::string imGuiUdpPort = "2410";
-        std::string imGuiUsername = "Player";
+        std::string imGuiUsername; // NOLINT
         std::uint16_t tcpPort = 2409;
         std::uint16_t udpPort = 2410;
 
         std::uint32_t uid = 0;
 
     private:
+        Random _random;
+
         NetworkManager()
         {
+            imGuiUsername = "Player-" + std::to_string(_random.generate(0, 99999999));
             this->imGuiHost.reserve(128);
             this->imGuiTcpPort.reserve(128);
             this->imGuiUdpPort.reserve(128);
@@ -61,9 +65,6 @@ namespace rtype::client::network {
 
         void registerUdpCallback();
         void registerTcpCallback();
-
-        void registerUdpPackets();
-        void registerTcpPackets();
 
         void registerUdpPacketHandlers();
         void registerTcpPacketHandlers();

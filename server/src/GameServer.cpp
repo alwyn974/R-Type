@@ -180,11 +180,12 @@ namespace rtype::server {
         this->_logger->info("Client {} connected with UDP at {}", packet.uid, client->getId());
         if (!this->_players.contains(packet.uid))
             return this->_logger->warn("Client {} is not registered", packet.uid);
-        this->_players[packet.uid]->setUdpId(client->getId());
-        for (const auto &[uid, player]: this->_players) {
-            if (player->getUdpId() != client->getId())
+        /*for (const auto &[uid, player]: this->_players) {
+            if (player->getUdpId() != client->getId()) {
                 client->send(std::make_shared<packet::S2CSpawnPlayer>(player->getName(), uid, player->getX(), player->getY()));
-        }
+            }
+        }*/
+        this->_players[packet.uid]->setUdpId(client->getId());
         this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnPlayer>(packet.name, packet.uid, 20, 20), client->getId());
         client->send(std::make_shared<packet::S2CClientConnected>(packet.uid));
     }
