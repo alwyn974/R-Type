@@ -13,14 +13,18 @@
 namespace rtype::network::packet {
     class S2CGameStarted : public sa::AbstractPacket {
     public:
+        bool started = true;
+
         S2CGameStarted() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::UDP) {}
 
         void toBytes(sa::ByteBuffer &buffer) override
         {
+            buffer.writeBoolean(started);
         }
 
         void fromBytes(sa::ByteBuffer &buffer) override
         {
+            started = buffer.readBoolean();
         }
 
     };

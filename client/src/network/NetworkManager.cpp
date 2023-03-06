@@ -113,7 +113,7 @@ namespace rtype::client::network {
 //            this->_logger->info("UDP Received data from server!");
         };
         this->_udpClient->onClientDataSent = [&](ConnectionToServerPtr &server, sa::ByteBuffer &buffer) {
-            spdlog::info("Data sent to server! Bytes: {} - {}", buffer.size(), buffer.readUShort());
+//            spdlog::info("Data sent to server! Bytes: {} - {}", buffer.size(), buffer.readUShort());
         };
     }
 
