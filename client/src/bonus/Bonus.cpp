@@ -17,7 +17,7 @@ bonus::Bonus::Bonus(const std::string &uniqueName, uranus::ecs::component::Posit
     r->addComponent(newEntity, uranus::ecs::component::Velocity {0, 0});
 
     auto &textureManager = engine::Manager::getTextureManager();
-    r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(textureManager->getTextureByName(textureName))});
+    r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(textureManager->getTextureByName(textureName)), 1});
 
     std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
     layer.set(uranus::ecs::LayerMask::BONUS);

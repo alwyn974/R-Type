@@ -15,7 +15,7 @@ Boss::Boss(const std::string &uniqueName, uranus::ecs::component::Position pos,
     r->addComponent(newEntity, uranus::ecs::component::Name{uniqueName});
     r->addComponent(newEntity, uranus::ecs::component::Position{pos.x, pos.y});
     r->addComponent(newEntity, uranus::ecs::component::Velocity{0, 0});
-    r->addComponent(newEntity, uranus::ecs::component::Sprite{std::make_shared<engine::Sprite>(texture)});
+    r->addComponent(newEntity, uranus::ecs::component::Sprite{std::make_shared<engine::Sprite>(texture), 1});
 
     std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
     layer.set(uranus::ecs::LayerMask::ENEMY);

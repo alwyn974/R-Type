@@ -14,7 +14,7 @@ Explosion::Explosion(const std::string &uniqueName, uranus::ecs::component::Posi
 
     r->addComponent(newEntity, uranus::ecs::component::Name {uniqueName});
     r->addComponent(newEntity, uranus::ecs::component::Position {pos.x, pos.y});
-    r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture)});
+    r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture), 1});
 
     r->addComponent(newEntity, uranus::ecs::component::Animation {
                                    5, 1, [&](const size_t entity, const std::string &animationName) { this->animationCallback(entity, animationName); }});

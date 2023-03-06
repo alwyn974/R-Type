@@ -71,7 +71,7 @@ void SceneMain::init()
     rectangle->setSize({WIN_WIDTH, WIN_HEIGHT});
     const std::shared_ptr<sf::Texture> texture = textureManager->getTextureByName("background");
     rectangle->setTexture(texture.get());
-    r->addComponent(background, uranus::ecs::component::RectangleShape {rectangle});
+    r->addComponent(background, uranus::ecs::component::Shape {rectangle});
 
     auto centerPos = [&](const sf::Vector2f &pos, std::shared_ptr<engine::Texture> &texture) {
         return uranus::ecs::component::Position {(pos.x + (float) WIN_WIDTH - (float) texture->getSize().x / 3) / 2, pos.y + ((float) WIN_HEIGHT - (float) texture->getSize().y) / 2}; // NOLINT
@@ -79,16 +79,16 @@ void SceneMain::init()
 
     auto &buttonPlayTexture = textureManager->getTextureByName("buttonPlay");
     auto buttonPlay =
-        std::make_shared<ui::Button>("buttonPlay", centerPos({0, 0}, buttonPlayTexture), buttonPlayTexture, pressedPlay);
+        std::make_shared<ui::Button>("buttonPlay", centerPos({0, 0}, buttonPlayTexture), buttonPlayTexture, pressedPlay, 2);
     this->addPrefab(buttonPlay);
 
     auto &buttonQuitTexture = textureManager->getTextureByName("buttonQuit");
     auto buttonQuit =
-        std::make_shared<ui::Button>("buttonQuit", centerPos({0, 75}, buttonQuitTexture), buttonQuitTexture, pressedQuit);
+        std::make_shared<ui::Button>("buttonQuit", centerPos({0, 75}, buttonQuitTexture), buttonQuitTexture, pressedQuit, 2);
     this->addPrefab(buttonQuit);
 
     const uranus::ecs::Entity newEntity = r->spawnEntity();
     auto logoTexture = textureManager->getTextureByName("logo");
     r->addComponent(newEntity, uranus::ecs::component::Position {((float) WIN_WIDTH - (float) logoTexture->getSize().x) / 2, 20}); // NOLINT
-    r->addComponent(newEntity, uranus::ecs::component::Sprite {  std::make_shared<engine::Sprite>(logoTexture) });
+    r->addComponent(newEntity, uranus::ecs::component::Sprite {  std::make_shared<engine::Sprite>(logoTexture), 2});
 }

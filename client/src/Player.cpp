@@ -20,7 +20,6 @@ Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &
         this->_networkId = networkManager->uid;
         networkId = networkManager->uid;
     }
-
     auto &r = engine::Manager::getRegistry();
     uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
 
@@ -29,7 +28,7 @@ Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &
     r->addComponent(newEntity, uranus::ecs::component::Name {uniqueName});
     r->addComponent(newEntity, uranus::ecs::component::Position {pos.x, pos.y});
     r->addComponent(newEntity, uranus::ecs::component::Velocity {0, 0});
-    r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture)});
+    r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture), 1});
     auto lambda = [networkId](size_t entity) {
         static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
         static auto &r = engine::Manager::getRegistry();

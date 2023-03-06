@@ -19,21 +19,21 @@ void engine::system::draw()
 {
     auto &window = engine::Manager::getWindow();
     auto &r = engine::Manager::getRegistry();
-    for (auto [idx, pos, rectangle] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::RectangleShape>(*r)) {
-        rectangle.shape->setPosition(pos.x, pos.y);
-        window->draw(*rectangle.shape);
-        //        spdlog::info("Drawing rectangle ({}) at ({}, {})", idx, pos.x, pos.y);
-    }
-    for (auto [idx, pos, drawable] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Drawable>(*r)) {
-        drawable.shape->setPosition(pos.x, pos.y);
-        drawable.shape->setFillColor(drawable.color);
-        window->draw(*drawable.shape);
-        //        spdlog::info("Drawing drawable ({}) at ({}, {})", idx, pos.x, pos.y);
-    }
-    for (auto [idx, pos, sprite] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Sprite>(*r)) {
-        sprite.sprite->setPosition(pos.x, pos.y);
-        window->draw(*sprite.sprite);
-        //        spdlog::info("Drawing sprite ({}) at ({}, {})", idx, pos.x, pos.y);
+    for (std::size_t z = 0; z < Z_INDEX_MAX; z++) {
+        for (auto [idx, pos, shape]: uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Shape>(*r)) {
+            if (!shape.visible || shape.zIndex != z)
+                continue;
+            shape.shape->setPosition(pos.x, pos.y);
+            window->draw(*shape.shape);
+            //        spdlog::info("Drawing rectangle ({}) at ({}, {})", idx, pos.x, pos.y);
+        }
+        for (auto [idx, pos, sprite]: uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Sprite>(*r)) {
+            if (!sprite.visible || sprite.zIndex != z)
+                continue;
+            sprite.sprite->setPosition(pos.x, pos.y);
+            window->draw(*sprite.sprite);
+            //        spdlog::info("Drawing sprite ({}) at ({}, {})", idx, pos.x, pos.y);
+        }
     }
 }
 
@@ -378,7 +378,7 @@ void engine::system::gameInit()
     r->registerComponent<uranus::ecs::component::Collisionable>(deleteCollisionable);
     r->registerComponent<uranus::ecs::component::Animation>(deleteAnimationComponent);
     r->registerComponent<uranus::ecs::component::Name>(deleteNameComponent);
-    r->registerComponent<uranus::ecs::component::RectangleShape>(deleteRectangleShapeComponent);
+    r->registerComponent<uranus::ecs::component::Shape>(deleteShapeComponent);
     r->registerComponent<uranus::ecs::component::NetworkId>(deleteNetworkIdComponent);
     r->registerComponent<uranus::ecs::component::Dead>(deleteDeadComponent);
 }

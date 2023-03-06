@@ -14,6 +14,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#define Z_INDEX_MAX 10
+
 namespace uranus::ecs {
     enum LayerMask {
         PLAYER = 0,

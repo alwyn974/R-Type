@@ -25,8 +25,9 @@ void engine::SceneManager::switchScene()
         return;
     for (auto &scene : this->_scenes) {
         if (scene->getName() == this->_sceneToSwitch) {
-            scene->clear();
-//            engine::Manager::killAllEntitiesAndPrefabs();
+//            if (this->_actualScene)
+//                _actualScene->clear();
+            engine::Manager::killAllEntitiesAndPrefabs();
 
             this->_actualScene = scene;
             this->_actualScene->init();

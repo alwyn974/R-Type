@@ -155,11 +155,11 @@ namespace rtype::client::network {
         this->_udpClient->registerHandler<packet::S2CGameStarted>([&](ConnectionToServerPtr &server, packet::S2CGameStarted &packet) {
             this->_logger->info("Received S2CGameStarted packet");
             try {
-                auto base = entityManager->getPrefabByNetworkId(packet.entityId);
-                //                auto &vel = r->getComponent<uranus::ecs::component::Position>(base->getEntityId());
-                auto &vel = r->getComponent<uranus::ecs::component::Velocity>(base->getEntityId());
-                vel->x = packet.velX;
-                vel->y  = packet.velY;
+//                auto base = entityManager->getPrefabByNetworkId(packet.entityId);
+//                //                auto &vel = r->getComponent<uranus::ecs::component::Position>(base->getEntityId());
+//                auto &vel = r->getComponent<uranus::ecs::component::Velocity>(base->getEntityId());
+//                vel->x = packet.velX;
+//                vel->y  = packet.velY;
             } catch (const std::exception &) {
                 this->_logger->error("Received S2CPlayerMove packet for unknown entity");
                 return;

@@ -100,6 +100,11 @@ void SceneStage1::wave(uranus::ecs::component::Position startOffset)
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 650});
 }
 
+void pressedLeave()
+{
+    std::cout << "Leroyyyy Jen Leaves" << std::endl;
+}
+
 void SceneStage1::init()
 {
     static auto &textureManager = engine::Manager::getTextureManager();
@@ -121,4 +126,34 @@ void SceneStage1::init()
 
 //    wave(uranus::ecs::component::Position{0, 0});
 //    wave(uranus::ecs::component::Position{2000, 0});
+    //Pause menu
+    auto &r = engine::Manager::getRegistry();
+    const uranus::ecs::Entity &pauseMenu = r->spawnEntity();
+    const sf::Vector2f pauseMenuSize(300, 300);
+    r->addComponent(pauseMenu, uranus::ecs::component::Position{(WIN_WIDTH - pauseMenuSize.x) / 2 , (WIN_HEIGHT - pauseMenuSize.y) / 2});
+    auto pauseBackground = std::make_shared<engine::RectangleShape>();
+    pauseBackground->setSize(pauseMenuSize);
+    pauseBackground->setFillColor(sf::Color::Blue);
+    r->addComponent(pauseMenu, uranus::ecs::component::Shape(pauseBackground, 3, false));
+    r->addComponent(pauseMenu, uranus::ecs::component::InputKeyboard({
+         [](const size_t id, const engine::Event event) {
+            auto &r = engine::Manager::getRegistry();
+            if (event.type == sf::Event::EventType::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+                for (auto [idx, shape] : uranus::ecs::View<uranus::ecs::component::Shape>(*r)) {
+                    if (shape.zIndex > 2)
+                        shape.visible = !shape.visible;
+                }
+                for (auto [idx, sprite] : uranus::ecs::View<uranus::ecs::component::Sprite>(*r)) {
+                    if (sprite.zIndex > 2)
+                        sprite.visible = !sprite.visible;
+                }
+            }
+         }
+    }));
+    auto centerPos = [&](const sf::Vector2f &pos, std::shared_ptr<engine::Texture> &texture) {
+        return uranus::ecs::component::Position {(pos.x + (float) WIN_WIDTH - (float) texture->getSize().x / 3) / 2, pos.y + ((float) WIN_HEIGHT - (float) texture->getSize().y) / 2}; // NOLINT
+    };
+    auto &buttonLeaveTexture = textureManager->getTextureByName("buttonQuit");
+    auto buttonLeave = std::make_shared<ui::Button>("buttonLeave", centerPos({0, 0}, buttonLeaveTexture), buttonLeaveTexture, pressedLeave, 4, false);
+    this->addPrefab(buttonLeave);
 }

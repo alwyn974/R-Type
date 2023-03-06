@@ -21,8 +21,9 @@ const std::string &engine::Scene::getName() const
 void engine::Scene::clear()
 {
     static auto &entityManager = engine::Manager::getEntityManager();
+    spdlog::warn("Remove all entities");
     for (const auto &entity : this->_entities)
-        entityManager->removePrefab(entity->getUniqueName());
+        spdlog::warn("Remove prefab : {}", entityManager->removePrefab(entity->getUniqueName()));
     this->_entities.clear();
 }
 

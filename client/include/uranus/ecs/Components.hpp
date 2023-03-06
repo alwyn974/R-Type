@@ -39,22 +39,20 @@ namespace uranus::ecs::component {
     };
 
     struct Drawable {
-        sf::Shape *shape = nullptr;
-        sf::Color color = sf::Color::White;
-
-        ~Drawable()
-        {
-            if (shape != nullptr) delete shape;
-        }
+        size_t zIndex = 0;
+        bool visible = true;
+    protected:
+        explicit Drawable(size_t zIndex, bool visible) : zIndex(zIndex), visible(visible) {};
     };
 
-    struct Sprite {
+    struct Sprite : public Drawable {
         std::shared_ptr<engine::Sprite> sprite;
-        bool show = true;
+        explicit Sprite(const std::shared_ptr<engine::Sprite> &sprite, size_t zIndex = 0, bool visible = true) : Drawable(zIndex, visible), sprite(sprite) {};
     };
 
-    struct RectangleShape {
-        std::shared_ptr<sf::RectangleShape> shape;
+    struct Shape : public Drawable {
+        std::shared_ptr<sf::Shape> shape;
+        explicit Shape(const std::shared_ptr<sf::Shape> &shape, size_t zIndex = 0, bool visible = true) : Drawable(zIndex, visible), shape(shape) {};
     };
 
     struct Collisionable {
@@ -116,7 +114,7 @@ void deleteCollisionable(size_t entity);
 void deleteLoopComponent(size_t entity);
 void deleteAnimationComponent(size_t entity);
 void deleteNameComponent(size_t entity);
-void deleteRectangleShapeComponent(size_t entity);
+void deleteShapeComponent(size_t entity);
 void deleteNetworkIdComponent(size_t entity);
 void deleteDeadComponent(size_t entity);
 

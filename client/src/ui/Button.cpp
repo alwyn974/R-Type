@@ -8,7 +8,7 @@
 #include "ui/Button.hpp"
 
 ui::Button::Button(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture,
-                   const std::function<void()> &callbackPressed) :
+                   const std::function<void()> &callbackPressed, size_t zIndex, bool visible) :
     Base(uniqueName)
 {
     this->_hover = false;
@@ -24,7 +24,7 @@ ui::Button::Button(const std::string &uniqueName, uranus::ecs::component::Positi
 
     r->addComponent(newEntity, uranus::ecs::component::Name {uniqueName});
     r->addComponent(newEntity, uranus::ecs::component::Position {pos.x, pos.y});
-    r->addComponent(newEntity, uranus::ecs::component::Sprite {sprite});
+    r->addComponent(newEntity, uranus::ecs::component::Sprite {sprite, zIndex, visible});
     r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->handleKeyboard(entity, event); }});
 
     std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
@@ -70,8 +70,8 @@ void ui::Button::loop(size_t entity)
 
     auto &collision = r->getComponent<uranus::ecs::component::Collisionable>(entity);
     const sf::FloatRect rect {collision->x + pos->x, collision->y + pos->y, collision->width, collision->height};
-
-    if (rect.contains(mousePosition)) {
+    auto &sprite = r->getComponent<uranus::ecs::component::Sprite>(entity);
+    if (sprite->visible && rect.contains(mousePosition)) {
         this->_hover = true;
         engine::system::playAnimation(entity, "hover");
     } else {

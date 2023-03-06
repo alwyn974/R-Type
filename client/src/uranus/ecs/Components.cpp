@@ -64,10 +64,10 @@ void deleteNameComponent(size_t e)
     r->removeComponent<uranus::ecs::component::Name>(e);
 }
 
-void deleteRectangleShapeComponent(size_t entity)
+void deleteShapeComponent(size_t entity)
 {
     auto &r = engine::Manager::getRegistry();
-    r->removeComponent<uranus::ecs::component::RectangleShape>(entity);
+    r->removeComponent<uranus::ecs::component::Shape>(entity);
 }
 
 void deleteNetworkIdComponent(size_t entity)
