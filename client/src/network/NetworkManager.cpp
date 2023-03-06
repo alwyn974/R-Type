@@ -144,12 +144,11 @@ namespace rtype::client::network {
         this->_udpPacketRegistry->registerPacket<packet::S2CSpawnBullet>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CSpawnPlayer>(id++);
         // register client -> server packets
-        this->_udpPacketRegistry->registerPacket<packet::C2SClientConnected>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::C2SClientDisconnected>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SClientDisconnecting>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPrepareShoot>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::C2SSkillEntity>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::C2SSkillPlayer>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SKillEntity>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SKillPlayer>(id++);
 
         this->handleUdpPackets();
     }
@@ -162,6 +161,7 @@ namespace rtype::client::network {
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerScore>(id++);
         // register client -> server packets
         this->_tcpPacketRegistry->registerPacket<packet::C2SPlayerHandshake>(id++);
+        this->_tcpPacketRegistry->registerPacket<packet::C2SClientConnected>(id++);
 
         this->handleTcpPackets();
     }
@@ -171,7 +171,29 @@ namespace rtype::client::network {
         static auto &textureManager = engine::Manager::getTextureManager();
         static auto &entityManager = engine::Manager::getEntityManager();
 
-        this->_udpClient->registerHandler<packet::C2SClientConnected>([&](ConnectionToServerPtr &server, packet::C2SClientConnected &packet) {
+        this->_udpClient->registerHandler<packet::S2CEntityMove>([&](auto &server, auto &packet) {
+            //TODO: move entity
+        });
+        this->_udpClient->registerHandler<packet::S2CEntitySpawn>([&](auto &server, auto &packet) {
+            //TODO: spawn entity
+        });
+        this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](auto &server, auto &packet) {
+            //TODO: move player
+        });
+        this->_udpClient->registerHandler<packet::S2CRemoveEntity>([&](auto &server, auto &packet) {
+            // TODO: remove entity
+        });
+        this->_udpClient->registerHandler<packet::S2CRemovePlayer>([&](auto &server, auto &packet) {
+            //TODO: remove player, maybe useless
+        });
+        this->_udpClient->registerHandler<packet::S2CSpawnBullet>([&](auto &server, auto &packet) {
+            //TODO: spawn bullet
+        });
+        this->_udpClient->registerHandler<packet::S2CSpawnPlayer>([&](auto &server, auto &packet) {
+            //TODO: a player
+        });
+
+        /*this->_udpClient->registerHandler<packet::C2SClientConnected>([&](ConnectionToServerPtr &server, packet::C2SClientConnected &packet) {
             //TODO: a player
         });
         this->_udpClient->registerHandler<packet::C2SPlayerShoot>([&](ConnectionToServerPtr &server, packet::C2SPlayerShoot &packet) {
@@ -180,10 +202,10 @@ namespace rtype::client::network {
             auto bullet = std::make_shared<Bullet>("bullet", uranus::ecs::component::Position { pos.x, pos.y }, textureManager->getTextureByName("bullet"));
             entityManager->addPrefab(bullet);
         });
-        this->_udpClient->registerHandler<packet::C2SSkillEntity>([&](ConnectionToServerPtr &server, packet::C2SSkillEntity &packet) {
+        this->_udpClient->registerHandler<packet::C2SKillEntity>([&](ConnectionToServerPtr &server, packet::C2SKillEntity &packet) {
             //TODO: kill entity
         });
-        this->_udpClient->registerHandler<packet::C2SSkillPlayer>([&](ConnectionToServerPtr &server, packet::C2SSkillPlayer &packet) {
+        this->_udpClient->registerHandler<packet::C2SKillPlayer>([&](ConnectionToServerPtr &server, packet::C2SKillPlayer &packet) {
             //TODO: kill player
         });
         this->_udpClient->registerHandler<packet::S2CEntityMove>([&](ConnectionToServerPtr &server, packet::S2CEntityMove &packet) {
@@ -191,7 +213,7 @@ namespace rtype::client::network {
         });
         this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
             //TODO: move player
-        });
+        });*/
     }
 
     void NetworkManager::handleTcpPackets()

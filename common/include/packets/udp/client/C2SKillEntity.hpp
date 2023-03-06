@@ -11,27 +11,27 @@
 #include "external/uuidv4/uuidv4.hpp"
 
 namespace rtype::network::packet {
-    class C2SSkillEntity : public sa::AbstractPacket {
+    class C2SKillEntity : public sa::AbstractPacket {
     public:
-        int entity_id;
+        int entityId;
 
-        explicit C2SSkillEntity(int entity_id) : sa::AbstractPacket(sa::AbstractPacket::UDP)
+        explicit C2SKillEntity(int entityId) : sa::AbstractPacket(sa::AbstractPacket::UDP)
         {
-            this->entity_id = entity_id;
+            this->entityId = entityId;
         }
 
-        C2SSkillEntity() : sa::AbstractPacket(sa::AbstractPacket::UDP)
+        C2SKillEntity() : sa::AbstractPacket(sa::AbstractPacket::UDP)
         {
         }
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
-            byteBuffer.writeInt(entity_id);
+            byteBuffer.writeInt(entityId);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
-            entity_id = byteBuffer.readInt();
+            entityId = byteBuffer.readInt();
         }
     };
 }

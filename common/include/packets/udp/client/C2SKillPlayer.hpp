@@ -9,27 +9,23 @@
 
 #include <saturnity/Saturnity.hpp>
 #include "external/uuidv4/uuidv4.hpp"
-#include "C2SSkillEntity.hpp"
+#include "C2SKillEntity.hpp"
 
 namespace rtype::network::packet {
-    class C2SSkillPlayer : public C2SSkillEntity {
+    class C2SKillPlayer : public C2SKillEntity {
     public:
-        explicit C2SSkillPlayer(int id, int entity_id) : C2SSkillEntity(entity_id)
-        {
-        }
+        explicit C2SKillPlayer(int id, int entityId) : C2SKillEntity(entityId) {}
 
-        C2SSkillPlayer() : C2SSkillEntity()
-        {
-        }
+        C2SKillPlayer() : C2SKillEntity() {}
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
-            C2SSkillEntity::toBytes(byteBuffer);
+            C2SKillEntity::toBytes(byteBuffer);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
-            C2SSkillEntity::fromBytes(byteBuffer);
+            C2SKillEntity::fromBytes(byteBuffer);
         }
     };
 }
