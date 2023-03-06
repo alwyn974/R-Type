@@ -32,7 +32,7 @@ namespace rtype::client::network {
         void send(const std::shared_ptr<sa::AbstractPacket> &packet);
         void send(const std::unique_ptr<sa::AbstractPacket> &packet);
 
-        std::string imGuiHost = "localhost";
+        std::string imGuiHost = "127.0.0.1";
         std::string imGuiTcpPort = "2409";
         std::string imGuiUdpPort = "2410";
         std::string imGuiUsername = "Player";

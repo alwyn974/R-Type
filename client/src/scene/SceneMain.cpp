@@ -17,17 +17,22 @@ void pressedPlay()
     try {
         networkManager->tcpPort = std::stoi(networkManager->imGuiTcpPort);
         networkManager->udpPort = std::stoi(networkManager->imGuiUdpPort);
+        networkManager->imGuiUsername = networkManager->imGuiUsername.data();
+        networkManager->imGuiUsername.reserve(128);
         if (networkManager->imGuiHost.empty())
             throw std::runtime_error("Invalid host");
         if (networkManager->tcpPort < 0 || networkManager->tcpPort > 65535)
             throw std::runtime_error("Invalid TCP port");
         if (networkManager->udpPort < 0 || networkManager->udpPort > 65535)
             throw std::runtime_error("Invalid UDP port");
+        if (networkManager->imGuiUsername.empty())
+            throw std::runtime_error("Username is empty");
 
         networkManager->connectTcpClient(networkManager->imGuiHost, networkManager->tcpPort);
         networkManager->runTcpClient();
     } catch (std::exception &e) {
-        std::cerr << e.what() << std::endl;
+        spdlog::error("Error caught when trying to connect to the server: {}", e.what());
+        return;
     }
 
     auto &sceneManager = engine::Manager::getSceneManager();

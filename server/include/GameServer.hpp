@@ -41,6 +41,8 @@ namespace rtype::server {
         std::uint16_t _tcpPort;
         std::uint16_t _udpPort;
 
+        UUIDv4::UUIDGenerator<std::mt19937> _uuidGenerator;
+
         int _playerCount;
         int _maxPlayers;
         std::unordered_map<UUIDv4::UUID, game::Player> _players;

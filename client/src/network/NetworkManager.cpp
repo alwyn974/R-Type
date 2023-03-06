@@ -101,9 +101,11 @@ namespace rtype::client::network {
     void NetworkManager::registerUdpCallback()
     {
         this->_udpClient->onClientConnected = [&](ConnectionToServerPtr &server) {
-            spdlog::info("Connected to server!");
+            this->_logger->info("UDP Connected to server");
         };
-        this->_udpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) { spdlog::info("Disconnected from server!"); };
+        this->_udpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) {
+            this->_logger->info("UDP Disconnected from server!");
+        };
         this->_udpClient->onClientDataReceived = [&](ConnectionToServerPtr &server, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
             spdlog::info("Received data from server!");
         };
@@ -119,7 +121,7 @@ namespace rtype::client::network {
             this->send(std::make_shared<packet::C2SPlayerHandshake>(this->imGuiUsername));
         };
         this->_tcpClient->onClientDisconnected = [&](ConnectionToServerPtr &server, bool forced) {
-            spdlog::info("Disconnected from server!");
+            this->_logger->info("TCP Disconnected from server!");
         };
         this->_tcpClient->onClientDataReceived = [&](ConnectionToServerPtr &server, std::uint16_t packetId, std::uint16_t packetSize, sa::ByteBuffer &buffer) {
 //            spdlog::info("Received data from server!");
@@ -133,11 +135,20 @@ namespace rtype::client::network {
     {
         int id = 0;
         // register server -> client packets
+        this->_udpPacketRegistry->registerPacket<packet::S2CEntityMove>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CEntitySpawn>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CPlayerMove>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CRemoveEntity>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CRemovePlayer>(id++);
         this->_udpPacketRegistry->registerPacket<packet::S2CSpawnBullet>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::S2CSpawnPlayer>(id++);
         // register client -> server packets
+        this->_udpPacketRegistry->registerPacket<packet::C2SClientConnected>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SClientDisconnected>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPrepareShoot>(id++);
         this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SSkillEntity>(id++);
+        this->_udpPacketRegistry->registerPacket<packet::C2SSkillPlayer>(id++);
 
         this->handleUdpPackets();
     }
@@ -147,6 +158,7 @@ namespace rtype::client::network {
         int id = 0;
         // register server -> client packets
         this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerAuthentified>(id++);
+        this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerScore>(id++);
         // register client -> server packets
         this->_tcpPacketRegistry->registerPacket<packet::C2SPlayerHandshake>(id++);
 
@@ -155,9 +167,23 @@ namespace rtype::client::network {
 
     void NetworkManager::handleUdpPackets()
     {
-        this->_udpClient->registerHandler<packet::S2CSpawnBullet>([&](ConnectionToServerPtr &server, packet::S2CSpawnBullet &packet) {
-            spdlog::info("Received S2CSpawnBullet packet");
-            // spawn entity
+        this->_udpClient->registerHandler<packet::C2SClientConnected>([&](ConnectionToServerPtr &server, packet::C2SClientConnected &packet) {
+            //TODO: a player
+        });
+        this->_udpClient->registerHandler<packet::C2SPlayerShoot>([&](ConnectionToServerPtr &server, packet::C2SPlayerShoot &packet) {
+           //TODO: spawn bullet
+        });
+        this->_udpClient->registerHandler<packet::C2SSkillEntity>([&](ConnectionToServerPtr &server, packet::C2SSkillEntity &packet) {
+            //TODO: kill entity
+        });
+        this->_udpClient->registerHandler<packet::C2SSkillPlayer>([&](ConnectionToServerPtr &server, packet::C2SSkillPlayer &packet) {
+            //TODO: kill player
+        });
+        this->_udpClient->registerHandler<packet::S2CEntityMove>([&](ConnectionToServerPtr &server, packet::S2CEntityMove &packet) {
+           //TODO: move entity
+        });
+        this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
+            //TODO: move player
         });
     }
 
@@ -165,6 +191,17 @@ namespace rtype::client::network {
     {
         this->_tcpClient->registerHandler<packet::S2CPlayerAuthentified>([&](ConnectionToServerPtr &server, packet::S2CPlayerAuthentified &packet) {
             spdlog::info("Received S2CPlayerAuthentified packet {} {}", packet.name, packet.uuid.bytes());
+            try {
+                this->_udpClient->connect(this->imGuiHost, this->udpPort);
+                this->runUdpClient();
+            } catch(std::exception &e) {
+                this->_logger->error("Failed to connect UDP client: {}", e.what());
+                return;
+            }
+            this->_udpClient->send(std::make_shared<packet::C2SClientConnected>(packet.uuid));
+        });
+        this->_tcpClient->registerHandler<packet::S2CPlayerScore>([&](ConnectionToServerPtr &server, packet::S2CPlayerScore &packet) {
+            spdlog::info("Received S2CPlayerScore packet {} {}", packet.uuid.bytes(), packet.score);
         });
     }
 }

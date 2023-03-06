@@ -1,4 +1,9 @@
-//TODO add header
+/*
+** EPITECH PROJECT, 2023
+** S2CRemovePlayer.hpp
+** File description:
+** S2CRemovePlayer.hpp
+*/
 
 #ifndef R_TYPE_S2CSPAWNPLAYER_HPP
 #define R_TYPE_S2CSPAWNPLAYER_HPP

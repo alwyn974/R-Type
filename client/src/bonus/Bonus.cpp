@@ -47,7 +47,7 @@ void bonus::Bonus::colliding(size_t entity, size_t entityCollidingWith)
 
     auto &name = r->getComponent<uranus::ecs::component::Name>(entityCollidingWith);
 
-    std::cout << name->uniqueName << std::endl;
+//    std::cout << name->uniqueName << std::endl;
     std::shared_ptr<engine::Base> base = entityManager->getPrefabByName(name->uniqueName);
     auto &player = dynamic_cast<Player &>(*base);
 
