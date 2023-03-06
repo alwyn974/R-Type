@@ -8,6 +8,8 @@
 #include "network/NetworkManager.hpp"
 #include "Bullet.hpp"
 #include "Player.hpp"
+#include "scene/SceneStage1.hpp"
+//#include "uranus/ecs/Components.hpp"
 
 using namespace rtype::network; // NOLINT
 
@@ -113,7 +115,7 @@ namespace rtype::client::network {
 //            this->_logger->info("UDP Received data from server!");
         };
         this->_udpClient->onClientDataSent = [&](ConnectionToServerPtr &server, sa::ByteBuffer &buffer) {
-//            spdlog::info("Data sent to server! Bytes: {} - {}", buffer.size(), buffer.readUShort());
+//            spdlog::info("Data sent to server! Bytes: {}", buffer.size());
         };
     }
 
@@ -136,6 +138,7 @@ namespace rtype::client::network {
 
     void NetworkManager::registerUdpPacketHandlers()
     {
+        static auto &sceneManager = engine::Manager::getSceneManager();
         static auto &textureManager = engine::Manager::getTextureManager();
         static auto &entityManager = engine::Manager::getEntityManager();
         static auto &r = engine::Manager::getRegistry();
@@ -154,16 +157,13 @@ namespace rtype::client::network {
         });
         this->_udpClient->registerHandler<packet::S2CGameStarted>([&](ConnectionToServerPtr &server, packet::S2CGameStarted &packet) {
             this->_logger->info("Received S2CGameStarted packet");
-//            try {
-//                auto base = entityManager->getPrefabByNetworkId(packet.entityId);
-//                //                auto &vel = r->getComponent<uranus::ecs::component::Position>(base->getEntityId());
-//                auto &vel = r->getComponent<uranus::ecs::component::Velocity>(base->getEntityId());
-//                vel->x = packet.velX;
-//                vel->y  = packet.velY;
-//            } catch (const std::exception &) {
-//                this->_logger->error("Received S2CPlayerMove packet for unknown entity");
-//                return;
-//            }
+            try {
+                auto scene = std::dynamic_pointer_cast<SceneStage1>(sceneManager->getActualScene());
+                scene->wave(uranus::ecs::component::Position{0, 0});
+            } catch (const std::exception &) {
+                this->_logger->error("Received S2CGameStarted packet for unknown entity");
+                return;
+            }
         });
         this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
             this->_logger->info("Received S2CPlayerMove packet {}", packet.entityId);
