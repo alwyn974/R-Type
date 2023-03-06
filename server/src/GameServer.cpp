@@ -60,8 +60,7 @@ namespace rtype::server {
             auto now = std::chrono::high_resolution_clock::now();
             auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count();
             if (elapsed >= 1000) {
-                for (const auto &[uid, player]: this->_players)
-                    this->_udpServer->broadcast(std::make_shared<packet::S2CSyncPlayer>(uid, player->getX(), player->getY()));
+                //this->sync();
                 start = std::chrono::high_resolution_clock::now();
             }
         }
@@ -126,6 +125,8 @@ namespace rtype::server {
                 if (player->getUdpId() == client->getId()) {
                     player->setX(player->getX() + packet.velX);
                     player->setY(player->getY() + packet.velY);
+//                    player->setX(packet.velX);
+//                    player->setY(packet.velY);
                     break;
                 }
             }

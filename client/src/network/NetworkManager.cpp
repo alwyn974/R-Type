@@ -157,9 +157,10 @@ namespace rtype::client::network {
             //TODO: spawn entity
         });
         this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
-            this->_logger->info("Received S2CPlayerMove packet");
+            this->_logger->info("Received S2CPlayerMove packet {}", packet.entityId);
             try {
                 auto base = entityManager->getPrefabByNetworkId(packet.entityId);
+//                auto &vel = r->getComponent<uranus::ecs::component::Position>(base->getEntityId());
                 auto &vel = r->getComponent<uranus::ecs::component::Velocity>(base->getEntityId());
                 vel->x = packet.velX;
                 vel->y  = packet.velY;

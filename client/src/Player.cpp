@@ -30,8 +30,20 @@ Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &
     r->addComponent(newEntity, uranus::ecs::component::Position {pos.x, pos.y});
     r->addComponent(newEntity, uranus::ecs::component::Velocity {0, 0});
     r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture)});
-    if (!this->_networked)
-        r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->move(entity, event); }});
+    auto lambda = [networkId](size_t entity) {
+        static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
+        static auto &r = engine::Manager::getRegistry();
+        auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
+        //        auto &pos = r->getComponent<uranus::ecs::component::Position>(entity);
+        //        networkManager->send(std::make_shared<rtype::network::packet::C2SClientMove>(this->_networkId, pos->x + vel->x, pos->y + vel->y));
+        networkManager->send(std::make_shared<rtype::network::packet::C2SClientMove>(networkId, vel->x, vel->y));
+    };
+    if (!this->_networked) {
+        r->addComponent(newEntity, uranus::ecs::component::Loop { lambda });
+        r->addComponent(newEntity, uranus::ecs::component::InputKeyboard{[&](size_t entity, const engine::Event event) {
+            this->move(entity, event);
+        }});
+    }
 
     std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
     layer.set(uranus::ecs::LayerMask::PLAYER);
@@ -52,6 +64,7 @@ void Player::move(size_t entity, const engine::Event event)
     auto &pos = r->getComponent<uranus::ecs::component::Position>(entity);
     const int speed = 2;
     if (vel) {
+        vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
         if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::Q)) {
             vel->x = -speed;
         } else if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::D)) {
@@ -67,8 +80,8 @@ void Player::move(size_t entity, const engine::Event event)
             vel->y = 0;
         }
     }
-    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
-    networkManager->send(std::make_shared<rtype::network::packet::C2SClientMove>(this->_networkId, vel->x, vel->y));
+//    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
+//    networkManager->send(std::make_shared<rtype::network::packet::C2SClientMove>(this->_networkId, vel->x, vel->y));
 
     if (pos) {
         if (event.mouseButton.button == sf::Mouse::Left && event.type == event.MouseButtonPressed) {
