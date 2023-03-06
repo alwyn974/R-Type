@@ -168,6 +168,7 @@ Distributed under the MIT License. See [LICENSE.txt][license-url] for more infor
             <td align="center"><a href="https://github.com/NicolasReboule/"><img src="https://avatars.githubusercontent.com/u/72016245?v=4?s=100" width="100px;" alt="NicolasReboule"/><br /><sub><b>Nicolas Reboule</b></sub></a><br /></td>
             <td align="center"><a href="https://github.com/NoaOlivette/"><img src="https://avatars.githubusercontent.com/u/71897697?v=4?s=100" width="100px;" alt="ChatDo"/><br /><sub><b>Noa Olivette</b></sub></a><br /></td>
             <td align="center"><a href="https://github.com/HugoBaret/"><img src="https://avatars.githubusercontent.com/u/72015973?v=4?s=100" width="100px;" alt="ChatDo"/><br /><sub><b>Hugo Baret</b></sub></a><br /></td>
+            <td align="center"><a href="https://github.com/ChatDo/"><img src="https://avatars.githubusercontent.com/u/72121087?v=4?s=100" width="100px;" alt="ChatDo"/><br /><sub><b>ChatDo</b></sub></a><br /></td> 
         </tr>
     </tbody>
 </table>

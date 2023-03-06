@@ -48,9 +48,11 @@ void Bullet::move(size_t entity)
     auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     vel->x = 5;
-//    if (r->getComponent<uranus::ecs::component::Position>(entity)->x > 900) { // TODO(frenetikk): change this
+    if (r->getComponent<uranus::ecs::component::Position>(entity)->x > WIN_WIDTH + 20) { // TODO(frenetikk): change this
 //        r->killEntity(entity);
-//    }
+        auto ent = r->entityFromIndex(entity);
+        r->addComponent(ent, uranus::ecs::component::Dead());
+    }
 }
 
 void Bullet::loop(const size_t entity)

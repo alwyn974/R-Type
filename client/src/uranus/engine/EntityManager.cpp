@@ -17,7 +17,7 @@ void engine::EntityManager::addPrefab(const std::shared_ptr<engine::Base> &prefa
         prefab->setUniqueName(name);
     }
         //throw uranus::ex::Exception("Prefab already exist");
-    spdlog::info("prefab: {}", name);
+//    spdlog::info("prefab: {}", name);
     this->_prefabs[name] = prefab;
 }
 

@@ -8,18 +8,17 @@
 #pragma once
 
 #include <saturnity/Saturnity.hpp>
-#include "external/uuidv4/uuidv4.hpp"
 
 namespace rtype::network::packet {
     class S2CPlayerScore : public sa::AbstractPacket {
     public:
-        UUIDv4::UUID uuid;
+        std::uint32_t uid;
         int score;
         bool win;
 
-        explicit S2CPlayerScore(UUIDv4::UUID &uuid, int score, bool win) : sa::AbstractPacket(sa::AbstractPacket::UDP)
+        explicit S2CPlayerScore(std::uint32_t uid, int score, bool win) : sa::AbstractPacket(sa::AbstractPacket::UDP)
         {
-            this->uuid = uuid;
+            this->uid = uid;
             this->score = score;
             this->win = win;
         }
@@ -30,14 +29,14 @@ namespace rtype::network::packet {
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
-            byteBuffer.writeString(uuid.bytes());
+            byteBuffer.writeUInt(uid);
             byteBuffer.writeInt(score);
             byteBuffer.writeBoolean(win);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
-            uuid = UUIDv4::UUID(byteBuffer.readString());
+            uid = byteBuffer.readUInt();
             score = byteBuffer.readInt();
             win = byteBuffer.readBoolean();
         }

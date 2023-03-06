@@ -6,7 +6,6 @@
 */
 
 #include <saturnity/Saturnity.hpp>
-#include "external/uuidv4/uuidv4.hpp"
 #include "S2CEntityMove.hpp"
 
 namespace rtype::network::packet {

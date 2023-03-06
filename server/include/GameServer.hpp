@@ -41,11 +41,11 @@ namespace rtype::server {
         std::uint16_t _tcpPort;
         std::uint16_t _udpPort;
 
-        UUIDv4::UUIDGenerator<std::mt19937> _uuidGenerator;
+        std::uint32_t globalId;
 
         int _playerCount;
         int _maxPlayers;
-        std::unordered_map<UUIDv4::UUID, game::Player> _players;
+        std::unordered_map<std::uint32_t, std::shared_ptr<game::Player>> _players;
 
         void registerTcpCallbacks();
         void registerUdpCallbacks();
@@ -64,6 +64,7 @@ namespace rtype::server {
         //
 
         void onPlayerHandshake(ConnectionToClientPtr &client, packet::C2SPlayerHandshake &packet);
+        void onClientDisconnecting(ConnectionToClientPtr &client, packet::C2SClientDisconnecting &packet);
 
         //
         // UDP

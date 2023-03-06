@@ -12,7 +12,7 @@
 
 class Player : public engine::Base {
 public:
-    explicit Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName, std::uint32_t networkId = 0);
+    explicit Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName, std::uint32_t networkId = 0, const sf::Vector2f &pos = {0, 0}, bool network = false);
 
     void move(size_t entity, const engine::Event event);
 
@@ -24,7 +24,7 @@ public:
 
 private:
     std::string _bulletTextureName;
-
+    bool _networked;
     bool _doubleBullet;
 };
 
