@@ -7,6 +7,8 @@
 
 #include "network/NetworkManager.hpp"
 #include "Bullet.hpp"
+#include "Player.hpp"
+
 
 using namespace rtype::network; // NOLINT
 
@@ -171,25 +173,35 @@ namespace rtype::client::network {
         static auto &textureManager = engine::Manager::getTextureManager();
         static auto &entityManager = engine::Manager::getEntityManager();
 
-        this->_udpClient->registerHandler<packet::S2CEntityMove>([&](auto &server, auto &packet) {
+        this->_udpClient->registerHandler<packet::S2CEntityMove>([&](ConnectionToServerPtr &server, packet::S2CEntityMove &packet) {
+            this->_logger->info("Received S2CEntityMove packet");
             //TODO: move entity
         });
-        this->_udpClient->registerHandler<packet::S2CEntitySpawn>([&](auto &server, auto &packet) {
+        this->_udpClient->registerHandler<packet::S2CEntitySpawn>([&](ConnectionToServerPtr &server, packet::S2CEntitySpawn &packet) {
+            this->_logger->info("Received S2CEntitySpawn packet");
             //TODO: spawn entity
         });
-        this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](auto &server, auto &packet) {
+        this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
+            this->_logger->info("Received S2CPlayerMove packet");
             //TODO: move player
         });
-        this->_udpClient->registerHandler<packet::S2CRemoveEntity>([&](auto &server, auto &packet) {
+        this->_udpClient->registerHandler<packet::S2CRemoveEntity>([&](ConnectionToServerPtr &server, packet::S2CRemoveEntity &packet) {
+            this->_logger->info("Received S2CRemoveEntity packet");
             // TODO: remove entity
         });
-        this->_udpClient->registerHandler<packet::S2CRemovePlayer>([&](auto &server, auto &packet) {
+        this->_udpClient->registerHandler<packet::S2CRemovePlayer>([&](ConnectionToServerPtr &server, packet::S2CRemovePlayer &packet) {
+            this->_logger->info("Received S2CRemovePlayer packet");
             //TODO: remove player, maybe useless
         });
-        this->_udpClient->registerHandler<packet::S2CSpawnBullet>([&](auto &server, auto &packet) {
+        this->_udpClient->registerHandler<packet::S2CSpawnBullet>([&](ConnectionToServerPtr &server, packet::S2CSpawnBullet &packet) {
+            this->_logger->info("Received S2CSpawnBullet packet");
             //TODO: spawn bullet
         });
-        this->_udpClient->registerHandler<packet::S2CSpawnPlayer>([&](auto &server, auto &packet) {
+        this->_udpClient->registerHandler<packet::S2CSpawnPlayer>([&](ConnectionToServerPtr &server, packet::S2CSpawnPlayer &packet) {
+            this->_logger->info("Received S2CSpawnPlayer packet");
+            const sf::Vector2f pos = {static_cast<float>(packet.x), static_cast<float>(packet.y)};
+            auto player = std::make_shared<Player>("player", textureManager->getTextureByName("ship"), "bullet", pos, true);
+            entityManager->addPrefab(player);
             //TODO: a player
         });
 

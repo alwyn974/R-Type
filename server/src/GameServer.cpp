@@ -188,6 +188,7 @@ namespace rtype::server {
 
     void GameServer::onClientDisconnecting(ConnectionToClientPtr &client, packet::C2SClientDisconnecting &packet)
     {
+        (void) packet;
         this->_logger->info("Client {} disconnecting", client->getId());
         for (const auto &[uuid, player]: this->_players) {
             if (player->getTcpId() == client->getId()) {
@@ -208,5 +209,6 @@ namespace rtype::server {
         if (!this->_players.contains(packet.uuid))
             return this->_logger->warn("Client {} is not registered", packet.uuid.str());
         this->_players[packet.uuid]->setUdpId(client->getId());
+        this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnPlayer>(packet.uuid.hash(), 20, 20));
     }
 } // namespace rtype::server

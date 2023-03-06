@@ -9,19 +9,21 @@
 #include "Bullet.hpp"
 #include "network/NetworkManager.hpp"
 
-Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName) : Base(uniqueName)
+Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName, const sf::Vector2f &pos, bool network) : Base(uniqueName)
 {
     this->_bulletTextureName = bulletTextureName;
     this->_doubleBullet = false;
+    this->_networked = network;
 
     auto &r = engine::Manager::getRegistry();
     uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
 
     r->addComponent(newEntity, uranus::ecs::component::Name {uniqueName});
-    r->addComponent(newEntity, uranus::ecs::component::Position {0, 0});
+    r->addComponent(newEntity, uranus::ecs::component::Position {pos.x, pos.y});
     r->addComponent(newEntity, uranus::ecs::component::Velocity {0, 0});
     r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture)});
-    r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->move(entity, event); }});
+    if (!this->_networked)
+        r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->move(entity, event); }});
 
     std::bitset<uranus::ecs::LAYER_MASK_SIZE> layer;
     layer.set(uranus::ecs::LayerMask::PLAYER);
