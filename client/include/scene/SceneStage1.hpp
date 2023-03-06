@@ -18,6 +18,12 @@ public:
 
     void init() override;
 
+    void addEnemy(uranus::ecs::component::Position pos);
+
+    void addEnemyShooter(uranus::ecs::component::Position pos);
+
+    void wave(uranus::ecs::component::Position startOffset);
+
 private:
 };
 

@@ -263,7 +263,7 @@ namespace uranus::ecs {
         if (_freeIds.empty()) return Entity(_entityCounter++);
         const size_t id = _freeIds.back();
         _freeIds.pop_back();
-        spdlog::info("popped: {}", id);
+//        spdlog::info("popped: {}", id);
         return Entity(id);
     }
 
@@ -288,7 +288,7 @@ namespace uranus::ecs {
         _freeIds.push_back(e);
         for (auto &i : _destroyArrays)
             i.second(e);
-        spdlog::info("entity delete: {}", e);
+//        spdlog::info("entity delete: {}", e);
     }
 
     inline void Registry::killAllEntities()

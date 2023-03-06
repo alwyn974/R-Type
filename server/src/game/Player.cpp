@@ -9,7 +9,7 @@
 
 namespace rtype::server::game {
 
-    Player::Player(int tcpId, int udpId)
+    Player::Player(int tcpId, int udpId, const std::string &name)
     {
         this->_tcpId = tcpId;
         this->_udpId = udpId;
@@ -19,6 +19,7 @@ namespace rtype::server::game {
         this->_y = 0;
         this->_width = 0;
         this->_height = 0;
+        this->_name = name;
     }
 
     int Player::getTcpId() const
@@ -59,6 +60,11 @@ namespace rtype::server::game {
     int Player::getHeight() const
     {
         return this->_height;
+    }
+
+    const std::string &Player::getName() const
+    {
+        return this->_name;
     }
 
     Player &Player::setTcpId(int tcpId)
@@ -106,6 +112,12 @@ namespace rtype::server::game {
     Player &Player::setHeight(int height)
     {
         this->_height = height;
+        return *this;
+    }
+
+    Player &Player::setName(const std::string &name)
+    {
+        this->_name = name;
         return *this;
     }
 }

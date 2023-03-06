@@ -15,7 +15,7 @@ namespace rtype::network::packet {
         {
         }
 
-        S2CPlayerMove(int id, int entity_id, int x, int y) : S2CEntityMove(id, entity_id, x, y)
+        S2CPlayerMove(std::uint32_t entityId, float x, float y) : S2CEntityMove(entityId, x, y)
         {
         }
 

@@ -8,10 +8,12 @@
 #ifndef R_TYPE_PLAYER_HPP
 #define R_TYPE_PLAYER_HPP
 
+#include <string>
+
 namespace rtype::server::game {
     class Player {
     public:
-        explicit Player(int tcpId, int udpId);
+        explicit Player(int tcpId, int udpId, const std::string &name);
 
         int getTcpId() const;
         int getUdpId() const;
@@ -21,6 +23,7 @@ namespace rtype::server::game {
         int getY() const;
         int getWidth() const;
         int getHeight() const;
+        const std::string &getName() const;
 
         Player &setTcpId(int tcpId);
         Player &setUdpId(int udpId);
@@ -30,6 +33,7 @@ namespace rtype::server::game {
         Player &setY(int y);
         Player &setWidth(int width);
         Player &setHeight(int height);
+        Player &setName(const std::string &name);
 
     private:
         int _tcpId;
@@ -40,6 +44,7 @@ namespace rtype::server::game {
         int _y;
         int _width;
         int _height;
+        std::string _name;
     };
 } // namespace rtype::server::game
 

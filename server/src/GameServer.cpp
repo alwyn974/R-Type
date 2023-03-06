@@ -17,7 +17,7 @@ namespace rtype::server {
         this->_udpPort = udpPort;
         this->_maxPlayers = maxPlayers;
         this->_playerCount = 0;
-        this->globalId = 0;
+        this->_globalId = 0;
     }
 
     void GameServer::init()
@@ -42,8 +42,9 @@ namespace rtype::server {
             throw std::runtime_error("Failed to init UDP server: " + std::string(e.what()));
         }
 
-        this->registerTcpPackets();
-        this->registerUdpPackets();
+        packet::RegisterPacket::registerPackets(this->_udpPacketRegistry, this->_tcpPacketRegistry);
+        this->registerTcpPacketHandlers();
+        this->registerUdpPacketHandlers();
     }
 
     void GameServer::start()
@@ -95,61 +96,31 @@ namespace rtype::server {
         this->_udpServer->onClientDisconnected = [&](ConnectionToClientPtr &client) { this->onUdpClientDisconnected(client); };
     }
 
-    void GameServer::registerTcpPackets() {
-        static std::uint16_t id = 1;
-        // register server -> client packets
-        this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerAuthentified>(id++);
-        this->_tcpPacketRegistry->registerPacket<packet::S2CPlayerScore>(id++);
-        // register client -> server packets
-        this->_tcpPacketRegistry->registerPacket<packet::C2SClientDisconnecting>(id++);
-        this->_tcpPacketRegistry->registerPacket<packet::C2SPlayerHandshake>(id++);
-
+    void GameServer::registerTcpPacketHandlers() {
         this->_tcpServer->registerHandler<packet::C2SClientDisconnecting>([&](auto &client, auto &packet){ this->onClientDisconnecting(client, packet); });
         this->_tcpServer->registerHandler<packet::C2SPlayerHandshake>([&](auto &client, auto &packet){ this->onPlayerHandshake(client, packet); });
     }
 
-    void GameServer::registerUdpPackets()
+    void GameServer::registerUdpPacketHandlers()
     {
-        static std::uint16_t id = 1;
-        // register server -> client packets
-        this->_udpPacketRegistry->registerPacket<packet::S2CEntityMove>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::S2CEntitySpawn>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::S2CPlayerMove>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::S2CRemoveEntity>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::S2CRemovePlayer>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::S2CSpawnBullet>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::S2CSpawnPlayer>(id++);
-        // register client -> server packets
-        this->_udpPacketRegistry->registerPacket<packet::C2SClientConnected>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::C2SPrepareShoot>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::C2SPlayerShoot>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::C2SKillEntity>(id++);
-        this->_udpPacketRegistry->registerPacket<packet::C2SKillPlayer>(id++);
-
-       /* this->_udpServer->registerHandler<packet::S2CEntityMove>([&](auto &client, auto &packet){
-            this->_udpServer->broadcast(packet, client->getId());
+        this->_udpServer->registerHandler<packet::C2SClientConnect>([&](auto &client, auto &packet){ this->onClientConnected(client, packet); });
+        this->_udpServer->registerHandler<packet::C2SClientMove>([&](auto &client, auto &packet) {
+            this->_udpServer->broadcast(std::make_shared<packet::S2CPlayerMove>(packet.entityId, packet.x, packet.y), client->getId());
+            for (auto &[uid, player]: this->_players) {
+                if (player->getUdpId() == client->getId()) {
+                    player->setX(packet.x);
+                    player->setY(packet.y);
+                    break;
+                }
+            }
         });
-        this->_udpServer->registerHandler<packet::S2CEntitySpawn>([&](auto &client, auto &packet){ return; });
-        this->_udpServer->registerHandler<packet::S2CPlayerMove>([&](auto &client, auto &packet){
-            this->_udpServer->broadcast(packet, client->getId());
-        });
-        this->_udpServer->registerHandler<packet::S2CRemoveEntity>([&](auto &client, auto &packet){ return; });
-        this->_udpServer->registerHandler<packet::S2CRemovePlayer>([&](auto &client, auto &packet){ return; });
-        this->_udpServer->registerHandler<packet::S2CSpawnBullet>([&](auto &client, auto &packet){ return; });
-        this->_udpServer->registerHandler<packet::S2CSpawnPlayer>([&](auto &client, auto &packet){ return; });*/
-
-        this->_udpServer->registerHandler<packet::C2SClientConnected>([&](auto &client, auto &packet){ this->onClientConnected(client, packet); });
         this->_udpServer->registerHandler<packet::C2SPrepareShoot>([&](auto &client, auto &packet){
-            this->_udpServer->broadcast(packet, client->getId());
         });
         this->_udpServer->registerHandler<packet::C2SPlayerShoot>([&](auto &client, auto &packet){
-            this->_udpServer->broadcast(packet, client->getId());
         });
         this->_udpServer->registerHandler<packet::C2SKillEntity>([&](auto &client, auto &packet){
-            this->_udpServer->broadcast(packet, client->getId());
         });
         this->_udpServer->registerHandler<packet::C2SKillPlayer>([&](auto &client, auto &packet){
-            this->_udpServer->broadcast(packet, client->getId());
         });
     }
 
@@ -180,8 +151,9 @@ namespace rtype::server {
     void GameServer::onPlayerHandshake(ConnectionToClientPtr &client, packet::C2SPlayerHandshake &packet)
     {
         this->_logger->info("Player {} handshake", packet.name);
-        auto player = std::make_shared<game::Player>(client->getId(), -1);
-        const std::uint32_t uid = ++this->globalId;
+        auto player = std::make_shared<game::Player>(client->getId(), -1, packet.name);
+        player->setName(packet.name);
+        const std::uint32_t uid = ++this->_globalId;
         this->_players[uid] = player;
         client->send(std::make_shared<packet::S2CPlayerAuthentified>(packet.name, uid));
     }
@@ -203,12 +175,18 @@ namespace rtype::server {
     // UDP C2S Packets
     //
 
-    void GameServer::onClientConnected(ConnectionToClientPtr &client, packet::C2SClientConnected &packet)
+    void GameServer::onClientConnected(ConnectionToClientPtr &client, packet::C2SClientConnect &packet)
     {
         this->_logger->info("Client {} connected with UDP at {}", packet.uid, client->getId());
         if (!this->_players.contains(packet.uid))
             return this->_logger->warn("Client {} is not registered", packet.uid);
         this->_players[packet.uid]->setUdpId(client->getId());
-        this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnPlayer>(packet.uid, 20, 20));
+        for (const auto &[uid, player]: this->_players) {
+            if (player->getUdpId() != client->getId())
+                client->send(std::make_shared<packet::S2CSpawnPlayer>(player->getName(), uid, player->getX(), player->getY()));
+        }
+        this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnPlayer>(packet.name, packet.uid, 20, 20), client->getId());
+        client->send(std::make_shared<packet::S2CClientConnected>(packet.uid));
     }
+
 } // namespace rtype::server

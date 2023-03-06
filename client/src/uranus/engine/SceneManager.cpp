@@ -19,16 +19,16 @@ void engine::SceneManager::changeScene(const std::string &sceneToSwitch)
     this->_sceneToSwitch = sceneToSwitch;
 }
 
-
 void engine::SceneManager::switchScene()
 {
-    if (this->_sceneToSwitch == "")
+    if (this->_sceneToSwitch.empty())
         return;
-    for (std::shared_ptr<engine::Scene> &sceneItem : this->_scenes) {
-        if (sceneItem->getName() == this->_sceneToSwitch) {
-            engine::Manager::killAllEntitiesAndPrefabs();
+    for (auto &scene : this->_scenes) {
+        if (scene->getName() == this->_sceneToSwitch) {
+            scene->clear();
+//            engine::Manager::killAllEntitiesAndPrefabs();
 
-            this->_actualScene = sceneItem;
+            this->_actualScene = scene;
             this->_actualScene->init();
             this->_sceneToSwitch = "";
             break;

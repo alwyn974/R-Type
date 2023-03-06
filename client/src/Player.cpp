@@ -9,11 +9,17 @@
 #include "Bullet.hpp"
 #include "network/NetworkManager.hpp"
 
-Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName, std::uint32_t networkId, const sf::Vector2f &pos, bool network) : Base(uniqueName)
+Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName, std::uint32_t networkId, const sf::Vector2f &pos) : Base(uniqueName)
 {
     this->_bulletTextureName = bulletTextureName;
     this->_doubleBullet = false;
-    this->_networked = network;
+    this->_networked = networkId > 0;
+    this->_networkId = networkId;
+    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
+    if (networkId == 0 && networkManager->uid !=0) {
+        this->_networkId = networkManager->uid;
+        networkId = networkManager->uid;
+    }
 
     auto &r = engine::Manager::getRegistry();
     uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
@@ -61,6 +67,9 @@ void Player::move(size_t entity, const engine::Event event)
             vel->y = 0;
         }
     }
+    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
+    networkManager->send(std::make_shared<rtype::network::packet::C2SClientMove>(this->_networkId, vel->x, vel->y));
+
     if (pos) {
         if (event.mouseButton.button == sf::Mouse::Left && event.type == event.MouseButtonPressed) {
             this->shoot();
@@ -82,7 +91,7 @@ void Player::shoot()
     auto &entityManager = engine::Manager::getEntityManager();
 
     auto &pos = r->getComponent<uranus::ecs::component::Position>(this->_entityId);
-    auto &networkManager = rtype::client::network::NetworkManager::getInstance();
+    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
 
     if (this->_doubleBullet) {
         auto bullet = std::make_shared<Bullet>(

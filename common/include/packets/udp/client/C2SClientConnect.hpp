@@ -5,33 +5,37 @@
 ** C2SClientConnected.hpp
 */
 
-#ifndef R_TYPE_C2SCLIENTCONNECTED_HPP
-#define R_TYPE_C2SCLIENTCONNECTED_HPP
+#ifndef R_TYPE_C2SCLIENTCONNECT_HPP
+#define R_TYPE_C2SCLIENTCONNECT_HPP
 
 #include <saturnity/Saturnity.hpp>
 
 namespace rtype::network::packet {
-    class C2SClientConnected : public sa::AbstractPacket {
+    class C2SClientConnect : public sa::AbstractPacket {
     public:
         std::uint32_t uid;
+        std::string name;
 
-        C2SClientConnected() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::UDP) {};
+        C2SClientConnect() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::UDP) {};
 
-        explicit C2SClientConnected(std::uint32_t uid) : C2SClientConnected()
+        explicit C2SClientConnect(std::uint32_t uid, const std::string &name) : C2SClientConnect()
         {
             this->uid = uid;
+            this->name = name;
         };
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
             byteBuffer.writeUInt(uid);
+            byteBuffer.writeString(name);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
             uid = byteBuffer.readUInt();
+            name = byteBuffer.readString();
         }
     };
 }
 
-#endif //R_TYPE_C2SCLIENTCONNECTED_HPP
+#endif //R_TYPE_C2SCLIENTCONNECT_HPP

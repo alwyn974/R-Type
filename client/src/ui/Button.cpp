@@ -64,11 +64,11 @@ void ui::Button::loop(size_t entity)
     auto &textureManager = engine::Manager::getTextureManager();
     auto &window = engine::Manager::getWindow();
 
-    auto &collision = r->getComponent<uranus::ecs::component::Collisionable>(entity);
-    auto &pos = r->getComponent<uranus::ecs::component::Position>(entity);
-
     auto mousePosition {static_cast<sf::Vector2f>(sf::Mouse::getPosition(*window))};
     //    sf::FloatRect mouseRect {mousePosition.x, mousePosition.y, 0, 0};
+    auto &pos = r->getComponent<uranus::ecs::component::Position>(entity);
+
+    auto &collision = r->getComponent<uranus::ecs::component::Collisionable>(entity);
     const sf::FloatRect rect {collision->x + pos->x, collision->y + pos->y, collision->width, collision->height};
 
     if (rect.contains(mousePosition)) {

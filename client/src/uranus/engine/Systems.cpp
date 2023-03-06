@@ -4,6 +4,7 @@
 
 #include "uranus/engine/Systems.hpp"
 #include "uranus/engine/components/Rect.hpp"
+#include "network/NetworkManager.hpp"
 
 void engine::system::position()
 {
@@ -133,16 +134,16 @@ void engine::system::collision() {
 
 // populate the grid hash table with entities
     for (auto [entity, pos, collision] : uranus::ecs::View<uranus::ecs::component::Position, uranus::ecs::component::Collisionable>(*r)) {
-        int startX = std::floor(pos.x / gridSize);
-        int startY = std::floor(pos.y / gridSize);
-        int endX = std::floor((pos.x + collision.width) / gridSize);
-        int endY = std::floor((pos.y + collision.height) / gridSize);
+        const int startX = std::floor(pos.x / gridSize);
+        const int startY = std::floor(pos.y / gridSize);
+        const int endX = std::floor((pos.x + collision.width) / gridSize);
+        const int endY = std::floor((pos.y + collision.height) / gridSize);
 
         // Add the entity to each overlapping cell
         for (int x = startX; x <= endX; x++) {
             for (int y = startY; y <= endY; y++) {
-                int key = x * 1000 + y; // Use x,y coordinates as hash key
-                grid[key].push_back(entity);
+                const int key = x * 1000 + y; // Use x,y coordinates as hash key
+                grid[key].push_back(static_cast<int>(entity));
             }
         }
     }
@@ -312,17 +313,15 @@ void engine::system::gameLoop()
     }
 }
 
-#include "network/NetworkManager.hpp"
-
 void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, std::shared_ptr<uranus::ecs::Registry> &registry, sf::Time &time, sf::Clock &clock)
 {
     static bool set = false;
     static int fps = 60;
     static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
     if (!set) {
-        ImGui::SetWindowSize({350, 300});
+        ImGui::SetWindowSize({375, 200});
         ImGui::SetWindowPos({0, 0});
-        ImGui::SetWindowCollapsed(true);
+//        ImGui::SetWindowCollapsed(true);
         set = true;
     }
     auto timeDeltaMs = static_cast<float>(static_cast<double>(time.asMicroseconds()) / 1000.0);

@@ -41,7 +41,7 @@ namespace rtype::server {
         std::uint16_t _tcpPort;
         std::uint16_t _udpPort;
 
-        std::uint32_t globalId;
+        std::uint32_t _globalId;
 
         int _playerCount;
         int _maxPlayers;
@@ -50,8 +50,8 @@ namespace rtype::server {
         void registerTcpCallbacks();
         void registerUdpCallbacks();
 
-        void registerTcpPackets();
-        void registerUdpPackets();
+        void registerTcpPacketHandlers();
+        void registerUdpPacketHandlers();
 
         void onTcpClientConnected(ConnectionToClientPtr &client);
         void onTcpClientDisconnected(ConnectionToClientPtr &client);
@@ -70,7 +70,7 @@ namespace rtype::server {
         // UDP
         //
 
-        void onClientConnected(ConnectionToClientPtr &client, packet::C2SClientConnected &packet);
+        void onClientConnected(ConnectionToClientPtr &client, packet::C2SClientConnect &packet);
 
     };
 } // namespace rtype::server

@@ -39,6 +39,8 @@ namespace rtype::client::network {
         std::uint16_t tcpPort = 2409;
         std::uint16_t udpPort = 2410;
 
+        std::uint32_t uid = 0;
+
     private:
         NetworkManager()
         {
@@ -63,8 +65,8 @@ namespace rtype::client::network {
         void registerUdpPackets();
         void registerTcpPackets();
 
-        void handleUdpPackets();
-        void handleTcpPackets();
+        void registerUdpPacketHandlers();
+        void registerTcpPacketHandlers();
     };
 }
 

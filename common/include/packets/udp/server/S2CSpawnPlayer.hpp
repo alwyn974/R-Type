@@ -13,17 +13,23 @@
 namespace rtype::network::packet {
     class S2CSpawnPlayer : public S2CEntitySpawn {
     public:
+        std::string name;
         S2CSpawnPlayer() : S2CEntitySpawn() {}
-        S2CSpawnPlayer(std::uint32_t entityId, std::uint16_t x, std::uint16_t y) : S2CEntitySpawn(entityId, x, y) {};
+        S2CSpawnPlayer(const std::string &name, std::uint32_t entityId, std::uint16_t x, std::uint16_t y) : S2CEntitySpawn(entityId, x, y)
+        {
+            this->name = name;
+        };
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
             S2CEntitySpawn::toBytes(byteBuffer);
+            byteBuffer.writeString(name);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
             S2CEntitySpawn::fromBytes(byteBuffer);
+            name = byteBuffer.readString();
         }
     };
 }

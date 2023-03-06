@@ -12,37 +12,36 @@
 namespace rtype::network::packet {
     class S2CEntityMove : public sa::AbstractPacket {
     public:
-        int id;
-        int entity_id;
-        int x;
-        int y;
+        std::uint32_t entityId;
+        float x;
+        float y;
 
-        explicit S2CEntityMove(int id, int entity_id, int x, int y) : sa::AbstractPacket(sa::AbstractPacket::UDP)
+        explicit S2CEntityMove(std::uint32_t entityId, float x, float y) : sa::AbstractPacket(sa::AbstractPacket::UDP)
         {
-            this->id = id;
-            this->entity_id = entity_id;
+            this->entityId = entityId;
             this->x = x;
             this->y = y;
         }
 
         S2CEntityMove() : sa::AbstractPacket(sa::AbstractPacket::UDP)
         {
+            this->entityId = 0;
+            this->x = 0;
+            this->y = 0;
         }
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
-            byteBuffer.writeInt(this->id);
-            byteBuffer.writeInt(this->entity_id);
-            byteBuffer.writeInt(this->x);
-            byteBuffer.writeInt(this->y);
+            byteBuffer.writeUInt(this->entityId);
+            byteBuffer.writeFloat(this->x);
+            byteBuffer.writeFloat(this->y);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
-            this->id = byteBuffer.readInt();
-            this->entity_id = byteBuffer.readInt();
-            this->x = byteBuffer.readInt();
-            this->y = byteBuffer.readInt();
+            this->entityId = byteBuffer.readUInt();
+            this->x = byteBuffer.readFloat();
+            this->y = byteBuffer.readFloat();
         }
     };
 }
