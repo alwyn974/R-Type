@@ -80,12 +80,12 @@ void SceneMain::init()
     auto &buttonPlayTexture = textureManager->getTextureByName("buttonPlay");
     auto buttonPlay =
         std::make_shared<ui::Button>("buttonPlay", centerPos({0, 0}, buttonPlayTexture), buttonPlayTexture, pressedPlay);
-    entityManager->addPrefab(buttonPlay);
+    this->addPrefab(buttonPlay);
 
     auto &buttonQuitTexture = textureManager->getTextureByName("buttonQuit");
     auto buttonQuit =
         std::make_shared<ui::Button>("buttonQuit", centerPos({0, 75}, buttonQuitTexture), buttonQuitTexture, pressedQuit);
-    entityManager->addPrefab(buttonQuit);
+    this->addPrefab(buttonQuit);
 
     const uranus::ecs::Entity newEntity = r->spawnEntity();
     auto logoTexture = textureManager->getTextureByName("logo");
