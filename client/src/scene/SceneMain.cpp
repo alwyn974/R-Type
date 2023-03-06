@@ -17,8 +17,6 @@ void pressedPlay()
     try {
         const int tcpPort = std::stoi(networkManager->imGuiTcpPort);
         const int udpPort = std::stoi(networkManager->imGuiUdpPort);
-        networkManager->imGuiUsername = networkManager->imGuiUsername.data(); // NOLINT
-        networkManager->imGuiUsername.reserve(128);
         if (networkManager->imGuiHost.empty())
             throw std::runtime_error("Invalid host");
         if (tcpPort < 0 || tcpPort > 65535)

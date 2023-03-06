@@ -313,6 +313,8 @@ void engine::system::gameLoop()
     }
 }
 
+#include "uranus/external/imgui/misc/cpp/imgui_stdlib.h"
+
 void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, std::shared_ptr<uranus::ecs::Registry> &registry, sf::Time &time, sf::Clock &clock)
 {
     static bool set = false;
@@ -320,7 +322,7 @@ void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, st
     static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
     if (!set) {
         ImGui::SetWindowSize({375, 200});
-        ImGui::SetWindowPos({0, 0});
+        ImGui::SetWindowPos({0, WIN_HEIGHT - 220});
 //        ImGui::SetWindowCollapsed(true);
         set = true;
     }
@@ -329,10 +331,14 @@ void engine::system::drawImGui(std::shared_ptr<engine::RenderWindow> &window, st
     ImGui::TextWrapped("Entities: %d", registry->entitiesAliveCount()); // NOLINT
     ImGui::SliderInt("Max FPS", &fps, 10, 360, "%d"); // NOLINT
     window->setFramerateLimit(fps);
-    ImGui::InputText("Server HOST", networkManager->imGuiHost.data(), networkManager->imGuiHost.capacity(), ImGuiInputTextFlags_CharsNoBlank);
-    ImGui::InputText("Server TCP PORT", networkManager->imGuiTcpPort.data(), networkManager->imGuiTcpPort.capacity(), ImGuiInputTextFlags_CharsDecimal);
-    ImGui::InputText("Server UDP PORT", networkManager->imGuiUdpPort.data(), networkManager->imGuiUdpPort.capacity(), ImGuiInputTextFlags_CharsDecimal);
-    ImGui::InputText("Username", networkManager->imGuiUsername.data(), networkManager->imGuiUsername.capacity(), ImGuiInputTextFlags_CharsNoBlank);
+//    ImGui::InputText("Server HOST", networkManager->imGuiHost.data(), networkManager->imGuiHost.capacity(), ImGuiInputTextFlags_CharsNoBlank);
+//    ImGui::InputText("Server TCP PORT", networkManager->imGuiTcpPort.data(), networkManager->imGuiTcpPort.capacity(), ImGuiInputTextFlags_CharsDecimal);
+//    ImGui::InputText("Server UDP PORT", networkManager->imGuiUdpPort.data(), networkManager->imGuiUdpPort.capacity(), ImGuiInputTextFlags_CharsDecimal);
+//    ImGui::InputText("Username", networkManager->imGuiUsername.data(), networkManager->imGuiUsername.capacity(), ImGuiInputTextFlags_CharsNoBlank);
+    ImGui::InputText("Server HOST", &networkManager->imGuiHost, ImGuiInputTextFlags_CharsNoBlank);
+    ImGui::InputText("Server TCP PORT", &networkManager->imGuiTcpPort, ImGuiInputTextFlags_CharsDecimal);
+    ImGui::InputText("Server UDP PORT", &networkManager->imGuiUdpPort, ImGuiInputTextFlags_CharsDecimal);
+    ImGui::InputText("Username", &networkManager->imGuiUsername, ImGuiInputTextFlags_CharsNoBlank);
     static bool sent = false;
     ImGui::BeginDisabled(!networkManager->getUdpClient()->isConnected() || sent);
     ImGui::Checkbox("Ready", &networkManager->imGuiReady);

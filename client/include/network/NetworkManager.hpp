@@ -58,10 +58,10 @@ namespace rtype::client::network {
         NetworkManager()
         {
             imGuiUsername = "Player-" + std::to_string(_random.generate(0, 99999999));
-            this->imGuiHost.reserve(128);
-            this->imGuiTcpPort.reserve(128);
-            this->imGuiUdpPort.reserve(128);
-            this->imGuiUsername.reserve(128);
+//            this->imGuiHost.reserve(128);
+//            this->imGuiTcpPort.reserve(128);
+//            this->imGuiUdpPort.reserve(128);
+//            this->imGuiUsername.reserve(128);
             this->imGuiReady = false;
         }
 
