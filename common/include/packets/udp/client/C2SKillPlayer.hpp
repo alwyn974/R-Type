@@ -13,7 +13,7 @@
 namespace rtype::network::packet {
     class C2SKillPlayer : public C2SKillEntity {
     public:
-        explicit C2SKillPlayer(int id, int entityId) : C2SKillEntity(entityId) {}
+        explicit C2SKillPlayer(int entityId) : C2SKillEntity(entityId) {}
 
         C2SKillPlayer() : C2SKillEntity() {}
 

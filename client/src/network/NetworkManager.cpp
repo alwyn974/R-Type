@@ -152,17 +152,21 @@ namespace rtype::client::network {
             this->_logger->info("Received S2CEntitySpawn packet");
             //TODO: spawn entity
         });
+        this->_udpClient->registerHandler<packet::S2CGameStarted>([&](ConnectionToServerPtr &server, packet::S2CGameStarted &packet) {
+            this->_logger->info("Received S2CGameStarted packet");
+            //TODO: spawn entity
+        });
         this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
             this->_logger->info("Received S2CPlayerMove packet");
-            auto base = entityManager->getPrefabByNetworkId(packet.entityId);
-            if (base == nullptr) {
+            try {
+                auto base = entityManager->getPrefabByNetworkId(packet.entityId);
+                auto &vel = r->getComponent<uranus::ecs::component::Velocity>(base->getEntityId());
+                vel->x = packet.velX;
+                vel->y  = packet.velY;
+            } catch (const std::exception &) {
                 this->_logger->error("Received S2CPlayerMove packet for unknown entity");
                 return;
             }
-            auto &vel = r->getComponent<uranus::ecs::component::Velocity>(base->getEntityId());
-            vel->x = packet.x;
-            vel->y  = packet.y;
-            //TODO: move player
         });
         this->_udpClient->registerHandler<packet::S2CRemoveEntity>([&](ConnectionToServerPtr &server, packet::S2CRemoveEntity &packet) {
             this->_logger->info("Received S2CRemoveEntity packet");
@@ -181,6 +185,18 @@ namespace rtype::client::network {
             const sf::Vector2f pos = {static_cast<float>(packet.x), static_cast<float>(packet.y)};
             auto player = std::make_shared<Player>(packet.name, textureManager->getTextureByName("ship"), "bullet", packet.entityId, pos);
             entityManager->addPrefab(player);
+        });
+        this->_udpClient->registerHandler<packet::S2CSyncPlayer>([&](ConnectionToServerPtr &server, packet::S2CSyncPlayer &packet) {
+            this->_logger->info("Received S2CSyncPlayer packet ({}) {} {}", packet.entityId, packet.x, packet.y);
+            try {
+                auto base = entityManager->getPrefabByNetworkId(packet.entityId);
+                auto &pos = r->getComponent<uranus::ecs::component::Position>(base->getEntityId());
+                pos->x = packet.x;
+                pos->y  = packet.y;
+            } catch (const std::exception &) {
+                this->_logger->error("Received S2CSyncPlayer packet for unknown entity");
+                return;
+            }
         });
     }
 

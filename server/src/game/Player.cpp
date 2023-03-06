@@ -20,6 +20,8 @@ namespace rtype::server::game {
         this->_width = 0;
         this->_height = 0;
         this->_name = name;
+        this->_sceneLoaded = false;
+        this->_ready = false;
     }
 
     int Player::getTcpId() const
@@ -65,6 +67,16 @@ namespace rtype::server::game {
     const std::string &Player::getName() const
     {
         return this->_name;
+    }
+
+    bool Player::isSceneLoaded() const
+    {
+        return _sceneLoaded;
+    }
+
+    bool Player::isReady() const
+    {
+        return this->_ready;
     }
 
     Player &Player::setTcpId(int tcpId)
@@ -118,6 +130,18 @@ namespace rtype::server::game {
     Player &Player::setName(const std::string &name)
     {
         this->_name = name;
+        return *this;
+    }
+
+    Player &Player::setSceneLoaded(bool sceneLoaded)
+    {
+        this->_sceneLoaded = sceneLoaded;
+        return *this;
+    }
+
+    Player &Player::setReady(bool ready)
+    {
+        this->_ready = ready;
         return *this;
     }
 }

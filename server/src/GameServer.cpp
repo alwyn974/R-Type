@@ -55,7 +55,16 @@ namespace rtype::server {
         this->_udpServer->asyncRun();
         this->_logger->info("GameServer started");
 
-        while (true);
+        auto start = std::chrono::high_resolution_clock::now();
+        while (true) {
+            auto now = std::chrono::high_resolution_clock::now();
+            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count();
+            if (elapsed >= 25) {
+                for (const auto &[uid, player]: this->_players)
+                    this->_udpServer->broadcast(std::make_shared<packet::S2CSyncPlayer>(uid, player->getX(), player->getY()), player->getUdpId());
+                start = std::chrono::high_resolution_clock::now();
+            }
+        }
     }
 
     void GameServer::stop()
@@ -104,15 +113,17 @@ namespace rtype::server {
     void GameServer::registerUdpPacketHandlers()
     {
         this->_udpServer->registerHandler<packet::C2SClientConnect>([&](auto &client, auto &packet){ this->onClientConnected(client, packet); });
-        this->_udpServer->registerHandler<packet::C2SClientMove>([&](auto &client, auto &packet) {
-            this->_udpServer->broadcast(std::make_shared<packet::S2CPlayerMove>(packet.entityId, packet.x, packet.y), client->getId());
+        this->_udpServer->registerHandler<packet::C2SClientMove>([&](auto &client, packet::C2SClientMove &packet) {
+            if (!this->_players.contains(packet.entityId))
+                return this->_logger->warn("Received C2SClientMove from unknown player ({}).", packet.entityId);
             for (auto &[uid, player]: this->_players) {
                 if (player->getUdpId() == client->getId()) {
-                    player->setX(packet.x);
-                    player->setY(packet.y);
+                    player->setX(player->getX() + packet.velX);
+                    player->setY(player->getY() + packet.velY);
                     break;
                 }
             }
+            this->_udpServer->broadcast(std::make_shared<packet::S2CPlayerMove>(packet.entityId, packet.velX, packet.velY), client->getId());
         });
         this->_udpServer->registerHandler<packet::C2SPrepareShoot>([&](auto &client, auto &packet){
         });
@@ -122,6 +133,20 @@ namespace rtype::server {
         });
         this->_udpServer->registerHandler<packet::C2SKillPlayer>([&](auto &client, auto &packet){
         });
+        this->_udpServer->registerHandler<packet::C2SSceneLoaded>([&](auto &client, packet::C2SSceneLoaded &packet) {
+            this->_logger->info("Received C2SSceneLoaded from client ({}) - {}.", client->getId(), packet.sceneName);
+            for (const auto &[uid, player]: this->_players) {
+                if (player->getUdpId() != client->getId())
+                    client->send(std::make_shared<packet::S2CSpawnPlayer>(player->getName(), uid, player->getX(), player->getY()));
+                else
+                    player->setSceneLoaded(true);
+            }
+        });
+        //if (std::all_of(players.begin(), players.end(), [&](const auto &player) {
+        //                return player.second->isSceneLoaded();
+        //            })) {
+        //                this->_udpServer->broadcast(std::make_shared<packet::S2CGameStarted>());
+        //            }
     }
 
     void GameServer::onTcpClientConnected(ConnectionToClientPtr &client)
@@ -132,6 +157,12 @@ namespace rtype::server {
     void GameServer::onTcpClientDisconnected(ConnectionToClientPtr &client)
     {
         this->_logger->info("Client disconnected id: {}", client->getId());
+        for (const auto &[uid, player]: this->_players) {
+            if (player->getTcpId() == client->getId()) {
+                this->_players.erase(uid);
+                break;
+            }
+        }
     }
 
     void GameServer::onUdpClientConnected(ConnectionToClientPtr &client)
@@ -142,6 +173,12 @@ namespace rtype::server {
     void GameServer::onUdpClientDisconnected(ConnectionToClientPtr &client)
     {
         this->_logger->info("Client disconnected id: {}", client->getId());
+        for (const auto &[uid, player]: this->_players) {
+            if (player->getUdpId() == client->getId()) {
+                this->_players.erase(uid);
+                break;
+            }
+        }
     }
 
     //
@@ -183,10 +220,6 @@ namespace rtype::server {
         this->_players[packet.uid]->setUdpId(client->getId());
         this->_udpServer->broadcast(std::make_shared<packet::S2CSpawnPlayer>(packet.name, packet.uid, 0, 0), client->getId());
         client->send(std::make_shared<packet::S2CClientConnected>(packet.uid));
-        for (const auto &[uid, player]: this->_players) {
-            if (uid != packet.uid)
-                client->send(std::make_shared<packet::S2CSpawnPlayer>(player->getName(), uid, player->getX(), player->getY()));
-        } //TODO: move this when a player have loaded it's scene
     }
 
 } // namespace rtype::server

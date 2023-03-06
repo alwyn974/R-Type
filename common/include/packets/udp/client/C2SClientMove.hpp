@@ -14,33 +14,33 @@ namespace rtype::network::packet {
     class C2SClientMove : public sa::AbstractPacket {
     public:
         std::uint32_t entityId;
-        int x, y;
+        int velX, velY;
 
         C2SClientMove() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::UDP)
         {
             this->entityId = 0;
-            this->x = 0;
-            this->y = 0;
+            this->velX = 0;
+            this->velY = 0;
         };
         C2SClientMove(std::uint32_t entityId, int x, int y) : C2SClientMove()
         {
             this->entityId = entityId;
-            this->x = x;
-            this->y = y;
+            this->velX = x;
+            this->velY = y;
         }
 
         void toBytes(sa::ByteBuffer &byteBuffer) override
         {
             byteBuffer.writeUInt(entityId);
-            byteBuffer.writeInt(x);
-            byteBuffer.writeInt(y);
+            byteBuffer.writeInt(velX);
+            byteBuffer.writeInt(velY);
         }
 
         void fromBytes(sa::ByteBuffer &byteBuffer) override
         {
             entityId = byteBuffer.readUInt();
-            x = byteBuffer.readInt();
-            y = byteBuffer.readInt();
+            velX = byteBuffer.readInt();
+            velY = byteBuffer.readInt();
         }
     };
 }

@@ -24,6 +24,8 @@ namespace rtype::server::game {
         int getWidth() const;
         int getHeight() const;
         const std::string &getName() const;
+        bool isSceneLoaded() const;
+        bool isReady() const;
 
         Player &setTcpId(int tcpId);
         Player &setUdpId(int udpId);
@@ -34,6 +36,8 @@ namespace rtype::server::game {
         Player &setWidth(int width);
         Player &setHeight(int height);
         Player &setName(const std::string &name);
+        Player &setSceneLoaded(bool sceneLoaded);
+        Player &setReady(bool ready);
 
     private:
         int _tcpId;
@@ -45,6 +49,8 @@ namespace rtype::server::game {
         int _width;
         int _height;
         std::string _name;
+        bool _sceneLoaded;
+        bool _ready;
     };
 } // namespace rtype::server::game
 

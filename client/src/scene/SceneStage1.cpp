@@ -14,6 +14,7 @@
 #include "ui/Button.hpp"
 #include "Parallax.hpp"
 #include "Boss1.hpp"
+#include "network/NetworkManager.hpp"
 
 SceneStage1::SceneStage1() : Scene("Stage1") {}
 
@@ -101,7 +102,8 @@ void SceneStage1::wave(uranus::ecs::component::Position startOffset)
 
 void SceneStage1::init()
 {
-    auto &textureManager = engine::Manager::getTextureManager();
+    static auto &textureManager = engine::Manager::getTextureManager();
+    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
 
     textureManager->addTexture("assets/rtype/textures/background/planets.png", "planets");
     textureManager->addTexture("assets/rtype/textures/background/stars.png", "stars");
@@ -112,10 +114,11 @@ void SceneStage1::init()
     auto player = std::make_shared<Player>("player", textureManager->getTextureByName("ship"), "bullet");
     addPrefab(player);
 
-    textureManager->addTexture("assets/rtype/textures/entity/dobkeratops.png", "boss");
-    auto boss = std::make_shared<Boss>("boss", uranus::ecs::component::Position{300, 200}, textureManager->getTextureByName("boss"));
-    addPrefab(boss);
+    networkManager->send(std::make_shared<rtype::network::packet::C2SSceneLoaded>(this->getName()));
+//    textureManager->addTexture("assets/rtype/textures/entity/dobkeratops.png", "boss");
+//    auto boss = std::make_shared<Boss>("boss", uranus::ecs::component::Position{300, 200}, textureManager->getTextureByName("boss"));
+//    addPrefab(boss);
 
-    wave(uranus::ecs::component::Position{0, 0});
+//    wave(uranus::ecs::component::Position{0, 0});
 //    wave(uranus::ecs::component::Position{2000, 0});
 }
