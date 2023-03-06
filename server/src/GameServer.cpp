@@ -60,7 +60,7 @@ namespace rtype::server {
             auto now = std::chrono::high_resolution_clock::now();
             auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count();
             if (elapsed >= 1000) {
-                //this->sync();
+                this->sync();
                 start = std::chrono::high_resolution_clock::now();
             }
         }
