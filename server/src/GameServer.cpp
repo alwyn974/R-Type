@@ -59,12 +59,18 @@ namespace rtype::server {
         while (true) {
             auto now = std::chrono::high_resolution_clock::now();
             auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count();
-            if (elapsed >= 25) {
+            if (elapsed >= 1000) {
                 for (const auto &[uid, player]: this->_players)
-                    this->_udpServer->broadcast(std::make_shared<packet::S2CSyncPlayer>(uid, player->getX(), player->getY()), player->getUdpId());
+                    this->_udpServer->broadcast(std::make_shared<packet::S2CSyncPlayer>(uid, player->getX(), player->getY()));
                 start = std::chrono::high_resolution_clock::now();
             }
         }
+    }
+
+    void GameServer::sync()
+    {
+        for (const auto &[uid, player]: this->_players)
+            this->_udpServer->broadcast(std::make_shared<packet::S2CSyncPlayer>(uid, player->getX(), player->getY()));
     }
 
     void GameServer::stop()

@@ -59,6 +59,8 @@ namespace rtype::server {
         void onUdpClientConnected(ConnectionToClientPtr &client);
         void onUdpClientDisconnected(ConnectionToClientPtr &client);
 
+        void sync();
+
         //
         // TCP
         //
