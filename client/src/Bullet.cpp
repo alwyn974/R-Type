@@ -14,6 +14,7 @@ Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position p
     this->canMove = false;
     this->networkId = networkId;
     this->networked = networkId > 0 && !owned;
+    this->sent = false;
 
     auto &r = engine::Manager::getRegistry();
     uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
@@ -90,11 +91,12 @@ void Bullet::handleKeyboard(size_t entity, const engine::Event event)
     static auto &r = engine::Manager::getRegistry();
 
     if (this->canMove) return;
-    if (event.type == event.MouseButtonReleased) {
+    if (event.type == event.MouseButtonReleased && !this->sent) {
         this->canMove = true;
-        engine::system::stopAnimation(this->_entityId);
+//        engine::system::stopAnimation(this->_entityId);
         auto pos = r->getComponent<uranus::ecs::component::Position>(entity);
-        networkManager->send(std::make_shared<rtype::network::packet::C2SPlayerShoot>(this->networkId, pos->x, pos->y));
+//        networkManager->send(std::make_shared<rtype::network::packet::C2SPlayerShoot>(this->networkId, pos->x, pos->y));
+        this->sent = true;
     }
 }
 

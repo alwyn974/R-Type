@@ -30,6 +30,7 @@ protected:
     bool canMove;
     bool networked;
     std::uint32_t networkId;
+    bool sent;
 };
 
 #endif // URANUS_BULLET_HPP
