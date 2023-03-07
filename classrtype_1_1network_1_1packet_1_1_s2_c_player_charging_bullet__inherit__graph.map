@@ -1,0 +1,5 @@
+<map id="rtype::network::packet::S2CPlayerChargingBullet" name="rtype::network::packet::S2CPlayerChargingBullet">
+<area shape="rect" id="node1" title=" " alt="" coords="5,79,179,119"/>
+<area shape="rect" id="node3" href="$classrtype_1_1network_1_1packet_1_1_s2_c_player_shoot_bullet.html" title=" " alt="" coords="14,167,170,207"/>
+<area shape="rect" id="node2" title=" " alt="" coords="26,5,158,31"/>
+</map>

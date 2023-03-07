@@ -240,18 +240,24 @@ var hierarchy =
     [ "json11::Statics", "structjson11_1_1_statics.html", null ],
     [ "Layer", "class_layer.html", null ],
     [ "MyDocument", "struct_my_document.html", null ],
+    [ "Random", "class_random.html", null ],
     [ "rtype::client::network::NetworkManager", "classrtype_1_1client_1_1network_1_1_network_manager.html", null ],
+    [ "rtype::network::packet::RegisterPacket", "classrtype_1_1network_1_1packet_1_1_register_packet.html", null ],
     [ "rtype::server::game::Player", "classrtype_1_1server_1_1game_1_1_player.html", null ],
     [ "rtype::server::GameServer", "classrtype_1_1server_1_1_game_server.html", null ],
     [ "sa::AbstractPacket", null, [
-      [ "rtype::network::packet::C2SClientConnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_connected.html", null ],
+      [ "rtype::network::packet::C2SClientConnect", "classrtype_1_1network_1_1packet_1_1_c2_s_client_connect.html", null ],
       [ "rtype::network::packet::C2SClientDisconnecting", "classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnecting.html", null ],
+      [ "rtype::network::packet::C2SClientMove", "classrtype_1_1network_1_1packet_1_1_c2_s_client_move.html", null ],
       [ "rtype::network::packet::C2SKillEntity", "classrtype_1_1network_1_1packet_1_1_c2_s_kill_entity.html", [
         [ "rtype::network::packet::C2SKillPlayer", "classrtype_1_1network_1_1packet_1_1_c2_s_kill_player.html", null ]
       ] ],
       [ "rtype::network::packet::C2SPlayerHandshake", "classrtype_1_1network_1_1packet_1_1_c2_s_player_handshake.html", null ],
+      [ "rtype::network::packet::C2SPlayerReady", "classrtype_1_1network_1_1packet_1_1_c2_s_player_ready.html", null ],
       [ "rtype::network::packet::C2SPlayerShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_player_shoot.html", null ],
       [ "rtype::network::packet::C2SPrepareShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_prepare_shoot.html", null ],
+      [ "rtype::network::packet::C2SSceneLoaded", "classrtype_1_1network_1_1packet_1_1_c2_s_scene_loaded.html", null ],
+      [ "rtype::network::packet::S2CClientConnected", "classrtype_1_1network_1_1packet_1_1_s2_c_client_connected.html", null ],
       [ "rtype::network::packet::S2CEntityMove", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_move.html", [
         [ "rtype::network::packet::S2CPlayerMove", "classrtype_1_1network_1_1packet_1_1_s2_c_player_move.html", null ]
       ] ],
@@ -259,11 +265,16 @@ var hierarchy =
         [ "rtype::network::packet::S2CSpawnBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_bullet.html", null ],
         [ "rtype::network::packet::S2CSpawnPlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_player.html", null ]
       ] ],
+      [ "rtype::network::packet::S2CGameStarted", "classrtype_1_1network_1_1packet_1_1_s2_c_game_started.html", null ],
       [ "rtype::network::packet::S2CPlayerAuthentified", "classrtype_1_1network_1_1packet_1_1_s2_c_player_authentified.html", null ],
+      [ "rtype::network::packet::S2CPlayerChargingBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_player_charging_bullet.html", [
+        [ "rtype::network::packet::S2CPlayerShootBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_player_shoot_bullet.html", null ]
+      ] ],
       [ "rtype::network::packet::S2CPlayerScore", "classrtype_1_1network_1_1packet_1_1_s2_c_player_score.html", null ],
       [ "rtype::network::packet::S2CRemoveEntity", "classrtype_1_1network_1_1packet_1_1_s2_c_remove_entity.html", [
         [ "rtype::network::packet::S2CRemovePlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_remove_player.html", null ]
-      ] ]
+      ] ],
+      [ "rtype::network::packet::S2CSyncPlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_sync_player.html", null ]
     ] ],
     [ "sf::Clock", null, [
       [ "engine::Clock", "classengine_1_1_clock.html", null ]
@@ -379,7 +390,10 @@ var hierarchy =
     [ "uranus::ecs::component::AnimationData", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_animation_data", null ],
     [ "uranus::ecs::component::Collisionable", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_collisionable", null ],
     [ "uranus::ecs::component::Dead", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_dead", null ],
-    [ "uranus::ecs::component::Drawable", "structuranus_1_1ecs_1_1component_1_1_drawable.html", null ],
+    [ "uranus::ecs::component::Drawable", "structuranus_1_1ecs_1_1component_1_1_drawable.html", [
+      [ "uranus::ecs::component::Shape", "structuranus_1_1ecs_1_1component_1_1_shape.html", null ],
+      [ "uranus::ecs::component::Sprite", "structuranus_1_1ecs_1_1component_1_1_sprite.html", null ]
+    ] ],
     [ "uranus::ecs::component::FrameData", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_frame_data", null ],
     [ "uranus::ecs::component::InputKeyboard", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_keyboard", null ],
     [ "uranus::ecs::component::InputMouse", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_mouse", null ],
@@ -387,8 +401,6 @@ var hierarchy =
     [ "uranus::ecs::component::Name", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_name", null ],
     [ "uranus::ecs::component::NetworkId", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_network_id", null ],
     [ "uranus::ecs::component::Position", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position", null ],
-    [ "uranus::ecs::component::RectangleShape", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_rectangle_shape", null ],
-    [ "uranus::ecs::component::Sprite", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_sprite", null ],
     [ "uranus::ecs::component::Velocity", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_velocity", null ],
     [ "uranus::ecs::Entity", "classuranus_1_1ecs_1_1_entity.html", null ],
     [ "uranus::ecs::Registry", "classuranus_1_1ecs_1_1_registry.html", null ],

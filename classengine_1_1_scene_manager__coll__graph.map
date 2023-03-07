@@ -1,8 +1,11 @@
 <map id="engine::SceneManager" name="engine::SceneManager">
-<area shape="rect" id="node1" title=" " alt="" coords="1039,59,1192,85"/>
-<area shape="rect" id="node2" title=" " alt="" coords="179,34,257,59"/>
-<area shape="rect" id="node5" href="$classengine_1_1_scene.html" title=" " alt="" coords="348,62,451,87"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,27,129,67"/>
-<area shape="rect" id="node4" title=" " alt="" coords="517,68,673,108"/>
-<area shape="rect" id="node6" title=" " alt="" coords="779,120,937,160"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1809,59,1963,85"/>
+<area shape="rect" id="node2" title=" " alt="" coords="179,59,257,85"/>
+<area shape="rect" id="node5" href="$classengine_1_1_scene.html" title=" " alt="" coords="1119,119,1221,145"/>
+<area shape="rect" id="node8" href="$classengine_1_1_base.html" title=" " alt="" coords="389,114,485,139"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,52,129,92"/>
+<area shape="rect" id="node4" title=" " alt="" coords="1288,112,1444,152"/>
+<area shape="rect" id="node9" title=" " alt="" coords="1549,120,1708,160"/>
+<area shape="rect" id="node6" title=" " alt="" coords="813,112,969,152"/>
+<area shape="rect" id="node7" title=" " alt="" coords="552,120,708,160"/>
 </map>

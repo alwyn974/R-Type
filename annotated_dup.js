@@ -55,22 +55,31 @@ var annotated_dup =
       ] ],
       [ "network", null, [
         [ "packet", null, [
-          [ "C2SClientConnected", "classrtype_1_1network_1_1packet_1_1_c2_s_client_connected.html", null ],
+          [ "C2SClientConnect", "classrtype_1_1network_1_1packet_1_1_c2_s_client_connect.html", null ],
           [ "C2SClientDisconnecting", "classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnecting.html", null ],
+          [ "C2SClientMove", "classrtype_1_1network_1_1packet_1_1_c2_s_client_move.html", null ],
           [ "C2SKillEntity", "classrtype_1_1network_1_1packet_1_1_c2_s_kill_entity.html", null ],
           [ "C2SKillPlayer", "classrtype_1_1network_1_1packet_1_1_c2_s_kill_player.html", null ],
           [ "C2SPlayerHandshake", "classrtype_1_1network_1_1packet_1_1_c2_s_player_handshake.html", null ],
+          [ "C2SPlayerReady", "classrtype_1_1network_1_1packet_1_1_c2_s_player_ready.html", null ],
           [ "C2SPlayerShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_player_shoot.html", null ],
           [ "C2SPrepareShoot", "classrtype_1_1network_1_1packet_1_1_c2_s_prepare_shoot.html", null ],
+          [ "C2SSceneLoaded", "classrtype_1_1network_1_1packet_1_1_c2_s_scene_loaded.html", null ],
+          [ "RegisterPacket", "classrtype_1_1network_1_1packet_1_1_register_packet.html", null ],
+          [ "S2CClientConnected", "classrtype_1_1network_1_1packet_1_1_s2_c_client_connected.html", null ],
           [ "S2CEntityMove", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_move.html", null ],
           [ "S2CEntitySpawn", "classrtype_1_1network_1_1packet_1_1_s2_c_entity_spawn.html", null ],
+          [ "S2CGameStarted", "classrtype_1_1network_1_1packet_1_1_s2_c_game_started.html", null ],
           [ "S2CPlayerAuthentified", "classrtype_1_1network_1_1packet_1_1_s2_c_player_authentified.html", null ],
+          [ "S2CPlayerChargingBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_player_charging_bullet.html", null ],
           [ "S2CPlayerMove", "classrtype_1_1network_1_1packet_1_1_s2_c_player_move.html", null ],
           [ "S2CPlayerScore", "classrtype_1_1network_1_1packet_1_1_s2_c_player_score.html", null ],
+          [ "S2CPlayerShootBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_player_shoot_bullet.html", null ],
           [ "S2CRemoveEntity", "classrtype_1_1network_1_1packet_1_1_s2_c_remove_entity.html", null ],
           [ "S2CRemovePlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_remove_player.html", null ],
           [ "S2CSpawnBullet", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_bullet.html", null ],
-          [ "S2CSpawnPlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_player.html", null ]
+          [ "S2CSpawnPlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_spawn_player.html", null ],
+          [ "S2CSyncPlayer", "classrtype_1_1network_1_1packet_1_1_s2_c_sync_player.html", null ]
         ] ]
       ] ],
       [ "server", null, [
@@ -142,8 +151,8 @@ var annotated_dup =
           [ "Name", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_name", null ],
           [ "NetworkId", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_network_id", null ],
           [ "Position", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position", null ],
-          [ "RectangleShape", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_rectangle_shape", null ],
-          [ "Sprite", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_sprite", null ],
+          [ "Shape", "structuranus_1_1ecs_1_1component_1_1_shape.html", null ],
+          [ "Sprite", "structuranus_1_1ecs_1_1component_1_1_sprite.html", null ],
           [ "Velocity", "namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_velocity", null ]
         ] ],
         [ "Entity", "classuranus_1_1ecs_1_1_entity.html", "classuranus_1_1ecs_1_1_entity" ],
@@ -282,6 +291,7 @@ var annotated_dup =
     [ "Parallax", "class_parallax.html", null ],
     [ "ParallaxLayer", "class_parallax_layer.html", null ],
     [ "Player", "class_player.html", null ],
+    [ "Random", "class_random.html", "class_random" ],
     [ "SceneGame", "class_scene_game.html", null ],
     [ "SceneMain", "class_scene_main.html", null ],
     [ "SceneStage1", "class_scene_stage1.html", null ],

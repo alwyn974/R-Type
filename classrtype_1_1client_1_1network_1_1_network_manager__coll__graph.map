@@ -1,10 +1,11 @@
 <map id="rtype::client::network::NetworkManager" name="rtype::client::network::NetworkManager">
-<area shape="rect" id="node1" title=" " alt="" coords="500,152,639,192"/>
-<area shape="rect" id="node4" title=" " alt="" coords="787,152,1013,192"/>
-<area shape="rect" id="node2" title=" " alt="" coords="217,38,296,63"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,31,129,71"/>
-<area shape="rect" id="node5" title=" " alt="" coords="179,88,335,128"/>
-<area shape="rect" id="node6" title=" " alt="" coords="191,152,323,192"/>
-<area shape="rect" id="node7" title=" " alt="" coords="191,216,323,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="191,280,323,320"/>
+<area shape="rect" id="node1" title=" " alt="" coords="500,171,639,211"/>
+<area shape="rect" id="node5" title=" " alt="" coords="787,171,1013,211"/>
+<area shape="rect" id="node2" title=" " alt="" coords="217,39,296,65"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,32,129,72"/>
+<area shape="rect" id="node4" href="$class_random.html" title=" " alt="" coords="221,89,292,114"/>
+<area shape="rect" id="node6" title=" " alt="" coords="179,139,335,179"/>
+<area shape="rect" id="node7" title=" " alt="" coords="191,203,323,243"/>
+<area shape="rect" id="node8" title=" " alt="" coords="191,267,323,307"/>
+<area shape="rect" id="node9" title=" " alt="" coords="191,331,323,371"/>
 </map>

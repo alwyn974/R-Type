@@ -115,7 +115,7 @@ $(document).ready(function(){initNavTree('classrtype_1_1server_1_1_game_server.h
 <div class="dynheader">
 Collaboration diagram for rtype::server::GameServer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classrtype_1_1server_1_1_game_server__coll__graph.svg" width="964" height="387"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classrtype_1_1server_1_1_game_server__coll__graph.svg" width="1307" height="387"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -154,9 +154,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a317e2d0e646065a9b1ed081f63d28118"><td class="memItemLeft" align="right" valign="top"><a id="a317e2d0e646065a9b1ed081f63d28118" name="a317e2d0e646065a9b1ed081f63d28118"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onClientConnected</b> (ConnectionToClientPtr &amp;client, <a class="el" href="classrtype_1_1network_1_1packet_1_1_c2_s_client_connected.html">packet::C2SClientConnected</a> &amp;packet)</td></tr>
-<tr class="separator:a317e2d0e646065a9b1ed081f63d28118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f4ab17b6f3c272cf2a366ac3aac9c84"><td class="memItemLeft" align="right" valign="top"><a id="a6f4ab17b6f3c272cf2a366ac3aac9c84" name="a6f4ab17b6f3c272cf2a366ac3aac9c84"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onClientConnected</b> (ConnectionToClientPtr &amp;client, <a class="el" href="classrtype_1_1network_1_1packet_1_1_c2_s_client_connect.html">packet::C2SClientConnect</a> &amp;packet)</td></tr>
+<tr class="separator:a6f4ab17b6f3c272cf2a366ac3aac9c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9b26d220dbf407a7c6f674452e87a2e"><td class="memItemLeft" align="right" valign="top"><a id="ad9b26d220dbf407a7c6f674452e87a2e" name="ad9b26d220dbf407a7c6f674452e87a2e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onClientDisconnecting</b> (ConnectionToClientPtr &amp;client, <a class="el" href="classrtype_1_1network_1_1packet_1_1_c2_s_client_disconnecting.html">packet::C2SClientDisconnecting</a> &amp;packet)</td></tr>
 <tr class="separator:ad9b26d220dbf407a7c6f674452e87a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,18 +178,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>onUdpClientDisconnect
 <tr class="memitem:a2af246c51362248eede1377f256a0ebc"><td class="memItemLeft" align="right" valign="top"><a id="a2af246c51362248eede1377f256a0ebc" name="a2af246c51362248eede1377f256a0ebc"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>registerTcpCallbacks</b> ()</td></tr>
 <tr class="separator:a2af246c51362248eede1377f256a0ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa54e0ce3036a875ce6609569f973c817"><td class="memItemLeft" align="right" valign="top"><a id="aa54e0ce3036a875ce6609569f973c817" name="aa54e0ce3036a875ce6609569f973c817"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>registerTcpPackets</b> ()</td></tr>
-<tr class="separator:aa54e0ce3036a875ce6609569f973c817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f06fb084ea66e54b9319a976379ef9"><td class="memItemLeft" align="right" valign="top"><a id="af3f06fb084ea66e54b9319a976379ef9" name="af3f06fb084ea66e54b9319a976379ef9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>registerTcpPacketHandlers</b> ()</td></tr>
+<tr class="separator:af3f06fb084ea66e54b9319a976379ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25e076c344c07856ee8525c5fa103275"><td class="memItemLeft" align="right" valign="top"><a id="a25e076c344c07856ee8525c5fa103275" name="a25e076c344c07856ee8525c5fa103275"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>registerUdpCallbacks</b> ()</td></tr>
 <tr class="separator:a25e076c344c07856ee8525c5fa103275"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04fd7be39488845e2e269a856591c866"><td class="memItemLeft" align="right" valign="top"><a id="a04fd7be39488845e2e269a856591c866" name="a04fd7be39488845e2e269a856591c866"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>registerUdpPackets</b> ()</td></tr>
-<tr class="separator:a04fd7be39488845e2e269a856591c866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00088b723e7c16472baf759402b47eba"><td class="memItemLeft" align="right" valign="top"><a id="a00088b723e7c16472baf759402b47eba" name="a00088b723e7c16472baf759402b47eba"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>registerUdpPacketHandlers</b> ()</td></tr>
+<tr class="separator:a00088b723e7c16472baf759402b47eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad96564e02e5c71cc2e0d5c1df60ee691"><td class="memItemLeft" align="right" valign="top"><a id="ad96564e02e5c71cc2e0d5c1df60ee691" name="ad96564e02e5c71cc2e0d5c1df60ee691"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sync</b> ()</td></tr>
+<tr class="separator:ad96564e02e5c71cc2e0d5c1df60ee691"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a0b890d4a1f5faccc27ee797ba14831c0"><td class="memItemLeft" align="right" valign="top"><a id="a0b890d4a1f5faccc27ee797ba14831c0" name="a0b890d4a1f5faccc27ee797ba14831c0"></a>
+std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>_globalId</b></td></tr>
+<tr class="separator:a0b890d4a1f5faccc27ee797ba14831c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8abba3572f1ae787ac234a270490d8c4"><td class="memItemLeft" align="right" valign="top"><a id="a8abba3572f1ae787ac234a270490d8c4" name="a8abba3572f1ae787ac234a270490d8c4"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_host</b></td></tr>
 <tr class="separator:a8abba3572f1ae787ac234a270490d8c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,9 +229,6 @@ std::uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>_udpPort</b>
 <tr class="memitem:a62783c7464a94c386af188a23f99c3fa"><td class="memItemLeft" align="right" valign="top"><a id="a62783c7464a94c386af188a23f99c3fa" name="a62783c7464a94c386af188a23f99c3fa"></a>
 std::shared_ptr&lt; sa::UDPServer &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_udpServer</b></td></tr>
 <tr class="separator:a62783c7464a94c386af188a23f99c3fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8eac5d8be3773c2e71562e10a8c5ea4"><td class="memItemLeft" align="right" valign="top"><a id="ad8eac5d8be3773c2e71562e10a8c5ea4" name="ad8eac5d8be3773c2e71562e10a8c5ea4"></a>
-std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>globalId</b></td></tr>
-<tr class="separator:ad8eac5d8be3773c2e71562e10a8c5ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/github/workspace/server/include/<a class="el" href="_game_server_8hpp_source.html">GameServer.hpp</a></li>

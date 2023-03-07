@@ -13,5 +13,6 @@ var dir_5c23080e296bbe846f4ed2d01d7b595d =
     [ "Explosion.hpp", "_explosion_8hpp_source.html", null ],
     [ "Parallax.hpp", "_parallax_8hpp_source.html", null ],
     [ "ParallaxLayer.hpp", "_parallax_layer_8hpp_source.html", null ],
-    [ "Player.hpp", "client_2include_2_player_8hpp_source.html", null ]
+    [ "Player.hpp", "client_2include_2_player_8hpp_source.html", null ],
+    [ "Random.hpp", "_random_8hpp_source.html", null ]
 ];

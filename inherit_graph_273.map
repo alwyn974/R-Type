@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_input_keyboard" title=" " alt="" coords="5,5,164,45"/>
+<area shape="rect" id="node1" href="$structuranus_1_1ecs_1_1component_1_1_drawable.html" title=" " alt="" coords="5,37,164,77"/>
+<area shape="rect" id="node2" href="$structuranus_1_1ecs_1_1component_1_1_shape.html" title=" " alt="" coords="212,5,371,45"/>
+<area shape="rect" id="node3" href="$structuranus_1_1ecs_1_1component_1_1_sprite.html" title=" " alt="" coords="212,69,371,109"/>
 </map>

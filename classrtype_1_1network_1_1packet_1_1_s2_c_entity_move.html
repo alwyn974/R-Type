@@ -126,9 +126,9 @@ Collaboration diagram for rtype::network::packet::S2CEntityMove:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a190438cb546dae38fc7f111b9f958633"><td class="memItemLeft" align="right" valign="top"><a id="a190438cb546dae38fc7f111b9f958633" name="a190438cb546dae38fc7f111b9f958633"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>S2CEntityMove</b> (int id, int entity_id, int x, int y)</td></tr>
-<tr class="separator:a190438cb546dae38fc7f111b9f958633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0bfe62b2ddf8edfbaff57c4c2c9c1e7"><td class="memItemLeft" align="right" valign="top"><a id="ab0bfe62b2ddf8edfbaff57c4c2c9c1e7" name="ab0bfe62b2ddf8edfbaff57c4c2c9c1e7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>S2CEntityMove</b> (std::uint32_t entityId, float velX, float velY)</td></tr>
+<tr class="separator:ab0bfe62b2ddf8edfbaff57c4c2c9c1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5cb2b87511bfafca65701bb1daae8ee"><td class="memItemLeft" align="right" valign="top"><a id="ac5cb2b87511bfafca65701bb1daae8ee" name="ac5cb2b87511bfafca65701bb1daae8ee"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>fromBytes</b> (sa::ByteBuffer &amp;byteBuffer) override</td></tr>
 <tr class="separator:ac5cb2b87511bfafca65701bb1daae8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,18 +138,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>toBytes</b> (sa::Byte
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:acae28b4639ffa46c64c1ce24a056375c"><td class="memItemLeft" align="right" valign="top"><a id="acae28b4639ffa46c64c1ce24a056375c" name="acae28b4639ffa46c64c1ce24a056375c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>entity_id</b></td></tr>
-<tr class="separator:acae28b4639ffa46c64c1ce24a056375c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab89da8de2ba46f63e1590242b549feaa"><td class="memItemLeft" align="right" valign="top"><a id="ab89da8de2ba46f63e1590242b549feaa" name="ab89da8de2ba46f63e1590242b549feaa"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
-<tr class="separator:ab89da8de2ba46f63e1590242b549feaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94884bbf64649f250cce6d416ee3864f"><td class="memItemLeft" align="right" valign="top"><a id="a94884bbf64649f250cce6d416ee3864f" name="a94884bbf64649f250cce6d416ee3864f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
-<tr class="separator:a94884bbf64649f250cce6d416ee3864f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c32e15f7d7362aea294415981749537"><td class="memItemLeft" align="right" valign="top"><a id="a0c32e15f7d7362aea294415981749537" name="a0c32e15f7d7362aea294415981749537"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
-<tr class="separator:a0c32e15f7d7362aea294415981749537"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d0b8da75a6c11aee87a75df1c32a129"><td class="memItemLeft" align="right" valign="top"><a id="a0d0b8da75a6c11aee87a75df1c32a129" name="a0d0b8da75a6c11aee87a75df1c32a129"></a>
+std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>entityId</b></td></tr>
+<tr class="separator:a0d0b8da75a6c11aee87a75df1c32a129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b1ac58775ac3097e81b9843d30e5929"><td class="memItemLeft" align="right" valign="top"><a id="a7b1ac58775ac3097e81b9843d30e5929" name="a7b1ac58775ac3097e81b9843d30e5929"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>velX</b></td></tr>
+<tr class="separator:a7b1ac58775ac3097e81b9843d30e5929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34141e1b623eaa35a54e1ca028a23c08"><td class="memItemLeft" align="right" valign="top"><a id="a34141e1b623eaa35a54e1ca028a23c08" name="a34141e1b623eaa35a54e1ca028a23c08"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>velY</b></td></tr>
+<tr class="separator:a34141e1b623eaa35a54e1ca028a23c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>/github/workspace/common/include/packets/udp/server/<a class="el" href="_s2_c_entity_move_8hpp_source.html">S2CEntityMove.hpp</a></li>

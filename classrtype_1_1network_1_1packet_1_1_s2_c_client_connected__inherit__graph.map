@@ -1,0 +1,4 @@
+<map id="rtype::network::packet::S2CClientConnected" name="rtype::network::packet::S2CClientConnected">
+<area shape="rect" id="node1" title="Response to C2SClientConnect packet." alt="" coords="5,79,153,119"/>
+<area shape="rect" id="node2" title=" " alt="" coords="13,5,145,31"/>
+</map>

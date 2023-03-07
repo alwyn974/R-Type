@@ -124,19 +124,21 @@ $(document).ready(function(){initNavTree('_dependencies_8hpp_source.html',''); i
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;SFML/Window.hpp&gt;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceuranus_1_1ecs.html">uranus::ecs</a> {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">enum</span> LayerMask {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        PLAYER = 0,</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        PLAYER_BULLET,</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        ENEMY,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        ENEMY_BULLET,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        BONUS,</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        BUTTON,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        LAYER_MASK_SIZE <span class="comment">// Always at the end</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    };</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif </span><span class="comment">// URANUS_DEPENDENCIES_HPP</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define Z_INDEX_MAX 10</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceuranus_1_1ecs.html">uranus::ecs</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">enum</span> LayerMask {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        PLAYER = 0,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        PLAYER_BULLET,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        ENEMY,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        ENEMY_BULLET,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        BONUS,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        BUTTON,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        LAYER_MASK_SIZE <span class="comment">// Always at the end</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    };</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#endif </span><span class="comment">// URANUS_DEPENDENCIES_HPP</span></div>
 <div class="ttc" id="anamespaceuranus_1_1ecs_html"><div class="ttname"><a href="namespaceuranus_1_1ecs.html">uranus::ecs</a></div><div class="ttdoc">Namespace containing all the ECS related classes.</div><div class="ttdef"><b>Definition:</b> Components.hpp:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

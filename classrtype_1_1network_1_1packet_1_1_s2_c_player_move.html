@@ -125,9 +125,9 @@ Collaboration diagram for rtype::network::packet::S2CPlayerMove:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a006c1faf196756e0c11279f081ff1c08"><td class="memItemLeft" align="right" valign="top"><a id="a006c1faf196756e0c11279f081ff1c08" name="a006c1faf196756e0c11279f081ff1c08"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>S2CPlayerMove</b> (int id, int entity_id, int x, int y)</td></tr>
-<tr class="separator:a006c1faf196756e0c11279f081ff1c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39e2ff3cdf15976502f5f8268340932d"><td class="memItemLeft" align="right" valign="top"><a id="a39e2ff3cdf15976502f5f8268340932d" name="a39e2ff3cdf15976502f5f8268340932d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>S2CPlayerMove</b> (std::uint32_t entityId, float x, float y)</td></tr>
+<tr class="separator:a39e2ff3cdf15976502f5f8268340932d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a121c8ae8b1e84f63ac0cf4ece2b751fd"><td class="memItemLeft" align="right" valign="top"><a id="a121c8ae8b1e84f63ac0cf4ece2b751fd" name="a121c8ae8b1e84f63ac0cf4ece2b751fd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>fromBytes</b> (sa::ByteBuffer &amp;byteBuffer) override</td></tr>
 <tr class="separator:a121c8ae8b1e84f63ac0cf4ece2b751fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,9 +135,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>fromBytes</b> (sa::By
 void&#160;</td><td class="memItemRight" valign="bottom"><b>toBytes</b> (sa::ByteBuffer &amp;byteBuffer) override</td></tr>
 <tr class="separator:acdd28f6aba128d275de61be0e9340153"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classrtype_1_1network_1_1packet_1_1_s2_c_entity_move.html">rtype::network::packet::S2CEntityMove</a></td></tr>
-<tr class="memitem:a190438cb546dae38fc7f111b9f958633 inherit pub_methods_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="a190438cb546dae38fc7f111b9f958633" name="a190438cb546dae38fc7f111b9f958633"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>S2CEntityMove</b> (int id, int entity_id, int x, int y)</td></tr>
-<tr class="separator:a190438cb546dae38fc7f111b9f958633 inherit pub_methods_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0bfe62b2ddf8edfbaff57c4c2c9c1e7 inherit pub_methods_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="ab0bfe62b2ddf8edfbaff57c4c2c9c1e7" name="ab0bfe62b2ddf8edfbaff57c4c2c9c1e7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>S2CEntityMove</b> (std::uint32_t entityId, float velX, float velY)</td></tr>
+<tr class="separator:ab0bfe62b2ddf8edfbaff57c4c2c9c1e7 inherit pub_methods_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5cb2b87511bfafca65701bb1daae8ee inherit pub_methods_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="ac5cb2b87511bfafca65701bb1daae8ee" name="ac5cb2b87511bfafca65701bb1daae8ee"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>fromBytes</b> (sa::ByteBuffer &amp;byteBuffer) override</td></tr>
 <tr class="separator:ac5cb2b87511bfafca65701bb1daae8ee inherit pub_methods_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,18 +148,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>toBytes</b> (sa::Byte
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move')"><img src="closed.png" alt="-"/>&#160;Data Fields inherited from <a class="el" href="classrtype_1_1network_1_1packet_1_1_s2_c_entity_move.html">rtype::network::packet::S2CEntityMove</a></td></tr>
-<tr class="memitem:acae28b4639ffa46c64c1ce24a056375c inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="acae28b4639ffa46c64c1ce24a056375c" name="acae28b4639ffa46c64c1ce24a056375c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>entity_id</b></td></tr>
-<tr class="separator:acae28b4639ffa46c64c1ce24a056375c inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab89da8de2ba46f63e1590242b549feaa inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="ab89da8de2ba46f63e1590242b549feaa" name="ab89da8de2ba46f63e1590242b549feaa"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
-<tr class="separator:ab89da8de2ba46f63e1590242b549feaa inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94884bbf64649f250cce6d416ee3864f inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="a94884bbf64649f250cce6d416ee3864f" name="a94884bbf64649f250cce6d416ee3864f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
-<tr class="separator:a94884bbf64649f250cce6d416ee3864f inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c32e15f7d7362aea294415981749537 inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="a0c32e15f7d7362aea294415981749537" name="a0c32e15f7d7362aea294415981749537"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
-<tr class="separator:a0c32e15f7d7362aea294415981749537 inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d0b8da75a6c11aee87a75df1c32a129 inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="a0d0b8da75a6c11aee87a75df1c32a129" name="a0d0b8da75a6c11aee87a75df1c32a129"></a>
+std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>entityId</b></td></tr>
+<tr class="separator:a0d0b8da75a6c11aee87a75df1c32a129 inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b1ac58775ac3097e81b9843d30e5929 inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="a7b1ac58775ac3097e81b9843d30e5929" name="a7b1ac58775ac3097e81b9843d30e5929"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>velX</b></td></tr>
+<tr class="separator:a7b1ac58775ac3097e81b9843d30e5929 inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34141e1b623eaa35a54e1ca028a23c08 inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memItemLeft" align="right" valign="top"><a id="a34141e1b623eaa35a54e1ca028a23c08" name="a34141e1b623eaa35a54e1ca028a23c08"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>velY</b></td></tr>
+<tr class="separator:a34141e1b623eaa35a54e1ca028a23c08 inherit pub_attribs_classrtype_1_1network_1_1packet_1_1_s2_c_entity_move"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>/github/workspace/common/include/packets/udp/server/<a class="el" href="_s2_c_player_move_8hpp_source.html">S2CPlayerMove.hpp</a></li>

@@ -13,16 +13,16 @@
 <title>Node0</title>
 <g id="a_node1"><a xlink:title=" ">
 <polygon fill="#e0e0e0" stroke="#999999" points="54,-19 0,-19 0,0 54,0 54,-19"/>
-<text text-anchor="middle" x="27" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">sf::Event</text>
+<text text-anchor="middle" x="27" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">sf::Clock</text>
 </a>
 </g>
 </g>
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="classengine_1_1_event.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classengine_1_1_clock.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="164,-19 90,-19 90,0 164,0 164,-19"/>
-<text text-anchor="middle" x="127" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">engine::Event</text>
+<text text-anchor="middle" x="127" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">engine::Clock</text>
 </a>
 </g>
 </g>
