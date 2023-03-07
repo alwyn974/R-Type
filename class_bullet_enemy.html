@@ -128,8 +128,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a515d9f19ac82e8c69045365042ec37d5"><td class="memItemLeft" align="right" valign="top"><a id="a515d9f19ac82e8c69045365042ec37d5" name="a515d9f19ac82e8c69045365042ec37d5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BulletEnemy</b> (const std::string &amp;uniqueName, <a class="el" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position">uranus::ecs::component::Position</a> pos, std::shared_ptr&lt; <a class="el" href="classengine_1_1_texture.html">engine::Texture</a> &gt; &amp;texture)</td></tr>
 <tr class="separator:a515d9f19ac82e8c69045365042ec37d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab679dd4f7b0c72b7a84005bbde4efbba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bullet_enemy.html#ab679dd4f7b0c72b7a84005bbde4efbba">move</a> (size_t entity) override</td></tr>
-<tr class="separator:ab679dd4f7b0c72b7a84005bbde4efbba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69f2985f53faa7e721c4e9c3db0ec670"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bullet_enemy.html#a69f2985f53faa7e721c4e9c3db0ec670">move</a> (size_t entity, float delta) override</td></tr>
+<tr class="separator:a69f2985f53faa7e721c4e9c3db0ec670"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_bullet"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_bullet')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_bullet.html">Bullet</a></td></tr>
 <tr class="memitem:a8327a5a74dd4921ab63e0f9431259e87 inherit pub_methods_class_bullet"><td class="memItemLeft" align="right" valign="top"><a id="a8327a5a74dd4921ab63e0f9431259e87" name="a8327a5a74dd4921ab63e0f9431259e87"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Bullet</b> (const std::string &amp;uniqueName, <a class="el" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position">uranus::ecs::component::Position</a> pos, std::shared_ptr&lt; <a class="el" href="classengine_1_1_texture.html">engine::Texture</a> &gt; &amp;texture, std::uint32_t networkId=0, bool owned=false)</td></tr>
@@ -143,12 +143,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleKeyboard</b> (s
 <tr class="memitem:a047844ab6b26c0222a1bbe437eb1f390 inherit pub_methods_class_bullet"><td class="memItemLeft" align="right" valign="top"><a id="a047844ab6b26c0222a1bbe437eb1f390" name="a047844ab6b26c0222a1bbe437eb1f390"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isCanMove</b> () const</td></tr>
 <tr class="separator:a047844ab6b26c0222a1bbe437eb1f390 inherit pub_methods_class_bullet"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8749a9657f24a3218385c347c840b11e inherit pub_methods_class_bullet"><td class="memItemLeft" align="right" valign="top"><a id="a8749a9657f24a3218385c347c840b11e" name="a8749a9657f24a3218385c347c840b11e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> (const size_t)</td></tr>
-<tr class="separator:a8749a9657f24a3218385c347c840b11e inherit pub_methods_class_bullet"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13add5df9e7c670c96c7e803d126b2c6 inherit pub_methods_class_bullet"><td class="memItemLeft" align="right" valign="top"><a id="a13add5df9e7c670c96c7e803d126b2c6" name="a13add5df9e7c670c96c7e803d126b2c6"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>move</b> (size_t entity)</td></tr>
-<tr class="separator:a13add5df9e7c670c96c7e803d126b2c6 inherit pub_methods_class_bullet"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acda55414c7aee5a98b9f73830daf6b56 inherit pub_methods_class_bullet"><td class="memItemLeft" align="right" valign="top"><a id="acda55414c7aee5a98b9f73830daf6b56" name="acda55414c7aee5a98b9f73830daf6b56"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> (const size_t, float delta)</td></tr>
+<tr class="separator:acda55414c7aee5a98b9f73830daf6b56 inherit pub_methods_class_bullet"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e3d1e7f45bcbf33f79a88e4124eb4f2 inherit pub_methods_class_bullet"><td class="memItemLeft" align="right" valign="top"><a id="a3e3d1e7f45bcbf33f79a88e4124eb4f2" name="a3e3d1e7f45bcbf33f79a88e4124eb4f2"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>move</b> (size_t entity, float delta)</td></tr>
+<tr class="separator:a3e3d1e7f45bcbf33f79a88e4124eb4f2 inherit pub_methods_class_bullet"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a098d67b10d0e9d13670966c036b29bbb inherit pub_methods_class_bullet"><td class="memItemLeft" align="right" valign="top"><a id="a098d67b10d0e9d13670966c036b29bbb" name="a098d67b10d0e9d13670966c036b29bbb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCanMove</b> (bool move)</td></tr>
 <tr class="separator:a098d67b10d0e9d13670966c036b29bbb inherit pub_methods_class_bullet"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,8 +193,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_uniqueName</b
 <tr class="separator:a12dc97777601a60f15e429e17703fcfc inherit pro_attribs_classengine_1_1_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab679dd4f7b0c72b7a84005bbde4efbba" name="ab679dd4f7b0c72b7a84005bbde4efbba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab679dd4f7b0c72b7a84005bbde4efbba">&#9670;&#160;</a></span>move()</h2>
+<a id="a69f2985f53faa7e721c4e9c3db0ec670" name="a69f2985f53faa7e721c4e9c3db0ec670"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69f2985f53faa7e721c4e9c3db0ec670">&#9670;&#160;</a></span>move()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,8 +206,18 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_uniqueName</b
           <td class="memname">void BulletEnemy::move </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>entity</em></td><td>)</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>delta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

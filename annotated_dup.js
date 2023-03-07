@@ -169,6 +169,7 @@ var annotated_dup =
     [ "Boss", "class_boss.html", null ],
     [ "Bullet", "class_bullet.html", null ],
     [ "BulletEnemy", "class_bullet_enemy.html", null ],
+    [ "Damaging", "class_damaging.html", null ],
     [ "Enemy", "class_enemy.html", null ],
     [ "EnemyShooter", "class_enemy_shooter.html", null ],
     [ "ExampleAppConsole", "struct_example_app_console.html", null ],

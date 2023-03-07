@@ -114,13 +114,13 @@ $(document).ready(function(){initNavTree('class_enemy_shooter.html',''); initRes
 <div class="dynheader">
 Inheritance diagram for EnemyShooter:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_enemy_shooter__inherit__graph.svg" width="118" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_enemy_shooter__inherit__graph.svg" width="211" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for EnemyShooter:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_enemy_shooter__coll__graph.svg" width="266" height="391"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_enemy_shooter__coll__graph.svg" width="371" height="391"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -129,8 +129,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5c02bc79996551422478b006f4707cc5"><td class="memItemLeft" align="right" valign="top"><a id="a5c02bc79996551422478b006f4707cc5" name="a5c02bc79996551422478b006f4707cc5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>EnemyShooter</b> (const std::string &amp;uniqueName, <a class="el" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position">uranus::ecs::component::Position</a> pos, std::shared_ptr&lt; <a class="el" href="classengine_1_1_texture.html">engine::Texture</a> &gt; &amp;texture)</td></tr>
 <tr class="separator:a5c02bc79996551422478b006f4707cc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb9a9c2d8deff42dadb8f59c4e9105ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_shooter.html#abb9a9c2d8deff42dadb8f59c4e9105ac">loop</a> (size_t entity) override</td></tr>
-<tr class="separator:abb9a9c2d8deff42dadb8f59c4e9105ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab97935372d43e81f8c6cb6ddc97d18b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_shooter.html#ab97935372d43e81f8c6cb6ddc97d18b6">loop</a> (size_t entity, float delta) override</td></tr>
+<tr class="separator:ab97935372d43e81f8c6cb6ddc97d18b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_enemy"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_enemy')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_enemy.html">Enemy</a></td></tr>
 <tr class="memitem:a94af955a443578acc4ad304b08368108 inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a id="a94af955a443578acc4ad304b08368108" name="a94af955a443578acc4ad304b08368108"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Enemy</b> (const std::string &amp;uniqueName, <a class="el" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position">uranus::ecs::component::Position</a> pos, std::shared_ptr&lt; <a class="el" href="classengine_1_1_texture.html">engine::Texture</a> &gt; &amp;texture)</td></tr>
@@ -141,9 +141,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>animationCallback</b>
 <tr class="memitem:a40b984e8367ab12002ff1889b83ccf27 inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a id="a40b984e8367ab12002ff1889b83ccf27" name="a40b984e8367ab12002ff1889b83ccf27"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>colliding</b> (const size_t &amp;entity, const size_t &amp;entityCollidingWith)</td></tr>
 <tr class="separator:a40b984e8367ab12002ff1889b83ccf27 inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac96ea5a982d2ae91ab321ff032d65647 inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a id="ac96ea5a982d2ae91ab321ff032d65647" name="ac96ea5a982d2ae91ab321ff032d65647"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> (size_t)</td></tr>
-<tr class="separator:ac96ea5a982d2ae91ab321ff032d65647 inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac10e07d95ee84e2bc1efc3d3976e677c inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#ac10e07d95ee84e2bc1efc3d3976e677c">getDamage</a> (size_t entity, int damage) override</td></tr>
+<tr class="separator:ac10e07d95ee84e2bc1efc3d3976e677c inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b03b429fc5ddbe53ec09d0880f90eab inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a id="a8b03b429fc5ddbe53ec09d0880f90eab" name="a8b03b429fc5ddbe53ec09d0880f90eab"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> (size_t, float delta)</td></tr>
+<tr class="separator:a8b03b429fc5ddbe53ec09d0880f90eab inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classengine_1_1_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classengine_1_1_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classengine_1_1_base.html">engine::Base</a></td></tr>
 <tr class="memitem:ab940230c4f2db151fdf8d073e032e180 inherit pub_methods_classengine_1_1_base"><td class="memItemLeft" align="right" valign="top"><a id="ab940230c4f2db151fdf8d073e032e180" name="ab940230c4f2db151fdf8d073e032e180"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Base</b> (const std::string &amp;uniqueName)</td></tr>
@@ -160,6 +162,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setEntityId</b> (size
 <tr class="memitem:a871499f3be47776e7132be4623b2e928 inherit pub_methods_classengine_1_1_base"><td class="memItemLeft" align="right" valign="top"><a id="a871499f3be47776e7132be4623b2e928" name="a871499f3be47776e7132be4623b2e928"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setUniqueName</b> (const std::string &amp;uniqueName)</td></tr>
 <tr class="separator:a871499f3be47776e7132be4623b2e928 inherit pub_methods_classengine_1_1_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4a21bce183691ab16cd42ef9f283b2a"><td class="memItemLeft" align="right" valign="top"><a id="ad4a21bce183691ab16cd42ef9f283b2a" name="ad4a21bce183691ab16cd42ef9f283b2a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>getDamage</b> (size_t entity, int damage)=0</td></tr>
+<tr class="separator:ad4a21bce183691ab16cd42ef9f283b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -179,10 +184,14 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>_entityId</b></td><
 <tr class="memitem:a12dc97777601a60f15e429e17703fcfc inherit pro_attribs_classengine_1_1_base"><td class="memItemLeft" align="right" valign="top"><a id="a12dc97777601a60f15e429e17703fcfc" name="a12dc97777601a60f15e429e17703fcfc"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_uniqueName</b></td></tr>
 <tr class="separator:a12dc97777601a60f15e429e17703fcfc inherit pro_attribs_classengine_1_1_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_damaging"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_damaging')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_damaging.html">Damaging</a></td></tr>
+<tr class="memitem:a4603627388f784ccc902d9036f22f759 inherit pro_attribs_class_damaging"><td class="memItemLeft" align="right" valign="top"><a id="a4603627388f784ccc902d9036f22f759" name="a4603627388f784ccc902d9036f22f759"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>_health</b></td></tr>
+<tr class="separator:a4603627388f784ccc902d9036f22f759 inherit pro_attribs_class_damaging"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="abb9a9c2d8deff42dadb8f59c4e9105ac" name="abb9a9c2d8deff42dadb8f59c4e9105ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb9a9c2d8deff42dadb8f59c4e9105ac">&#9670;&#160;</a></span>loop()</h2>
+<a id="ab97935372d43e81f8c6cb6ddc97d18b6" name="ab97935372d43e81f8c6cb6ddc97d18b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab97935372d43e81f8c6cb6ddc97d18b6">&#9670;&#160;</a></span>loop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -194,8 +203,18 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_uniqueName</b
           <td class="memname">void EnemyShooter::loop </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>entity</em></td><td>)</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>delta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

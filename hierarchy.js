@@ -6,14 +6,18 @@ var hierarchy =
     [ "anonymous_namespace{imgui_freetype.cpp}::GlyphInfo", "namespaceanonymous__namespace_02imgui__freetype_8cpp_03.html#structanonymous__namespace_02imgui__freetype_8cpp_03_1_1_glyph_info", null ],
     [ "Args", "struct_args.html", null ],
     [ "tson::Color< uint8_t >", "classtson_1_1_color.html", null ],
-    [ "engine::Base", "classengine_1_1_base.html", [
-      [ "Bullet", "class_bullet.html", [
-        [ "BulletEnemy", "class_bullet_enemy.html", null ]
-      ] ],
+    [ "Damaging", "class_damaging.html", [
       [ "Enemy", "class_enemy.html", [
         [ "Boss", "class_boss.html", null ],
         [ "EnemyShooter", "class_enemy_shooter.html", null ]
       ] ],
+      [ "Player", "class_player.html", null ]
+    ] ],
+    [ "engine::Base", "classengine_1_1_base.html", [
+      [ "Bullet", "class_bullet.html", [
+        [ "BulletEnemy", "class_bullet_enemy.html", null ]
+      ] ],
+      [ "Enemy", "class_enemy.html", null ],
       [ "Explosion", "class_explosion.html", null ],
       [ "Parallax", "class_parallax.html", null ],
       [ "ParallaxLayer", "class_parallax_layer.html", null ],

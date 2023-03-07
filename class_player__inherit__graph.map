@@ -1,4 +1,5 @@
 <map id="Player" name="Player">
-<area shape="rect" id="node1" title=" " alt="" coords="24,79,83,104"/>
+<area shape="rect" id="node1" title=" " alt="" coords="80,79,139,104"/>
 <area shape="rect" id="node2" href="$classengine_1_1_base.html" title=" " alt="" coords="5,5,101,31"/>
+<area shape="rect" id="node3" href="$class_damaging.html" title=" " alt="" coords="125,5,205,31"/>
 </map>

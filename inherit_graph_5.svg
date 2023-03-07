@@ -11,206 +11,227 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:href="classengine_1_1_base.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="72,-167 0,-167 0,-148 72,-148 72,-167"/>
-<text text-anchor="middle" x="36" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">engine::Base</text>
+<g id="a_node1"><a xlink:href="class_damaging.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="66,-296 6,-296 6,-277 66,-277 66,-296"/>
+<text text-anchor="middle" x="36" y="-284" font-family="Helvetica,sans-Serif" font-size="10.00">Damaging</text>
 </a>
 </g>
 </g>
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="class_bullet.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="166,-315 125,-315 125,-296 166,-296 166,-315"/>
-<text text-anchor="middle" x="145.5" y="-303" font-family="Helvetica,sans-Serif" font-size="10.00">Bullet</text>
+<g id="a_node2"><a xlink:href="class_enemy.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="168.5,-278 122.5,-278 122.5,-259 168.5,-259 168.5,-278"/>
+<text text-anchor="middle" x="145.5" y="-266" font-family="Helvetica,sans-Serif" font-size="10.00">Enemy</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node0&#45;&gt;Node1</title>
-<path fill="none" stroke="#63b8ff" d="M43.75,-178.08C53.82,-206 75.18,-256.02 108,-287.5 112.69,-292 118.72,-295.59 124.53,-298.34"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="47.09,-177.01 40.52,-168.69 40.47,-179.29 47.09,-177.01"/>
-</g>
-<!-- Node3 -->
-<g id="node4" class="node">
-<title>Node3</title>
-<g id="a_node4"><a xlink:href="class_enemy.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="168.5,-278 122.5,-278 122.5,-259 168.5,-259 168.5,-278"/>
-<text text-anchor="middle" x="145.5" y="-266" font-family="Helvetica,sans-Serif" font-size="10.00">Enemy</text>
-</a>
-</g>
-</g>
-<!-- Node0&#45;&gt;Node3 -->
-<g id="edge3" class="edge">
-<title>Node0&#45;&gt;Node3</title>
-<path fill="none" stroke="#63b8ff" d="M48.24,-177.17C60.71,-197.61 82.47,-229.5 108,-250.5 112.26,-254 117.31,-257.04 122.27,-259.57"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="51.32,-175.51 43.22,-168.69 45.3,-179.08 51.32,-175.51"/>
-</g>
-<!-- Node6 -->
-<g id="node7" class="node">
-<title>Node6</title>
-<g id="a_node7"><a xlink:href="class_explosion.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="174.5,-241 116.5,-241 116.5,-222 174.5,-222 174.5,-241"/>
-<text text-anchor="middle" x="145.5" y="-229" font-family="Helvetica,sans-Serif" font-size="10.00">Explosion</text>
-</a>
-</g>
-</g>
-<!-- Node0&#45;&gt;Node6 -->
-<g id="edge6" class="edge">
-<title>Node0&#45;&gt;Node6</title>
-<path fill="none" stroke="#63b8ff" d="M56.63,-174.82C70.44,-186.54 89.66,-201.93 108,-213.5 112.54,-216.37 117.6,-219.12 122.48,-221.57"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="59.02,-172.26 49.16,-168.38 54.45,-177.56 59.02,-172.26"/>
-</g>
-<!-- Node7 -->
-<g id="node8" class="node">
-<title>Node7</title>
-<g id="a_node8"><a xlink:href="class_parallax.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="171,-204 120,-204 120,-185 171,-185 171,-204"/>
-<text text-anchor="middle" x="145.5" y="-192" font-family="Helvetica,sans-Serif" font-size="10.00">Parallax</text>
-</a>
-</g>
-</g>
-<!-- Node0&#45;&gt;Node7 -->
-<g id="edge7" class="edge">
-<title>Node0&#45;&gt;Node7</title>
-<path fill="none" stroke="#63b8ff" d="M76.48,-171.09C90.92,-176.06 106.83,-181.53 119.63,-185.94"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="77.83,-167.85 67.24,-167.91 75.56,-174.47 77.83,-167.85"/>
-</g>
-<!-- Node8 -->
-<g id="node9" class="node">
-<title>Node8</title>
-<g id="a_node9"><a xlink:href="class_parallax_layer.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="183,-167 108,-167 108,-148 183,-148 183,-167"/>
-<text text-anchor="middle" x="145.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">ParallaxLayer</text>
-</a>
-</g>
-</g>
-<!-- Node0&#45;&gt;Node8 -->
-<g id="edge8" class="edge">
-<title>Node0&#45;&gt;Node8</title>
-<path fill="none" stroke="#63b8ff" d="M83.88,-157.5C91.81,-157.5 99.94,-157.5 107.57,-157.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="84.01,-154 74.01,-157.5 84.01,-161 84.01,-154"/>
-</g>
-<!-- Node9 -->
-<g id="node10" class="node">
-<title>Node9</title>
-<g id="a_node10"><a xlink:href="class_player.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="167.5,-130 123.5,-130 123.5,-111 167.5,-111 167.5,-130"/>
-<text text-anchor="middle" x="145.5" y="-118" font-family="Helvetica,sans-Serif" font-size="10.00">Player</text>
-</a>
-</g>
-</g>
-<!-- Node0&#45;&gt;Node9 -->
-<g id="edge9" class="edge">
-<title>Node0&#45;&gt;Node9</title>
-<path fill="none" stroke="#63b8ff" d="M76.39,-143.94C92.19,-138.51 109.77,-132.45 123.12,-127.86"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="75.56,-140.53 67.24,-147.09 77.83,-147.15 75.56,-140.53"/>
+<path fill="none" stroke="#63b8ff" d="M77.6,-279.7C92.77,-277.16 109.42,-274.37 122.32,-272.21"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="77.15,-276.23 67.87,-281.33 78.31,-283.13 77.15,-276.23"/>
 </g>
 <!-- Node10 -->
-<g id="node11" class="node">
+<g id="node5" class="node">
 <title>Node10</title>
-<g id="a_node11"><a xlink:href="classbonus_1_1_bonus.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="183,-93 108,-93 108,-74 183,-74 183,-93"/>
-<text text-anchor="middle" x="145.5" y="-81" font-family="Helvetica,sans-Serif" font-size="10.00">bonus::Bonus</text>
+<g id="a_node5"><a xlink:href="class_player.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="167.5,-315 123.5,-315 123.5,-296 167.5,-296 167.5,-315"/>
+<text text-anchor="middle" x="145.5" y="-303" font-family="Helvetica,sans-Serif" font-size="10.00">Player</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node10 -->
-<g id="edge10" class="edge">
+<g id="edge4" class="edge">
 <title>Node0&#45;&gt;Node10</title>
-<path fill="none" stroke="#63b8ff" d="M56.76,-140.64C70.63,-129.21 89.86,-114.11 108,-102.5 113.05,-99.26 118.72,-96.11 124.05,-93.32"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="54.68,-137.82 49.26,-146.92 59.17,-143.19 54.68,-137.82"/>
-</g>
-<!-- Node12 -->
-<g id="node13" class="node">
-<title>Node12</title>
-<g id="a_node13"><a xlink:href="classui_1_1_button.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="174,-56 117,-56 117,-37 174,-37 174,-56"/>
-<text text-anchor="middle" x="145.5" y="-44" font-family="Helvetica,sans-Serif" font-size="10.00">ui::Button</text>
-</a>
-</g>
-</g>
-<!-- Node0&#45;&gt;Node12 -->
-<g id="edge12" class="edge">
-<title>Node0&#45;&gt;Node12</title>
-<path fill="none" stroke="#63b8ff" d="M48.57,-137.84C61.19,-117.71 82.95,-86.46 108,-65.5 112.16,-62.02 117.07,-58.93 121.92,-56.3"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="45.69,-135.85 43.48,-146.21 51.67,-139.49 45.69,-135.85"/>
-</g>
-<!-- Node13 -->
-<g id="node14" class="node">
-<title>Node13</title>
-<g id="a_node14"><a xlink:href="classui_1_1_input_text.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="180,-19 111,-19 111,0 180,0 180,-19"/>
-<text text-anchor="middle" x="145.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">ui::InputText</text>
-</a>
-</g>
-</g>
-<!-- Node0&#45;&gt;Node13 -->
-<g id="edge13" class="edge">
-<title>Node0&#45;&gt;Node13</title>
-<path fill="none" stroke="#63b8ff" d="M44.05,-136.77C54.34,-109.1 75.83,-59.94 108,-28.5 111.58,-25.01 115.93,-22 120.36,-19.48"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="40.78,-135.5 40.72,-146.09 47.38,-137.85 40.78,-135.5"/>
+<path fill="none" stroke="#63b8ff" d="M77.31,-293.62C92.82,-296.37 109.93,-299.39 123,-301.7"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="78.32,-290.25 67.87,-291.96 77.1,-297.14 78.32,-290.25"/>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node">
 <title>Node2</title>
-<g id="a_node3"><a xlink:href="class_bullet_enemy.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="305.5,-315 234.5,-315 234.5,-296 305.5,-296 305.5,-315"/>
-<text text-anchor="middle" x="270" y="-303" font-family="Helvetica,sans-Serif" font-size="10.00">BulletEnemy</text>
+<g id="a_node3"><a xlink:href="class_boss.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="289.5,-296 250.5,-296 250.5,-277 289.5,-277 289.5,-296"/>
+<text text-anchor="middle" x="270" y="-284" font-family="Helvetica,sans-Serif" font-size="10.00">Boss</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="#63b8ff" d="M177.87,-305.5C195.09,-305.5 216.47,-305.5 234.2,-305.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="177.97,-302 167.97,-305.5 177.97,-309 177.97,-302"/>
+<path fill="none" stroke="#63b8ff" d="M180.12,-273.44C202.72,-276.76 231.67,-281.02 250.28,-283.75"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="180.87,-270.01 170.47,-272.02 179.85,-276.94 180.87,-270.01"/>
+</g>
+<!-- Node3 -->
+<g id="node4" class="node">
+<title>Node3</title>
+<g id="a_node4"><a xlink:href="class_enemy_shooter.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="310,-259 230,-259 230,-240 310,-240 310,-259"/>
+<text text-anchor="middle" x="270" y="-247" font-family="Helvetica,sans-Serif" font-size="10.00">EnemyShooter</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node3 -->
+<g id="edge3" class="edge">
+<title>Node1&#45;&gt;Node3</title>
+<path fill="none" stroke="#63b8ff" d="M180.07,-263.29C195.46,-260.91 213.8,-258.06 229.81,-255.58"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="179.81,-259.79 170.46,-264.78 180.88,-266.71 179.81,-259.79"/>
 </g>
 <!-- Node4 -->
-<g id="node5" class="node">
+<g id="node6" class="node">
 <title>Node4</title>
-<g id="a_node5"><a xlink:href="class_boss.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="289.5,-278 250.5,-278 250.5,-259 289.5,-259 289.5,-278"/>
-<text text-anchor="middle" x="270" y="-266" font-family="Helvetica,sans-Serif" font-size="10.00">Boss</text>
+<g id="a_node6"><a xlink:href="classengine_1_1_base.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="72,-167 0,-167 0,-148 72,-148 72,-167"/>
+<text text-anchor="middle" x="36" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">engine::Base</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge4" class="edge">
-<title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="#63b8ff" d="M180.43,-268.5C202.99,-268.5 231.76,-268.5 250.28,-268.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="180.48,-265 170.48,-268.5 180.48,-272 180.48,-265"/>
+<!-- Node4&#45;&gt;Node1 -->
+<g id="edge7" class="edge">
+<title>Node4&#45;&gt;Node1</title>
+<path fill="none" stroke="#63b8ff" d="M48.24,-177.17C60.71,-197.61 82.47,-229.5 108,-250.5 112.26,-254 117.31,-257.04 122.27,-259.57"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="51.32,-175.51 43.22,-168.69 45.3,-179.08 51.32,-175.51"/>
+</g>
+<!-- Node4&#45;&gt;Node10 -->
+<g id="edge11" class="edge">
+<title>Node4&#45;&gt;Node10</title>
+<path fill="none" stroke="#63b8ff" d="M43.75,-178.08C53.82,-206 75.18,-256.02 108,-287.5 112.28,-291.61 117.69,-294.96 123.01,-297.61"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="47.09,-177.01 40.52,-168.69 40.47,-179.29 47.09,-177.01"/>
 </g>
 <!-- Node5 -->
-<g id="node6" class="node">
+<g id="node7" class="node">
 <title>Node5</title>
-<g id="a_node6"><a xlink:href="class_enemy_shooter.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="310,-241 230,-241 230,-222 310,-222 310,-241"/>
-<text text-anchor="middle" x="270" y="-229" font-family="Helvetica,sans-Serif" font-size="10.00">EnemyShooter</text>
+<g id="a_node7"><a xlink:href="class_bullet.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="166,-19 125,-19 125,0 166,0 166,-19"/>
+<text text-anchor="middle" x="145.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">Bullet</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node5 -->
+<!-- Node4&#45;&gt;Node5 -->
 <g id="edge5" class="edge">
-<title>Node3&#45;&gt;Node5</title>
-<path fill="none" stroke="#63b8ff" d="M179.82,-258.44C197.29,-253.16 218.63,-246.71 236.05,-241.45"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="178.98,-255.03 170.42,-261.28 181,-261.74 178.98,-255.03"/>
+<title>Node4&#45;&gt;Node5</title>
+<path fill="none" stroke="#63b8ff" d="M43.75,-136.92C53.82,-109 75.18,-58.98 108,-27.5 112.69,-23 118.72,-19.41 124.53,-16.66"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="40.47,-135.71 40.52,-146.31 47.09,-137.99 40.47,-135.71"/>
+</g>
+<!-- Node7 -->
+<g id="node9" class="node">
+<title>Node7</title>
+<g id="a_node9"><a xlink:href="class_explosion.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="174.5,-241 116.5,-241 116.5,-222 174.5,-222 174.5,-241"/>
+<text text-anchor="middle" x="145.5" y="-229" font-family="Helvetica,sans-Serif" font-size="10.00">Explosion</text>
+</a>
+</g>
+</g>
+<!-- Node4&#45;&gt;Node7 -->
+<g id="edge8" class="edge">
+<title>Node4&#45;&gt;Node7</title>
+<path fill="none" stroke="#63b8ff" d="M56.63,-174.82C70.44,-186.54 89.66,-201.93 108,-213.5 112.54,-216.37 117.6,-219.12 122.48,-221.57"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="59.02,-172.26 49.16,-168.38 54.45,-177.56 59.02,-172.26"/>
+</g>
+<!-- Node8 -->
+<g id="node10" class="node">
+<title>Node8</title>
+<g id="a_node10"><a xlink:href="class_parallax.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="171,-204 120,-204 120,-185 171,-185 171,-204"/>
+<text text-anchor="middle" x="145.5" y="-192" font-family="Helvetica,sans-Serif" font-size="10.00">Parallax</text>
+</a>
+</g>
+</g>
+<!-- Node4&#45;&gt;Node8 -->
+<g id="edge9" class="edge">
+<title>Node4&#45;&gt;Node8</title>
+<path fill="none" stroke="#63b8ff" d="M76.48,-171.09C90.92,-176.06 106.83,-181.53 119.63,-185.94"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="77.83,-167.85 67.24,-167.91 75.56,-174.47 77.83,-167.85"/>
+</g>
+<!-- Node9 -->
+<g id="node11" class="node">
+<title>Node9</title>
+<g id="a_node11"><a xlink:href="class_parallax_layer.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="183,-167 108,-167 108,-148 183,-148 183,-167"/>
+<text text-anchor="middle" x="145.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">ParallaxLayer</text>
+</a>
+</g>
+</g>
+<!-- Node4&#45;&gt;Node9 -->
+<g id="edge10" class="edge">
+<title>Node4&#45;&gt;Node9</title>
+<path fill="none" stroke="#63b8ff" d="M83.88,-157.5C91.81,-157.5 99.94,-157.5 107.57,-157.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="84.01,-154 74.01,-157.5 84.01,-161 84.01,-154"/>
 </g>
 <!-- Node11 -->
 <g id="node12" class="node">
 <title>Node11</title>
-<g id="a_node12"><a xlink:href="classbonus_1_1_double_bullet.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="321,-93 219,-93 219,-74 321,-74 321,-93"/>
-<text text-anchor="middle" x="270" y="-81" font-family="Helvetica,sans-Serif" font-size="10.00">bonus::DoubleBullet</text>
+<g id="a_node12"><a xlink:href="classbonus_1_1_bonus.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="183,-130 108,-130 108,-111 183,-111 183,-130"/>
+<text text-anchor="middle" x="145.5" y="-118" font-family="Helvetica,sans-Serif" font-size="10.00">bonus::Bonus</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node11 -->
-<g id="edge11" class="edge">
-<title>Node10&#45;&gt;Node11</title>
-<path fill="none" stroke="#63b8ff" d="M194.57,-83.5C202.48,-83.5 210.71,-83.5 218.68,-83.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="194.77,-80 184.77,-83.5 194.77,-87 194.77,-80"/>
+<!-- Node4&#45;&gt;Node11 -->
+<g id="edge12" class="edge">
+<title>Node4&#45;&gt;Node11</title>
+<path fill="none" stroke="#63b8ff" d="M76.36,-143.95C89.35,-139.48 103.55,-134.59 115.61,-130.44"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="75.56,-140.53 67.24,-147.09 77.83,-147.15 75.56,-140.53"/>
+</g>
+<!-- Node13 -->
+<g id="node14" class="node">
+<title>Node13</title>
+<g id="a_node14"><a xlink:href="classui_1_1_button.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="174,-93 117,-93 117,-74 174,-74 174,-93"/>
+<text text-anchor="middle" x="145.5" y="-81" font-family="Helvetica,sans-Serif" font-size="10.00">ui::Button</text>
+</a>
+</g>
+</g>
+<!-- Node4&#45;&gt;Node13 -->
+<g id="edge14" class="edge">
+<title>Node4&#45;&gt;Node13</title>
+<path fill="none" stroke="#63b8ff" d="M56.76,-140.64C70.63,-129.21 89.86,-114.11 108,-102.5 113.05,-99.26 118.72,-96.11 124.05,-93.32"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="54.68,-137.82 49.26,-146.92 59.17,-143.19 54.68,-137.82"/>
+</g>
+<!-- Node14 -->
+<g id="node15" class="node">
+<title>Node14</title>
+<g id="a_node15"><a xlink:href="classui_1_1_input_text.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="180,-56 111,-56 111,-37 180,-37 180,-56"/>
+<text text-anchor="middle" x="145.5" y="-44" font-family="Helvetica,sans-Serif" font-size="10.00">ui::InputText</text>
+</a>
+</g>
+</g>
+<!-- Node4&#45;&gt;Node14 -->
+<g id="edge15" class="edge">
+<title>Node4&#45;&gt;Node14</title>
+<path fill="none" stroke="#63b8ff" d="M48.24,-137.83C60.71,-117.39 82.47,-85.5 108,-64.5 111.71,-61.45 116.02,-58.75 120.36,-56.43"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="45.3,-135.92 43.22,-146.31 51.32,-139.49 45.3,-135.92"/>
+</g>
+<!-- Node6 -->
+<g id="node8" class="node">
+<title>Node6</title>
+<g id="a_node8"><a xlink:href="class_bullet_enemy.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="305.5,-19 234.5,-19 234.5,0 305.5,0 305.5,-19"/>
+<text text-anchor="middle" x="270" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">BulletEnemy</text>
+</a>
+</g>
+</g>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge6" class="edge">
+<title>Node5&#45;&gt;Node6</title>
+<path fill="none" stroke="#63b8ff" d="M177.87,-9.5C195.09,-9.5 216.47,-9.5 234.2,-9.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="177.97,-6 167.97,-9.5 177.97,-13 177.97,-6"/>
+</g>
+<!-- Node12 -->
+<g id="node13" class="node">
+<title>Node12</title>
+<g id="a_node13"><a xlink:href="classbonus_1_1_double_bullet.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="321,-130 219,-130 219,-111 321,-111 321,-130"/>
+<text text-anchor="middle" x="270" y="-118" font-family="Helvetica,sans-Serif" font-size="10.00">bonus::DoubleBullet</text>
+</a>
+</g>
+</g>
+<!-- Node11&#45;&gt;Node12 -->
+<g id="edge13" class="edge">
+<title>Node11&#45;&gt;Node12</title>
+<path fill="none" stroke="#63b8ff" d="M194.57,-120.5C202.48,-120.5 210.71,-120.5 218.68,-120.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="194.77,-117 184.77,-120.5 194.77,-124 194.77,-117"/>
 </g>
 </g>
 </svg>

@@ -8,6 +8,7 @@ var dir_5c23080e296bbe846f4ed2d01d7b595d =
     [ "Boss1.hpp", "_boss1_8hpp_source.html", null ],
     [ "Bullet.hpp", "_bullet_8hpp_source.html", null ],
     [ "BulletEnemy.hpp", "_bullet_enemy_8hpp_source.html", null ],
+    [ "Damaging.hpp", "_damaging_8hpp_source.html", null ],
     [ "Enemy.hpp", "_enemy_8hpp_source.html", null ],
     [ "EnemyShooter.hpp", "_enemy_shooter_8hpp_source.html", null ],
     [ "Explosion.hpp", "_explosion_8hpp_source.html", null ],

@@ -130,8 +130,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2779d73439cd8f8517b9150c5aa4ddbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac16622c7335d324abc3a6083610255d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbonus_1_1_double_bullet.html#ac16622c7335d324abc3a6083610255d4">enable</a> (<a class="el" href="class_player.html">Player</a> &amp;player) override</td></tr>
 <tr class="separator:ac16622c7335d324abc3a6083610255d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c2034a6c03de052f00ad811f01186f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbonus_1_1_double_bullet.html#a7c2034a6c03de052f00ad811f01186f3">loop</a> (size_t entity) override</td></tr>
-<tr class="separator:a7c2034a6c03de052f00ad811f01186f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa96d926dd999e71ba3c4d87ae0e8533f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbonus_1_1_double_bullet.html#aa96d926dd999e71ba3c4d87ae0e8533f">loop</a> (size_t entity, float delta) override</td></tr>
+<tr class="separator:aa96d926dd999e71ba3c4d87ae0e8533f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classbonus_1_1_bonus"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classbonus_1_1_bonus')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbonus_1_1_bonus.html">bonus::Bonus</a></td></tr>
 <tr class="memitem:a90bf10df09aa9f8604e6208347cc029e inherit pub_methods_classbonus_1_1_bonus"><td class="memItemLeft" align="right" valign="top"><a id="a90bf10df09aa9f8604e6208347cc029e" name="a90bf10df09aa9f8604e6208347cc029e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Bonus</b> (const std::string &amp;uniqueName, <a class="el" href="namespaceuranus_1_1ecs_1_1component.html#structuranus_1_1ecs_1_1component_1_1_position">uranus::ecs::component::Position</a> pos, const std::string &amp;textureName)</td></tr>
@@ -142,9 +142,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>colliding</b> (size_t
 <tr class="memitem:a8919ce3d4e6cd68e336ec9e9b175a50b inherit pub_methods_classbonus_1_1_bonus"><td class="memItemLeft" align="right" valign="top"><a id="a8919ce3d4e6cd68e336ec9e9b175a50b" name="a8919ce3d4e6cd68e336ec9e9b175a50b"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>enable</b> (<a class="el" href="class_player.html">Player</a> &amp;player)=0</td></tr>
 <tr class="separator:a8919ce3d4e6cd68e336ec9e9b175a50b inherit pub_methods_classbonus_1_1_bonus"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fad33828eac2f48c86e133c20f12682 inherit pub_methods_classbonus_1_1_bonus"><td class="memItemLeft" align="right" valign="top"><a id="a5fad33828eac2f48c86e133c20f12682" name="a5fad33828eac2f48c86e133c20f12682"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> (size_t entity)=0</td></tr>
-<tr class="separator:a5fad33828eac2f48c86e133c20f12682 inherit pub_methods_classbonus_1_1_bonus"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94108dda723b1b040c1baa4488dc0442 inherit pub_methods_classbonus_1_1_bonus"><td class="memItemLeft" align="right" valign="top"><a id="a94108dda723b1b040c1baa4488dc0442" name="a94108dda723b1b040c1baa4488dc0442"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> (size_t entity, float delta)=0</td></tr>
+<tr class="separator:a94108dda723b1b040c1baa4488dc0442 inherit pub_methods_classbonus_1_1_bonus"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classengine_1_1_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classengine_1_1_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classengine_1_1_base.html">engine::Base</a></td></tr>
 <tr class="memitem:ab940230c4f2db151fdf8d073e032e180 inherit pub_methods_classengine_1_1_base"><td class="memItemLeft" align="right" valign="top"><a id="ab940230c4f2db151fdf8d073e032e180" name="ab940230c4f2db151fdf8d073e032e180"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Base</b> (const std::string &amp;uniqueName)</td></tr>
@@ -201,8 +201,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_uniqueName</b
 
 </div>
 </div>
-<a id="a7c2034a6c03de052f00ad811f01186f3" name="a7c2034a6c03de052f00ad811f01186f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c2034a6c03de052f00ad811f01186f3">&#9670;&#160;</a></span>loop()</h2>
+<a id="aa96d926dd999e71ba3c4d87ae0e8533f" name="aa96d926dd999e71ba3c4d87ae0e8533f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa96d926dd999e71ba3c4d87ae0e8533f">&#9670;&#160;</a></span>loop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -214,8 +214,18 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_uniqueName</b
           <td class="memname">void bonus::DoubleBullet::loop </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>entity</em></td><td>)</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>delta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
