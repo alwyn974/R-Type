@@ -70,6 +70,19 @@ jobs:
           path: ./build/_deps
           key: ${{ runner.os }}-libraries-${{ hashFiles('**/CMakeLists.txt') }}
 
+      - name: Configure CMake (Static)
+        shell: bash
+        run: cmake -B ./build -S . -DRTYPE_CPACK=ON -DBUILD_SHARED_LIBS=OFF
+
+      - name: Build Static Release
+        shell: pwsh
+        run: cmake --build ./build --config Release -j"$env:NUMBER_OF_PROCESSORS"
+
+#      - name: Create Static Installer
+#        shell: pwsh
+#        working-directory: ./build
+#        run: cpack -G "NSIS"
+
       - name: Configure CMake (Shared)
         shell: bash
         run: cmake -B ./build -S . -DRTYPE_CPACK=ON -DBUILD_SHARED_LIBS=ON
@@ -82,19 +95,6 @@ jobs:
         shell: pwsh
         working-directory: ./build
         run: cpack -G "NSIS"
-
-#      - name: Configure CMake (Static)
-#        shell: bash
-#        run: cmake -B ./build -S . -DRTYPE_CPACK=ON -DBUILD_SHARED_LIBS=OFF
-#
-#      - name: Build Static Release
-#        shell: pwsh
-#        run: cmake --build ./build --config Release -j"$env:NUMBER_OF_PROCESSORS"
-#
-#      - name: Create Static Installer
-#        shell: pwsh
-#        working-directory: ./build
-#        run: cpack -G "NSIS"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
