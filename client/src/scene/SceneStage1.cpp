@@ -130,8 +130,6 @@ void SceneStage1::init()
 //    auto boss = std::make_shared<Boss>("boss", uranus::ecs::component::Position{300, 200}, textureManager->getTextureByName("boss"));
 //    addPrefab(boss);
 
-//    wave(uranus::ecs::component::Position{0, 0});
-//    wave(uranus::ecs::component::Position{2000, 0});
     //Pause menu
     auto &r = engine::Manager::getRegistry();
     const uranus::ecs::Entity &pauseMenu = r->spawnEntity();

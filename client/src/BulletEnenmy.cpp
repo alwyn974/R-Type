@@ -26,6 +26,7 @@ void BulletEnemy::move(size_t entity)
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     vel->x = -5;
     if (r->getComponent<uranus::ecs::component::Position>(entity)->x < -100) {
-        r->killEntity(entity);
+        auto ent = r->entityFromIndex(entity);
+        r->addComponent(ent, uranus::ecs::component::Dead());
     }
 }

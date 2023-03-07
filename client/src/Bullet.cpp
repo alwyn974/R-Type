@@ -8,6 +8,7 @@
 #include "Bullet.hpp"
 #include "Explosion.hpp"
 #include "network/NetworkManager.hpp"
+#include "Damaging.hpp"
 
 Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture, std::uint32_t networkId, bool owned) : Base(uniqueName)
 {
@@ -54,7 +55,6 @@ void Bullet::move(size_t entity)
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     vel->x = 5;
     if (r->getComponent<uranus::ecs::component::Position>(entity)->x > WIN_WIDTH + 20) {
-//        r->killEntity(entity);
         auto ent = r->entityFromIndex(entity);
         r->addComponent(ent, uranus::ecs::component::Dead());
     }
@@ -79,10 +79,17 @@ void Bullet::colliding(const size_t &entity, const size_t &entityCollidingWith)
     auto explosion = std::make_shared<Explosion>("explosion", uranus::ecs::component::Position {pos->x, pos->y}, textureManager->getTextureByName("explosion"));
     entityManager->addPrefab(explosion);
 
-    auto ent1 = r->entityFromIndex(entity);
-    auto ent2 = r->entityFromIndex(entityCollidingWith);
-    r->addComponent(ent1, uranus::ecs::component::Dead());
-    r->addComponent(ent2, uranus::ecs::component::Dead());
+    auto ent = r->entityFromIndex(entity);
+    r->addComponent(ent, uranus::ecs::component::Dead());
+
+    auto &name = r->getComponent<uranus::ecs::component::Name>(entityCollidingWith);
+
+    int damage = 10;
+
+    if (name) {
+        auto damaging = std::dynamic_pointer_cast<Damaging>(entityManager->getPrefabByName(name->uniqueName));
+        damaging->getDamage(entityCollidingWith, damage);
+    }
 }
 
 void Bullet::handleKeyboard(size_t entity, const engine::Event event)

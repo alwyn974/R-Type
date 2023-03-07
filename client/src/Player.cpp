@@ -11,6 +11,7 @@
 
 Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &texture, const std::string &bulletTextureName, std::uint32_t networkId, const sf::Vector2f &pos) : Base(uniqueName)
 {
+    this->_health = 50;
     this->_bulletTextureName = bulletTextureName;
     this->_doubleBullet = false;
     this->_networked = networkId > 0;
@@ -98,6 +99,8 @@ void Player::enableDoubleBullet()
 
 void Player::shoot()
 {
+    if (this->_clockCooldown.getElapsedTime().asSeconds() < 1)
+        return;
     auto &r = engine::Manager::getRegistry();
     auto &textureManager = engine::Manager::getTextureManager();
     auto &entityManager = engine::Manager::getEntityManager();
@@ -106,17 +109,32 @@ void Player::shoot()
     static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
 
     if (this->_doubleBullet) {
-        auto bullet = std::make_shared<Bullet>(
-            "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y + 10}, textureManager->getTextureByName(this->_bulletTextureName));
-        entityManager->addPrefab(bullet);
-        auto bullet2 = std::make_shared<Bullet>(
-            "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y - 10}, textureManager->getTextureByName(this->_bulletTextureName));
-        entityManager->addPrefab(bullet2);
+        const sf::Vector2f position { pos->x, pos->y };
+        networkManager->send(std::make_shared<rtype::network::packet::C2SPrepareShoot>(position.x + 30, position.y + 10));
+        networkManager->send(std::make_shared<rtype::network::packet::C2SPrepareShoot>(position.x + 30, position.y - 10));
+//        auto bullet = std::make_shared<Bullet>(
+//            "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y + 10}, textureManager->getTextureByName(this->_bulletTextureName));
+//        entityManager->addPrefab(bullet);
+//        auto bullet2 = std::make_shared<Bullet>(
+//            "bullet", uranus::ecs::component::Position {pos->x + 30, pos->y - 10}, textureManager->getTextureByName(this->_bulletTextureName));
+//        entityManager->addPrefab(bullet2);
     } else {
         const sf::Vector2f position { pos->x, pos->y };
         networkManager->send(std::make_shared<rtype::network::packet::C2SPrepareShoot>(position.x + 30, position.y));
         //        auto bullet = std::make_shared<Bullet>(
         //            "bullet", uranus::ecs::component::Position {position.x + 30, position.y}, textureManager->getTextureByName(this->_bulletTextureName));
 //        entityManager->addPrefab(bullet);
+    }
+    this->_clockCooldown.restart();
+
+}
+
+void Player::getDamage(size_t entity, int damage)
+{
+    this->_health -= damage;
+    if (this->_health <= 0) {
+        auto &r = engine::Manager::getRegistry();
+        auto ent = r->entityFromIndex(entity);
+        r->addComponent(ent, uranus::ecs::component::Dead());
     }
 }

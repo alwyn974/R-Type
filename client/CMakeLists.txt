@@ -14,7 +14,7 @@ set(BINARY_NAME r-type_client)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 if(WIN32)
-    set(${PROJECT_NAME}_ICON ${CMAKE_SOURCE_DIR}/assets/rtype/nsis/app.rc)
+    set(${PROJECT_NAME}_ICON ${CMAKE_SOURCE_DIR}/assets/rtype/nsis/app.rc include/Damaging.hpp)
 endif()
 
 add_executable(${BINARY_NAME} main.cpp ${${PROJECT_NAME}_ICON}
