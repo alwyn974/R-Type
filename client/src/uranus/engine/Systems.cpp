@@ -267,11 +267,23 @@ void engine::system::animation()
     }
 }
 
+#include "Player.hpp"
+
 void engine::system::removeDead()
 {
-    auto &r = engine::Manager::getRegistry();
+    static auto &r = engine::Manager::getRegistry();
+    static auto &entityManager = engine::Manager::getEntityManager();
+    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
 
     for (auto [idx, dead] : uranus::ecs::View<uranus::ecs::component::Dead>(*r)) {
+       /* try {
+            auto entity = entityManager->getPrefabByEntityId(idx);
+            auto player = std::dynamic_pointer_cast<Player>(entity);
+            auto networkId = r->getComponent<uranus::ecs::component::NetworkId>(idx);
+            if (networkId)
+                networkManager->send(std::make_shared<rtype::network::packet::C2SKillPlayer>(networkId->uniqueId));
+        } catch (std::exception &e) {}*/
+
         r->killEntity(idx);
     }
 }

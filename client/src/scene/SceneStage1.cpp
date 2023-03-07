@@ -41,21 +41,25 @@ void SceneStage1::wave(uranus::ecs::component::Position startOffset)
     addEnemy(uranus::ecs::component::Position{startOffset.x + 800, startOffset.y + 300});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 800, startOffset.y + 400});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 800, startOffset.y + 500});
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 100});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 200});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 300});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 400});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 900, startOffset.y + 500});
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 100});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 200});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 300});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 400});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1000, startOffset.y + 500});
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     addEnemyShooter(uranus::ecs::component::Position{startOffset.x + 1400, startOffset.y + 0});
     addEnemyShooter(uranus::ecs::component::Position{startOffset.x + 1400, startOffset.y + 300});
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 050});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 100});
@@ -70,6 +74,7 @@ void SceneStage1::wave(uranus::ecs::component::Position startOffset)
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 550});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 600});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1600, startOffset.y + 650});
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 050});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 100});
@@ -84,6 +89,7 @@ void SceneStage1::wave(uranus::ecs::component::Position startOffset)
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 550});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 600});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1700, startOffset.y + 650});
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 050});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 100});

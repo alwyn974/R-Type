@@ -202,6 +202,12 @@ namespace rtype::client::network {
         });
         this->_udpClient->registerHandler<packet::S2CRemovePlayer>([&](ConnectionToServerPtr &server, packet::S2CRemovePlayer &packet) {
             this->_logger->info("Received S2CRemovePlayer packet");
+            try {
+                entityManager->removeByNetworkId(packet.entityId);
+            } catch (const std::exception &) {
+                this->_logger->error("Received S2CRemovePlayer packet for unknown entity");
+                return;
+            }
             //TODO: remove player, maybe useless
         });
         this->_udpClient->registerHandler<packet::S2CSpawnBullet>([&](ConnectionToServerPtr &server, packet::S2CSpawnBullet &packet) {

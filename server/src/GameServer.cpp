@@ -167,6 +167,13 @@ namespace rtype::server {
         this->_udpServer->registerHandler<packet::C2SKillEntity>([&](auto &client, auto &packet){
         });
         this->_udpServer->registerHandler<packet::C2SKillPlayer>([&](auto &client, auto &packet){
+            this->_logger->info("C2SKillPlayer");
+            /*for (const auto &[uid, player]: this->_players) {
+                if (player->getUdpId() == client->getId()) {
+                    this->_udpServer->broadcast(std::make_shared<packet::S2CRemovePlayer>(uid), client->getId());
+                    break;
+                }
+            }*/
         });
         this->_udpServer->registerHandler<packet::C2SSceneLoaded>([&](auto &client, packet::C2SSceneLoaded &packet) {
             this->_logger->info("Received C2SSceneLoaded from client ({}) - {}.", client->getId(), packet.sceneName);

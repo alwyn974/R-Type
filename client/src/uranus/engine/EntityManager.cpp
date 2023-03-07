@@ -53,3 +53,25 @@ void engine::EntityManager::killAllPrefabs()
     this->_prefabs.clear();
 }
 
+bool engine::EntityManager::removeByNetworkId(std::uint32_t networkId)
+{
+    for (const auto &[name, prefab] : this->_prefabs) { // NOLINT
+        auto &r = engine::Manager::getRegistry();
+        auto &id = r->getComponent<uranus::ecs::component::NetworkId>(prefab->getEntityId());
+        if (id && id->uniqueId == networkId) {
+            this->_prefabs.erase(name);
+            return true;
+        }
+    }
+    return false;
+}
+
+std::shared_ptr<engine::Base> engine::EntityManager::getPrefabByEntityId(std::size_t entityId)
+{
+    for (const auto &[name, prefab] : this->_prefabs) {
+        if (prefab->getEntityId() == entityId)
+            return prefab;
+    }
+    throw uranus::ex::Exception("Prefab not found");
+}
+
