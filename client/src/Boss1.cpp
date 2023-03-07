@@ -8,7 +8,10 @@
 #include "Boss1.hpp"
 
 Boss::Boss(const std::string &uniqueName, uranus::ecs::component::Position pos,
-           std::shared_ptr<engine::Texture> &texture) : Enemy(uniqueName, pos, texture) {
+           std::shared_ptr<engine::Texture> &texture) : Enemy(uniqueName, pos, texture)
+{
+    this->_health = 300;
+
     auto &r = engine::Manager::getRegistry();
     uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
 
@@ -24,7 +27,7 @@ Boss::Boss(const std::string &uniqueName, uranus::ecs::component::Position pos,
     r->addComponent(
             newEntity,
             uranus::ecs::component::Collisionable{
-                    0, 0, 30, 30, layer, mask, [&](const size_t &entity, const size_t &entityCollidingWith) {
+                    0, 0, 160, 215, layer, mask, [&](const size_t &entity, const size_t &entityCollidingWith) {
                         this->colliding(entity, entityCollidingWith);
                     }});
     r->addComponent(newEntity, uranus::ecs::component::Loop{[&](const size_t entity) { this->loop(entity); }});
@@ -50,7 +53,9 @@ Boss::Boss(const std::string &uniqueName, uranus::ecs::component::Position pos,
 }
 
 void Boss::loop(size_t entity) {
-    auto &r = engine::Manager::getRegistry();
+    static auto &r = engine::Manager::getRegistry();
+    if (r->getComponent<uranus::ecs::component::Position>(entity)->x < 800)
+        return;
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     vel->x = -0.5;
 }

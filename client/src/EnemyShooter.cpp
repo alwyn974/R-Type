@@ -32,4 +32,8 @@ void EnemyShooter::loop(size_t entity)
 
         this->_shootClock.restart();
     }
+    if (r->getComponent<uranus::ecs::component::Position>(entity)->x < -100) {
+        auto ent = r->entityFromIndex(entity);
+        r->addComponent(ent, uranus::ecs::component::Dead());
+    }
 }

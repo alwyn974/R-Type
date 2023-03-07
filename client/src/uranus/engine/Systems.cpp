@@ -97,11 +97,9 @@ void engine::system::setMask(size_t entity, const std::bitset<uranus::ecs::LAYER
 
 bool canCollide(const uranus::ecs::component::Collisionable& obj1, const uranus::ecs::component::Collisionable& obj2) {
     for (unsigned long i = 0; i < uranus::ecs::LAYER_MASK_SIZE; i++) {
-        if (obj1.mask[i] && obj2.layer[i]) return true;
+        if ((obj1.mask[i] && obj2.layer[i]) || (obj2.mask[i] && obj1.layer[i])) return true;
     }
-    for (unsigned long i = 0; i < uranus::ecs::LAYER_MASK_SIZE; i++) {
-        if (obj2.mask[i] && obj1.layer[i]) return true;
-    }
+
     return false;
 }
 

@@ -54,9 +54,16 @@ void Enemy::loop(size_t entity)
     auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     vel->x = -0.5;
+    if (r->getComponent<uranus::ecs::component::Position>(entity)->x < -100) {
+        auto ent = r->entityFromIndex(entity);
+        r->addComponent(ent, uranus::ecs::component::Dead());
+    }
 }
 
-void Enemy::colliding(const size_t &entity, const size_t &entityCollidingWith) {}
+void Enemy::colliding(const size_t &entity, const size_t &entityCollidingWith)
+{
+
+}
 
 void Enemy::getDamage(size_t entity, int damage)
 {

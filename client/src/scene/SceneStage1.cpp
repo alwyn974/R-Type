@@ -104,6 +104,12 @@ void SceneStage1::wave(uranus::ecs::component::Position startOffset)
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 550});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 600});
     addEnemy(uranus::ecs::component::Position{startOffset.x + 1800, startOffset.y + 650});
+
+    static auto &textureManager = engine::Manager::getTextureManager();
+    textureManager->addTexture("assets/rtype/textures/entity/dobkeratops.png", "boss");
+    auto boss = std::make_shared<Boss>("boss", uranus::ecs::component::Position{startOffset.x + 2200, startOffset.y + 150}, textureManager->getTextureByName("boss"));
+    addPrefab(boss);
+
 }
 
 void pressedLeave()
@@ -126,9 +132,6 @@ void SceneStage1::init()
     addPrefab(player);
 
     networkManager->send(std::make_shared<rtype::network::packet::C2SSceneLoaded>(this->getName()));
-//    textureManager->addTexture("assets/rtype/textures/entity/dobkeratops.png", "boss");
-//    auto boss = std::make_shared<Boss>("boss", uranus::ecs::component::Position{300, 200}, textureManager->getTextureByName("boss"));
-//    addPrefab(boss);
 
     //Pause menu
     auto &r = engine::Manager::getRegistry();

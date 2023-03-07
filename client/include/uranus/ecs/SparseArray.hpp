@@ -11,6 +11,7 @@
 #include "uranus/Core.hpp"
 #include <memory>
 #include <optional>
+#include <list>
 
 /**
  * @brief Namespace containing all the ECS related classes
