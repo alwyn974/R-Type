@@ -13,6 +13,16 @@
 
 int main()
 {
+    try {
+        auto &textureManager = engine::Manager::getTextureManager();
+        textureManager->addTexture("assets/rtype/icons/logo.png", "icon");
+        auto &texture = textureManager->getTextureByName("icon");
+        auto &window = engine::Manager::getWindow();
+        window->setIcon(texture->getSize().x, texture->getSize().y, texture->copyToImage().getPixelsPtr());
+    } catch (std::exception &e) {
+        spdlog::info("Error can't load our beautiful icon: {}", e.what());
+    }
+
     auto &instance = rtype::client::network::NetworkManager::getInstance();
     instance->init();
 

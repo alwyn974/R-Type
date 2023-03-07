@@ -14,6 +14,7 @@ void Enemy::animationCallback(size_t entity, const std::string &animationName)
 
 Enemy::Enemy(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture) : Base(uniqueName)
 {
+    this->_health = 20;
     auto &r = engine::Manager::getRegistry();
     uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
 
@@ -56,3 +57,13 @@ void Enemy::loop(size_t entity)
 }
 
 void Enemy::colliding(const size_t &entity, const size_t &entityCollidingWith) {}
+
+void Enemy::getDamage(size_t entity, int damage)
+{
+    this->_health -= damage;
+    if (this->_health <= 0) {
+        auto &r = engine::Manager::getRegistry();
+        auto ent = r->entityFromIndex(entity);
+        r->addComponent(ent, uranus::ecs::component::Dead());
+    }
+}

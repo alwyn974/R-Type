@@ -12,7 +12,7 @@
 
 class Bullet : public engine::Base {
 public:
-    explicit Bullet(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture, std::uint32_t networkId = 0);
+    explicit Bullet(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture, std::uint32_t networkId = 0, bool owned = false);
 
     virtual void move(size_t entity);
 
@@ -22,8 +22,15 @@ public:
 
     void handleKeyboard(size_t entity, const engine::Event event);
 
+    bool isCanMove() const;
+
+    void setCanMove(bool move);
+
 protected:
-    bool _canMove;
+    bool canMove;
+    bool networked;
+    std::uint32_t networkId;
+    bool sent;
 };
 
 #endif // URANUS_BULLET_HPP

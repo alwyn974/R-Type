@@ -8,6 +8,8 @@
 #include "network/NetworkManager.hpp"
 #include "Bullet.hpp"
 #include "Player.hpp"
+#include "scene/SceneStage1.hpp"
+//#include "uranus/ecs/Components.hpp"
 
 using namespace rtype::network; // NOLINT
 
@@ -136,6 +138,7 @@ namespace rtype::client::network {
 
     void NetworkManager::registerUdpPacketHandlers()
     {
+        static auto &sceneManager = engine::Manager::getSceneManager();
         static auto &textureManager = engine::Manager::getTextureManager();
         static auto &entityManager = engine::Manager::getEntityManager();
         static auto &r = engine::Manager::getRegistry();
@@ -155,18 +158,22 @@ namespace rtype::client::network {
         this->_udpClient->registerHandler<packet::S2CGameStarted>([&](ConnectionToServerPtr &server, packet::S2CGameStarted &packet) {
             this->_logger->info("Received S2CGameStarted packet");
             try {
-//                auto base = entityManager->getPrefabByNetworkId(packet.entityId);
-//                //                auto &vel = r->getComponent<uranus::ecs::component::Position>(base->getEntityId());
-//                auto &vel = r->getComponent<uranus::ecs::component::Velocity>(base->getEntityId());
-//                vel->x = packet.velX;
-//                vel->y  = packet.velY;
+                auto scene = std::dynamic_pointer_cast<SceneStage1>(sceneManager->getActualScene());
+                scene->wave(uranus::ecs::component::Position{0, 0});
             } catch (const std::exception &) {
-                this->_logger->error("Received S2CPlayerMove packet for unknown entity");
+                this->_logger->error("Received S2CGameStarted packet for unknown entity");
                 return;
             }
         });
+        this->_udpClient->registerHandler<packet::S2CPlayerChargingBullet>([&](ConnectionToServerPtr &server, packet::S2CPlayerChargingBullet &packet) {
+            this->_logger->info("Received S2CPlayerChargingBullet packet {} from {}", packet.entityId, packet.playerId);
+            auto bullet = std::make_shared<Bullet>("bullet", uranus::ecs::component::Position {packet.x, packet.y},
+                textureManager->getTextureByName("bullet"), packet.entityId, true /*packet.playerId == this->uid*/);
+            bullet->setCanMove(true);
+            entityManager->addPrefab(bullet);
+        });
         this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
-            this->_logger->info("Received S2CPlayerMove packet {}", packet.entityId);
+//            this->_logger->info("Received S2CPlayerMove packet {}", packet.entityId);
             try {
                 auto base = entityManager->getPrefabByNetworkId(packet.entityId);
 //                auto &vel = r->getComponent<uranus::ecs::component::Position>(base->getEntityId());
@@ -174,9 +181,20 @@ namespace rtype::client::network {
                 vel->x = packet.velX;
                 vel->y  = packet.velY;
             } catch (const std::exception &) {
-                this->_logger->error("Received S2CPlayerMove packet for unknown entity");
+                this->_logger->error("Received S2CPlayerMove packet for unknown entity {}", packet.entityId);
                 return;
             }
+        });
+        this->_udpClient->registerHandler<packet::S2CPlayerShootBullet>([&](ConnectionToServerPtr &server, packet::S2CPlayerShootBullet &packet) {
+            this->_logger->info("Received S2CPlayerShootBullet packet {} from {}", packet.entityId, packet.playerId);
+            /*try {
+                auto base = entityManager->getPrefabByNetworkId(packet.entityId);
+                auto bullet = std::dynamic_pointer_cast<Bullet>(base);
+                bullet->setCanMove(true);
+            } catch (const std::exception &) {
+                this->_logger->error("Received S2CPlayerShootBullet packet for unknown entity");
+                return;
+            }*/
         });
         this->_udpClient->registerHandler<packet::S2CRemoveEntity>([&](ConnectionToServerPtr &server, packet::S2CRemoveEntity &packet) {
             this->_logger->info("Received S2CRemoveEntity packet");
@@ -184,6 +202,12 @@ namespace rtype::client::network {
         });
         this->_udpClient->registerHandler<packet::S2CRemovePlayer>([&](ConnectionToServerPtr &server, packet::S2CRemovePlayer &packet) {
             this->_logger->info("Received S2CRemovePlayer packet");
+            try {
+                entityManager->removeByNetworkId(packet.entityId);
+            } catch (const std::exception &) {
+                this->_logger->error("Received S2CRemovePlayer packet for unknown entity");
+                return;
+            }
             //TODO: remove player, maybe useless
         });
         this->_udpClient->registerHandler<packet::S2CSpawnBullet>([&](ConnectionToServerPtr &server, packet::S2CSpawnBullet &packet) {

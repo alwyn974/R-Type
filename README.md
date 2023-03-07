@@ -135,9 +135,29 @@ The documentation of this project can be found at:
 
 ### Run the server
 
+Simple run the server executable. There are some options available:
+```bash
+Usage: R-Type Server [-h] [--host IP] [--tcp-port PORT] [--udp-port PORT] [--max-players MAX_PLAYERS]
+
+The R-Type Server
+
+Optional arguments:
+  -h, --help                    shows help message and exits
+  -v, --version                 prints version information and exits
+  -H, --host IP                 The host to bind the server to [default: "0.0.0.0"]
+  -t, --tcp-port PORT           The TCP port to bind the server to. Must be in [0-65535] [default: 2409]
+  -u, --udp-port PORT           The UDP port to bind the server to. Must be in [0-65535] [default: 2410]
+  -m, --max-players MAX_PLAYERS The maximum number of players allowed on the server [default: 4]
+```
+
+> **Note**
+> You can also use the `--help` option to get more information about the server.
+
 ### Run the client
 
-More informations in the [source code documentation][github.io-url] or the [project documentation][gitbook-url].
+Simple run the client executable.
+
+> More informations in the [source code documentation][github.io-url] or the [project documentation][gitbook-url].
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

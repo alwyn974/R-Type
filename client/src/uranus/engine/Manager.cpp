@@ -16,7 +16,7 @@ std::shared_ptr<engine::EntityManager> engine::Manager::entityManager = nullptr;
 std::shared_ptr<engine::RenderWindow> &engine::Manager::getWindow()
 {
     if (!window) {
-        window = std::make_shared<engine::RenderWindow>(sf::VideoMode(1280, 720), "Uranus");
+        window = std::make_shared<engine::RenderWindow>(sf::VideoMode(1280, 720), "R-Type");
     }
     return window;
 }

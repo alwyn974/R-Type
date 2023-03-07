@@ -16,7 +16,7 @@ BulletEnemy::BulletEnemy(const std::string &uniqueName, uranus::ecs::component::
     mask.set(uranus::ecs::LayerMask::PLAYER);
     engine::system::setLayer(this->_entityId, layer);
     engine::system::setMask(this->_entityId, mask);
-    this->_canMove = true;
+    this->canMove = true;
     engine::system::stopAnimation(this->_entityId);
 }
 
@@ -26,6 +26,7 @@ void BulletEnemy::move(size_t entity)
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     vel->x = -5;
     if (r->getComponent<uranus::ecs::component::Position>(entity)->x < -100) {
-        r->killEntity(entity);
+        auto ent = r->entityFromIndex(entity);
+        r->addComponent(ent, uranus::ecs::component::Dead());
     }
 }

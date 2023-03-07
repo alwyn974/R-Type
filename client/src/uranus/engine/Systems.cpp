@@ -167,7 +167,7 @@ void engine::system::collision() {
                     const sf::FloatRect obj2 {collision2->x + pos2->x, collision2->y + pos2->y, collision2->width, collision2->height};
                     if (satCollision(obj1, obj2, *pos1, *pos2)) {
 //                        std::cout << "Collision between " << entity1 << " and " << entity2 << std::endl;
-                        collision2->callback(entity1, entity2);
+                        collision2->callback(entity2, entity1);
                     }
                 }
             }
@@ -267,11 +267,23 @@ void engine::system::animation()
     }
 }
 
+#include "Player.hpp"
+
 void engine::system::removeDead()
 {
-    auto &r = engine::Manager::getRegistry();
+    static auto &r = engine::Manager::getRegistry();
+    static auto &entityManager = engine::Manager::getEntityManager();
+    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
 
     for (auto [idx, dead] : uranus::ecs::View<uranus::ecs::component::Dead>(*r)) {
+       /* try {
+            auto entity = entityManager->getPrefabByEntityId(idx);
+            auto player = std::dynamic_pointer_cast<Player>(entity);
+            auto networkId = r->getComponent<uranus::ecs::component::NetworkId>(idx);
+            if (networkId)
+                networkManager->send(std::make_shared<rtype::network::packet::C2SKillPlayer>(networkId->uniqueId));
+        } catch (std::exception &e) {}*/
+
         r->killEntity(idx);
     }
 }

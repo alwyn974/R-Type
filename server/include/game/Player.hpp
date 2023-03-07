@@ -19,8 +19,8 @@ namespace rtype::server::game {
         int getUdpId() const;
         int getScore() const;
         int getLife() const;
-        int getX() const;
-        int getY() const;
+        float getX() const;
+        float getY() const;
         int getWidth() const;
         int getHeight() const;
         const std::string &getName() const;
@@ -31,8 +31,8 @@ namespace rtype::server::game {
         Player &setUdpId(int udpId);
         Player &setScore(int score);
         Player &setLife(int life);
-        Player &setX(int x);
-        Player &setY(int y);
+        Player &setX(float x);
+        Player &setY(float y);
         Player &setWidth(int width);
         Player &setHeight(int height);
         Player &setName(const std::string &name);
@@ -44,8 +44,8 @@ namespace rtype::server::game {
         int _udpId;
         int _score;
         int _life;
-        int _x;
-        int _y;
+        float _x;
+        float _y;
         int _width;
         int _height;
         std::string _name;

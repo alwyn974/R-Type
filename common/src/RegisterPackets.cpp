@@ -16,7 +16,9 @@ namespace rtype::network::packet {
         udpRegistry->registerPacket<packet::S2CEntityMove>(udpId++);
         udpRegistry->registerPacket<packet::S2CEntitySpawn>(udpId++);
         udpRegistry->registerPacket<packet::S2CGameStarted>(udpId++);
+        udpRegistry->registerPacket<packet::S2CPlayerChargingBullet>(udpId++);
         udpRegistry->registerPacket<packet::S2CPlayerMove>(udpId++);
+        udpRegistry->registerPacket<packet::S2CPlayerShootBullet>(udpId++);
         udpRegistry->registerPacket<packet::S2CRemoveEntity>(udpId++);
         udpRegistry->registerPacket<packet::S2CRemovePlayer>(udpId++);
         udpRegistry->registerPacket<packet::S2CSpawnBullet>(udpId++);

@@ -13,7 +13,6 @@ void engine::SceneManager::addScene(const std::shared_ptr<engine::Scene> &newSce
     this->_scenes.push_back(newScene);
 }
 
-
 void engine::SceneManager::changeScene(const std::string &sceneToSwitch)
 {
     this->_sceneToSwitch = sceneToSwitch;
