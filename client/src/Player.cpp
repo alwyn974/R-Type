@@ -16,7 +16,7 @@ Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &
     this->_networked = networkId > 0;
     this->_networkId = networkId;
     static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
-    if (networkId == 0 && networkManager->uid !=0) {
+    if (networkId == 0 && networkManager->uid != 0) {
         this->_networkId = networkManager->uid;
         networkId = networkManager->uid;
     }
@@ -114,9 +114,9 @@ void Player::shoot()
         entityManager->addPrefab(bullet2);
     } else {
         const sf::Vector2f position { pos->x, pos->y };
-        auto bullet = std::make_shared<Bullet>(
-            "bullet", uranus::ecs::component::Position {position.x + 30, position.y}, textureManager->getTextureByName(this->_bulletTextureName));
-        networkManager->send(std::make_shared<rtype::network::packet::C2SPlayerShoot>(position.x, position.y));
-        entityManager->addPrefab(bullet);
+        networkManager->send(std::make_shared<rtype::network::packet::C2SPrepareShoot>(position.x + 30, position.y));
+        //        auto bullet = std::make_shared<Bullet>(
+        //            "bullet", uranus::ecs::component::Position {position.x + 30, position.y}, textureManager->getTextureByName(this->_bulletTextureName));
+//        entityManager->addPrefab(bullet);
     }
 }

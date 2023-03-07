@@ -165,6 +165,12 @@ namespace rtype::client::network {
                 return;
             }
         });
+        this->_udpClient->registerHandler<packet::S2CPlayerChargingBullet>([&](ConnectionToServerPtr &server, packet::S2CPlayerChargingBullet &packet) {
+            this->_logger->info("Received S2CPlayerChargingBullet packet {} from {}", packet.entityId, packet.playerId);
+            auto bullet = std::make_shared<Bullet>("bullet", uranus::ecs::component::Position {packet.x, packet.y},
+                textureManager->getTextureByName("bullet"), packet.entityId, packet.playerId == this->uid);
+            entityManager->addPrefab(bullet);
+        });
         this->_udpClient->registerHandler<packet::S2CPlayerMove>([&](ConnectionToServerPtr &server, packet::S2CPlayerMove &packet) {
             this->_logger->info("Received S2CPlayerMove packet {}", packet.entityId);
             try {
@@ -175,6 +181,17 @@ namespace rtype::client::network {
                 vel->y  = packet.velY;
             } catch (const std::exception &) {
                 this->_logger->error("Received S2CPlayerMove packet for unknown entity");
+                return;
+            }
+        });
+        this->_udpClient->registerHandler<packet::S2CPlayerShootBullet>([&](ConnectionToServerPtr &server, packet::S2CPlayerShootBullet &packet) {
+            this->_logger->info("Received S2CPlayerShootBullet packet");
+            try {
+                auto base = entityManager->getPrefabByNetworkId(packet.entityId);
+                auto bullet = std::dynamic_pointer_cast<Bullet>(base);
+                bullet->setCanMove(true);
+            } catch (const std::exception &) {
+                this->_logger->error("Received S2CPlayerShootBullet packet for unknown entity");
                 return;
             }
         });

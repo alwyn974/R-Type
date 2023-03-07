@@ -7,10 +7,13 @@
 
 #include "Bullet.hpp"
 #include "Explosion.hpp"
+#include "network/NetworkManager.hpp"
 
-Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture, std::uint32_t networkId) : Base(uniqueName)
+Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture, std::uint32_t networkId, bool owned) : Base(uniqueName)
 {
-    this->_canMove = false;
+    this->canMove = false;
+    this->networkId = networkId;
+    this->networked = networkId > 0 && !owned;
 
     auto &r = engine::Manager::getRegistry();
     uranus::ecs::Entity newEntity = r->entityFromIndex(this->_entityId);
@@ -32,7 +35,8 @@ Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position p
         uranus::ecs::component::Collisionable {
             0, 0, 22, 20, layer, mask, [&](const size_t &entity, const size_t &entityCollidingWith) { this->colliding(entity, entityCollidingWith); }});
     r->addComponent(newEntity, uranus::ecs::component::Loop {[&](const size_t entity) { this->loop(entity); }});
-    r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->handleKeyboard(entity, event); }});
+    if (!this->networked)
+        r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->handleKeyboard(entity, event); }});
 
     r->addComponent(newEntity, uranus::ecs::component::Animation {3, 1, [&](const size_t entity, const std::string &animationName) { return; }});
     engine::system::addNewAnimation(newEntity, "charge", false, 3);
@@ -45,10 +49,10 @@ Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position p
 
 void Bullet::move(size_t entity)
 {
-    auto &r = engine::Manager::getRegistry();
+    static auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     vel->x = 5;
-    if (r->getComponent<uranus::ecs::component::Position>(entity)->x > WIN_WIDTH + 20) { // TODO(frenetikk): change this
+    if (r->getComponent<uranus::ecs::component::Position>(entity)->x > WIN_WIDTH + 20) {
 //        r->killEntity(entity);
         auto ent = r->entityFromIndex(entity);
         r->addComponent(ent, uranus::ecs::component::Dead());
@@ -57,17 +61,17 @@ void Bullet::move(size_t entity)
 
 void Bullet::loop(const size_t entity)
 {
-    if (!this->_canMove) return;
-    auto &r = engine::Manager::getRegistry();
+    if (!this->canMove) return;
+//    auto &r = engine::Manager::getRegistry();
     this->move(entity);
 }
 
 void Bullet::colliding(const size_t &entity, const size_t &entityCollidingWith)
 {
     //    std::cout << entity << ", " << entityCollidingWith << std::endl;
-    auto &r = engine::Manager::getRegistry();
-    auto &entityManager = engine::Manager::getEntityManager();
-    auto &textureManager = engine::Manager::getTextureManager();
+    static auto &r = engine::Manager::getRegistry();
+    static auto &entityManager = engine::Manager::getEntityManager();
+    static auto &textureManager = engine::Manager::getTextureManager();
 
     auto pos = r->getComponent<uranus::ecs::component::Position>(entityCollidingWith);
 
@@ -82,9 +86,25 @@ void Bullet::colliding(const size_t &entity, const size_t &entityCollidingWith)
 
 void Bullet::handleKeyboard(size_t entity, const engine::Event event)
 {
-    if (this->_canMove) return;
+    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
+    static auto &r = engine::Manager::getRegistry();
+
+    if (this->canMove) return;
     if (event.type == event.MouseButtonReleased) {
-        this->_canMove = true;
+        this->canMove = true;
         engine::system::stopAnimation(this->_entityId);
+        auto pos = r->getComponent<uranus::ecs::component::Position>(entity);
+        networkManager->send(std::make_shared<rtype::network::packet::C2SPlayerShoot>(this->networkId, pos->x, pos->y));
     }
+}
+
+bool Bullet::isCanMove() const
+{
+    return canMove;
+}
+
+void Bullet::setCanMove(bool move)
+{
+    this->canMove = move;
+    engine::system::stopAnimation(this->_entityId);
 }

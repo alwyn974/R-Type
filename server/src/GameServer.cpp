@@ -132,7 +132,14 @@ namespace rtype::server {
             }
             this->_udpServer->broadcast(std::make_shared<packet::S2CPlayerMove>(packet.entityId, packet.velX, packet.velY), client->getId());
         });
-        this->_udpServer->registerHandler<packet::C2SPrepareShoot>([&](auto &client, auto &packet){
+        this->_udpServer->registerHandler<packet::C2SPrepareShoot>([&](auto &client, packet::C2SPrepareShoot &packet){
+            this->_logger->info("C2SPrepareShoot");
+            for (const auto &[uid, player]: this->_players) {
+                if (player->getUdpId() == client->getId()) {
+                    this->_udpServer->broadcast(std::make_shared<packet::S2CPlayerChargingBullet>(++this->_globalId, uid, std::max(packet.x, player->getX() + 30), std::max(packet.y, player->getY())));
+                    break;
+                }
+            }
         });
         this->_udpServer->registerHandler<packet::C2SPlayerReady>([&](auto &client, packet::C2SPlayerReady &packet) {
             for (const auto &[uid, player]: this->_players) {
@@ -149,6 +156,13 @@ namespace rtype::server {
             }
         });
         this->_udpServer->registerHandler<packet::C2SPlayerShoot>([&](auto &client, auto &packet){
+            this->_logger->info("C2SPlayerShoot");
+            for (const auto &[uid, player]: this->_players) {
+                if (player->getUdpId() == client->getId()) {
+                    this->_udpServer->broadcast(std::make_shared<packet::S2CPlayerShootBullet>(packet.entityId, uid, packet.x, packet.y));
+                    break;
+                }
+            }
         });
         this->_udpServer->registerHandler<packet::C2SKillEntity>([&](auto &client, auto &packet){
         });

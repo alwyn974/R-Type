@@ -14,7 +14,7 @@ namespace rtype::network::packet {
     class C2SClientMove : public sa::AbstractPacket {
     public:
         std::uint32_t entityId;
-        int velX, velY;
+        float velX, velY;
 
         C2SClientMove() : sa::AbstractPacket(sa::AbstractPacket::EnumPacketType::UDP)
         {
@@ -22,7 +22,7 @@ namespace rtype::network::packet {
             this->velX = 0;
             this->velY = 0;
         };
-        C2SClientMove(std::uint32_t entityId, int x, int y) : C2SClientMove()
+        C2SClientMove(std::uint32_t entityId, float x, float y) : C2SClientMove()
         {
             this->entityId = entityId;
             this->velX = x;

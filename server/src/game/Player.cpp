@@ -44,12 +44,12 @@ namespace rtype::server::game {
         return this->_life;
     }
 
-    int Player::getX() const
+    float Player::getX() const
     {
         return this->_x;
     }
 
-    int Player::getY() const
+    float Player::getY() const
     {
         return this->_y;
     }
@@ -103,13 +103,13 @@ namespace rtype::server::game {
         return *this;
     }
 
-    Player &Player::setX(int x)
+    Player &Player::setX(float x)
     {
         this->_x = x;
         return *this;
     }
 
-    Player &Player::setY(int y)
+    Player &Player::setY(float y)
     {
         this->_y = y;
         return *this;
