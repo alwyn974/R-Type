@@ -11,7 +11,6 @@
 #include "uranus/Core.hpp"
 #include <memory>
 #include <optional>
-#include <vector>
 
 /**
  * @brief Namespace containing all the ECS related classes
@@ -27,7 +26,7 @@ namespace uranus::ecs {
         using ValueType = std::shared_ptr<Component>;
         using ReferenceType = ValueType &;
         using ConstReferenceType = const ValueType &;
-        using Container = std::vector<ValueType>;
+        using Container = std::list<ValueType>;
         using SizeType = typename Container::size_type;
         using Iterator = typename Container::iterator;
         using ConstIterator = typename Container::const_iterator;
@@ -207,15 +206,21 @@ namespace uranus::ecs {
     template<typename Component>
     typename SparseArray<Component>::ReferenceType SparseArray<Component>::operator[](std::size_t idx)
     {
-        if (idx >= _data.size()) _data.resize(idx + 1);
-        return _data[idx];
+        if (idx >= _data.size())
+            _data.resize(idx + 1);
+        auto iter = _data.begin();
+        std::advance(iter, idx);
+        return *iter;
     }
 
     template<typename Component>
     typename SparseArray<Component>::ConstReferenceType SparseArray<Component>::operator[](std::size_t idx) const
     {
-        if (idx >= _data.size()) return nullptr;
-        return _data[idx];
+        if (idx >= _data.size())
+            return nullptr;
+        auto iter = _data.begin();
+        std::advance(iter, idx);
+        return *iter;
     }
 
     template<typename Component>
@@ -264,17 +269,22 @@ namespace uranus::ecs {
     typename SparseArray<Component>::ReferenceType SparseArray<Component>::insertAt(SizeType pos, const Component &component)
     {
         if (pos >= _data.size()) _data.resize(pos + 1);
-        _data[pos] = std::make_shared<Component>(component);
-        return _data[pos];
+        auto iter = _data.begin();
+        std::advance(iter, pos);
+        *iter = std::make_shared<Component>(component);
+        return *iter;
     }
 
     template<typename Component>
     typename SparseArray<Component>::ReferenceType SparseArray<Component>::insertAt(SizeType pos, Component &&component)
     {
         if (pos >= _data.size()) _data.resize(pos + 1);
-        _data[pos] = std::move(std::make_shared<Component>(component));
-        return _data[pos];
+        auto iter = _data.begin();
+        std::advance(iter, pos);
+        *iter = std::make_shared<Component>(std::move(component));
+        return *iter;
     }
+
 
     // TODO test this function
     template<typename Component>
@@ -282,15 +292,20 @@ namespace uranus::ecs {
     typename SparseArray<Component>::ReferenceType SparseArray<Component>::emplaceAt(SizeType pos, Params &&...params)
     {
         if (pos >= _data.size()) _data.resize(pos + 1);
-        _data[pos] = std::make_shared<Component>(std::forward<Params>(params)...);
-        return _data[pos];
+        auto iter = _data.begin();
+        std::advance(iter, pos);
+        *iter = std::make_shared<Component>(std::forward<Params>(params)...);
+        return *iter;
     }
 
     template<typename Component>
     void SparseArray<Component>::erase(SizeType pos)
     {
-        if (pos >= _data.size()) return;
-        _data[pos] = nullptr;
+        auto iter = _data.begin();
+        if (pos < _data.size()) {
+            std::advance(iter, pos);
+            *iter = nullptr;
+        }
     }
 
     template<typename Component>
