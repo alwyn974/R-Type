@@ -173,11 +173,11 @@ void engine::system::collision() {
     }
 }
 
-void engine::system::loop()
+void engine::system::loop(float delta)
 {
     auto &r = engine::Manager::getRegistry();
     for (auto [idx, loop] : uranus::ecs::View<uranus::ecs::component::Loop>(*r))
-        loop.update(idx);
+        loop.update(idx, delta);
 }
 
 sf::IntRect get_animation_rect(int frame, int h_frame, int v_frame, sf::Vector2u size)
@@ -308,7 +308,8 @@ void engine::system::gameLoop()
 
         window->clear();
 
-        engine::system::loop();
+        auto timeDeltaMs = static_cast<float>(static_cast<double>(time.asSeconds()));
+        engine::system::loop(timeDeltaMs);
         engine::system::position();
         engine::system::collision();
         engine::system::animation();

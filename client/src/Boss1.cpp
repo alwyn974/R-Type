@@ -30,7 +30,7 @@ Boss::Boss(const std::string &uniqueName, uranus::ecs::component::Position pos,
                     0, 0, 160, 215, layer, mask, [&](const size_t &entity, const size_t &entityCollidingWith) {
                         this->colliding(entity, entityCollidingWith);
                     }});
-    r->addComponent(newEntity, uranus::ecs::component::Loop{[&](const size_t entity) { this->loop(entity); }});
+    r->addComponent(newEntity, uranus::ecs::component::Loop{[&](const size_t entity, float delta) { this->loop(entity, delta); }});
 
     r->addComponent(newEntity, uranus::ecs::component::Animation{
             4, 9, [&](const size_t entity, const std::string &animationName) {
@@ -52,12 +52,12 @@ Boss::Boss(const std::string &uniqueName, uranus::ecs::component::Position pos,
     engine::system::playAnimation(newEntity, "first");
 }
 
-void Boss::loop(size_t entity) {
+void Boss::loop(size_t entity, float delta) {
     static auto &r = engine::Manager::getRegistry();
     if (r->getComponent<uranus::ecs::component::Position>(entity)->x < 800)
         return;
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
-    vel->x = -0.5;
+    vel->x = -50 * delta;
 }
 
 void Boss::colliding(const size_t &entity, const size_t &entityCollidingWith) {}

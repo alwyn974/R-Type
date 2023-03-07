@@ -33,7 +33,7 @@ Enemy::Enemy(const std::string &uniqueName, uranus::ecs::component::Position pos
         uranus::ecs::component::Collisionable {
             0, 0, 30, 30, layer, mask, [&](const size_t &entity, const size_t &entityCollidingWith) { this->colliding(entity, entityCollidingWith); }});
 
-    r->addComponent(newEntity, uranus::ecs::component::Loop {[&](const size_t entity) { this->loop(entity); }});
+    r->addComponent(newEntity, uranus::ecs::component::Loop {[&](const size_t entity, float delta) { this->loop(entity, delta); }});
 
     r->addComponent(newEntity, uranus::ecs::component::Animation {
                                    6, 1, [&](const size_t entity, const std::string &animationName) { this->animationCallback(entity, animationName); }});
@@ -49,11 +49,11 @@ Enemy::Enemy(const std::string &uniqueName, uranus::ecs::component::Position pos
     engine::system::playAnimation(newEntity, "idle");
 }
 
-void Enemy::loop(size_t entity)
+void Enemy::loop(size_t entity, float delta)
 {
     auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
-    vel->x = -0.5;
+    vel->x = -50 * delta;
     if (r->getComponent<uranus::ecs::component::Position>(entity)->x < -100) {
         auto ent = r->entityFromIndex(entity);
         r->addComponent(ent, uranus::ecs::component::Dead());

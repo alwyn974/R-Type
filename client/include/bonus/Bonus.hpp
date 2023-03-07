@@ -18,7 +18,7 @@ namespace bonus {
 
         void colliding(size_t entity, size_t entityCollidingWith);
 
-        virtual void loop(size_t entity) = 0;
+        virtual void loop(size_t entity, float delta) = 0;
 
         virtual void enable(Player &player) = 0;
     };

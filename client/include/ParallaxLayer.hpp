@@ -8,7 +8,7 @@ class ParallaxLayer : public engine::Base {
 public:
     ParallaxLayer(std::string &name, std::shared_ptr<engine::Texture> &texture, float speed);
 
-    void loop(size_t entity);
+    void loop(size_t entity, float delta);
 
 private:
     float _speed;

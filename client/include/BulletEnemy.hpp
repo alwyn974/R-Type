@@ -14,7 +14,7 @@ class BulletEnemy : public Bullet {
 public:
     explicit BulletEnemy(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture);
 
-    void move(size_t entity) override;
+    void move(size_t entity, float delta) override;
 
 private:
 };

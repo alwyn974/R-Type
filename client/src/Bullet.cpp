@@ -36,7 +36,7 @@ Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position p
         newEntity,
         uranus::ecs::component::Collisionable {
             0, 0, 22, 20, layer, mask, [&](const size_t &entity, const size_t &entityCollidingWith) { this->colliding(entity, entityCollidingWith); }});
-    r->addComponent(newEntity, uranus::ecs::component::Loop {[&](const size_t entity) { this->loop(entity); }});
+    r->addComponent(newEntity, uranus::ecs::component::Loop {[&](const size_t entity, float delta) { this->loop(entity, delta); }});
     if (!this->networked)
         r->addComponent(newEntity, uranus::ecs::component::InputKeyboard {[&](size_t entity, const engine::Event event) { this->handleKeyboard(entity, event); }});
 
@@ -49,22 +49,22 @@ Bullet::Bullet(const std::string &uniqueName, uranus::ecs::component::Position p
     engine::system::playAnimation(newEntity, "charge");
 }
 
-void Bullet::move(size_t entity)
+void Bullet::move(size_t entity, float delta)
 {
     static auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
-    vel->x = 5;
+    vel->x = 500 * delta;
     if (r->getComponent<uranus::ecs::component::Position>(entity)->x > WIN_WIDTH + 20) {
         auto ent = r->entityFromIndex(entity);
         r->addComponent(ent, uranus::ecs::component::Dead());
     }
 }
 
-void Bullet::loop(const size_t entity)
+void Bullet::loop(const size_t entity, float delta)
 {
     if (!this->canMove) return;
 //    auto &r = engine::Manager::getRegistry();
-    this->move(entity);
+    this->move(entity, delta);
 }
 
 void Bullet::colliding(const size_t &entity, const size_t &entityCollidingWith)

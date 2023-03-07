@@ -17,7 +17,7 @@ namespace ui {
         Button(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture,
                const std::function<void()> &callbackPressed, size_t zIndex = 0, bool visible = true);
 
-        void loop(size_t);
+        void loop(size_t entity, float delta);
 
         void handleKeyboard(size_t entity, engine::Event event);
 

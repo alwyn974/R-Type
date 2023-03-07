@@ -30,10 +30,11 @@ Player::Player(const std::string &uniqueName, std::shared_ptr<engine::Texture> &
     r->addComponent(newEntity, uranus::ecs::component::Position {pos.x, pos.y});
     r->addComponent(newEntity, uranus::ecs::component::Velocity {0, 0});
     r->addComponent(newEntity, uranus::ecs::component::Sprite {std::make_shared<engine::Sprite>(texture), 1});
-    auto lambda = [networkId](size_t entity) {
+    auto lambda = [networkId, this](size_t entity, float delta) {
         static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
         static auto &r = engine::Manager::getRegistry();
         auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
+        this->_delta = delta;
         //        auto &pos = r->getComponent<uranus::ecs::component::Position>(entity);
         //        networkManager->send(std::make_shared<rtype::network::packet::C2SClientMove>(this->_networkId, pos->x + vel->x, pos->y + vel->y));
         networkManager->send(std::make_shared<rtype::network::packet::C2SClientMove>(networkId, vel->x, vel->y));
@@ -62,26 +63,25 @@ void Player::move(size_t entity, const engine::Event event)
     auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
     auto &pos = r->getComponent<uranus::ecs::component::Position>(entity);
-    const int speed = 2;
+    const int speed = 200;
     if (vel) {
         vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
         if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::Q)) {
-            vel->x = -speed;
+            vel->x = -speed * this->_delta;
         } else if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::D)) {
-            vel->x = speed;
+            vel->x = speed * this->_delta;
+            std::cout << this->_delta << std::endl;
         } else {
             vel->x = 0;
         }
         if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::Z)) {
-            vel->y = -speed;
+            vel->y = -speed * this->_delta;
         } else if (engine::Keyboard::isKeyPressed(engine::Keyboard::Key::S)) {
-            vel->y = speed;
+            vel->y = speed * this->_delta;
         } else {
             vel->y = 0;
         }
     }
-//    static auto &networkManager = rtype::client::network::NetworkManager::getInstance();
-//    networkManager->send(std::make_shared<rtype::network::packet::C2SClientMove>(this->_networkId, vel->x, vel->y));
 
     if (pos) {
         if (event.mouseButton.button == sf::Mouse::Left && event.type == event.MouseButtonPressed) {

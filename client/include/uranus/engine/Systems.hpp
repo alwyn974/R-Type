@@ -20,7 +20,7 @@ namespace engine::system {
 
     void collision();
 
-    void loop();
+    void loop(float delta);
 
     void animation();
 

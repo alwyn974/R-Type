@@ -14,4 +14,4 @@ void bonus::DoubleBullet::enable(Player &player)
     player.enableDoubleBullet();
 }
 
-void bonus::DoubleBullet::loop(size_t entity) {}
+void bonus::DoubleBullet::loop(size_t entity, float delta) {}

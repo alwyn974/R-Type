@@ -26,6 +26,7 @@ public:
     void getDamage(size_t entity, int damage) override;
 
 private:
+    float _delta;
     engine::Clock _clockCooldown;
     std::string _bulletTextureName;
     bool _networked;

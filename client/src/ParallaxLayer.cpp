@@ -4,11 +4,11 @@
 
 #include "ParallaxLayer.hpp"
 
-void ParallaxLayer::loop(size_t entity) {
+void ParallaxLayer::loop(size_t entity, float delta) {
     auto &r = engine::Manager::getRegistry();
     auto &sprite = r->getComponent<uranus::ecs::component::Sprite>(entity);
     auto &rect = sprite->sprite->getTextureRect();
-    sprite->sprite->setTextureRect({static_cast<int>(rect.left + this->_speed), rect.top, rect.width, rect.height});
+    sprite->sprite->setTextureRect({static_cast<int>(rect.left + this->_speed * delta), rect.top, rect.width, rect.height});
 }
 
 ParallaxLayer::ParallaxLayer(std::string &name, std::shared_ptr<engine::Texture> &texture, float speed) : Base(name) {
@@ -24,8 +24,8 @@ ParallaxLayer::ParallaxLayer(std::string &name, std::shared_ptr<engine::Texture>
     r->addComponent(newEntity, uranus::ecs::component::Name{name});
     r->addComponent(newEntity, uranus::ecs::component::Sprite{sprite});
     r->addComponent(newEntity, uranus::ecs::component::Loop{
-            [&](size_t entity) {
-                this->loop(entity);
+            [&](size_t entity, float delta) {
+                this->loop(entity, delta);
             }
     });
 }

@@ -74,7 +74,7 @@ namespace uranus::ecs::component {
     };
 
     struct Loop {
-        std::function<void(const size_t)> update;
+        std::function<void(const size_t, float delta)> update;
     };
 
     struct FrameData {

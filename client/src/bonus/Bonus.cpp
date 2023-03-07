@@ -27,7 +27,7 @@ bonus::Bonus::Bonus(const std::string &uniqueName, uranus::ecs::component::Posit
         newEntity,
         uranus::ecs::component::Collisionable {
             0, 0, 64, 64, layer, mask, [&](const size_t &entity, const size_t &entityCollidingWith) { this->colliding(entity, entityCollidingWith); }});
-    r->addComponent(newEntity, uranus::ecs::component::Loop {[&](const size_t entity) { this->loop(entity); }});
+    r->addComponent(newEntity, uranus::ecs::component::Loop {[&](const size_t entity, float delta) { this->loop(entity, delta); }});
 
     r->addComponent(newEntity, uranus::ecs::component::Animation {5, 1, [&](const size_t entity, const std::string &animationName) { return; }});
     engine::system::addNewAnimation(newEntity, "idle", true, 1);

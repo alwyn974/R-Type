@@ -20,11 +20,11 @@ BulletEnemy::BulletEnemy(const std::string &uniqueName, uranus::ecs::component::
     engine::system::stopAnimation(this->_entityId);
 }
 
-void BulletEnemy::move(size_t entity)
+void BulletEnemy::move(size_t entity, float delta)
 {
     auto &r = engine::Manager::getRegistry();
     auto &vel = r->getComponent<uranus::ecs::component::Velocity>(entity);
-    vel->x = -5;
+    vel->x = -500 * delta;
     if (r->getComponent<uranus::ecs::component::Position>(entity)->x < -100) {
         auto ent = r->entityFromIndex(entity);
         r->addComponent(ent, uranus::ecs::component::Dead());

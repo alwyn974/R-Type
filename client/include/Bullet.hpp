@@ -14,11 +14,11 @@ class Bullet : public engine::Base {
 public:
     explicit Bullet(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture, std::uint32_t networkId = 0, bool owned = false);
 
-    virtual void move(size_t entity);
+    virtual void move(size_t entity, float delta);
 
     void colliding(const size_t &entity, const size_t &entityCollidingWith);
 
-    void loop(const size_t);
+    void loop(const size_t, float delta);
 
     void handleKeyboard(size_t entity, const engine::Event event);
 

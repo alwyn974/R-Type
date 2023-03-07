@@ -17,7 +17,7 @@ namespace bonus {
 
         void enable(Player &player) override;
 
-        void loop(size_t entity) override;
+        void loop(size_t entity, float delta) override;
     };
 } // namespace bonus
 

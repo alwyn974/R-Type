@@ -15,7 +15,7 @@ class Enemy : public engine::Base, public Damaging {
 public:
     explicit Enemy(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture);
 
-    virtual void loop(size_t);
+    virtual void loop(size_t, float delta);
 
     void animationCallback(size_t entity, const std::string &animationName);
 

@@ -14,7 +14,7 @@ class Boss : public Enemy {
 public:
     explicit Boss(const std::string &uniqueName, uranus::ecs::component::Position pos, std::shared_ptr<engine::Texture> &texture);
 
-    void loop(size_t entity);
+    void loop(size_t entity, float delta);
 
     void colliding(const size_t &entity, const size_t &entityCollidingWith);
 

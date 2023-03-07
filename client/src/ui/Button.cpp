@@ -36,7 +36,7 @@ ui::Button::Button(const std::string &uniqueName, uranus::ecs::component::Positi
             0, 0, static_cast<float>(texture->getSize().x) / 3, static_cast<float>(texture->getSize().y), layer, mask,
             [&](const size_t &entity, const size_t &entityCollidingWith) { return; }});
 
-    r->addComponent(newEntity, uranus::ecs::component::Loop {[&](const size_t entity) { this->loop(entity); }});
+    r->addComponent(newEntity, uranus::ecs::component::Loop {[&](const size_t entity, float delta) { this->loop(entity, delta); }});
 
     r->addComponent(newEntity, uranus::ecs::component::Animation {3, 1, [&](const size_t entity, const std::string &animationName) { return; }});
 
@@ -52,7 +52,7 @@ ui::Button::Button(const std::string &uniqueName, uranus::ecs::component::Positi
     engine::system::playAnimation(newEntity, "normal");
 }
 
-void ui::Button::loop(size_t entity)
+void ui::Button::loop(size_t entity, float delta)
 {
     if (this->_pressed) {
         if (this->_clockPressed.getElapsedTime().asSeconds() > 0.1) this->_pressed = false;
